@@ -1,0 +1,53 @@
+@import (reference) './base/styles/main.less';
+
+main {
+    // width : 100vw;
+    height: 100vh;
+    .w-bg-primary();
+}
+
+.intro__container {
+    .w-box();
+    padding: 0;
+
+    header {
+        padding: 20px 20px 0 20px;
+    }
+
+    & .intro__intro {
+        .w-text-paragraph();
+        margin: 12px;
+    }
+
+    & .intro__main {
+        .row-col_center();
+        flex-wrap  : wrap;
+        align-items: stretch;
+        padding    : 0 20px 20px 20px;
+
+        & .intro__main--items {
+            flex-grow: 1;
+
+            & .intro__cpnt {
+                height: 80%;
+                .center();
+            }
+
+            & .intro__info {
+                .w-text-normal();
+                text-align: center;
+                height    : 20%;
+            }
+        }
+    }
+
+    & .intro__code {
+        border-top: 1px solid #dedede;
+
+        & .intro__code--title {
+            margin    : 0;
+            .row-center();
+            cursor    : pointer;
+        }
+    }
+}

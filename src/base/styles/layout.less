@@ -1,0 +1,79 @@
+// Flex 布局
+.w-flex {
+  display       : flex;
+  flex-direction: row;
+}
+
+// 水平排列，垂直居中
+.row-col_center {
+  .w-flex();
+  align-items: center;
+}
+
+// 水平垂直居中
+.center {
+  .row-col_center();
+  justify-content: center;
+}
+
+// 水平排列，居中
+.row-center{
+  .w-flex();
+  justify-content: center;
+}
+
+// 水平均匀排列
+.row-around {
+  .w-flex();
+  justify-content: space-around;
+}
+
+// 水平末端对齐
+.row-end {
+  .w-flex();
+  justify-content: flex-end;
+}
+
+// 水平首端对齐
+.row-start {
+  .w-flex();
+  align-items    : center;
+  justify-content: flex-start;
+}
+
+// 垂直排列，水平居中
+.col-row_center {
+  .w-flex();
+  flex-direction : column;
+  justify-content: center;
+}
+
+// 隐藏滚动条
+.hide-scroll {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+}
+
+.w-container {
+  & .w-aside-left {
+    float: left
+  }
+
+  & .w-aside-right {
+    float: right;
+  }
+}
+
+.w-box {
+  margin          : 10px;
+  padding         : 20px;
+  transition      : box-shadow 0.2s linear;
+  background-color: white;
+  border-radius   : 10px;
+  box-sizing      : border-box;
+  border          : 1px solid #e7e7e7;
+  box-shadow      : 0 0 12px rgb(168 168 168 / 20%);
+}

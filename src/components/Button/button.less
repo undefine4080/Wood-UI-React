@@ -1,0 +1,82 @@
+@import (reference) "../../base/styles/main.less";
+
+@t: wdu-button;
+
+.@{t}-normal {
+    height: 40px;
+}
+
+.@{t}-large {
+    height: 50px;
+}
+
+.@{t}-plain {
+    .w-bg-primary();
+    color: @w-font-color-main;
+
+    &:hover {
+        background: linear-gradient(#f0f0f0, #e0e0e0);
+    }
+}
+
+.@{t}-primary {
+    .w-bg-active2();
+    color: @w-color-front;
+
+    &:hover {
+        background-image: linear-gradient(#7f9bda, #506db1);
+    }
+}
+
+.@{t}-danger {
+    .w-bg-danger();
+    color: @w-color-front;
+
+    &:hover {
+        background-image: linear-gradient(#e07d78, #d36661);
+    }
+}
+
+.@{t} {
+    box-sizing    : border-box;
+    padding       : 0 20px;
+    outline       : none;
+    font-size     : 14px;
+    font-weight   : 700;
+    letter-spacing: 2px;
+    white-space   : nowrap;
+    margin        : 10px 10px;
+    transition    : all .3s cubic-bezier(.645, .045, .355, 1);
+    .w-radius-normal();
+    .w-border-solid();
+    .out-shadow-light();
+    .center();
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.@{t}-small {
+    height: 24px;
+    line-height: 24px;
+    .w-radius-small();
+}
+
+.@{t}-disabled {
+    box-shadow: none;
+    background: whitesmoke;
+    color     : rgb(189, 189, 189);
+    &:hover {
+        cursor: not-allowed;
+        background: whitesmoke;
+    }
+}
+
+.@{t}-line {
+    transition      : all .1s;
+    box-shadow      : none;
+    color           : @w-font-color-main;
+    background-color: @w-color-front;
+    border          : 2px solid rgb(231, 231, 231);
+}
