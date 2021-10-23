@@ -1,0 +1,9 @@
+*.local
+node_modules/
+.DS_Store
+node_modules/
+pakage-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/test/unit/coverage/
