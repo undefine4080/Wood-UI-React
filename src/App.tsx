@@ -1,12 +1,13 @@
-import { IntroButton } from './introFragments/introButton'
-import './App.less'
+import IntroButton from './introFragments/introButton';
+import './App.less';
 
-function App() {
+function App ()
+{
   return (
-   <main>
-       <IntroButton></IntroButton>
-   </main>
-  )
+    <main>
+      <IntroButton></IntroButton>
+    </main>
+  );
 }
 
-export default App
+export default App;

@@ -1,13 +1,12 @@
 @import (reference) './base/styles/main.less';
 
 main {
-    // width : 100vw;
     height: 100vh;
-    .w-bg-primary();
+    .wdu-bg-primary();
 }
 
 .intro__container {
-    .w-box();
+    .wdu-box();
     padding: 0;
 
     header {
@@ -15,12 +14,12 @@ main {
     }
 
     & .intro__intro {
-        .w-text-paragraph();
+        .wdu-text-paragraph();
         margin: 12px;
     }
 
     & .intro__main {
-        .row-col_center();
+        .wdu-row-flex();
         flex-wrap  : wrap;
         align-items: stretch;
         padding    : 0 20px 20px 20px;
@@ -30,11 +29,11 @@ main {
 
             & .intro__cpnt {
                 height: 80%;
-                .center();
+                .wdu-row-both-center();
             }
 
             & .intro__info {
-                .w-text-normal();
+                .wdu-text-normal();
                 text-align: center;
                 height    : 20%;
             }
@@ -45,8 +44,8 @@ main {
         border-top: 1px solid #dedede;
 
         & .intro__code--title {
+            .wdu-row-center();
             margin    : 0;
-            .row-center();
             cursor    : pointer;
         }
     }

@@ -1,55 +1,50 @@
 // Flex 布局
-.w-flex {
+.wdu-row-flex {
   display       : flex;
   flex-direction: row;
 }
 
-// 水平排列，垂直居中
-.row-col_center {
-  .w-flex();
-  align-items: center;
-}
-
-// 水平垂直居中
-.center {
-  .row-col_center();
-  justify-content: center;
-}
-
 // 水平排列，居中
-.row-center{
-  .w-flex();
+.wdu-row-center {
+  .wdu-row-flex();
   justify-content: center;
-}
-
-// 水平均匀排列
-.row-around {
-  .w-flex();
-  justify-content: space-around;
 }
 
 // 水平末端对齐
-.row-end {
-  .w-flex();
+.wdu-row-end {
+  .wdu-row-flex();
   justify-content: flex-end;
 }
 
-// 水平首端对齐
-.row-start {
-  .w-flex();
-  align-items    : center;
-  justify-content: flex-start;
+// 水平均匀排列
+.wdu-row-around {
+  .wdu-row-flex();
+  justify-content: space-around;
 }
 
-// 垂直排列，水平居中
-.col-row_center {
-  .w-flex();
-  flex-direction : column;
-  justify-content: center;
+// 水平垂直居中
+.wdu-row-both-center {
+  .wdu-row-center();
+  align-items: center;
+}
+
+// 水平排列，垂直顶端对齐
+.wdu-row-top-col {
+  align-items: flex-start;
+}
+
+// 水平排列，垂直居中对齐
+.wdu-center-col {
+  align-items: center;
+}
+
+// 水平排列，垂直底端对齐
+.wdu-row-bottom-col {
+  align-items: flex-end;
 }
 
 // 隐藏滚动条
-.hide-scroll {
+.wdu-hide-scroll {
   &::-webkit-scrollbar {
     display: none;
   }
@@ -57,17 +52,17 @@
   scrollbar-width: none;
 }
 
-.w-container {
-  & .w-aside-left {
+.wdu-container {
+  & .wdu-aside-left {
     float: left
   }
 
-  & .w-aside-right {
+  & .wdu-aside-right {
     float: right;
   }
 }
 
-.w-box {
+.wdu-box {
   margin          : 10px;
   padding         : 20px;
   transition      : box-shadow 0.2s linear;
@@ -77,3 +72,62 @@
   border          : 1px solid #e7e7e7;
   box-shadow      : 0 0 12px rgb(168 168 168 / 20%);
 }
+
+// 列布局
+@selectors: range(12);
+
+each(@selectors, {
+    .wdu-col-@{value} {
+      width: @value*8.33%;
+    }
+  }
+
+);
+
+// .wdu-col-1 {
+//   width: 8.33%
+// }
+
+// .wdu-col-2 {
+//   width: 16.66%
+// }
+
+// .wdu-col-3 {
+//   width: 25%
+// }
+
+// .wdu-col-4 {
+//   width: 33.33%
+// }
+
+// .wdu-col-5 {
+//   width: 41.66%
+// }
+
+// .wdu-col-6 {
+//   width: 50%
+// }
+
+// .wdu-col-7 {
+//   width: 58.33%
+// }
+
+// .wdu-col-8 {
+//   width: 66.66%
+// }
+
+// .wdu-col-9 {
+//   width: 75%
+// }
+
+// .wdu-col-10 {
+//   width: 83.33%
+// }
+
+// .wdu-col-11 {
+//   width: 91.66%
+// }
+
+// .wdu-col-12 {
+//   width: 100%
+// }

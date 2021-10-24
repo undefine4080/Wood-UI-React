@@ -11,8 +11,8 @@
 }
 
 .@{t}-plain {
-    .w-bg-primary();
-    color: @w-font-color-main;
+    .wdu-bg-primary();
+    color: @wdu-font-color-main;
 
     &:hover {
         background: linear-gradient(#f0f0f0, #e0e0e0);
@@ -20,8 +20,8 @@
 }
 
 .@{t}-primary {
-    .w-bg-active2();
-    color: @w-color-front;
+    .wdu-bg-active2();
+    color: @wdu-color-front;
 
     &:hover {
         background-image: linear-gradient(#7f9bda, #506db1);
@@ -29,8 +29,8 @@
 }
 
 .@{t}-danger {
-    .w-bg-danger();
-    color: @w-color-front;
+    .wdu-bg-danger();
+    color: @wdu-color-front;
 
     &:hover {
         background-image: linear-gradient(#e07d78, #d36661);
@@ -47,10 +47,10 @@
     white-space   : nowrap;
     margin        : 10px 10px;
     transition    : all .3s cubic-bezier(.645, .045, .355, 1);
-    .w-radius-normal();
-    .w-border-solid();
+    .wdu-radius-normal();
+    .wdu-border-solid();
     .out-shadow-light();
-    .center();
+    .wdu-row-both-center();
 
     &:hover {
         cursor: pointer;
@@ -60,7 +60,7 @@
 .@{t}-small {
     height: 24px;
     line-height: 24px;
-    .w-radius-small();
+    .wdu-radius-small();
 }
 
 .@{t}-disabled {
@@ -76,7 +76,7 @@
 .@{t}-line {
     transition      : all .1s;
     box-shadow      : none;
-    color           : @w-font-color-main;
-    background-color: @w-color-front;
+    color           : @wdu-font-color-main;
+    background-color: @wdu-color-front;
     border          : 2px solid rgb(231, 231, 231);
 }
