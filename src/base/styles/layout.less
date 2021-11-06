@@ -52,13 +52,39 @@
   scrollbar-width: none;
 }
 
+// 布局模块
 .wdu-container {
-  & .wdu-aside-left {
-    float: left
+  .wdu-header {
+    overflow: auto;
   }
 
-  & .wdu-aside-right {
-    float: right;
+  .wdu-main-container {
+    display       : flex;
+    flex-direction: row;
+    flex-wrap     : nowrap;
+    overflow      : hidden;
+
+    .wdu-main {
+      order: 1;
+      flex-grow: 1;
+      overflow: auto;
+    }
+
+    .wdu-aside-left {
+      flex-shrink: 0;
+      order      : 0;
+      overflow: auto;
+    }
+
+    .wdu-aside-right {
+      flex-shrink: 0;
+      order      : 2;
+      overflow: auto;
+    }
+  }
+
+  .wdu-footer {
+    overflow: auto;
   }
 }
 
@@ -83,51 +109,3 @@ each(@selectors, {
   }
 
 );
-
-// .wdu-col-1 {
-//   width: 8.33%
-// }
-
-// .wdu-col-2 {
-//   width: 16.66%
-// }
-
-// .wdu-col-3 {
-//   width: 25%
-// }
-
-// .wdu-col-4 {
-//   width: 33.33%
-// }
-
-// .wdu-col-5 {
-//   width: 41.66%
-// }
-
-// .wdu-col-6 {
-//   width: 50%
-// }
-
-// .wdu-col-7 {
-//   width: 58.33%
-// }
-
-// .wdu-col-8 {
-//   width: 66.66%
-// }
-
-// .wdu-col-9 {
-//   width: 75%
-// }
-
-// .wdu-col-10 {
-//   width: 83.33%
-// }
-
-// .wdu-col-11 {
-//   width: 91.66%
-// }
-
-// .wdu-col-12 {
-//   width: 100%
-// }

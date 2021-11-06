@@ -1,4 +1,10 @@
-@import (reference) './base/styles/main.less';
+@import '././base/styles/layout.less';
+@import '././base/styles/grid.less';
+@import '././base/styles/animate.less';
+@import '././base/styles/font.less';
+@import '././base/styles/shadow.less';
+@import '././base/styles/color.less';
+@import '././base/styles/border.less';
 
 main {
     height: 100vh;
@@ -28,14 +34,12 @@ main {
             flex-grow: 1;
 
             & .intro__cpnt {
-                height: 80%;
                 .wdu-row-both-center();
             }
 
             & .intro__info {
                 .wdu-text-normal();
                 text-align: center;
-                height    : 20%;
             }
         }
     }
@@ -45,8 +49,8 @@ main {
 
         & .intro__code--title {
             .wdu-row-center();
-            margin    : 0;
-            cursor    : pointer;
+            margin: 0;
+            cursor: pointer;
         }
     }
 }

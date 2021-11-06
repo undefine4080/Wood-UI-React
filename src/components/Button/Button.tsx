@@ -9,7 +9,6 @@ interface ButtonOptions
 
 const PREFIX = 'wdu-button';
 
-
 export default function Button ( props: ButtonOptions )
 {
     const defaultOptions: ButtonOptions = {
@@ -20,8 +19,6 @@ export default function Button ( props: ButtonOptions )
     const { type, size, children } = options;
     let classList = `${ PREFIX } ${ PREFIX }-${ type } ${ PREFIX }-${ size }`;
     if ( type === 'disabled' ) classList += ` ${ PREFIX }-disabled`;
-
-    console.log( defaultOptions );
 
     return (
         <button className={ classList }>{ children }</button>

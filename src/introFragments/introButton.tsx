@@ -41,7 +41,5 @@ export default function ()
         code: ''
     };
 
-    return (
-        <IntroComponent { ...props } />
-    );
+    return <IntroComponent { ...props } />;
 }
