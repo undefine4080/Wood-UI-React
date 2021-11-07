@@ -1,73 +1,15 @@
-@keyframes modal-open {
-  from {
-    opacity  : 0;
-    transform: scale(0);
-  }
-
-  to {
-    transform: scale(1);
-    opacity  : 1;
-  }
-}
-
-@keyframes modal-hide {
-  from {
-    transform: scale(1);
-    opacity  : 1;
-  }
-
-  to {
-    opacity  : 0;
-    transform: scale(0);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    right  : -100%;
-    opacity: 0;
-  }
-
-  to {
-    right  : 10px;
-    opacity: 1;
-  }
-}
-
-@keyframes slide-out-left {
-  from {
-    right  : 10px;
-    opacity: 1;
-  }
-
-  to {
-    right  : -110%;
-    opacity: 0;
-  }
-}
-
 .cursor-on {
   cursor: pointer;
 }
 
-@keyframes height-animate {
-  from {
-    height: 0px;
-  }
-
-  to {
-    height: 100px;
-  }
-}
-
-.w-transition-quick {
+.wdu-transition-quick {
   transition: all 0.25s cubic-bezier(.17, .84, .44, 1);
 }
 
-.w-transition-normal {
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.wdu-transition-normal {
+  transition: all 0.5s ease-in-out;
 }
 
-.w-transition-slow {
+.wdu-transition-slow {
   transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

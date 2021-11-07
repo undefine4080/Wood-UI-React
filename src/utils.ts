@@ -1,3 +1,10 @@
-export function getComponentByName(childOfComponent:Array<object>, name:string):Array<object> {
-    return childOfComponent.filter(item => item.type.name === name);
+export function getComponentByName(childOfComponent:Array<object> | object, name:string):Array<object> {
+    if(Array.isArray(childOfComponent)){
+        return childOfComponent.filter(item => item.type.name === name);
+       
+    }else{
+        if(childOfComponent.type.name === name){
+            return new Array(childOfComponent)
+        }
+    }
 }

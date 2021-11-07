@@ -1,14 +1,15 @@
 import IntroButton from './introFragments/introButton';
-import IntroLayout from './introFragments/introLayout'
+import IntroLayout from './introFragments/introLayout';
+import IntroCollapse from './introFragments/introCollapse';
 import './App.less';
 
 function App ()
 {
   return (
     <main>
-      <IntroButton></IntroButton>
-
       <IntroLayout></IntroLayout>
+      <IntroButton></IntroButton>
+      <IntroCollapse></IntroCollapse>
     </main>
   );
 }
