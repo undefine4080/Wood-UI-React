@@ -3,7 +3,8 @@ import { Collapse, CollapseItem, CollapseNav } from "../components/Collapse/Coll
 export default function ()
 {
     const props = {
-        title: 'Button 按钮',
+        title: 'Collapse 伸缩面板',
+        position: 'collapse',
         components: [
             {
                 component: (
@@ -18,8 +19,7 @@ export default function ()
                         </CollapseItem>
 
                     </Collapse>
-                ),
-                info: '主要按钮'
+                )
             }
         ],
         code: ''

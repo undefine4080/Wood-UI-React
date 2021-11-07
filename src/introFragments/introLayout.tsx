@@ -1,14 +1,11 @@
 import { IntroComponent } from "../base/introComponent";
-import Container from "../components/Layout/Container";
-import Aside from "../components/Layout/Aside";
-import Main from '../components/Layout/Main';
-import Header from "../components/Layout/Header";
-import Footer from '../components/Layout/Footer';
+import { Container, Aside, Main, Header, Footer } from "../components/Layout/Layout";
 
 export default function ()
 {
     const props = {
         title: 'Layout 布局',
+        position: 'layout',
         components: [
             {
                 component: (

@@ -4,6 +4,7 @@ export default function ()
 {
     const props = {
         title: 'Button 按钮',
+        position: 'button',
         components: [
             {
                 component: <Button type="primary">点我点我</Button>,

@@ -6,3 +6,9 @@ export default interface commonOptions
     height?: string;
     style?: object;
 }
+
+export type commonStyle =
+    {
+        width?: string,
+        height?: string;
+    };

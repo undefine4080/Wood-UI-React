@@ -2,9 +2,9 @@ import Button from "../components/Button/Button";
 
 export function IntroComponent ( props )
 {
-    const { title, components, code } = props;
+    const { title, components, code, position } = props;
     return (
-        <article className="intro__container">
+        <article className="intro__container" id={ position }>
             <header>
                 <h2>{ title }</h2>
             </header>

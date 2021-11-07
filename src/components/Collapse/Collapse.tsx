@@ -1,25 +1,32 @@
-import React, { Component, useState, useRef, useEffect } from 'react';
-import commonOptions from '../../base/commonInterface';
+import React, { useState, useRef, useEffect } from 'react';
+import commonOptions, { commonStyle } from '../../base/commonInterface';
 import { getComponentByName } from '../../utils.ts';
 import './collapse.less';
 
 // Collapse 容器
-interface CollapseOptions extends commonOptions { }
+interface CollapseOptions extends commonOptions
+{
+    sticky?: boolean;
+}
 export function Collapse ( props: CollapseOptions )
 {
     const PREFIX = 'wdu-collapse';
 
-    const { width, children } = props;
+    const { sticky, width, children } = props;
 
-    const componentStyle: object = {};
+    const componentStyle: commonStyle = {};
 
-    componentStyle.width = width ?? null;
+    componentStyle.width = width ?? '';
+
+    let isSticky: string = sticky ? `${ PREFIX }-sticky` : '';
 
     const collapseItem: Array<Object> = getComponentByName( children, 'CollapseItem' );
 
     return (
-        <div className={ PREFIX } style={ componentStyle }>
-            { collapseItem }
+        <div className={ `${ PREFIX }-container ${ isSticky }` }>
+            <div className={ PREFIX } style={ componentStyle }>
+                { collapseItem }
+            </div>
         </div>
     );
 }
@@ -29,6 +36,7 @@ export function Collapse ( props: CollapseOptions )
 interface CollapseItemOptions extends commonOptions
 {
     label?: string;
+    expand?: boolean;
 }
 export function CollapseItem ( props: CollapseItemOptions )
 {
@@ -36,21 +44,22 @@ export function CollapseItem ( props: CollapseItemOptions )
 
     const defaultOptions: CollapseItemOptions = {
         label: '选项一',
+        expand: false
     };
 
     const options: CollapseItemOptions = Object.assign( defaultOptions, props );
 
-    const { label, children } = options;
+    const { expand, label, children } = options;
 
     const bodyNode: object = useRef( {} );
     const [ realHeight, setRealHeight ] = useState( '' );
-    const [ isExpand, setExpand ] = useState( false );
+    const [ isExpand, setExpand ] = useState( expand );
     useEffect( () =>
     {
         setRealHeight( `${ bodyNode.current.scrollHeight }px` );
     }, [ bodyNode ] );
 
-    let expand = isExpand ? { height: realHeight } : { height: '0px' };
+    let expandStyle = isExpand ? { height: realHeight } : { height: '0px' };
     let itemIndicator = isExpand ? `${ PREFIX }-expand` : '';
 
     const handleExpand = () =>
@@ -61,7 +70,7 @@ export function CollapseItem ( props: CollapseItemOptions )
     return (
         <div className={ `${ PREFIX }` }>
             <div className={ `${ PREFIX }-label` } onClick={ handleExpand }> <i className={ `${ PREFIX }-indicator ${ itemIndicator }` }></i> { label }</div>
-            { children ? ( <div ref={ bodyNode } className={ `${ PREFIX }-body` } style={ expand }>{ children }</div> ) : null }
+            { children ? ( <div ref={ bodyNode } className={ `${ PREFIX }-body` } style={ expandStyle }>{ children }</div> ) : null }
         </div >
     );
 }
@@ -85,7 +94,7 @@ export function CollapseNav ( props: CollapseNavOptions )
 
     return (
         <div className={ `${ PREFIX }-nav` }>
-            <a href={ url } target={ newTab ? '_blank' : '_self' }>{ label }</a>
+            <a href={ `#${ url ? url : '' }` } target={ newTab ? '_self' : '_blank' }>{ label }</a>
         </div >
     );
 }
