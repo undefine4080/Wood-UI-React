@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import commonOptions, { commonStyle } from '../../base/commonInterface';
+import commonOptions, { commonStyle } from '@base/commonInterface';
 import { getComponentByName } from '../../utils.ts';
 import './collapse.less';
 

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './button.less';
 interface ButtonOptions
 {
     type?: string;
     size?: string;
-    children?: any;
 }
 
 const PREFIX = 'wdu-button';
@@ -17,10 +16,10 @@ export default function Button ( props: ButtonOptions )
     };
     const options: ButtonOptions = Object.assign( defaultOptions, props );
     const { type, size, children } = options;
-    let classList = `${ PREFIX } ${ PREFIX }-${ type } ${ PREFIX }-${ size }`;
-    if ( type === 'disabled' ) classList += ` ${ PREFIX }-disabled`;
+    let theClass = `${ PREFIX } ${ PREFIX }-${ type } ${ PREFIX }-${ size }`;
+    if ( type === 'disabled' ) theClass += ` ${ PREFIX }-disabled`;
 
     return (
-        <button className={ classList }>{ children }</button>
+        <button className={ theClass }>{ children }</button>
     );
 }

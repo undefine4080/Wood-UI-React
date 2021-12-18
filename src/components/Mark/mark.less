@@ -1,0 +1,25 @@
+@import (reference) "../../base/styles/main.less";
+
+.wdu-mark {
+    font-weight  : 700;
+    border-radius: 4px;
+    color        : black;
+
+    & a {
+        text-decoration: none;
+        cursor         : pointer;
+        color          : black;
+    }
+}
+
+.wdu-mark-important {
+    background-image: linear-gradient(#acc6ff, #90aae7);
+}
+
+.wdu-mark-light {
+    .wdu-bg-light();
+}
+
+.wdu-mark-remind {
+    background-image: linear-gradient(#ff9590, #c06763);
+}

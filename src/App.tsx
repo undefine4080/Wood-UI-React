@@ -1,6 +1,7 @@
 import IntroButton from './introFragments/introButton';
 import IntroLayout from './introFragments/introLayout';
 import IntroCollapse from './introFragments/introCollapse';
+import IntroMark from './introFragments/introMark';
 import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
 import { Container, Main, Aside } from './components/Layout/Layout';
 import './App.less';
@@ -61,6 +62,7 @@ function App ()
         <Main style={ { marginLeft: '200px' } }>
           <IntroLayout></IntroLayout>
           <IntroButton></IntroButton>
+          <IntroMark></IntroMark>
           <IntroCollapse></IntroCollapse>
         </Main>
       </Container>
