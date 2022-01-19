@@ -2,6 +2,7 @@ import IntroButton from './introFragments/introButton';
 import IntroLayout from './introFragments/introLayout';
 import IntroCollapse from './introFragments/introCollapse';
 import IntroMark from './introFragments/introMark';
+import IntroMessage from './introFragments/introMessage';
 import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
 import { Container, Main, Aside } from './components/Layout/Layout';
 import './App.less';
@@ -45,7 +46,7 @@ function App ()
             <CollapseItem label="弹窗">
               <CollapseNav label="Dialog 对话框" />
               <CollapseNav label="Popover 弹出层" />
-              <CollapseNav label="Message 消息提示" />
+              <CollapseNav label="Message 消息提示" url="message" />
             </CollapseItem>
 
             <CollapseItem label="内容">
@@ -64,6 +65,7 @@ function App ()
           <IntroButton></IntroButton>
           <IntroMark></IntroMark>
           <IntroCollapse></IntroCollapse>
+          <IntroMessage></IntroMessage>
         </Main>
       </Container>
     </div>

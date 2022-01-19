@@ -1,9 +1,9 @@
-import { getComponentByName } from '../../utils.ts';
+import { getComponentByName } from '../../utils';
 import commonOptions, { commonStyle } from '../../base/commonInterface';
 
 // Container 容器
 interface ContainerOptions extends commonOptions { }
-export function Container ( props: ContainerOptions )
+function Container ( props: any )
 {
     const PREFIX = 'wdu-container';
     const { className, width, height, children, style } = props;
@@ -33,7 +33,7 @@ export function Container ( props: ContainerOptions )
 
 // Header 顶部
 interface HeaderOptions extends commonOptions { }
-export function Header ( props: HeaderOptions )
+function Header ( props: any )
 {
     const PREFIX = 'wdu-header';
     const { className, children, style } = props;
@@ -52,7 +52,7 @@ interface AsideOptions extends commonOptions
 {
     side?: string,
 }
-export function Aside ( props: AsideOptions )
+function Aside ( props: any )
 {
     const PREFIX = 'wdu-aside';
     const defaultOptions: AsideOptions = {
@@ -75,7 +75,7 @@ export function Aside ( props: AsideOptions )
 
 //  Footer 底部
 interface FooterOptions extends commonOptions { }
-export function Footer ( props: FooterOptions )
+function Footer ( props: any )
 {
 
     const PREFIX = 'wdu-footer';
@@ -91,7 +91,7 @@ export function Footer ( props: FooterOptions )
 
 //  Main 主体
 interface MainOptions extends commonOptions { }
-export function Main ( props: MainOptions )
+function Main ( props: any )
 {
     const PREFIX = 'wdu-main';
     const { className, children, style } = props;
@@ -104,3 +104,5 @@ export function Main ( props: MainOptions )
         <div style={ componentStyle } className={ ` ${ PREFIX } ${ className || '' }` }>{ children }</div>
     );
 }
+
+export { Container, Aside, Header, Footer, Main };

@@ -1,6 +1,7 @@
 import React from 'react';
 import './button.less';
-interface ButtonOptions
+import commonOptions from '../../base/commonInterface';
+interface ButtonOptions extends commonOptions
 {
     type?: string;
     size?: string;
@@ -8,7 +9,7 @@ interface ButtonOptions
 
 const PREFIX = 'wdu-button';
 
-export default function Button ( props: ButtonOptions )
+export default function ( props: any )
 {
     const defaultOptions: ButtonOptions = {
         type: 'primary',
@@ -20,6 +21,6 @@ export default function Button ( props: ButtonOptions )
     if ( type === 'disabled' ) theClass += ` ${ PREFIX }-disabled`;
 
     return (
-        <button className={ theClass }>{ children }</button>
+        <button { ...props } className={ theClass }>{ children }</button>
     );
 }

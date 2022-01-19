@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import commonOptions, { commonStyle } from '@base/commonInterface';
-import { getComponentByName } from '../../utils.ts';
+import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject } from 'react';
+import commonOptions, { commonStyle } from '../../base/commonInterface';
+import { getComponentByName } from '../../utils';
 import './collapse.less';
 
 // Collapse 容器
@@ -8,7 +8,8 @@ interface CollapseOptions extends commonOptions
 {
     sticky?: boolean;
 }
-export function Collapse ( props: CollapseOptions )
+
+function Collapse ( props: any )
 {
     const PREFIX = 'wdu-collapse';
 
@@ -38,7 +39,7 @@ interface CollapseItemOptions extends commonOptions
     label?: string;
     expand?: boolean;
 }
-export function CollapseItem ( props: CollapseItemOptions )
+function CollapseItem ( props: any )
 {
     const PREFIX = 'wdu-collapse-item';
 
@@ -47,11 +48,11 @@ export function CollapseItem ( props: CollapseItemOptions )
         expand: false
     };
 
-    const options: CollapseItemOptions = Object.assign( defaultOptions, props );
+    const options = Object.assign( defaultOptions, props );
 
     const { expand, label, children } = options;
 
-    const bodyNode: object = useRef( {} );
+    const bodyNode: MutableRefObject<any> = useRef( {} );
     const [ realHeight, setRealHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
     useEffect( () =>
@@ -82,13 +83,13 @@ interface CollapseNavOptions extends commonOptions
     label?: string,
     newTab?: boolean;
 }
-export function CollapseNav ( props: CollapseNavOptions )
+function CollapseNav ( props: CollapseNavOptions )
 {
     const PREFIX = 'wdu-collapse-item';
     const defaultOptions: CollapseNavOptions = {
         newTab: true
     };
-    const options: CollapseNavOptions = Object.assign( defaultOptions, props );
+    const options = Object.assign( defaultOptions, props );
 
     const { label, url, newTab } = options;
 
@@ -98,3 +99,5 @@ export function CollapseNav ( props: CollapseNavOptions )
         </div >
     );
 }
+
+export { Collapse, CollapseItem, CollapseNav };

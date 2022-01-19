@@ -1,4 +1,4 @@
-import commonOptions from '@base';
+import commonOptions from '../../base/commonInterface';
 import './mark.less';
 
 enum TYPE
@@ -16,7 +16,7 @@ interface MarkOptions extends commonOptions
 
 const PREFIX = 'wdu-mark';
 
-export default function Mark ( props: MarkOptions )
+export default function Mark ( props: any )
 {
     const defaultOptions: MarkOptions = {
         type: TYPE.I

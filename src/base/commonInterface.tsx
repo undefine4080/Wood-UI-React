@@ -5,6 +5,7 @@ export default interface commonOptions
     children?: any;
     height?: string;
     style?: object;
+    [ attr: string ]: any;
 }
 
 export type commonStyle =

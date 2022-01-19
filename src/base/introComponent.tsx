@@ -1,6 +1,6 @@
 import Button from "../components/Button/Button";
 
-export function IntroComponent ( props )
+export function IntroComponent ( props: any )
 {
     const { title, components, code, position } = props;
     return (
@@ -10,7 +10,7 @@ export function IntroComponent ( props )
             </header>
 
             <section className="intro__main">
-                { components.map( ( item, index ) =>
+                { components.map( ( item: any, index: number ) =>
                 {
                     return (
                         <div className="intro__main--items"
