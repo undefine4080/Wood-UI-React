@@ -4,23 +4,13 @@ import { getComponentByName } from '../../utils';
 import './collapse.less';
 
 // Collapse 容器
-interface CollapseOptions extends commonOptions
-{
-    sticky?: boolean;
-}
-
 function Collapse ( props: any )
 {
     const PREFIX = 'wdu-collapse';
-
     const { sticky, width, children } = props;
-
     const componentStyle: commonStyle = {};
-
     componentStyle.width = width ?? '';
-
     let isSticky: string = sticky ? `${ PREFIX }-sticky` : '';
-
     const collapseItem: Array<Object> = getComponentByName( children, 'CollapseItem' );
 
     return (
@@ -39,22 +29,20 @@ interface CollapseItemOptions extends commonOptions
     label?: string;
     expand?: boolean;
 }
+
 function CollapseItem ( props: any )
 {
     const PREFIX = 'wdu-collapse-item';
-
     const defaultOptions: CollapseItemOptions = {
         label: '选项一',
         expand: false
     };
-
     const options = Object.assign( defaultOptions, props );
-
     const { expand, label, children } = options;
-
     const bodyNode: MutableRefObject<any> = useRef( {} );
     const [ realHeight, setRealHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
+
     useEffect( () =>
     {
         setRealHeight( `${ bodyNode.current.scrollHeight }px` );

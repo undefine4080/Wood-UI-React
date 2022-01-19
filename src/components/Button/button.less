@@ -11,7 +11,7 @@
 }
 
 .@{t}-plain {
-    .wdu-bg-primary();
+    .wdu-bg-plain();
     color: @wdu-font-color-main;
 
     &:hover {
@@ -19,8 +19,8 @@
     }
 }
 
-.@{t}-primary {
-    .wdu-bg-active2();
+.@{t}-important {
+    .wdu-bg-important();
     color: @wdu-color-front;
 
     &:hover {
@@ -34,6 +34,24 @@
 
     &:hover {
         background-image: linear-gradient(#e07d78, #d36661);
+    }
+}
+
+.@{t}-success {
+    .wdu-bg-success();
+    color: @wdu-color-front;
+
+    &:hover {
+        background-image: linear-gradient(#bce776, #9dbe68); 
+    }
+}
+
+.@{t}-warn {
+    .wdu-bg-warn();
+    color: @wdu-color-front;
+
+    &:hover {
+        background-image: linear-gradient(#fff16e, #d1bf20);
     }
 }
 

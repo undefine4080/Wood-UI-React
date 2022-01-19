@@ -35,7 +35,7 @@ function BaseMessage ( props: any )
 
 function renderMessage ( type: string, message: string )
 {
-    messages.unshift( <BaseMessage type={ type } key={ messages.length + 1 }>{ message }</BaseMessage> );
+    messages.unshift( <BaseMessage type={ type } key={ window.crypto.randomUUID().substr( 0, 8 ) }>{ message }</BaseMessage> );
 
     const messageContainer = MessageContainer();
     ReactDOM.render(
@@ -49,7 +49,7 @@ function removeMessage ( messages: React.ReactElement<any, string | React.JSXEle
 {
     setTimeout( () =>
     {
-        messages.pop();
+        messages.unshift();
         ReactDOM.render(
             [ ...messages ],
             messageContainer );

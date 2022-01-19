@@ -9,10 +9,10 @@ interface ButtonOptions extends commonOptions
 
 const PREFIX = 'wdu-button';
 
-export default function ( props: any )
+export function Button ( props: any )
 {
     const defaultOptions: ButtonOptions = {
-        type: 'primary',
+        type: 'plain',
         size: 'normal',
     };
     const options: ButtonOptions = Object.assign( defaultOptions, props );

@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import Button from "../components/Button/Button";
+import { Button } from "../components/Button/Button";
 export default function ()
 {
     const props = {
@@ -7,16 +7,24 @@ export default function ()
         position: 'button',
         components: [
             {
-                component: <Button type="primary">点我点我</Button>,
-                info: '主要按钮'
+                component: <Button type="plain">点我点我</Button>,
+                info: '默认按钮'
+            },
+            {
+                component: <Button type="success">点我点我</Button>,
+                info: '成功按钮'
             },
             {
                 component: <Button type="danger">点我点我</Button>,
                 info: '危险按钮'
             },
             {
-                component: <Button type="plain">点我点我</Button>,
-                info: '空白按钮'
+                component: <Button type="important">点我点我</Button>,
+                info: '重要按钮'
+            },
+            {
+                component: <Button type="warn">点我点我</Button>,
+                info: '警告按钮'
             },
             {
                 component: <Button type="line">点我点我</Button>,

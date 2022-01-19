@@ -10,15 +10,15 @@ export default function ()
             {
                 component: (
                     <Container width="400px">
-                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-active1">
+                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-success">
                             Header
                         </Header>
 
                         <Aside side="left" width="100px" height="200px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
 
-                        <Main className="wdu-row-both-center wdu-bg-primary"> Main</Main>
+                        <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
 
-                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-active2">
+                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-warn">
                             Footer
                         </Footer>
                     </Container>
@@ -27,17 +27,17 @@ export default function ()
             {
                 component: (
                     <Container width="400px">
-                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-active1">
+                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-success">
                             Header
                         </Header>
 
                         <Aside side="left" width="100px" height="200px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
 
-                        <Main className="wdu-row-both-center wdu-bg-primary"> Main </Main>
+                        <Main className="wdu-row-both-center wdu-bg-important"> Main </Main>
 
                         <Aside side="right" width="100px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
 
-                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-active2">
+                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-warn">
                             Footer
                         </Footer>
                     </Container>
@@ -48,13 +48,13 @@ export default function ()
                     <Container width="400px">
                         <Aside side="right" width="100px" height="200px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
 
-                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-active1">
+                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-success">
                             Header
                         </Header>
 
-                        <Main className="wdu-row-both-center wdu-bg-primary"> Main</Main>
+                        <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
 
-                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-active2">
+                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-warn">
                             Footer
                         </Footer>
                     </Container>

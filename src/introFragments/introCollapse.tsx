@@ -10,7 +10,7 @@ export default function ()
                 component: (
                     <Collapse>
                         <CollapseItem label="选项1">
-                            Cillum ut est ea eu. Culpa in commodo cupidatat adipisicing ut fugiat ad nostrud sit veniam. Lorem eiusmod in do aliqua nostrud est ex irure exercitation incididunt sunt cillum voluptate pariatur. Cupidatat exercitation labore officia labore ex Lorem amet duis voluptate non id cupidatat. Officia incididunt incididunt tempor officia laborum laboris adipisicing minim proident ad tempor commodo deserunt.
+                            <p style={ { margin: '8px' } }> Cillum ut est ea eu. Culpa in commodo cupidatat adipisicing ut fugiat ad nostrud sit veniam. Lorem eiusmod in do aliqua nostrud est ex irure exercitation incididunt sunt cillum voluptate pariatur. Cupidatat exercitation labore officia labore ex Lorem amet duis voluptate non id cupidatat. Officia incididunt incididunt tempor officia laborum laboris adipisicing minim proident ad tempor commodo deserunt.</p>
                         </CollapseItem>
 
                         <CollapseItem label="选项二">
@@ -18,7 +18,7 @@ export default function ()
                             <CollapseNav label="Google官网" url="www.google.com" />
                         </CollapseItem>
 
-                    </Collapse>
+                    </Collapse >
                 )
             }
         ],
