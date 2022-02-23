@@ -10,15 +10,15 @@ export default function ()
             {
                 component: (
                     <Container width="400px">
-                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-success">
+                        <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
                             Header
                         </Header>
 
-                        <Aside side="left" width="100px" height="200px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
+                        <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
 
                         <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
 
-                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-warn">
+                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
                             Footer
                         </Footer>
                     </Container>
@@ -27,17 +27,17 @@ export default function ()
             {
                 component: (
                     <Container width="400px">
-                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-success">
+                        <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
                             Header
                         </Header>
 
-                        <Aside side="left" width="100px" height="200px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
+                        <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
 
                         <Main className="wdu-row-both-center wdu-bg-important"> Main </Main>
 
-                        <Aside side="right" width="100px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
+                        <Aside side="right" width="100px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
 
-                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-warn">
+                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
                             Footer
                         </Footer>
                     </Container>
@@ -46,15 +46,15 @@ export default function ()
             {
                 component: (
                     <Container width="400px">
-                        <Aside side="right" width="100px" height="200px" className="wdu-row-both-center wdu-bg-danger">Aside</Aside>
+                        <Aside side="right" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
 
-                        <Header style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-success">
+                        <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
                             Header
                         </Header>
 
                         <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
 
-                        <Footer style={ { height: '60px' } } className="wdu-row-both-center wdu-bg-warn">
+                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
                             Footer
                         </Footer>
                     </Container>
