@@ -1,4 +1,3 @@
-import React from 'react';
 import './button.less';
 import commonOptions from '../../base/commonInterface';
 interface ButtonOptions extends commonOptions

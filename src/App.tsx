@@ -3,6 +3,7 @@ import IntroLayout from './introFragments/introLayout';
 import IntroCollapse from './introFragments/introCollapse';
 import IntroMark from './introFragments/introMark';
 import IntroMessage from './introFragments/introMessage';
+import { IntroDivider } from './introFragments/introDivider';
 import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
 import { Container, Main, Aside } from './components/Layout/Layout';
 import './App.less';
@@ -24,7 +25,7 @@ function App ()
               <CollapseNav label="Layout 布局" url="layout" />
               <CollapseNav label="Button 按钮" url="button" />
               <CollapseNav label="Mark 标记" url="mark" />
-              <CollapseNav label="Divider 分割线" />
+              <CollapseNav label="Divider 分割线" url="divider" />
               <CollapseNav label="Pagination 分页器" />
             </CollapseItem>
 
@@ -61,11 +62,12 @@ function App ()
         </Aside>
 
         <Main style={ { marginLeft: '200px' } }>
-          <IntroLayout></IntroLayout>
-          <IntroButton></IntroButton>
-          <IntroMark></IntroMark>
-          <IntroCollapse></IntroCollapse>
-          <IntroMessage></IntroMessage>
+          <IntroLayout />
+          <IntroButton />
+          <IntroMark />
+          <IntroCollapse />
+          <IntroMessage />
+          <IntroDivider />
         </Main>
       </Container>
     </div>
