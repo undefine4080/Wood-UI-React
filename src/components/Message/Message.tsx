@@ -35,7 +35,9 @@ function BaseMessage ( props: any )
 
 function renderMessage ( type: string, message: string )
 {
-    messages.unshift( <BaseMessage type={ type } key={ window.crypto.randomUUID().substr( 0, 8 ) }>{ message }</BaseMessage> );
+    const Crypto: any = window.crypto;
+
+    messages.unshift( <BaseMessage type={ type } key={ Crypto.randomUUID().substr( 0, 8 ) }>{ message }</BaseMessage> );
 
     const messageContainer = MessageContainer();
     ReactDOM.render(
