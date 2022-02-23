@@ -28,6 +28,7 @@ interface CollapseItemOptions extends commonOptions
 {
     label?: string;
     expand?: boolean;
+    disabled?: boolean;
 }
 
 function CollapseItem ( props: any )
@@ -35,10 +36,10 @@ function CollapseItem ( props: any )
     const PREFIX = 'wdu-collapse-item';
     const defaultOptions: CollapseItemOptions = {
         label: '选项一',
-        expand: false
+        expand: false,
     };
     const options = Object.assign( defaultOptions, props );
-    const { expand, label, children } = options;
+    const { expand, label, children, disabled } = options;
     const bodyNode: MutableRefObject<any> = useRef( {} );
     const [ realHeight, setRealHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
@@ -64,26 +65,29 @@ function CollapseItem ( props: any )
     );
 }
 
-// Collapse 导航面板模式
+// Collapse 导航面板模式 
 interface CollapseNavOptions extends commonOptions
 {
     url?: string,
     label?: string,
-    newTab?: boolean;
+    newTab?: boolean,
+    disabled?: boolean;
 }
 function CollapseNav ( props: CollapseNavOptions )
 {
     const PREFIX = 'wdu-collapse-item';
     const defaultOptions: CollapseNavOptions = {
+        disabled: false,
         newTab: true
     };
     const options = Object.assign( defaultOptions, props );
+    const { label, url, newTab, disabled } = options;
+    let disableStyle = disabled ? { cursor: 'not-allowed', color: 'grey' } : { cursor: 'pointer' };
 
-    const { label, url, newTab } = options;
-
+    // 这里 disabled 以后点击仍然能跳转，待解决
     return (
         <div className={ `${ PREFIX }-nav` }>
-            <a href={ `#${ url ? url : '' }` } target={ newTab ? '_self' : '_blank' }>{ label }</a>
+            <a href={ `${ url ? url : '' }` } style={ disableStyle } target={ newTab ? '_self' : '_blank' }>{ label }</a>
         </div >
     );
 }
