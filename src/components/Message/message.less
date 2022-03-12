@@ -1,10 +1,10 @@
 @import url('../../base/styles/main.less');
 
 #wdu-message-container{
-    width: 100vw;
     position: fixed;
-    // z-index: -10;
     background-color: rgba(0, 0, 0, 0);
+    left: 50%;
+    right: 50%;
     top: 0
 }
 
@@ -45,7 +45,7 @@
 
 
 .wdu-message-remove{
-    animation: slide-down-on 0.5s ease 0s 1 reverse;
+    animation: slide-down-on 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s 1 reverse;
 }
 
 @keyframes slide-down-on {

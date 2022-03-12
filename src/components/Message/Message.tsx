@@ -4,15 +4,19 @@ import './message.less';
 
 const PREFIX = 'wdu-message';
 const ID = 'wdu-message-container';
+// 消息队列
 let messages: Array<ReactElement> = [];
 
-function MessageContainer ( props?: any )
-{
+const genId = () => {
+    const timestamp: number = Date.now();
+    timestamp.toString().slice( 0, 8 );
+};
+
+function MessageContainer ( props?: any ) {
     // 一个 message 容器 dom
     let messageContainerDom: HTMLElement | null = document.getElementById( ID );
 
-    if ( !messageContainerDom )
-    {
+    if ( !messageContainerDom ) {
         messageContainerDom = document.createElement( 'div' );
         messageContainerDom.id = ID;
         document.body.appendChild( messageContainerDom );
@@ -21,8 +25,7 @@ function MessageContainer ( props?: any )
     return messageContainerDom;
 }
 
-function BaseMessage ( props: any )
-{
+function BaseMessage ( props: any ) {
     const { type } = props;
 
     return (
@@ -33,23 +36,21 @@ function BaseMessage ( props: any )
     );
 }
 
-function renderMessage ( type: string, message: string )
-{
-    messages.unshift( <BaseMessage type={ type } key={ window.crypto.randomUUID().substr( 0, 8 ) }>{ message }</BaseMessage> );
+function renderMessage ( type: string, message: string ) {
+    messages.push( <BaseMessage type={ type } key={ genId() }>{ message }</BaseMessage> );
 
     const messageContainer = MessageContainer();
+    const revQueue = [ ...messages ].reverse();
     ReactDOM.render(
-        [ ...messages ],
+        revQueue,
         messageContainer );
 
     removeMessage( messages, messageContainer );
 }
 
-function removeMessage ( messages: React.ReactElement<any, string | React.JSXElementConstructor<any>>[], messageContainer: HTMLElement )
-{
-    setTimeout( () =>
-    {
-        messages.unshift();
+function removeMessage ( messages: React.ReactElement<any, string | React.JSXElementConstructor<any>>[], messageContainer: HTMLElement ) {
+    setTimeout( () => {
+        messages.pop();
         ReactDOM.render(
             [ ...messages ],
             messageContainer );
