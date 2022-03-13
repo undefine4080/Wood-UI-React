@@ -4,14 +4,14 @@ import { getComponentByName } from '../../utils';
 import './collapse.less';
 
 // Collapse 容器
-function Collapse ( props: any )
-{
+function Collapse ( props: any ) {
     const PREFIX = 'wdu-collapse';
-    const { sticky, width, children } = props;
+    const { sticky, width, collapseItem } = props;
     const componentStyle: commonStyle = {};
     componentStyle.width = width ?? '';
     let isSticky: string = sticky ? `${ PREFIX }-sticky` : '';
-    const collapseItem: Array<Object> = getComponentByName( children, 'CollapseItem' );
+
+    // const collapseItem: Array<Object> = getComponentByName( children, 'CollapseItem' );
 
     return (
         <div className={ `${ PREFIX }-container ${ isSticky }` }>
@@ -24,15 +24,13 @@ function Collapse ( props: any )
 
 
 // Collapse 选项
-interface CollapseItemOptions extends commonOptions
-{
+interface CollapseItemOptions extends commonOptions {
     label?: string;
     expand?: boolean;
     disabled?: boolean;
 }
 
-function CollapseItem ( props: any )
-{
+function CollapseItem ( props: any ) {
     const PREFIX = 'wdu-collapse-item';
     const defaultOptions: CollapseItemOptions = {
         label: '选项一',
@@ -44,16 +42,14 @@ function CollapseItem ( props: any )
     const [ realHeight, setRealHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
 
-    useEffect( () =>
-    {
+    useEffect( () => {
         setRealHeight( `${ bodyNode.current.scrollHeight }px` );
     }, [ bodyNode ] );
 
     let expandStyle = isExpand ? { height: realHeight } : { height: '0px' };
     let itemIndicator = isExpand ? `${ PREFIX }-expand` : '';
 
-    const handleExpand = () =>
-    {
+    const handleExpand = () => {
         setExpand( !isExpand );
     };
 
@@ -66,15 +62,13 @@ function CollapseItem ( props: any )
 }
 
 // Collapse 导航面板模式 
-interface CollapseNavOptions extends commonOptions
-{
+interface CollapseNavOptions extends commonOptions {
     url?: string,
     label?: string,
     newTab?: boolean,
     disabled?: boolean;
 }
-function CollapseNav ( props: CollapseNavOptions )
-{
+function CollapseNav ( props: CollapseNavOptions ) {
     const PREFIX = 'wdu-collapse-item';
     const defaultOptions: CollapseNavOptions = {
         disabled: false,

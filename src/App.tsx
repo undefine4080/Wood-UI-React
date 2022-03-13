@@ -14,12 +14,12 @@ function App () {
       <Container width="1000px"
         aside={
           <Aside side="left" width="200px" style={ { position: 'fixed', top: '0px' } }>
-            <Collapse sticky={ true }>
-              <CollapseItem label="快速上手" expand={ true }>
+            <Collapse sticky={ true } collapseItem={
+              [ <CollapseItem label="快速上手" expand={ true }>
                 <CollapseNav label="介绍" />
                 <CollapseNav label="安装" />
                 <CollapseNav label="使用" />
-              </CollapseItem>
+              </CollapseItem>,
 
               <CollapseItem label="通用">
                 <CollapseNav label="Layout 布局" url="#layout" />
@@ -27,7 +27,7 @@ function App () {
                 <CollapseNav label="Mark 标记" url="#mark" />
                 <CollapseNav label="Divider 分割线" url="#divider" />
                 <CollapseNav label="Pagination 分页器" disabled />
-              </CollapseItem>
+              </CollapseItem>,
 
               <CollapseItem label="输入">
                 <CollapseNav label="Input 输入" disabled />
@@ -37,18 +37,18 @@ function App () {
                 <CollapseNav label="Form 表单" disabled />
                 <CollapseNav label="Cascade 级联选择" disabled />
                 <CollapseNav label="DatePicker 日期选择" disabled />
-              </CollapseItem>
+              </CollapseItem>,
 
               <CollapseItem label="导航">
                 <CollapseNav label="Nav 导航栏" disabled />
                 <CollapseNav label="Collapse 伸缩面板" url="#collapse" disabled />
-              </CollapseItem>
+              </CollapseItem>,
 
               <CollapseItem label="弹窗">
                 <CollapseNav label="Dialog 对话框" disabled />
                 <CollapseNav label="Popover 弹出层" disabled />
                 <CollapseNav label="Message 消息提示" url="#message" disabled />
-              </CollapseItem>
+              </CollapseItem>,
 
               <CollapseItem label="内容">
                 <CollapseNav label="List 列表" disabled />
@@ -57,7 +57,8 @@ function App () {
                 <CollapseNav label="Carousel 轮播" disabled />
                 <CollapseNav label="Progress 进度条" disabled />
                 <CollapseNav label="Tab 页签" disabled />
-              </CollapseItem>
+              </CollapseItem> ]
+            }>
             </Collapse>
           </Aside>
         }
