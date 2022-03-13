@@ -1,7 +1,7 @@
 import { IntroComponent } from "../base/introComponent";
 import { Button } from "../components/Button/Button";
-export default function ()
-{
+
+export default function () {
     const props = {
         title: 'Button 按钮',
         position: 'button',
@@ -47,8 +47,12 @@ export default function ()
                 info: '大'
             },
         ],
-        code: ''
+        code: `
+        import { Button } from "../components/Button/Button";
+        
+        <Button type="plain">点我点我</Button>
+        `
     };
 
     return <IntroComponent { ...props } />;
-}
+};
