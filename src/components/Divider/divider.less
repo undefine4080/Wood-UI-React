@@ -1,5 +1,5 @@
 .wdu-divider{
-    border-color: gray;
+    border-color: rgb(231, 231, 231);
     flex-grow: 0;
     &-line{
         border-style:solid;
@@ -10,9 +10,12 @@
     }
 
     &-vertical{
-        width: 0;
-        margin: 0 8px;
-       
+        display: inline-block;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 8px; 
+        border-right: 1px ;
+        align-self: stretch;
     }
 
     &-horizontal{

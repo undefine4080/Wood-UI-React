@@ -1,38 +1,46 @@
 import './divider.less';
 import commonOptions from '../../base/commonInterface';
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
-enum DividerType
-{
+enum DividerType {
     DASH = 'dash',
     LINE = 'line',
     DOT = 'dot',
     WAVE = 'wave'
 }
 
-enum DividerDirection
-{
+enum DividerDirection {
     HORIZONTAL = 'horizontal',
     VERTICAL = 'vertical'
 }
 
 const PREFIX = 'wdu-divider';
 
-interface DividerOptions extends commonOptions
-{
+interface DividerOptions extends commonOptions {
     type?: string;
     color?: DividerType;
     direction?: DividerDirection;
 }
 
-function Divider ( props: any ): ReactElement
-{
+function Divider ( props: any ): ReactElement {
     const { type = 'line', color: styleColor = 'gray', direction = 'horizontal' } = props;
     const styleType = `${ PREFIX }-${ type }`;
     const styleDirection = `${ PREFIX }-${ direction }`;
     const classList = `${ PREFIX } ${ styleDirection } ${ styleType } `;
 
-    return <span className={ classList } style={ { color: styleColor } }></span>;
+    // 垂直模式下，必须手动计算父元素高度
+    const diviNode = useRef<HTMLSpanElement>( null );
+
+    const [ verticalDividerHeight, setVDHeight ] = useState( 0 );
+    if ( direction === 'vertical' ) {
+        useEffect( () => {
+            const diviParentNode = diviNode.current?.parentNode as Element;
+            const { height } = diviParentNode.getBoundingClientRect();
+            setVDHeight( height );
+        }, [ diviNode ] );
+    }
+
+    return <span ref={ diviNode } className={ classList } style={ { color: styleColor, height: `${ verticalDividerHeight }px` } }></span>;
 };
 
 export { Divider };
