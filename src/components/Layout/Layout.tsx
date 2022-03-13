@@ -2,9 +2,7 @@ import { getComponentByName } from '../../utils';
 import commonOptions, { commonStyle } from '../../base/commonInterface';
 
 // Container 容器
-interface ContainerOptions extends commonOptions { }
-function Container ( props: any )
-{
+function Container ( props: any ) {
     const PREFIX = 'wdu-container';
     const { className, width, height, children, style } = props;
 
@@ -12,29 +10,27 @@ function Container ( props: any )
     componentStyle.width = width ?? '';
     componentStyle.height = height ?? '';
 
-    if ( style ) Object.assign( componentStyle, style );
+    style && Object.assign( componentStyle, style );
 
-    const aside: Array<Object> = getComponentByName( children, 'Aside' );
-    const main: Array<Object> = getComponentByName( children, 'Main' );
-    const header: Array<Object> = getComponentByName( children, 'Header' );
-    const footer: Array<Object> = getComponentByName( children, 'Footer' );
+    const aside = getComponentByName( children, 'Aside' );
+    const main = getComponentByName( children, 'Main' );
+    const header = getComponentByName( children, 'Header' );
+    const footer = getComponentByName( children, 'Footer' );
 
     return (
         <div style={ componentStyle } className={ `${ PREFIX } ${ className || '' }` }>
-            <div className="wdu-header">{ header }</div>
+            <div className="wdu-header">{ header.length ? header : null }</div>
             <div className="wdu-main-container">
-                { aside }
-                { main }
+                { aside.length ? aside : null }
+                { main.length ? main : null }
             </div>
-            <div className="wdu-footer">{ footer }</div>
+            <div className="wdu-footer">{ footer.length ? footer : null }</div>
         </div>
     );
 }
 
 // Header 顶部
-interface HeaderOptions extends commonOptions { }
-function Header ( props: any )
-{
+function Header ( props: any ) {
     const PREFIX = 'wdu-header';
     const { className, children, style } = props;
 
@@ -48,12 +44,10 @@ function Header ( props: any )
 }
 
 // Aside 侧边
-interface AsideOptions extends commonOptions
-{
+interface AsideOptions extends commonOptions {
     side?: string,
 }
-function Aside ( props: any )
-{
+function Aside ( props: any ) {
     const PREFIX = 'wdu-aside';
     const defaultOptions: AsideOptions = {
         side: 'left',
@@ -75,8 +69,7 @@ function Aside ( props: any )
 
 //  Footer 底部
 interface FooterOptions extends commonOptions { }
-function Footer ( props: any )
-{
+function Footer ( props: any ) {
 
     const PREFIX = 'wdu-footer';
     const { className, children, style } = props;
@@ -91,8 +84,7 @@ function Footer ( props: any )
 
 //  Main 主体
 interface MainOptions extends commonOptions { }
-function Main ( props: any )
-{
+function Main ( props: any ) {
     const PREFIX = 'wdu-main';
     const { className, children, style } = props;
 

@@ -1,6 +1,7 @@
 import { IntroComponent } from "../base/introComponent";
 import { Button } from "../components/Button/Button";
 import Message from "../components/Message/Message";
+
 export default function () {
     const props = {
         title: 'Message 消息提示',

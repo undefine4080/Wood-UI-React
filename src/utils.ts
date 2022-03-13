@@ -1,22 +1,19 @@
-type childOfComponent = {
-    type: any;
-};
-
-export function getComponentByName ( childOfComponent: childOfComponent, name: string ): any
-{
-    if ( !childOfComponent )
-    {
+export function getComponentByName ( childOfComponent: any, name: string ): any {
+    if ( !childOfComponent ) {
         return [];
     }
 
-    if ( Array.isArray( childOfComponent ) )
-    {
-        return childOfComponent.filter( item => item.type.name === name );
-    } else
-    {
-        if ( childOfComponent.type.name === name )
-        {
-            return new Array( childOfComponent );
+    if ( Array.isArray( childOfComponent ) ) {
+        const result = childOfComponent.filter( item => item.type.name === name );
+
+        if ( result.length ) {
+            return result;
+        } else {
+            return [];
+        }
+    } else {
+        if ( childOfComponent.type.name === name ) {
+            return childOfComponent;
         }
     }
 }
