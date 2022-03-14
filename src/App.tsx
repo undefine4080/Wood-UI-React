@@ -41,13 +41,13 @@ function App () {
 
               <CollapseItem label="导航">
                 <CollapseNav label="Nav 导航栏" disabled />
-                <CollapseNav label="Collapse 伸缩面板" url="#collapse" disabled />
+                <CollapseNav label="Collapse 伸缩面板" url="#collapse" />
               </CollapseItem>,
 
               <CollapseItem label="弹窗">
                 <CollapseNav label="Dialog 对话框" disabled />
                 <CollapseNav label="Popover 弹出层" disabled />
-                <CollapseNav label="Message 消息提示" url="#message" disabled />
+                <CollapseNav label="Message 消息提示" url="#message" />
               </CollapseItem>,
 
               <CollapseItem label="内容">
@@ -68,9 +68,9 @@ function App () {
             <IntroLayout />
             <IntroButton />
             <IntroMark />
+            <IntroDivider />
             <IntroCollapse />
             <IntroMessage />
-            <IntroDivider />
           </Main>
         }
       >

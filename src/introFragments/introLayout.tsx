@@ -63,7 +63,24 @@ export default function () {
                     </Container >
                 )
             },
-        ]
+        ],
+        code: `
+        import { Container, Aside, Main, Header, Footer } from "../components/Layout/Layout";
+
+        <Container width="400px"
+            header={ <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
+                Header
+            </Header> }
+
+            aside={ <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ 
+                { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside> }
+            
+            main={ <Main className="wdu-row-both-center wdu-bg-important"> Main</Main> }
+            
+            footer={ <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } 
+            className="wdu-row-both-center">Footer</Footer> }>
+        </Container >
+        `
     };
 
     return <IntroComponent { ...props } />;

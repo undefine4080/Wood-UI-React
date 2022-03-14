@@ -6,7 +6,7 @@ export function IntroComponent ( props: any ) {
     useEffect( () => {
         document.querySelectorAll( "pre code" ).forEach( block => {
             try {
-
+                // @ts-ignore
                 hljs.highlightBlock( block );
             } catch ( e ) {
                 console.log( e );
@@ -17,7 +17,6 @@ export function IntroComponent ( props: any ) {
     const [ codeHeight, setCodeHeight ] = useState( '0px' );
 
     const switchCodePanel = () => {
-        debugger;
         if ( codeHeight === 'max-content' ) {
             setCodeHeight( '0px' );
         } else {
@@ -46,7 +45,7 @@ export function IntroComponent ( props: any ) {
             </section>
 
             <section className="intro__code" >
-                <pre style={ { overflow: 'hidden', height: codeHeight } }>
+                <pre style={ { overflowX: 'auto', height: codeHeight, maxWidth: '800px', transition: 'all 0.3 ease' } }>
                     <code style={ { backgroundColor: '#dfefdd' } }>{ code }</code>
                 </pre>
                 <p className="intro__code--title"><Button type="plain" size="small" onClick={ switchCodePanel }>查看代码</Button></p>

@@ -1,23 +1,20 @@
 import commonOptions from '../../base/commonInterface';
 import './mark.less';
 
-enum TYPE
-{
+enum TYPE {
     I = 'important', // 主要标记
     L = 'light', // 亮点标记
     R = 'remind' // 重点标记
 }
 
-interface MarkOptions extends commonOptions
-{
+interface MarkOptions extends commonOptions {
     type?: TYPE;
     link?: string; // 跳转链接的目标 url 地址
 }
 
 const PREFIX = 'wdu-mark';
 
-export default function Mark ( props: any )
-{
+export function Mark ( props: any ) {
     const defaultOptions: MarkOptions = {
         type: TYPE.I
     };
