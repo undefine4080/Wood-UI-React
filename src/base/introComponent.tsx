@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button/Button";
 
 export function IntroComponent ( props: any ) {
@@ -6,12 +6,24 @@ export function IntroComponent ( props: any ) {
     useEffect( () => {
         document.querySelectorAll( "pre code" ).forEach( block => {
             try {
+
                 hljs.highlightBlock( block );
             } catch ( e ) {
                 console.log( e );
             }
         } );
     }, [] );
+
+    const [ codeHeight, setCodeHeight ] = useState( '0px' );
+
+    const switchCodePanel = () => {
+        debugger;
+        if ( codeHeight === 'max-content' ) {
+            setCodeHeight( '0px' );
+        } else {
+            setCodeHeight( 'max-content' );
+        }
+    };
 
     return (
         <article className="intro__container" id={ position }>
@@ -33,12 +45,11 @@ export function IntroComponent ( props: any ) {
                 } ) }
             </section>
 
-            <section className="intro__code">
-                <pre>
-                    <code>{ code }</code>
+            <section className="intro__code" >
+                <pre style={ { overflow: 'hidden', height: codeHeight } }>
+                    <code style={ { backgroundColor: '#dfefdd' } }>{ code }</code>
                 </pre>
-
-                <p className="intro__code--title"><Button type="plain" size="small">查看代码</Button></p>
+                <p className="intro__code--title"><Button type="plain" size="small" onClick={ switchCodePanel }>查看代码</Button></p>
             </section>
         </article>
     );
