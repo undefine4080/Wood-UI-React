@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject } from 'react';
 import commonOptions, { commonStyle } from '../../base/commonInterface';
-import { getComponentByName } from '../../utils';
 import './collapse.less';
 
 // Collapse 容器
@@ -10,8 +9,6 @@ function Collapse ( props: any ) {
     const componentStyle: commonStyle = {};
     componentStyle.width = width ?? '';
     let isSticky: string = sticky ? `${ PREFIX }-sticky` : '';
-
-    // const collapseItem: Array<Object> = getComponentByName( children, 'CollapseItem' );
 
     return (
         <div className={ `${ PREFIX }-container ${ isSticky }` }>
@@ -55,7 +52,9 @@ function CollapseItem ( props: any ) {
 
     return (
         <div className={ `${ PREFIX }` }>
-            <div className={ `${ PREFIX }-label` } onClick={ handleExpand }> <i className={ `${ PREFIX }-indicator ${ itemIndicator }` }></i> { label }</div>
+            <div className={ `${ PREFIX }-label` } onClick={ handleExpand }>
+                <i className={ `${ PREFIX }-indicator ${ itemIndicator }` }></i> { label }
+            </div>
             { children ? ( <div ref={ bodyNode } className={ `${ PREFIX }-body` } style={ expandStyle }>{ children }</div> ) : null }
         </div >
     );
