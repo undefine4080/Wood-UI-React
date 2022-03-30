@@ -6,6 +6,7 @@ import IntroMessage from './introFragments/introMessage';
 import { IntroDivider } from './introFragments/introDivider';
 import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
 import { Container, Main, Aside } from './components/Layout/Layout';
+import IntroInput from './introFragments/introInput';
 import './App.less';
 
 function App () {
@@ -30,8 +31,8 @@ function App () {
                   <CollapseNav label="Pagination 分页器" disabled />
                 </CollapseItem>
 
-                <CollapseItem label="输入">
-                  <CollapseNav label="Input 输入" disabled />
+                <CollapseItem label="表单">
+                  <CollapseNav label="Input 输入" url="#input" />
                   <CollapseNav label="Radio 单选" disabled />
                   <CollapseNav label="Checkbox 多选" disabled />
                   <CollapseNav label="Select 选择" disabled />
@@ -73,6 +74,7 @@ function App () {
             <IntroDivider />
             <IntroCollapse />
             <IntroMessage />
+            <IntroInput />
           </Main>
         }
       >

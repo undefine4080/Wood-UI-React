@@ -1,0 +1,66 @@
+@import (reference) "@base/styles/main.less";
+
+.wdu-input-container{
+    .wdu-row-flex();
+    width: fit-content;
+    box-sizing   : content-box;
+    margin       : 10px;
+    border-radius: 5px;
+}
+
+.wdu-input-input {
+    -webkit-appearance: none;
+    -moz-appearance   : none;
+    background-color  : #fff;
+    border-radius     : 0 5px 5px 0;
+    padding           : 5px;
+    display           : inline-block;
+    outline           : 0;
+    box-sizing        : border-box;
+    flex-grow         : 1;
+    .wdu-border-light();
+
+    &:focus{
+        transition: all 0.3s;
+        border-color: rgb(112, 112, 112);
+    }
+}
+
+.wdu-input-label {
+    .wdu-bg-plain();
+    .wdu-row-both-center();
+    font-size    : 16px;
+    font-weight  : bold;
+    height       : 100%;
+    box-sizing   : border-box;
+    border-radius: 5px 0 0 5px;
+    white-space  : nowrap;
+    width        : max-content;
+    flex-grow    : 0;
+    padding      : 5px 15px;
+    color: @wdu-font-color-title;
+}
+
+.wdu-input-small {
+    &>input {
+        .wdu-text-small();
+    }
+
+    height: 28px;
+}
+
+.wdu-input-normal {
+    &>input {
+        .wdu-text-normal();
+    }
+
+    height: 36px;
+}
+
+.wdu-input-large {
+    &>input {
+        .wdu-text-large();
+    }
+
+    height: 42px;
+}
