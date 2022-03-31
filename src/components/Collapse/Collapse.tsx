@@ -1,13 +1,22 @@
-import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject } from 'react';
+import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject, ReactComponentElement } from 'react';
 import commonOptions, { commonStyle } from '../../base/commonInterface';
 import './collapse.less';
 
+interface propsCollapse {
+    sticky?: boolean; // 是否 fixed 布局
+    width?: string;
+    collapseItem?: React.FC;
+}
+
 // Collapse 容器
-function Collapse ( props: any ) {
+const Collapse: React.FC<propsCollapse> = ( props ) => {
     const PREFIX = 'wdu-collapse';
     const { sticky, width, collapseItem } = props;
+
     const componentStyle: commonStyle = {};
+
     componentStyle.width = width ?? '';
+
     let isSticky: string = sticky ? `${ PREFIX }-sticky` : '';
 
     return (
@@ -17,19 +26,19 @@ function Collapse ( props: any ) {
             </div>
         </div>
     );
-}
+};
 
 
 // Collapse 选项
-interface CollapseItemOptions extends commonOptions {
+interface propsCollapseItem extends commonOptions {
     label?: string;
     expand?: boolean;
     disabled?: boolean;
 }
 
-function CollapseItem ( props: any ) {
+const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
-    const defaultOptions: CollapseItemOptions = {
+    const defaultOptions: propsCollapseItem = {
         label: '选项一',
         expand: false,
     };
@@ -58,18 +67,19 @@ function CollapseItem ( props: any ) {
             { children ? ( <div ref={ bodyNode } className={ `${ PREFIX }-body` } style={ expandStyle }>{ children }</div> ) : null }
         </div >
     );
-}
+};
 
 // Collapse 导航面板模式 
-interface CollapseNavOptions extends commonOptions {
-    url?: string,
-    label?: string,
-    newTab?: boolean,
-    disabled?: boolean;
+interface propsCollapseNav extends commonOptions {
+    url?: string, // 导航目标 url
+    label?: string, // 标签文字
+    newTab?: boolean, // 是否在新标签页打开链接
+    disabled?: boolean; // 是否禁用点击
 }
-function CollapseNav ( props: CollapseNavOptions ) {
+
+const CollapseNav: React.FC<propsCollapse> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
-    const defaultOptions: CollapseNavOptions = {
+    const defaultOptions: propsCollapseNav = {
         disabled: false,
         newTab: true
     };
@@ -77,12 +87,21 @@ function CollapseNav ( props: CollapseNavOptions ) {
     const { label, url, newTab, disabled } = options;
     let disableStyle = disabled ? { cursor: 'not-allowed', color: 'grey' } : { cursor: 'pointer' };
 
-    // 这里 disabled 以后点击仍然能跳转，待解决
+    const aRef: MutableRefObject<any> = useRef( null );
+    useEffect( () => {
+        if ( disabled ) {
+            aRef.current.removeAttribute( 'href' );
+        } else {
+            if ( url && url.length > 0 )
+                aRef.current.setAttribute( 'href', url );
+        }
+    }, [ aRef ] );
+
     return (
         <div className={ `${ PREFIX }-nav` }>
-            <a href={ `${ url ? url : '' }` } style={ disableStyle } target={ newTab ? '_self' : '_blank' }>{ label }</a>
+            <a ref={ aRef } style={ disableStyle } target={ newTab ? '_self' : '_blank' }>{ label }</a>
         </div >
     );
-}
+};
 
 export { Collapse, CollapseItem, CollapseNav };
