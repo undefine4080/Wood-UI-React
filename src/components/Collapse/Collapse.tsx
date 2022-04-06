@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject, ReactComponentElement } from 'react';
+import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject } from 'react';
 import commonOptions, { commonStyle } from '../../base/commonInterface';
 import './collapse.less';
 

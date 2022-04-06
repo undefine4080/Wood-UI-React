@@ -1,0 +1,60 @@
+@import (reference) '../../base/styles/main.less';
+
+.wdu-radio-label {
+    display: flex;
+    width: max-content;
+    height: 30px;
+    position: relative;
+    padding-left: 30px;
+    line-height: 30px;
+    margin: 0 10px;
+    user-select: none;
+    align-items: center;
+    .wdu-text-normal();
+}
+
+.wdu-radio-label .wdu-radio-checkmark::after {
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+}
+
+.wdu-radio {
+    position: absolute;
+    left: 0px;
+    opacity: 0;
+    width: 100%;
+    z-index: 100;
+    cursor: pointer;
+
+    &:checked~.wdu-radio-checkmark {
+        .wdu-bg-important();
+    }
+
+    &:checked~.wdu-radio-checkmark::after {
+        display: block;
+    }
+}
+
+.wdu-radio-checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border-radius: 50%;
+    border: 3px solid rgb(231, 231, 231);
+    cursor: pointer;
+    .wdu-bg-plain();
+    .wdu-row-both-center();
+
+    &::after {
+        content: '';
+        position: absolute;
+    }
+}
+
+.wdu-radio-disabled {
+    cursor: not-allowed;
+    color: @wdu-color-disabled;
+}
