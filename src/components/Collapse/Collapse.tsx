@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect, LegacyRef, MutableRefObject } from 'react';
+import React, { useState, useRef, useEffect, MutableRefObject, ReactFragment } from 'react';
 import commonOptions, { commonStyle } from '../../base/commonInterface';
 import './collapse.less';
 
 interface propsCollapse {
     sticky?: boolean; // 是否 fixed 布局
     width?: string;
-    collapseItem?: React.FC;
+    collapseItem?: ReactFragment;
 }
 
 // Collapse 容器
@@ -77,7 +77,7 @@ interface propsCollapseNav extends commonOptions {
     disabled?: boolean; // 是否禁用点击
 }
 
-const CollapseNav: React.FC<propsCollapse> = ( props ) => {
+const CollapseNav: React.FC<propsCollapseNav> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
     const defaultOptions: propsCollapseNav = {
         disabled: false,
