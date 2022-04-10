@@ -9,7 +9,8 @@ export default defineConfig( {
   resolve: {
     alias: {
       '@': resolve( 'src' ),
-      '@base': resolve( 'src/base' )
+      '@base': resolve( 'src/base' ),
+      '@style': resolve( 'src/base/styles' )
     }
   }
 } );

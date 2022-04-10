@@ -1,15 +1,13 @@
 import './button.less';
-import commonOptions from '../../base/commonInterface';
-interface ButtonOptions extends commonOptions
-{
+import commonOptions from '../../base/types/commonInterface';
+interface ButtonOptions extends commonOptions {
     type?: string;
     size?: string;
 }
 
 const PREFIX = 'wdu-button';
 
-export function Button ( props: any )
-{
+export function Button ( props: any ) {
     const defaultOptions: ButtonOptions = {
         type: 'plain',
         size: 'normal',

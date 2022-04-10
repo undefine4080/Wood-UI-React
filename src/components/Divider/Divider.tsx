@@ -1,5 +1,5 @@
 import './divider.less';
-import commonOptions from '../../base/commonInterface';
+import commonOptions from '../../base/types/commonInterface';
 import { ReactElement, useEffect, useRef, useState } from 'react';
 
 enum DividerType {

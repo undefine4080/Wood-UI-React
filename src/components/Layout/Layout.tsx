@@ -1,5 +1,5 @@
 import { getComponentByName } from '../../utils';
-import commonOptions, { commonStyle } from '../../base/commonInterface';
+import commonOptions, { commonStyle } from '../../base/types/commonInterface';
 
 // Container 容器
 function Container ( props: any ) {

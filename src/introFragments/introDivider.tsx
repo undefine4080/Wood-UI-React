@@ -63,4 +63,4 @@ function IntroDivider () {
     return <IntroComponent { ...props } />;
 }
 
-export { IntroDivider };
+export default IntroDivider;

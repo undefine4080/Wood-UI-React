@@ -1,13 +1,16 @@
+import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
+import { Container, Main, Aside } from './components/Layout/Layout';
+
 import IntroButton from './introFragments/introButton';
 import IntroLayout from './introFragments/introLayout';
 import IntroCollapse from './introFragments/introCollapse';
 import IntroMark from './introFragments/introMark';
 import IntroMessage from './introFragments/introMessage';
-import { IntroDivider } from './introFragments/introDivider';
-import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
-import { Container, Main, Aside } from './components/Layout/Layout';
+import IntroDivider from './introFragments/introDivider';
 import IntroInput from './introFragments/introInput';
 import IntroRadio from './introFragments/introRadio';
+import IntroCheckbox from './introFragments/introCheckbox';
+
 import './App.less';
 
 function App () {
@@ -35,7 +38,7 @@ function App () {
                 <CollapseItem label="表单">
                   <CollapseNav label="Input 输入" url="#input" />
                   <CollapseNav label="Radio 单选" url="#radio" />
-                  <CollapseNav label="Checkbox 多选" disabled />
+                  <CollapseNav label="Checkbox 多选" url="#checkbox" />
                   <CollapseNav label="Select 选择" disabled />
                   <CollapseNav label="Form 表单" disabled />
                   <CollapseNav label="Cascade 级联选择" disabled />
@@ -77,6 +80,7 @@ function App () {
             <IntroMessage />
             <IntroInput />
             <IntroRadio />
+            <IntroCheckbox />
           </Main>
         }
       >

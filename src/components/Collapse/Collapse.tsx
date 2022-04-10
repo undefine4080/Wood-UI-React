@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, MutableRefObject, ReactFragment } from 'react';
-import commonOptions, { commonStyle } from '../../base/commonInterface';
+import commonOptions, { commonStyle } from '../../base/types/commonInterface';
 import './collapse.less';
 
 interface propsCollapse {

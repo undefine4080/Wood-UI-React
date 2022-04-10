@@ -1,4 +1,4 @@
-import commonOptions from '../../base/commonInterface';
+import commonOptions from '../../base/types/commonInterface';
 import './mark.less';
 
 enum TYPE {
