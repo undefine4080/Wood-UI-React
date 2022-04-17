@@ -1,11 +1,11 @@
 import React from "react";
+import commonProps from "../../base/types/commonInterface";
 import './radio.less';
 
-interface propsRadio {
+interface propsRadio extends commonProps {
     label?: string; // 标签
     name?: string; // 组名称
     value?: string; // 代表值
-    id?: string;
 }
 
 const Radio: React.FC<propsRadio> = ( props ) => {

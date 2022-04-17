@@ -4,6 +4,7 @@ import './message.less';
 
 const PREFIX = 'wdu-message';
 const ID = 'wdu-message-container';
+
 // 消息队列
 let messages: Array<ReactElement> = [];
 

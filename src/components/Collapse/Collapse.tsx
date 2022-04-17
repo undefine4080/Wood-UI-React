@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect, MutableRefObject, ReactFragment } from 'react';
-import commonOptions, { commonStyle } from '../../base/types/commonInterface';
+import commonProps, { commonStyle } from '../../base/types/commonInterface';
 import './collapse.less';
 
-interface propsCollapse {
+interface propsCollapse extends commonProps {
     sticky?: boolean; // 是否 fixed 布局
-    width?: string;
     collapseItem?: ReactFragment;
 }
 
@@ -30,20 +29,14 @@ const Collapse: React.FC<propsCollapse> = ( props ) => {
 
 
 // Collapse 选项
-interface propsCollapseItem extends commonOptions {
+interface propsCollapseItem extends commonProps {
     label?: string;
     expand?: boolean;
-    disabled?: boolean;
 }
 
 const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
-    const defaultOptions: propsCollapseItem = {
-        label: '选项一',
-        expand: false,
-    };
-    const options = Object.assign( defaultOptions, props );
-    const { expand, label, children, disabled } = options;
+    const { expand = false, label, children, disabled = false } = props;
     const bodyNode: MutableRefObject<any> = useRef( {} );
     const [ realHeight, setRealHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
@@ -70,24 +63,18 @@ const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
 };
 
 // Collapse 导航面板模式 
-interface propsCollapseNav extends commonOptions {
+interface propsCollapseNav extends commonProps {
     url?: string, // 导航目标 url
     label?: string, // 标签文字
     newTab?: boolean, // 是否在新标签页打开链接
-    disabled?: boolean; // 是否禁用点击
 }
 
 const CollapseNav: React.FC<propsCollapseNav> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
-    const defaultOptions: propsCollapseNav = {
-        disabled: false,
-        newTab: true
-    };
-    const options = Object.assign( defaultOptions, props );
-    const { label, url, newTab, disabled } = options;
+    const { label, url, newTab = true, disabled = false } = props;
     let disableStyle = disabled ? { cursor: 'not-allowed', color: 'grey' } : { cursor: 'pointer' };
-
     const aRef: MutableRefObject<any> = useRef( null );
+
     useEffect( () => {
         if ( disabled ) {
             aRef.current.removeAttribute( 'href' );

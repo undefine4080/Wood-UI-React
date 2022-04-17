@@ -1,13 +1,12 @@
-import React, { ReactEventHandler, useState } from "react";
+import React, { ChangeEventHandler } from "react";
+import commonProps from "../../base/types/commonInterface";
 import './checkbox.less';
 
-interface propsCheckbox {
+interface propsCheckbox extends commonProps {
     label?: string; // 标签
     name?: string; // 组名称
     value?: string; // 代表值
-    id?: string;
-    disabled?: boolean;
-    onChange?: ( evt: React.ChangeEvent<HTMLInputElement> ) => void;
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Checkbox: React.FC<propsCheckbox> = ( props ) => {

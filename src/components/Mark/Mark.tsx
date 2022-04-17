@@ -1,4 +1,4 @@
-import commonOptions from '../../base/types/commonInterface';
+import commonProps from '../../base/types/commonInterface';
 import './mark.less';
 
 enum TYPE {
@@ -7,27 +7,20 @@ enum TYPE {
     R = 'remind' // 重点标记
 }
 
-interface MarkOptions extends commonOptions {
-    type?: TYPE;
+interface propsMark extends commonProps {
     link?: string; // 跳转链接的目标 url 地址
 }
 
-const PREFIX = 'wdu-mark';
-
-export function Mark ( props: any ) {
-    const defaultOptions: MarkOptions = {
-        type: TYPE.I
-    };
-
-    const options: MarkOptions = Object.assign( defaultOptions, props );
-
-    const { type, link, children } = options;
-
-    const theClass = `${ PREFIX } ${ PREFIX }-${ type }`;
+const Mark: React.FC<propsMark> = ( props ) => {
+    const PREFIX = 'wdu-mark';
+    const { type = TYPE.I, link, children } = props;
+    const componentStyle = `${ PREFIX } ${ PREFIX }-${ type }`;
 
     return (
-        <span className={ theClass } >
+        <span className={ componentStyle } >
             { link && link.length > 0 ? <a href={ link } target='_blank'>{ children }</a> : children }
         </span >
     );
-}
+};
+
+export { Mark };

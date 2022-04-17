@@ -1,18 +1,15 @@
-import React, { ComponentProps } from "react";
+import React from "react";
+import commonProps from "../../base/types/commonInterface";
 import './input.less';
 
-const PREFIX = 'wdu-input';
-
-interface propsInput {
-    size?: string, // 大小
+interface propsInput extends commonProps {
     label?: string, // 标签
-    type?: string, // 输入类型
     placeholder?: string, // 缺省文字
 }
 
 const Input: React.FC<propsInput> = ( props ) => {
+    const PREFIX = 'wdu-input';
     const { size = "normal", label, type = 'text', placeholder } = props;
-
     const classList = `${ PREFIX }-container ${ PREFIX }-${ size }`;
 
     return (

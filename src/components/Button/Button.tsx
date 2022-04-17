@@ -1,8 +1,7 @@
 import './button.less';
-import commonOptions from '../../base/types/commonInterface';
-interface ButtonOptions extends commonOptions {
-    type?: string;
-    size?: string;
+import commonProps from '../../base/types/commonInterface';
+interface ButtonOptions extends commonProps {
+    onClick?: MouseEvent;
 }
 
 const PREFIX = 'wdu-button';
@@ -13,11 +12,11 @@ export function Button ( props: any ) {
         size: 'normal',
     };
     const options: ButtonOptions = Object.assign( defaultOptions, props );
-    const { type, size, children } = options;
+    const { type, size, children, onClick } = options;
     let theClass = `${ PREFIX } ${ PREFIX }-${ type } ${ PREFIX }-${ size }`;
     if ( type === 'disabled' ) theClass += ` ${ PREFIX }-disabled`;
 
     return (
-        <button { ...props } className={ theClass }>{ children }</button>
+        <button { ...props } className={ theClass } onClick={ onClick }>{ children }</button>
     );
 }
