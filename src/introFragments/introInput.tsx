@@ -17,7 +17,11 @@ export default function () {
             {
                 component: <Input label="年龄" type="number" size="large" />,
                 info: 'large 输入框'
-            }
+            },
+            {
+                component: <Input label="住址" type="tel" size="normal" placeholder="蒙古大草原" />,
+                info: '占位内容'
+            },
         ],
         code: `
         import { Input } from "../components/Input/Input";
