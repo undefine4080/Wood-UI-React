@@ -10,6 +10,7 @@ import IntroDivider from './introFragments/introDivider';
 import IntroInput from './introFragments/introInput';
 import IntroRadio from './introFragments/introRadio';
 import IntroCheckbox from './introFragments/introCheckbox';
+import IntroTab from './introFragments/introTab';
 
 import './App.less';
 
@@ -62,7 +63,7 @@ function App () {
                   <CollapseNav label="Table 表格" disabled />
                   <CollapseNav label="Carousel 轮播" disabled />
                   <CollapseNav label="Progress 进度条" disabled />
-                  <CollapseNav label="Tab 页签" disabled />
+                  <CollapseNav label="Tab 动态面板" url="#tab" />
                 </CollapseItem>
               </>
             }>
@@ -81,6 +82,7 @@ function App () {
             <IntroInput />
             <IntroRadio />
             <IntroCheckbox />
+            <IntroTab />
           </Main>
         }
       >

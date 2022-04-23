@@ -1,0 +1,58 @@
+@import (reference) "@base/styles/main.less";
+
+@t: wdu-tab;
+
+.@{t} {
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: white;
+    flex-grow: 1;
+    .wdu-border-light();
+}
+
+.@{t}-head {
+    overflow-x: auto;
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    height: 30%;
+    padding: 10px 10px 0 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(207, 207, 207, 0.6);
+    // .hide-scroll();
+}
+
+.@{t}-title {
+    .wdu-radius-small();
+    .cursor-on();
+    padding: 3px 5px;
+    border-radius: 5px 5px 0 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgb(228, 228, 228);
+    }
+}
+
+.@{t}-container {
+    min-height: 100px;
+    overflow: auto;
+    padding: 8px;
+    position: relative;
+    height: max-content;
+}
+
+.@{t}-pane {
+    background-color: white;
+    display: none;
+}
+
+.@{t}-checked {
+    color: white;
+    .wdu-bg-success();
+    .wdu-transition-quick();
+}
+
+.@{t}-active {
+    display: block;
+}
