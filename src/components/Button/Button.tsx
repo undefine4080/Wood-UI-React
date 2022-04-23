@@ -1,22 +1,21 @@
 import './button.less';
 import commonProps from '../../base/types/commonInterface';
-interface ButtonOptions extends commonProps {
-    onClick?: MouseEvent;
+import { MouseEventHandler } from 'react';
+
+interface propsButton extends commonProps {
+    type?: any;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const PREFIX = 'wdu-button';
-
-export function Button ( props: any ) {
-    const defaultOptions: ButtonOptions = {
-        type: 'plain',
-        size: 'normal',
-    };
-    const options: ButtonOptions = Object.assign( defaultOptions, props );
-    const { type, size, children, onClick } = options;
-    let theClass = `${ PREFIX } ${ PREFIX }-${ type } ${ PREFIX }-${ size }`;
-    if ( type === 'disabled' ) theClass += ` ${ PREFIX }-disabled`;
+const Button: React.FC<propsButton> = props => {
+    const PREFIX = 'wdu-button';
+    const { type = 'plain', size = 'normal', children, onClick } = props;
+    let classList = `${ PREFIX } ${ PREFIX }-${ type } ${ PREFIX }-${ size }`;
+    if ( type === 'disabled' ) classList += ` ${ PREFIX }-disabled`;
 
     return (
-        <button { ...props } className={ theClass } onClick={ onClick }>{ children }</button>
+        <button { ...props } className={ classList } onClick={ onClick }>{ children }</button>
     );
-}
+};
+
+export { Button };
