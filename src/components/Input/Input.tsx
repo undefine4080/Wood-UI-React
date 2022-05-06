@@ -11,7 +11,7 @@ interface propsInput extends commonProps {
 
 const Input: React.FC<propsInput> = (props) => {
     const PREFIX = 'wdu-input';
-    const { size = "normal", label, type = 'text', placeholder, width, onChange } = props;
+    const { size = "normal", label, type = 'text', placeholder, width, onChange, value } = props;
     const componentStyle = `${PREFIX}-container ${PREFIX}-${size}`;
 
     return (
@@ -19,7 +19,7 @@ const Input: React.FC<propsInput> = (props) => {
             {
                 label?.toString().length && <label htmlFor="" className={`${PREFIX}-label`}>{label?.toString()}</label>
             }
-            <input type={type} className={`${PREFIX}-input`} placeholder={placeholder?.toString()} onChange={onChange} style={{ width }} />
+            <input type={type} defaultValue={typeof value === "number" ? Number(value) : String(value)} className={`${PREFIX}-input`} placeholder={placeholder?.toString()} onChange={onChange} style={{ width }} />
         </div>
     );
 };
