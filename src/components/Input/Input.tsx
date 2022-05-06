@@ -9,17 +9,17 @@ interface propsInput extends commonProps {
     onChange?: ChangeEventHandler<HTMLInputElement>,
 }
 
-const Input: React.FC<propsInput> = ( props ) => {
+const Input: React.FC<propsInput> = (props) => {
     const PREFIX = 'wdu-input';
-    const { size = "normal", label, type = 'text', placeholder, onChange } = props;
-    const componentStyle = `${ PREFIX }-container ${ PREFIX }-${ size }`;
+    const { size = "normal", label, type = 'text', placeholder, width, onChange } = props;
+    const componentStyle = `${PREFIX}-container ${PREFIX}-${size}`;
 
     return (
-        <div className={ componentStyle }>
+        <div className={componentStyle}>
             {
-                label?.toString().length && <label htmlFor="" className={ `${ PREFIX }-label` }>{ label?.toString() }</label>
+                label?.toString().length && <label htmlFor="" className={`${PREFIX}-label`}>{label?.toString()}</label>
             }
-            <input type={ type } className={ `${ PREFIX }-input` } placeholder={ placeholder?.toString() } onChange={ onChange } />
+            <input type={type} className={`${PREFIX}-input`} placeholder={placeholder?.toString()} onChange={onChange} style={{ width }} />
         </div>
     );
 };

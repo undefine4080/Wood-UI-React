@@ -19,7 +19,7 @@ export default function () {
                 info: 'large 输入框'
             },
             {
-                component: <Input label="住址" type="tel" size="normal" placeholder="蒙古大草原" />,
+                component: <Input label="住址" type="tel" size="normal" placeholder="蒙古大草原" width="50px" />,
                 info: '占位内容'
             },
         ],
@@ -32,5 +32,5 @@ export default function () {
         `
     };
 
-    return <IntroComponent { ...props } />;
+    return <IntroComponent {...props} />;
 };
