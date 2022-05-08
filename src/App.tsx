@@ -11,6 +11,7 @@ import IntroInput from './introFragments/introInput';
 import IntroRadio from './introFragments/introRadio';
 import IntroCheckbox from './introFragments/introCheckbox';
 import IntroTab from './introFragments/introTab';
+import IntroSelect from './introFragments/introSelect';
 
 import './App.less';
 
@@ -40,7 +41,7 @@ function App () {
                   <CollapseNav label="Input 输入" url="#input" />
                   <CollapseNav label="Radio 单选" url="#radio" />
                   <CollapseNav label="Checkbox 多选" url="#checkbox" />
-                  <CollapseNav label="Select 选择" disabled />
+                  <CollapseNav label="Select 选择" url="#select" />
                   <CollapseNav label="Form 表单" disabled />
                   <CollapseNav label="Cascade 级联选择" disabled />
                   <CollapseNav label="DatePicker 日期选择" disabled />
@@ -83,6 +84,7 @@ function App () {
             <IntroRadio />
             <IntroCheckbox />
             <IntroTab />
+            <IntroSelect />
           </Main>
         }
       >

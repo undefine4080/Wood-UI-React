@@ -44,8 +44,8 @@ export function IntroComponent ( props: any ) {
                 } ) }
             </section>
 
-            <section className="intro__code" >
-                <pre style={ { overflowX: 'auto', height: codeHeight, maxWidth: '800px', transition: 'all 0.3 ease' } }>
+            <section className="intro__code">
+                <pre style={ { overflowX: 'auto', height: codeHeight, maxWidth: '800px' } }>
                     <code style={ { backgroundColor: '#dfefdd' } }>{ code }</code>
                 </pre>
                 <p className="intro__code--title"><Button type="plain" size="small" onClick={ switchCodePanel }>查看代码</Button></p>

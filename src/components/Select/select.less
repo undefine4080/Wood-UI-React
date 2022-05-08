@@ -1,0 +1,49 @@
+@import (reference) "@base/styles/main.less";
+
+@height: 36px;
+
+.wdu-select-container {
+    display: flex;
+    height: @height;
+    position: relative;
+    .wdu-radius-small();
+    .out-shadow-light();
+    .wdu-border-light();
+}
+
+.wdu-select-label {
+    line-height: @height;
+    padding: 0 8px;
+    border-radius: 5px 0 0 5px;
+    .wdu-bg-success();
+    .wdu-text-normal();
+    color: white;
+}
+
+.wdu-select {
+    overflow: hidden;
+    transition: height 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    padding: 0;
+    margin: 0;
+    border-radius: 0 5px 5px 0;
+    .out-shadow-light();
+}
+
+.wdu-select-option {
+    height: @height;
+    list-style: none;
+    line-height: @height;
+    padding: 0 5px;
+    background-color: white;
+    cursor: pointer;
+    .wdu-transition-quick();
+    .wdu-text-normal();
+
+    &:first-child {
+        .wdu-bg-plain();
+    }
+
+    &:hover {
+        background-color: rgb(229, 229, 229);
+    }
+}
