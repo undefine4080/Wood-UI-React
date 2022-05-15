@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, MutableRefObject, ReactFragment } from 'react';
-import commonProps, { commonStyle } from '../../base/types/commonInterface';
+import commonProps from '../../base/types/commonInterface';
 import './collapse.less';
 
 interface propsCollapse extends commonProps {
@@ -12,15 +12,9 @@ const Collapse: React.FC<propsCollapse> = ( props ) => {
     const PREFIX = 'wdu-collapse';
     const { sticky, width, collapseItem } = props;
 
-    const componentStyle: commonStyle = {};
-
-    componentStyle.width = width ?? '';
-
-    let isSticky: string = sticky ? `${ PREFIX }-sticky` : '';
-
     return (
-        <div className={ `${ PREFIX }-container ${ isSticky }` }>
-            <div className={ PREFIX } style={ componentStyle }>
+        <div className={ `wdu-collapse-container ${ sticky ? `wdu-collapse-sticky` : '' }` }>
+            <div className={ PREFIX } style={ { width } }>
                 { collapseItem }
             </div>
         </div>
