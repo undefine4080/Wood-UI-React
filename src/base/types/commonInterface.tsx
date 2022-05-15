@@ -10,8 +10,3 @@ export default interface commonProps {
     size?: string;
     [ attr: string ]: any;
 }
-
-export type commonStyle = {
-    width?: string,
-    height?: string;
-};

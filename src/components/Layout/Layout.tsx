@@ -1,5 +1,5 @@
 import { ReactFragment } from 'react';
-import commonProps, { commonStyle } from '../../base/types/commonInterface';
+import commonProps from '../../base/types/commonInterface';
 
 // Container 容器
 interface propsContainer extends commonProps {
@@ -10,87 +10,52 @@ interface propsContainer extends commonProps {
 }
 
 const Container: React.FC<propsContainer> = ( props ) => {
-    const PREFIX = 'wdu-container';
     const { className, width, height, header, main, footer, aside, style } = props;
 
-    const componentStyle: commonStyle = {};
-    componentStyle.width = width ?? '';
-    componentStyle.height = height ?? '';
-
-    style && Object.assign( componentStyle, style );
-
     return (
-        <div style={ componentStyle } className={ `${ PREFIX } ${ className || '' }` }>
-            <div className="wdu-header">{ header ?? null }</div>
+        <div style={ { ...style, width, height } } className={ `wdu-container ${ className }` }>
+            <div className="wdu-header">{ header }</div>
             <div className="wdu-main-container">
-                { aside ?? null }
-                { main ?? null }
+                { aside }
+                { main }
             </div>
-            <div className="wdu-footer">{ footer ?? null }</div>
+            <div className="wdu-footer">{ footer }</div>
         </div>
     );
 };
 
-interface propsHeader extends commonProps { }
-// Header 顶部
-const Header: React.FC<propsHeader> = ( props ) => {
-    const PREFIX = 'wdu-header';
+const Header: React.FC<commonProps> = ( props ) => {
     const { className, children, style } = props;
-    const componentStyle: object = {};
-
-    if ( style ) Object.assign( componentStyle, style );
 
     return (
-        <div style={ componentStyle } className={ `${ PREFIX } ${ className || '' }` }>{ children }</div>
+        <div style={ style } className={ `wdu-header ${ className }` }>{ children }</div>
     );
 };
 
-// Aside 侧边
 interface propsAside extends commonProps {
     side?: string,
 }
-
 const Aside: React.FC<propsAside> = ( props ) => {
-    const PREFIX = 'wdu-aside';
     const { className, width, height, side = 'left', children, style } = props;
 
-    const componentStyle: commonStyle = {};
-    componentStyle.width = width ?? '';
-    componentStyle.height = height ?? '';
-
-    if ( style ) Object.assign( componentStyle, style );
-
     return (
-        <div style={ componentStyle } className={ `${ PREFIX }-${ side } ${ className || '' }` }>{ children }</div>
+        <div style={ { ...style, width, height } } className={ `wdu-aside-${ side } ${ className }` }>{ children }</div>
     );
 };
 
-//  Footer 底部
-interface propsFooter extends commonProps { }
-const Footer: React.FC<propsFooter> = ( props ) => {
-    const PREFIX = 'wdu-footer';
+const Footer: React.FC<commonProps> = ( props ) => {
     const { className, children, style } = props;
-    const componentStyle: commonStyle = {};
-
-    if ( style ) Object.assign( componentStyle, style );
 
     return (
-        <div style={ componentStyle } className={ `${ PREFIX } ${ className || '' }` }>{ children }</div>
+        <div style={ style } className={ `wdu-footer ${ className }` }>{ children }</div>
     );
 };
 
-//  Main 主体
-interface propsMain extends commonProps { }
-const Main: React.FC<propsMain> = ( props ) => {
-    const PREFIX = 'wdu-main';
+const Main: React.FC<commonProps> = ( props ) => {
     const { className, children, style } = props;
 
-    const componentStyle: commonStyle = {};
-
-    if ( style ) Object.assign( componentStyle, style );
-
     return (
-        <div style={ componentStyle } className={ ` ${ PREFIX } ${ className || '' }` }>{ children }</div>
+        <div style={ style } className={ `wdu-main ${ className }` }>{ children }</div>
     );
 };
 
