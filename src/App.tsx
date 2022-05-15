@@ -12,6 +12,7 @@ import IntroRadio from './introFragments/introRadio';
 import IntroCheckbox from './introFragments/introCheckbox';
 import IntroTab from './introFragments/introTab';
 import IntroSelect from './introFragments/introSelect';
+import IntroSwitch from './introFragments/introSwitch';
 
 import './App.less';
 
@@ -29,6 +30,7 @@ function App () {
           <CollapseNav label="Layout 布局" url="#layout" />
           <CollapseNav label="Button 按钮" url="#button" />
           <CollapseNav label="Mark 标记" url="#mark" />
+          <CollapseNav label="Switch 开关" url="#switch" />
           <CollapseNav label="Divider 分割线" url="#divider" />
           <CollapseNav label="Pagination 分页器" disabled />
         </CollapseItem>
@@ -79,6 +81,7 @@ function App () {
     <IntroCheckbox />
     <IntroTab />
     <IntroSelect />
+    <IntroSwitch />
   </Main>;
 
   return (

@@ -1,0 +1,57 @@
+@import (reference) "@base/styles/main.less";
+
+@size: 24px;
+
+.wdu-switch-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.wdu-switch-label {
+    line-height: @size;
+    margin: 0 5px;
+}
+
+.wdu-switch {
+    .inside-shadow-light();
+    width: @size*2;
+    height: @size;
+    overflow: hidden;
+    border-radius: @size;
+    .wdu-border-light();
+}
+
+.wdu-switch-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: @size*3;
+    position: relative;
+    left: -@size;
+    transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.wdu-switch-block {
+    width: @size;
+    height: @size;
+    box-sizing: border-box;
+}
+
+@gap: 2px;
+
+.wdu-switch-trigger {
+    width: (@size - @gap);
+    height: (@size - @gap);
+    border-radius: 50%;
+    position: relative;
+    left: (@gap / 2);
+    background-color: white;
+    cursor: pointer;
+    .out-shadow-normal();
+}
+
+.wdu-switch-active {
+    left: 0;
+    background-color: #9bc657;
+    .inside-shadow-normal();
+}
