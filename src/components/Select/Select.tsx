@@ -50,7 +50,12 @@ const Select: React.FC<propsSelect> = ( props ) => {
 
     useEffect( () => {
         if ( onChange ) {
-            onChange( curValue.value );
+            onChange( {
+                target: {
+                    value: curValue.value,
+                    label: curValue.label
+                }
+            } );
         }
     }, [ curValue ] );
 
