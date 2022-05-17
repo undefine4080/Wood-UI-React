@@ -10,13 +10,11 @@ interface propsCollapse extends commonProps {
 // Collapse 容器
 const Collapse: React.FC<propsCollapse> = ( props ) => {
     const PREFIX = 'wdu-collapse';
-    const { sticky, width, collapseItem } = props;
+    const { sticky, width, children } = props;
 
     return (
         <div className={ `wdu-collapse-container ${ sticky ? `wdu-collapse-sticky` : '' }` }>
-            <div className={ PREFIX } style={ { width } }>
-                { collapseItem }
-            </div>
+            <div className={ PREFIX } style={ { width } }>{ children }</div>
         </div>
     );
 };
@@ -30,16 +28,22 @@ interface propsCollapseItem extends commonProps {
 
 const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
-    const { expand = false, label, children, disabled = false } = props;
-    const bodyNode: MutableRefObject<any> = useRef( {} );
-    const [ realHeight, setRealHeight ] = useState( '' );
+    const { expand = false, label, height, children, disabled = false } = props;
+    const itemNode: MutableRefObject<any> = useRef( {} );
+    const [ itemHeight, setItemHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
 
     useEffect( () => {
-        setRealHeight( `${ bodyNode.current.scrollHeight }px` );
-    }, [ bodyNode ] );
+        if ( height && height !== '0px' ) {
+            setItemHeight( height );
+        } else {
+            setItemHeight( `${ itemNode.current.scrollHeight }px` );
+        }
+        console.log( itemHeight );
 
-    let expandStyle = isExpand ? { height: realHeight } : { height: '0px' };
+    }, [ itemNode ] );
+
+    let expandStyle = isExpand ? { height: itemHeight } : { height: '0px' };
     let itemIndicator = isExpand ? `${ PREFIX }-expand` : '';
 
     const handleExpand = () => {
@@ -51,7 +55,8 @@ const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
             <div className={ `${ PREFIX }-label` } onClick={ handleExpand }>
                 <i className={ `${ PREFIX }-indicator ${ itemIndicator }` }></i> { label }
             </div>
-            { children ? ( <div ref={ bodyNode } className={ `${ PREFIX }-body` } style={ expandStyle }>{ children }</div> ) : null }
+
+            <div ref={ itemNode } className={ `${ PREFIX }-body` } style={ expandStyle }>{ children }</div>
         </div >
     );
 };
