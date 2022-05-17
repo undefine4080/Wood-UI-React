@@ -14,14 +14,16 @@
 }
 
 .@{t} {
-    background-color: white;
-    height: max-content;
     .wdu-border-light();
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .@{t}-item {
-    box-sizing: border-box;
     .inside-shadow-light();
+    box-sizing: border-box;
+    flex-grow: 0;
 
     .@{t}-item-label {
         height: 42px;
@@ -79,4 +81,8 @@
             }
         }
     }
+}
+
+.@{t}-item-autoHeight {
+    flex-grow: 1;
 }

@@ -4,7 +4,6 @@ import './collapse.less';
 
 interface propsCollapse extends commonProps {
     sticky?: boolean; // 是否 fixed 布局
-    collapseItem?: ReactFragment;
 }
 
 // Collapse 容器
@@ -28,7 +27,7 @@ interface propsCollapseItem extends commonProps {
 
 const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
     const PREFIX = 'wdu-collapse-item';
-    const { expand = false, label, height, children, disabled = false } = props;
+    const { expand = false, label, height, children, disabled = false, autoHeight } = props;
     const itemNode: MutableRefObject<any> = useRef( {} );
     const [ itemHeight, setItemHeight ] = useState( '' );
     const [ isExpand, setExpand ] = useState( expand );
@@ -39,20 +38,21 @@ const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
         } else {
             setItemHeight( `${ itemNode.current.scrollHeight }px` );
         }
-        console.log( itemHeight );
-
     }, [ itemNode ] );
 
     let expandStyle = isExpand ? { height: itemHeight } : { height: '0px' };
     let itemIndicator = isExpand ? `${ PREFIX }-expand` : '';
 
-    const handleExpand = () => {
-        setExpand( !isExpand );
+    const classMap = {
+        base: PREFIX,
+        autoHeight: `${ PREFIX } ${ PREFIX }-autoHeight`
     };
 
+    const classList = autoHeight ? classMap.autoHeight : classMap.base;
+
     return (
-        <div className={ `${ PREFIX }` }>
-            <div className={ `${ PREFIX }-label` } onClick={ handleExpand }>
+        <div className={ classList }>
+            <div className={ `${ PREFIX }-label` } onClick={ () => setExpand( !isExpand ) }>
                 <i className={ `${ PREFIX }-indicator ${ itemIndicator }` }></i> { label }
             </div>
 
