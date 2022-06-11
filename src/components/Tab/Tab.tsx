@@ -55,9 +55,6 @@ const TabPane: React.FC<propsTabPane> = props => {
     );
 };
 
-
-
-
 interface propsTab extends commonProps {
     activate?: string,
 }
@@ -83,7 +80,6 @@ const Tab: React.FC<propsTab> = props => {
         <div className={ PREFIX }>
             <div className={ `${ PREFIX }-head` }>
                 { tabHeads.map( ( name, index ) => {
-                    // return <div className={ titleClassList } key={ index } onClick={ () => setActivateName( name ) } >{ name }</div>;
                     return <CurTabName.Provider value={ activateName } key={ index }>
                         <TabHead name={ name } key={ index } activate={ setActivateName }></TabHead>
                     </CurTabName.Provider>;

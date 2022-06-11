@@ -1,7 +1,7 @@
 import { ReactFragment } from 'react';
+
 import commonProps from '../../base/types/commonInterface';
 
-// Container 容器
 interface propsContainer extends commonProps {
     header?: ReactFragment,
     main?: ReactFragment,
@@ -10,13 +10,44 @@ interface propsContainer extends commonProps {
 }
 
 const Container: React.FC<propsContainer> = ( props ) => {
-    const { className, width, height, header, main, footer, aside, style } = props;
+    const { className, width, height, style, children } = props;
+
+    let header: any = null,
+        main: any = null,
+        footer: any = null,
+        aside: any[] = [];
+
+    const distributeChild = ( child: any ) => {
+        const childName = child.type.displayName;
+        switch ( childName ) {
+            case 'header':
+                header = child;
+                break;
+            case 'main':
+                main = child;
+                break;
+            case 'footer':
+                footer = child;
+                break;
+            case 'aside':
+                aside.push( child );
+                break;
+            default:
+                return null;
+        }
+    };
+
+    if ( Array.isArray( children ) ) {
+        children.forEach( distributeChild );
+    } else {
+        distributeChild( children );
+    }
 
     return (
         <div style={ { ...style, width, height } } className={ `wdu-container ${ className }` }>
             <div className="wdu-header">{ header }</div>
             <div className="wdu-main-container">
-                { aside }
+                { [ ...aside ] }
                 { main }
             </div>
             <div className="wdu-footer">{ footer }</div>
@@ -32,6 +63,8 @@ const Header: React.FC<commonProps> = ( props ) => {
     );
 };
 
+Header.displayName = 'header';
+
 interface propsAside extends commonProps {
     side?: string,
 }
@@ -42,6 +75,7 @@ const Aside: React.FC<propsAside> = ( props ) => {
         <div style={ { ...style, width, height } } className={ `wdu-aside-${ side } ${ className }` }>{ children }</div>
     );
 };
+Aside.displayName = 'aside';
 
 const Footer: React.FC<commonProps> = ( props ) => {
     const { className, children, style } = props;
@@ -50,6 +84,7 @@ const Footer: React.FC<commonProps> = ( props ) => {
         <div style={ style } className={ `wdu-footer ${ className }` }>{ children }</div>
     );
 };
+Footer.displayName = 'footer';
 
 const Main: React.FC<commonProps> = ( props ) => {
     const { className, children, style } = props;
@@ -58,5 +93,6 @@ const Main: React.FC<commonProps> = ( props ) => {
         <div style={ style } className={ `wdu-main ${ className }` }>{ children }</div>
     );
 };
+Main.displayName = 'main';
 
 export { Container, Aside, Header, Footer, Main };
