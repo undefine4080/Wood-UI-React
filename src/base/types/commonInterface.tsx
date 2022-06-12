@@ -8,5 +8,6 @@ export default interface commonProps {
     disabled?: boolean;
     type?: string;
     size?: string;
+    onChange?: () => void;
     [ attr: string ]: any;
 }

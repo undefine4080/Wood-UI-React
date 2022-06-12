@@ -13,6 +13,7 @@ import IntroCheckbox from './introFragments/introCheckbox';
 import IntroTab from './introFragments/introTab';
 import IntroSelect from './introFragments/introSelect';
 import IntroSwitch from './introFragments/introSwitch';
+import IntroTree from './introFragments/introTree';
 
 import './App.less';
 
@@ -60,7 +61,7 @@ function App () {
 
             <CollapseItem label="内容">
               <CollapseNav label="List 列表" disabled />
-              <CollapseNav label="Tree 树" disabled />
+              <CollapseNav label="Tree 树" url="#tree" />
               <CollapseNav label="Table 表格" disabled />
               <CollapseNav label="Carousel 轮播" disabled />
               <CollapseNav label="Progress 进度条" disabled />
@@ -82,6 +83,7 @@ function App () {
           <IntroTab />
           <IntroSelect />
           <IntroSwitch />
+          <IntroTree />
         </Main>
       </Container>
     </div>
