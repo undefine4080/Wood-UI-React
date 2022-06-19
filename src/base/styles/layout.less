@@ -17,32 +17,32 @@
 }
 
 // 水平均匀排列
-.wdu-row-around {
-  .wdu-row-flex();
-  justify-content: space-around;
-}
+// .wdu-row-around {
+//   .wdu-row-flex();
+//   justify-content: space-around;
+// }
 
 // 水平垂直居中
-.wdu-row-both-center {
-  .wdu-row-center();
-  align-items: center;
-}
+// .wdu-row-both-center {
+//   .wdu-row-center();
+//   align-items: center;
+// }
 
 // 水平排列，垂直顶端对齐
-.wdu-row-top-col {
-  align-items: flex-start;
-}
+// .wdu-row-top-col {
+//   align-items: flex-start;
+// }
 
 // 水平排列，垂直居中对齐
-.wdu-center-col {
-  .wdu-row-flex();
-  align-items: center;
-}
+// .wdu-center-col {
+//   .wdu-row-flex();
+//   align-items: center;
+// }
 
 // 水平排列，垂直底端对齐
-.wdu-row-bottom-col {
-  align-items: flex-end;
-}
+// .wdu-row-bottom-col {
+//   align-items: flex-end;
+// }
 
 // 隐藏滚动条
 .wdu-hide-scroll {
@@ -51,39 +51,6 @@
   }
 
   scrollbar-width: none;
-}
-
-// 布局模块
-.wdu-container {
-  .wdu-header {
-    overflow: auto;
-  }
-
-  .wdu-main-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    .wdu-main {
-      order: 1;
-      flex-grow: 1;
-    }
-
-    .wdu-aside-left {
-      flex-shrink: 0;
-      order: 0;
-      height: 100%;
-    }
-
-    .wdu-aside-right {
-      flex-shrink: 0;
-      order: 2;
-    }
-  }
-
-  .wdu-footer {
-    overflow: auto;
-  }
 }
 
 .wdu-box {
@@ -96,14 +63,3 @@
   border: 1px solid #e7e7e7;
   box-shadow: 0 0 12px rgb(168 168 168 / 20%);
 }
-
-// 列布局
-@selectors: range(12);
-
-each(@selectors, {
-    .wdu-col-@{value} {
-      width: @value*8.33%;
-    }
-  }
-
-);

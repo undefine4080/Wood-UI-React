@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import { Container, Aside, Main, Header, Footer } from "../components/Layout/Layout";
+import { Container, Aside, Main, Header, Footer, Row, Col } from "../components/Layout/Layout";
 
 export default function () {
     const props = {
@@ -58,7 +58,7 @@ export default function () {
                         </Footer>
                     </Container >
                 )
-            },
+            }
         ],
         code: `
 import { Container, Aside, Main, Header, Footer } from "wood-ui-react";

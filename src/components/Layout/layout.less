@@ -1,0 +1,78 @@
+// 列布局
+@selectors: range(12);
+
+each(@selectors, {
+    .wdu-col-@{value} {
+        width: @value*8.33%;
+    }
+});
+
+// 布局模块
+.wdu-container {
+    .wdu-header {
+        overflow: auto;
+    }
+
+    .wdu-main-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        .wdu-main {
+            order: 1;
+            flex-grow: 1;
+        }
+
+        .wdu-aside-left {
+            flex-shrink: 0;
+            order: 0;
+            height: 100%;
+        }
+
+        .wdu-aside-right {
+            flex-shrink: 0;
+            order: 2;
+        }
+    }
+
+    .wdu-footer {
+        overflow: auto;
+    }
+}
+
+.wdu-row {
+    display: flex;
+    box-sizing: border-box;
+
+    &-start {
+        justify-content: flex-start;
+    }
+
+    &-center {
+        justify-content: center;
+    }
+
+    &-end {
+        justify-content: flex-end;
+    }
+
+    &-around {
+        justify-content: space-around;
+    }
+
+    &-between {
+        justify-content: space-between;
+    }
+
+    &-top {
+        align-items: flex-start;
+    }
+
+    &-middle {
+        align-items: center;
+    }
+
+    &-bottom {
+        align-items: flex-end;
+    }
+}

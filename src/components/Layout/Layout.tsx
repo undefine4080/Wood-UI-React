@@ -1,6 +1,7 @@
 import { ReactFragment } from 'react';
 
 import commonProps from '../../base/types/commonInterface';
+import './layout.less';
 
 interface propsContainer extends commonProps {
     header?: ReactFragment,
@@ -95,4 +96,44 @@ const Main: React.FC<commonProps> = ( props ) => {
 };
 Main.displayName = 'main';
 
-export { Container, Aside, Header, Footer, Main };
+interface propsRow {
+    justify?: 'start' | 'center' | 'end' | 'around' | 'between';
+    align?: 'top' | 'middle' | 'bottom';
+    style?: object;
+}
+
+const Row: React.FC<propsRow> = ( props ) => {
+    const { justify = 'start', align = 'top', children, style } = props;
+
+    const baseStyle = 'wdu-row';
+    const styleMap = {
+        base: baseStyle,
+        start: `${ baseStyle }-start`,
+        center: `${ baseStyle }-center`,
+        end: `${ baseStyle }-end`,
+        around: `${ baseStyle }-around`,
+        between: `${ baseStyle }-between`,
+        top: `${ baseStyle }-top`,
+        bottom: `${ baseStyle }-bottom`,
+        middle: `${ baseStyle }-middle`,
+    };
+
+    return (
+        <div className={ `${ baseStyle } ${ justify && styleMap[ justify ] } ${ align && styleMap[ align ] }` } style={ style }>{ children }</div>
+    );
+};
+
+interface propsCol {
+    span?: number;
+}
+
+const Col: React.FC<propsCol> = ( props ) => {
+    const baseStyle = 'wdu-col';
+    const { span = 12, children } = props;
+
+    return (
+        <div className={ `${ baseStyle } ${ span && `${ baseStyle }-${ span }` }` }>{ children }</div>
+    );
+};
+
+export { Container, Aside, Header, Footer, Main, Row, Col };

@@ -11,10 +11,10 @@ html {
 }
 
 .app {
-    display              : flex;
-    justify-content      : center;
-    overflow             : auto;
-    background-image     : repeating-linear-gradient(90deg, hsla(196, 0%, 79%, 0.06) 0px, hsla(196, 0%, 79%, 0.06) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(0deg, hsla(196, 0%, 79%, 0.06) 0px, hsla(196, 0%, 79%, 0.06) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(0deg, hsla(196, 0%, 79%, 0.09) 0px, hsla(196, 0%, 79%, 0.09) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(90deg, hsla(196, 0%, 79%, 0.09) 0px, hsla(196, 0%, 79%, 0.09) 1px, transparent 1px, transparent 12px), linear-gradient(90deg, rgb(255, 255, 255), rgb(255, 255, 255));
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    background-image: repeating-linear-gradient(90deg, hsla(196, 0%, 79%, 0.06) 0px, hsla(196, 0%, 79%, 0.06) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(0deg, hsla(196, 0%, 79%, 0.06) 0px, hsla(196, 0%, 79%, 0.06) 1px, transparent 1px, transparent 96px), repeating-linear-gradient(0deg, hsla(196, 0%, 79%, 0.09) 0px, hsla(196, 0%, 79%, 0.09) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(90deg, hsla(196, 0%, 79%, 0.09) 0px, hsla(196, 0%, 79%, 0.09) 1px, transparent 1px, transparent 12px), linear-gradient(90deg, rgb(255, 255, 255), rgb(255, 255, 255));
     background-attachment: fixed;
 }
 
@@ -33,16 +33,18 @@ html {
 
     & .intro__main {
         .wdu-row-flex();
-        flex-wrap  : wrap;
+        flex-wrap: wrap;
         align-items: stretch;
-        padding    : 0 20px 20px 20px;
+        padding: 0 20px 20px 20px;
 
         & .intro__main--items {
             flex-grow: 1;
-            margin   : 20px 0;
+            margin: 20px 0;
 
             & .intro__cpnt {
-                .wdu-row-both-center();
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             & .intro__info {
@@ -56,8 +58,9 @@ html {
         border-top: 1px solid #dedede;
 
         & .intro__code--title {
-            .wdu-row-center();
             margin: 0;
+            display: flex;
+            justify-content: center;
             cursor: pointer;
         }
     }

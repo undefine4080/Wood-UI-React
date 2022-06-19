@@ -1,6 +1,6 @@
 @import url('../../base/styles/main.less');
 
-#wdu-message-container{
+#wdu-message-container {
     position: fixed;
     background-color: rgba(0, 0, 0, 0);
     left: 50%;
@@ -18,42 +18,44 @@
     top: -10px;
     flex-grow: 0;
     z-index: 100;
-    .wdu-row-both-center();
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .wdu-text-normal();
     .out-shadow-normal();
     .wdu-radius-small();
 
-    &-info{
+    &-info {
         .wdu-bg-plain();
     }
 
-    &-danger{
+    &-danger {
         color: white;
         .wdu-bg-danger();
     }
 
-    &-success{
+    &-success {
         color: white;
         .wdu-bg-success();
     }
 
-    &-warn{
+    &-warn {
         .wdu-bg-warn();
     }
 }
 
 
 
-.wdu-message-remove{
+.wdu-message-remove {
     animation: slide-down-on 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s 1 reverse;
 }
 
 @keyframes slide-down-on {
-    from{
+    from {
         top: -10px;
     }
 
-    to{
+    to {
         top: 0;
     }
 }
