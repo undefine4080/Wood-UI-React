@@ -69,7 +69,6 @@ const Select: React.FC<propsSelect> = ( props ) => {
                 <li className="wdu-select-option"
                     onClick={ () => setExpand( pre => !pre ) }
                 >{ curValue.label }</li>
-
                 { options }
             </ul>
         </div>
