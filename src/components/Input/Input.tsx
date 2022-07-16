@@ -10,22 +10,22 @@ interface propsInput extends commonProps {
     onChange?: ChangeEventHandler<HTMLInputElement>,
 }
 
-const Input: React.FC<propsInput> = (props) => {
+const Input: React.FC<propsInput> = ( props ) => {
     const { id, size = "normal", name, label, type = 'text', placeholder, value, onChange } = props;
-    const classList = `wdu-input-container wdu-input-${size}`;
+    const classList = `wdu-input-container wdu-input-${ size }`;
 
-    const [inputValue, setInputValue] = useState(value);
+    const [ inputValue, setInputValue ] = useState( value );
 
-    useEffect(() => {
-        setInputValue(value);
-    }, [value]);
+    useEffect( () => {
+        setInputValue( value );
+    }, [ value ] );
 
     return (
-        <div className={classList}>
+        <div className={ classList }>
             {
-                label?.toString().length && <label htmlFor={id} className="wdu-input-label">{label?.toString()}</label>
+                label && <label htmlFor={ id } className="wdu-input-label">{ label?.toString() }</label>
             }
-            <input id={id} value={inputValue} type={type} name={name} className="wdu-input-input" placeholder={placeholder?.toString()} onChange={onChange} />
+            <input id={ id } value={ inputValue } type={ type } name={ name } className="wdu-input-input" placeholder={ placeholder?.toString() } onChange={ onChange } />
         </div>
     );
 };

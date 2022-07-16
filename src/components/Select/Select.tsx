@@ -18,6 +18,7 @@ interface propsSelect extends commonProps {
     trigger?: 'hover' | 'click';
 }
 
+const optionHeight = '36px';
 const Select: React.FC<propsSelect> = ( props ) => {
     const { label, children, onChange, trigger = 'click' } = props;
 
@@ -39,12 +40,12 @@ const Select: React.FC<propsSelect> = ( props ) => {
         setCurValue( { value, label } );
     }, [] );
 
-    let [ optionListHeight, setOptListHeight ] = useState( "36px" );
+    let [ optionListHeight, setOptListHeight ] = useState( optionHeight );
     useEffect( () => {
         if ( expand ) {
             setOptListHeight( `${ options.length * 36 }px` );
         } else {
-            setOptListHeight( "36px" );
+            setOptListHeight( optionHeight );
         }
     }, [ expand ] );
 
@@ -61,7 +62,7 @@ const Select: React.FC<propsSelect> = ( props ) => {
 
     return (
         <div className="wdu-select-container">
-            <div className="wdu-select-label">{ label }</div>
+            { label && <div className="wdu-select-label">{ label.toString() }</div> }
             <ul className="wdu-select"
                 tabIndex={ 1 }
                 style={ { height: optionListHeight } }

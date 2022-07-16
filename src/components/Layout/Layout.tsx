@@ -100,10 +100,11 @@ interface propsRow {
     justify?: 'start' | 'center' | 'end' | 'around' | 'between';
     align?: 'top' | 'middle' | 'bottom';
     style?: object;
+    className?: string;
 }
 
 const Row: React.FC<propsRow> = ( props ) => {
-    const { justify = 'start', align = 'top', children, style } = props;
+    const { justify = 'start', align = 'top', children, style, className } = props;
 
     const baseStyle = 'wdu-row';
     const styleMap = {
@@ -119,7 +120,7 @@ const Row: React.FC<propsRow> = ( props ) => {
     };
 
     return (
-        <div className={ `${ baseStyle } ${ justify && styleMap[ justify ] } ${ align && styleMap[ align ] }` } style={ style }>{ children }</div>
+        <div className={ `${ baseStyle } ${ justify && styleMap[ justify ] } ${ align && styleMap[ align ] } ${ className }` } style={ style }>{ children }</div>
     );
 };
 
