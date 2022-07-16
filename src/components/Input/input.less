@@ -25,13 +25,15 @@
 
     &:focus {
         transition: all 0.3s;
-        border-color: rgb(112, 112, 112);
+        border-color: rgb(156, 156, 156);
     }
 }
 
 .wdu-input-label {
-    .wdu-bg-success();
+    .wdu-bg-plain();
+    .wdu-border-light();
     font-size: 16px;
+    border-right: none;
     font-weight: bold;
     height: 100%;
     box-sizing: border-box;
@@ -40,7 +42,7 @@
     width: max-content;
     flex-grow: 0;
     padding: 5px 15px;
-    color: white;
+    color: @wdu-font-color-title ;
 }
 
 .wdu-input-small {
@@ -51,11 +53,10 @@
     }
 
     &>label {
-        color: white;
-        line-height: 14px;
+        line-height: 20px;
     }
 
-    height: 24px;
+    height: 30px;
 }
 
 .wdu-input-normal {
@@ -66,11 +67,10 @@
     }
 
     &>label {
-        color: white;
-        line-height: 22px;
+        line-height: 26px;
     }
 
-    height: 32px;
+    height: 36px;
 }
 
 .wdu-input-large {
@@ -81,9 +81,8 @@
     }
 
     &>label {
-        color: white;
-        line-height: 28px;
+        line-height: 32px;
     }
 
-    height: 38px;
+    height: 42px;
 }

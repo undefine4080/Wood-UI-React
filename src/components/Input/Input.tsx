@@ -11,7 +11,7 @@ interface propsInput extends commonProps {
 }
 
 const Input: React.FC<propsInput> = ( props ) => {
-    const { id, size = "normal", name, label, type = 'text', placeholder, value, onChange } = props;
+    const { id, size = "normal", name, label, type = 'text', placeholder, value, onChange, style, min, max } = props;
     const classList = `wdu-input-container wdu-input-${ size }`;
 
     const [ inputValue, setInputValue ] = useState( value );
@@ -25,7 +25,16 @@ const Input: React.FC<propsInput> = ( props ) => {
             {
                 label && <label htmlFor={ id } className="wdu-input-label">{ label?.toString() }</label>
             }
-            <input id={ id } value={ inputValue } type={ type } name={ name } className="wdu-input-input" placeholder={ placeholder?.toString() } onChange={ onChange } />
+            <input id={ id }
+                value={ inputValue }
+                type={ type }
+                name={ name }
+                min={ min }
+                max={ max }
+                className="wdu-input-input"
+                placeholder={ placeholder?.toString() }
+                onChange={ onChange }
+                style={ style } />
         </div>
     );
 };
