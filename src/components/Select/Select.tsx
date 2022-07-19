@@ -4,7 +4,7 @@ import './select.less';
 
 interface propsOption extends commonProps {
     label: string,
-    value: string,
+    value: number | string,
 };
 
 const Option: React.FC<propsOption> = props => <></>;
@@ -13,16 +13,20 @@ interface propsSelect extends commonProps {
     label?: string,
     name: string,
     form?: string,
-    value: string,
+    value: number | string,
     onChange?: any,
     trigger?: 'hover' | 'click';
+}
+interface selectedValue {
+    value: number | string;
+    label: number | string;
 }
 
 const optionHeight = '36px';
 const Select: React.FC<propsSelect> = ( props ) => {
     const { label, children, onChange, trigger = 'click' } = props;
 
-    const [ curValue, setCurValue ] = useState( { value: '', label: '' } );
+    const [ curValue, setCurValue ] = useState<selectedValue>( { value: '', label: '' } );
     const [ expand, setExpand ] = useState( false );
 
     const options = children.map( ( item: any, index: number ) => {
@@ -52,10 +56,8 @@ const Select: React.FC<propsSelect> = ( props ) => {
     useEffect( () => {
         if ( onChange ) {
             onChange( {
-                target: {
-                    value: curValue.value,
-                    label: curValue.label
-                }
+                value: curValue.value,
+                label: curValue.label
             } );
         }
     }, [ curValue ] );
@@ -77,3 +79,4 @@ const Select: React.FC<propsSelect> = ( props ) => {
 };
 
 export { Select, Option };
+export type { selectedValue };

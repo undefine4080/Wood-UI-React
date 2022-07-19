@@ -8,10 +8,11 @@ interface propsInput extends commonProps {
     placeholder?: string,
     name?: string,
     onChange?: ChangeEventHandler<HTMLInputElement>,
+    onBlur?: ChangeEventHandler<HTMLInputElement>,
 }
 
 const Input: React.FC<propsInput> = ( props ) => {
-    const { id, size = "normal", name, label, type = 'text', placeholder, value, onChange, style, min, max } = props;
+    const { id, size = "normal", name, label, type = 'text', placeholder, value, onChange, onBlur, style, min, max } = props;
     const classList = `wdu-input-container wdu-input-${ size }`;
 
     const [ inputValue, setInputValue ] = useState( value );
@@ -34,6 +35,7 @@ const Input: React.FC<propsInput> = ( props ) => {
                 className="wdu-input-input"
                 placeholder={ placeholder?.toString() }
                 onChange={ onChange }
+                onBlur={ onBlur }
                 style={ style } />
         </div>
     );

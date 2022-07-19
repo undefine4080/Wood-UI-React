@@ -14,6 +14,7 @@ import IntroTab from './introFragments/introTab';
 import IntroSelect from './introFragments/introSelect';
 import IntroSwitch from './introFragments/introSwitch';
 import IntroTree from './introFragments/introTree';
+import IntroPagination from './introFragments/introPagination';
 
 import './App.less';
 
@@ -35,7 +36,7 @@ function App () {
               <CollapseNav label="Mark 标记" url="#mark" />
               <CollapseNav label="Switch 开关" url="#switch" />
               <CollapseNav label="Divider 分割线" url="#divider" />
-              <CollapseNav label="Pagination 分页器" disabled />
+              <CollapseNav label="Pagination 分页器" url="#pagination" />
             </CollapseItem>
 
             <CollapseItem label="表单">
@@ -74,7 +75,9 @@ function App () {
           <IntroLayout />
           <IntroButton />
           <IntroMark />
+          <IntroSwitch />
           <IntroDivider />
+          <IntroPagination />
           <IntroCollapse />
           <IntroMessage />
           <IntroInput />
@@ -82,7 +85,6 @@ function App () {
           <IntroCheckbox />
           <IntroTab />
           <IntroSelect />
-          <IntroSwitch />
           <IntroTree />
         </Main>
       </Container>

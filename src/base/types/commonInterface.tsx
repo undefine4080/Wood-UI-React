@@ -7,7 +7,6 @@ export default interface commonProps {
     id?: string;
     disabled?: boolean;
     type?: string;
-    size?: string;
-    onChange?: () => void;
+    size?: 'small' | 'normal' | 'large';
     [ attr: string ]: any;
 }
