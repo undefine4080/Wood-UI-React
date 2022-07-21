@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './message.less';
 
@@ -11,6 +11,7 @@ let messages: Array<ReactElement> = [];
 const genId = () => {
     const timestamp: number = Date.now();
     timestamp.toString().slice( 0, 8 );
+    return timestamp;
 };
 
 function MessageContainer ( props?: any ) {
@@ -26,18 +27,27 @@ function MessageContainer ( props?: any ) {
     return messageContainerDom;
 }
 
-function BaseMessage ( props: any ) {
-    const { type } = props;
+type messageType = 'success' | 'error' | 'warning' | 'info';
+interface propsBaseMessage {
+    type: messageType;
+    remove?: boolean;
+    children?: string;
+}
+function BaseMessage ( props: propsBaseMessage ) {
+    const { type, remove } = props;
+    const classList = [ `${ PREFIX }`, `${ PREFIX }-${ type }` ];
+    if ( remove ) {
+        classList.push( `${ PREFIX }-remove` );
+    }
 
     return (
-        <div { ...props } className={ `${ PREFIX } ${ PREFIX }-${ type }` }>
-            {/* <span className={ `${ PREFIX }-${ type }` }></span> */ }
+        <div { ...props } className={ classList.join( ' ' ) }>
             { props.children }
         </div>
     );
 }
 
-function renderMessage ( type: string, message: string ) {
+function renderMessage ( type: messageType, message: string ) {
     messages.push( <BaseMessage type={ type } key={ genId() }>{ message }</BaseMessage> );
 
     const messageContainer = MessageContainer();
@@ -60,8 +70,8 @@ function removeMessage ( messages: React.ReactElement<any, string | React.JSXEle
 
 const Message = {
     info: ( message: string ) => renderMessage( 'info', message ),
-    warn: ( message: string ) => renderMessage( 'warn', message ),
-    danger: ( message: string ) => renderMessage( 'danger', message ),
+    warn: ( message: string ) => renderMessage( 'warning', message ),
+    danger: ( message: string ) => renderMessage( 'error', message ),
     success: ( message: string ) => renderMessage( 'success', message ),
 };
 
