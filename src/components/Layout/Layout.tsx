@@ -57,10 +57,10 @@ const Container: React.FC<propsContainer> = ( props ) => {
 };
 
 const Header: React.FC<commonProps> = ( props ) => {
-    const { className, children, style } = props;
+    const { className, children, style, height } = props;
 
     return (
-        <div style={ style } className={ `wdu-header ${ className }` }>{ children }</div>
+        <div style={ { ...style, height: `${ height }px` } } className={ `wdu-header ${ className }` }>{ children }</div>
     );
 };
 
