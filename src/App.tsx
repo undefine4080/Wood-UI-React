@@ -15,6 +15,7 @@ import IntroSelect from './introFragments/introSelect';
 import IntroSwitch from './introFragments/introSwitch';
 import IntroTree from './introFragments/introTree';
 import IntroPagination from './introFragments/introPagination';
+import IntroImage from './introFragments/introImage';
 
 import './App.less';
 
@@ -24,19 +25,22 @@ function App () {
       <Container width="1000px">
         <Aside side="left" width="200px" style={ { position: 'fixed', top: '0px' } }>
           <Collapse sticky={ true }>
-            <CollapseItem label="快速上手" expand={ true }>
+            <CollapseItem label="快速上手">
               <CollapseNav label="介绍" />
               <CollapseNav label="安装" />
               <CollapseNav label="使用" />
             </CollapseItem>
 
-            <CollapseItem label="通用">
+            <CollapseItem label="通用" expand={ true }>
               <CollapseNav label="Layout 布局" url="#layout" />
               <CollapseNav label="Button 按钮" url="#button" />
               <CollapseNav label="Mark 标记" url="#mark" />
               <CollapseNav label="Switch 开关" url="#switch" />
               <CollapseNav label="Divider 分割线" url="#divider" />
               <CollapseNav label="Pagination 分页器" url="#pagination" />
+              <CollapseNav label="Nav 导航栏" disabled />
+              <CollapseNav label="Progress 进度条" disabled />
+              <CollapseNav label="Image 图片" url='#image' />
             </CollapseItem>
 
             <CollapseItem label="表单">
@@ -49,23 +53,18 @@ function App () {
               <CollapseNav label="DatePicker 日期选择" disabled />
             </CollapseItem>
 
-            <CollapseItem label="导航">
-              <CollapseNav label="Nav 导航栏" disabled />
-              <CollapseNav label="Collapse 伸缩面板" url="#collapse" />
-            </CollapseItem>
-
             <CollapseItem label="弹窗">
-              <CollapseNav label="Dialog 对话框" disabled />
-              <CollapseNav label="Popover 弹出层" disabled />
-              <CollapseNav label="Message 消息提示" url="#message" />
+              <CollapseNav label="Modal 弹框" disabled />
+              <CollapseNav label="Message 消息" url="#message" />
+              <CollapseNav label="Tooltips 提示" disabled />
             </CollapseItem>
 
             <CollapseItem label="内容">
               <CollapseNav label="List 列表" disabled />
+              <CollapseNav label="Collapse 抽屉" url="#collapse" />
               <CollapseNav label="Tree 树" url="#tree" />
               <CollapseNav label="Table 表格" disabled />
               <CollapseNav label="Carousel 轮播" disabled />
-              <CollapseNav label="Progress 进度条" disabled />
               <CollapseNav label="Tab 动态面板" url="#tab" />
             </CollapseItem>
           </Collapse>
@@ -78,6 +77,7 @@ function App () {
           <IntroSwitch />
           <IntroDivider />
           <IntroPagination />
+          <IntroImage />
           <IntroCollapse />
           <IntroMessage />
           <IntroInput />
