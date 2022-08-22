@@ -14,7 +14,10 @@ const Button: React.FC<propsButton> = props => {
     if ( type === 'disabled' ) classList += ` ${ PREFIX }-disabled`;
 
     return (
-        <button { ...props } className={ classList } onClick={ onClick }>{ children }</button>
+        <button { ...props } className={ classList } onClick={ e => {
+            e.stopPropagation();
+            onClick && onClick( e );
+        } }>{ children }</button>
     );
 };
 

@@ -1,0 +1,88 @@
+@import (reference) "@base/styles/main.less";
+
+@keyframes show {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.wdu-modal__mask {
+    background-color: rgba(0, 0, 0, 0.557);
+}
+
+.wdu-modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    transform: scale(0);
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__title {
+        height: 48px;
+        text-align: center;
+        .wdu-text-title();
+        line-height: 48px;
+        margin: 0;
+        border-bottom: 1px solid rgb(202, 202, 202);
+    }
+
+    &__close {
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        border-radius: 50%;
+        .wdu-bg-danger();
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
+
+    &__body {
+        margin: 8px;
+        overflow: auto;
+    }
+
+    &__container {
+        width: 350px;
+        height: 280px;
+        position: relative;
+        .wdu-bg-plain();
+        .wdu-radius-normal();
+        .out-shadow-normal();
+    }
+
+    &__visible {
+        visibility: visible;
+        animation: show 0.3s cubic-bezier(0.215, 0.610, 0.355, 1) 0.1s 1 normal forwards;
+    }
+
+    &__hidden {
+        visibility: visible;
+        animation: hide 0.3s ease-out 0s 1 normal forwards;
+    }
+}

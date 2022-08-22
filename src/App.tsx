@@ -16,6 +16,7 @@ import IntroSwitch from './introFragments/introSwitch';
 import IntroTree from './introFragments/introTree';
 import IntroPagination from './introFragments/introPagination';
 import IntroImage from './introFragments/introImage';
+import IntroModal from './introFragments/introModal';
 
 import './App.less';
 
@@ -54,7 +55,7 @@ function App () {
             </CollapseItem>
 
             <CollapseItem label="弹窗">
-              <CollapseNav label="Modal 弹框" disabled />
+              <CollapseNav label="Modal 模态框" url="#modal" />
               <CollapseNav label="Message 消息" url="#message" />
               <CollapseNav label="Tooltips 提示" disabled />
             </CollapseItem>
@@ -71,6 +72,7 @@ function App () {
         </Aside>
 
         <Main style={ { marginLeft: '200px' } }>
+          {/* 通用 */ }
           <IntroLayout />
           <IntroButton />
           <IntroMark />
@@ -78,14 +80,21 @@ function App () {
           <IntroDivider />
           <IntroPagination />
           <IntroImage />
-          <IntroCollapse />
-          <IntroMessage />
+
+          {/* 表单 */ }
           <IntroInput />
           <IntroRadio />
           <IntroCheckbox />
-          <IntroTab />
           <IntroSelect />
+
+          {/* 弹窗 */ }
+          <IntroModal />
+          <IntroMessage />
+
+          {/* 内容 */ }
+          <IntroCollapse />
           <IntroTree />
+          <IntroTab />
         </Main>
       </Container>
     </div>
