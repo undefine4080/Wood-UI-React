@@ -2,6 +2,7 @@ import { CSSProperties, EventHandler } from "react";
 
 interface commonEventProps {
     onClick?: any;
+    onChange?: any;
 }
 export default interface commonProps extends commonEventProps {
     id?: string;

@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import commonProps from '../../base/types/commonInterface';
 import './switch.less';
 
-const Switch: React.FC<commonProps> = props => {
+interface propsSwitch extends commonProps {
+    label?: string;
+    name?: string;
+    value?: boolean;
+}
+
+const Switch: React.FC<propsSwitch> = props => {
     const { id, label, value = false, name, onChange } = props;
     const classMap = {
         base: 'wdu-switch-wrapper',

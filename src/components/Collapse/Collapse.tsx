@@ -23,6 +23,8 @@ const Collapse: React.FC<propsCollapse> = ( props ) => {
 interface propsCollapseItem extends commonProps {
     label?: string;
     expand?: boolean;
+    height?: string;
+    autoHeight?: boolean;
 }
 
 const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {

@@ -7,6 +7,9 @@ interface propsInput extends commonProps {
     label?: string,
     placeholder?: string,
     name?: string,
+    value?: string;
+    min?: number;
+    max?: number;
     onChange?: ChangeEventHandler<HTMLInputElement>,
     onBlur?: ChangeEventHandler<HTMLInputElement>,
 }
