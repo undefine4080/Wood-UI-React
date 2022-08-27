@@ -1,0 +1,53 @@
+@import (reference) "@base/styles/main.less";
+
+@borderStyle: 1px solid rgb(231, 231, 231);
+
+.wdu-table__gridLine {
+    &:first-child {
+        border-right: @borderStyle;
+    }
+
+    &:last-child {
+        border-left: @borderStyle;
+    }
+}
+
+.wdu-table {
+    .wdu-text-large();
+    border: @borderStyle;
+    border-collapse: collapse;
+
+    &__header {
+        background-color: #f0f1f0;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+
+        th {
+            padding: 10px 20px;
+            border-bottom: @borderStyle;
+
+            .wdu-table__gridLine();
+        }
+    }
+
+    &__row {
+        color: @wdu-font-color-paragraph;
+        .wdu-transition-quick();
+
+        &:hover {
+            background-color: rgb(239, 239, 239);
+        }
+    }
+
+    &__cell {
+        padding: 10px 20px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        box-sizing: border-box;
+        border-bottom: @borderStyle;
+
+        .wdu-table__gridLine();
+    }
+}

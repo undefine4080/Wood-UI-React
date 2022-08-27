@@ -17,6 +17,7 @@ import IntroTree from './introFragments/introTree';
 import IntroPagination from './introFragments/introPagination';
 import IntroImage from './introFragments/introImage';
 import IntroModal from './introFragments/introModal';
+import IntroTable from './introFragments/IntroTable';
 
 import './App.less';
 
@@ -25,14 +26,14 @@ function App () {
     <div className="app">
       <Container width="1000px">
         <Aside side="left" width="200px" style={ { position: 'fixed', top: '0px' } }>
-          <Collapse sticky={ true }>
+          <Collapse sticky>
             <CollapseItem label="快速上手">
               <CollapseNav label="介绍" />
               <CollapseNav label="安装" />
               <CollapseNav label="使用" />
             </CollapseItem>
 
-            <CollapseItem label="通用" expand={ true }>
+            <CollapseItem label="通用">
               <CollapseNav label="Layout 布局" url="#layout" />
               <CollapseNav label="Button 按钮" url="#button" />
               <CollapseNav label="Mark 标记" url="#mark" />
@@ -64,7 +65,7 @@ function App () {
               <CollapseNav label="List 列表" disabled />
               <CollapseNav label="Collapse 抽屉" url="#collapse" />
               <CollapseNav label="Tree 树" url="#tree" />
-              <CollapseNav label="Table 表格" disabled />
+              <CollapseNav label="Table 表格" url="#table" />
               <CollapseNav label="Carousel 轮播" disabled />
               <CollapseNav label="Tab 动态面板" url="#tab" />
             </CollapseItem>
@@ -94,6 +95,7 @@ function App () {
           {/* 内容 */ }
           <IntroCollapse />
           <IntroTree />
+          <IntroTable />
           <IntroTab />
         </Main>
       </Container>
