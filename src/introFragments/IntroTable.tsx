@@ -53,13 +53,16 @@ export default function () {
         components: [
             {
                 component: (
-                    <Table data={ testData }>
+                    <Table data={ testData }
+                        title="去年购买水果情况一览表">
                         <TableColumn key={ 1 } index="fruit" label="水果" />
                         <TableColumn key={ 2 } index="color" label="颜色" />
                         <TableColumn key={ 3 } index="weight" label="重量" />
+                        <TableColumn key={ 3 } index="productArea" label="产地" />
+                        <TableColumn key={ 3 } index="date" label="日期" />
                     </Table>
                 ),
-                info: ''
+                info: '带标题的表格'
             },
             {
                 component: (

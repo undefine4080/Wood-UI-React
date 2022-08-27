@@ -5,10 +5,10 @@ import TableColumn from './TableColumn';
 import './table.less';
 
 function Table ( props: propsTable ) {
-    const { data, children } = props;
+    const { data, children, title } = props;
 
+    // the children which are tableColumn
     const Children = React.Children.toArray( children );
-
     const TableColumnChildren = Children.filter( ( item: any ) => item.type.displayName === 'TableColumn' );
 
     const tableHeader: Array<string> = [];
@@ -21,6 +21,7 @@ function Table ( props: propsTable ) {
 
     return (
         <table className="wdu-table">
+            { title && <caption className='wdu-table__title'>{ title }</caption> }
             <thead>
                 <tr className='wdu-table__header'>
                     { tableHeader.map( item => {

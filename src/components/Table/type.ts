@@ -22,17 +22,21 @@ interface propsTable extends propsTableEvents {
     children?: any;
 }
 
-interface propsTableColumn {
-    index: string;
-    label: string;
+// the internal properties while table rendering
+interface innerPropsColumn {
+    children?: ReactChildren;
+    rowData?: any;
+    template?: any;
     key: string | number;
+}
+
+interface propsTableColumn extends innerPropsColumn {
+    index: string; // the key of table column 
+    label: string;
     width?: string | number;
     height?: string | number;
     maxWidth?: string | number;
     align?: propsTable[ 'align' ];
-    children?: ReactChildren;
-    rowData?: any;
-    template?: any;
 }
 
 export type { propsTable, propsTableColumn };
