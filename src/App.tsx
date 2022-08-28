@@ -74,29 +74,29 @@ function App () {
 
         <Main style={ { marginLeft: '200px' } }>
           {/* 通用 */ }
-          <IntroLayout />
+          {/* <IntroLayout /> */ }
           <IntroButton />
-          <IntroMark />
-          <IntroSwitch />
-          <IntroDivider />
-          <IntroPagination />
-          <IntroImage />
+          {/* <IntroMark /> */ }
+          {/* <IntroSwitch /> */ }
+          {/* <IntroDivider /> */ }
+          {/* <IntroPagination /> */ }
+          {/* <IntroImage /> */ }
 
           {/* 表单 */ }
-          <IntroInput />
+          {/* <IntroInput />
           <IntroRadio />
           <IntroCheckbox />
-          <IntroSelect />
+          <IntroSelect /> */}
 
           {/* 弹窗 */ }
-          <IntroModal />
-          <IntroMessage />
+          {/* <IntroModal />
+          <IntroMessage /> */}
 
           {/* 内容 */ }
-          <IntroCollapse />
-          <IntroTree />
+          {/* <IntroCollapse />
+          <IntroTree /> */}
           <IntroTable />
-          <IntroTab />
+          {/* <IntroTab /> */ }
         </Main>
       </Container>
     </div>

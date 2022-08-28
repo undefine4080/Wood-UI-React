@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button/Button";
 
-export function IntroComponent ( props: any ) {
-    const { title, components, code, position } = props;
+function IntroComponentItem ( props: any ) {
+    const { title, info = '', component, code = '' } = props;
+
     useEffect( () => {
         document.querySelectorAll( "pre code" ).forEach( block => {
             try {
@@ -25,23 +26,15 @@ export function IntroComponent ( props: any ) {
     };
 
     return (
-        <article className="intro__container" id={ position }>
+        <article className="wdu-box" style={ { flexGrow: 1 } }>
             <header>
                 <h2>{ title }</h2>
             </header>
 
+            <p className="wdu-text-paragraph" style={ { textIndent: '20px', padding: '10px' } }>{ info }</p>
+
             <section className="intro__main">
-                { components.map( ( item: any, index: number ) => {
-                    return (
-                        <div className="intro__main--items"
-                            key={ index }>
-                            <div className="intro__cpnt">
-                                { item.component }
-                            </div>
-                            <div className="intro__info">{ item.info }</div>
-                        </div>
-                    );
-                } ) }
+                { component }
             </section>
 
             <section className="intro__code">
@@ -49,6 +42,24 @@ export function IntroComponent ( props: any ) {
                     <code style={ { backgroundColor: '#dfefdd' } }>{ code }</code>
                 </pre>
                 <p className="intro__code--title"><Button type="plain" size="small" onClick={ switchCodePanel }>查看代码</Button></p>
+            </section>
+        </article>
+    );
+}
+
+export function IntroComponent ( props: any ) {
+    const { title, components, position } = props;
+
+    return (
+        <article className="intro__container" id={ position }>
+            <header>
+                <h1>{ title }</h1>
+            </header>
+
+            <section className="intro__main">
+                { components.map( ( item: any ) => {
+                    return <IntroComponentItem key={ item.title } { ...item }></IntroComponentItem>;
+                } ) }
             </section>
         </article>
     );
