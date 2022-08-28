@@ -5,7 +5,7 @@ import TableColumn from './TableColumn';
 import './table.less';
 
 function Table ( props: propsTable ) {
-    const { data, children, title, maxHeight, align } = props;
+    const { data, children, title, maxHeight, align, countable } = props;
 
     // the children which are tableColumn
     const Children = React.Children.toArray( children );
@@ -21,20 +21,25 @@ function Table ( props: propsTable ) {
                 { title && <caption className='wdu-table__title'>{ title }</caption> }
                 <thead>
                     <tr className='wdu-table__header'>
-                        { TableColumnChildren.map( ( item: any ) => {
-                            const { index, label, width, align } = item.props;
-                            return (
-                                <th key={ index }
-                                    style={
-                                        {
-                                            width: `${ width }px`,
-                                            textAlign: align ? align : 'center'
-                                        }
-                                    }>
-                                    { label }
-                                </th>
-                            );
-                        } ) }
+                        {
+                            countable && <th className='wdu-table__cell-count'>序号</th>
+                        }
+                        {
+                            TableColumnChildren.map( ( item: any ) => {
+                                const { index, label, width, align } = item.props;
+                                return (
+                                    <th key={ index }
+                                        style={
+                                            {
+                                                width: `${ width }px`,
+                                                textAlign: align ? align : 'center'
+                                            }
+                                        }>
+                                        { label }
+                                    </th>
+                                );
+                            } )
+                        }
                     </tr>
                 </thead>
 
@@ -45,6 +50,9 @@ function Table ( props: propsTable ) {
                                 <tr className='wdu-table__row'
                                     key={ index }
                                 >
+                                    {
+                                        countable && <td className='wdu-table__cell'>{ index + 1 }</td>
+                                    }
                                     {
                                         TableColumnChildren.map( ( child: any ) => {
                                             return React.cloneElement( child,
