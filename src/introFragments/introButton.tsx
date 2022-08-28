@@ -7,51 +7,43 @@ export default function () {
         position: 'button',
         components: [
             {
-                component: <Button type="plain">点我点我</Button>,
-                info: '默认按钮'
+                title: '按钮类型',
+                component: (
+                    <>
+                        <Button type="plain">默认</Button>
+                        <Button type="success">成功</Button>
+                        <Button type="danger">危险</Button>
+                        <Button type="important">重要</Button>
+                        <Button type="warn">警示</Button>
+                        <Button type="line">边框</Button>
+                        <Button type="disabled">禁用</Button>
+                    </> ),
+                info: '按钮类型通过 type 属性来定义',
+                code: `
+<Button type="plain">默认</Button>
+<Button type="success">成功</Button>
+<Button type="danger">危险</Button>
+<Button type="important">重要</Button>
+<Button type="warn">警示</Button>
+<Button type="line">边框</Button>
+<Button type="disabled">禁用</Button>`
             },
             {
-                component: <Button type="success">点我点我</Button>,
-                info: '成功按钮'
+                title: '按钮尺寸',
+                component: (
+                    <>
+                        <Button size="small">小</Button>
+                        <Button size="normal">默认</Button>
+                        <Button size="large">大</Button>
+                    </>
+                ),
+                info: '按钮类型通过 size 属性来定义',
+                code: `
+<Button size="small">小</Button>
+<Button size="normal">默认</Button>
+<Button size="large">大</Button>`
             },
-            {
-                component: <Button type="danger">点我点我</Button>,
-                info: '危险按钮'
-            },
-            {
-                component: <Button type="important">点我点我</Button>,
-                info: '重要按钮'
-            },
-            {
-                component: <Button type="warn">点我点我</Button>,
-                info: '警告按钮'
-            },
-            {
-                component: <Button type="line">点我点我</Button>,
-                info: '描边按钮'
-            },
-            {
-                component: <Button type="disabled">点不了的</Button>,
-                info: '禁用按钮'
-            },
-            {
-                component: <Button size="small">点我点我</Button>,
-                info: '小 '
-            },
-            {
-                component: <Button size="normal">点我点我</Button>,
-                info: '常规'
-            },
-            {
-                component: <Button size="large">点我点我</Button>,
-                info: '大'
-            },
-        ],
-        code: `
-        import { Button } from "../components/Button/Button";
-        
-        <Button type="plain">点我点我</Button>
-        `
+        ]
     };
 
     return <IntroComponent { ...props } />;

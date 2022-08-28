@@ -233,19 +233,31 @@ export default function () {
         position: 'table',
         components: [
             {
+                title: '带标题的表格',
+                info: '',
                 component: (
                     <Table data={ testData }
                         title="去年购买水果情况一览表">
-                        <TableColumn key={ 1 } index="fruit" label="水果" />
-                        <TableColumn key={ 2 } index="color" label="颜色" />
-                        <TableColumn key={ 3 } index="weight" label="重量" />
-                        <TableColumn key={ 3 } index="productArea" label="产地" />
-                        <TableColumn key={ 3 } index="date" label="日期" />
+                        <TableColumn index="fruit" label="水果" />
+                        <TableColumn index="color" label="颜色" />
+                        <TableColumn index="weight" label="重量" />
+                        <TableColumn index="productArea" label="产地" />
+                        <TableColumn index="date" label="日期" />
                     </Table>
                 ),
-                info: '带标题的表格'
+                code: `
+<Table data={ testData }
+    title="去年购买水果情况一览表">
+    <TableColumn key={ 1 } index="fruit" label="水果" />
+    <TableColumn key={ 2 } index="color" label="颜色" />
+    <TableColumn key={ 3 } index="weight" label="重量" />
+    <TableColumn key={ 3 } index="productArea" label="产地" />
+    <TableColumn key={ 3 } index="date" label="日期" />
+</Table>`
             },
             {
+                title: '自定义单元格',
+                info: '',
                 component: (
                     <Table data={ testData }>
                         <TableColumn index="fruit" label="水果" />
@@ -254,9 +266,16 @@ export default function () {
                         <TableColumn index="weight" label="重量" template={ <MyCell /> } />
                     </Table>
                 ),
-                info: '自定义单元格'
+                code: `
+<Table data={ testData }>
+    <TableColumn index="fruit" label="水果" />
+    <TableColumn index="color" label="颜色" />
+    <TableColumn index="weight" label="重量" template={ <MyCell /> } />
+</Table>`
             },
             {
+                title: '自定义表格的最大高度',
+                info: '',
                 component: (
                     <Table data={ testData } maxHeight={ 200 }>
                         <TableColumn index="fruit" label="水果" />
@@ -265,9 +284,15 @@ export default function () {
                         <TableColumn index="weight" label="重量" />
                     </Table>
                 ),
-                info: '自定义表格的最大高度'
+                code: `
+<Table data={ testData } maxHeight={ 200 }>
+    <TableColumn index="fruit" label="水果" />
+    <TableColumn index="color" label="颜色" />
+    <TableColumn index="weight" label="重量" />
+</Table>`,
             },
             {
+                title: '自定义列的宽度',
                 component: (
                     <Table data={ testData2 }>
                         <TableColumn index="name" label="name" width={ 80 } />
@@ -284,9 +309,25 @@ export default function () {
                         <TableColumn index="ime" label="ime" width={ 100 } />
                     </Table>
                 ),
-                info: '自定义列的宽度'
+                info: '',
+                code: `
+<Table data={ testData2 }>
+    <TableColumn index="name" label="name" width={ 80 } />
+    <TableColumn index="info" label="info" width={ 300 } />
+    <TableColumn index="long" label="long" width={ 80 } />
+    <TableColumn index="address" label="address" width={ 250 } />
+    <TableColumn index="person" label="person" width={ 80 } />
+    <TableColumn index="age" label="age" width={ 80 } />
+    <TableColumn index="level" label="level" width={ 80 } />
+    <TableColumn index="class" label="class" width={ 80 } />
+    <TableColumn index="park" label="park" width={ 80 } />
+    <TableColumn index="book" label="book" width={ 80 } />
+    <TableColumn index="chess" label="chess" width={ 100 } />
+    <TableColumn index="ime" label="ime" width={ 100 } />
+</Table>`
             },
             {
+                title: '文字对齐',
                 component: (
                     <Table data={ testData } >
                         <TableColumn index="fruit" label="水果" align="left" />
@@ -295,9 +336,16 @@ export default function () {
                         <TableColumn index="weight" label="重量" align="right" />
                     </Table>
                 ),
-                info: '自定义表格列的文字水平对齐方向'
+                info: '自定义表格列的文字水平对齐方向',
+                code: `
+<Table data={ testData } >
+    <TableColumn index="fruit" label="水果" align="left" />
+    <TableColumn index="color" label="颜色" />
+    <TableColumn index="weight" label="重量" align="right" />
+</Table>`
             },
             {
+                title: '行序号',
                 component: (
                     <Table data={ testData } countable>
                         <TableColumn index="fruit" label="水果" />
@@ -305,12 +353,15 @@ export default function () {
                         <TableColumn index="weight" label="重量" />
                     </Table>
                 ),
-                info: '显示列的序号'
+                info: '显示列的序号',
+                code: `
+<Table data={ testData } countable>
+    <TableColumn index="fruit" label="水果" />
+    <TableColumn index="color" label="颜色" />
+    <TableColumn index="weight" label="重量" />
+</Table>`
             },
         ],
-        code: `
-        
-        `
     };
 
     return <IntroComponent { ...props } />;
