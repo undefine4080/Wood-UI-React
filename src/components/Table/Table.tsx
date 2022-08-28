@@ -5,19 +5,11 @@ import TableColumn from './TableColumn';
 import './table.less';
 
 function Table ( props: propsTable ) {
-    const { data, children, title, maxHeight } = props;
+    const { data, children, title, maxHeight, align } = props;
 
     // the children which are tableColumn
     const Children = React.Children.toArray( children );
     const TableColumnChildren = Children.filter( ( item: any ) => item.type.displayName === 'TableColumn' );
-
-    const tableHeader: Array<string> = [];
-    const tableIndex: Array<string> = [];
-    TableColumnChildren.map( ( item: any ) => {
-        const { index, label } = item.props;
-        tableHeader.push( label );
-        tableIndex.push( index );
-    } );
 
     const tableMaxHeight = {
         maxHeight: typeof maxHeight === 'number' ? `${ maxHeight }px` : maxHeight
@@ -30,10 +22,15 @@ function Table ( props: propsTable ) {
                 <thead>
                     <tr className='wdu-table__header'>
                         { TableColumnChildren.map( ( item: any ) => {
-                            const { index, label, width } = item.props;
+                            const { index, label, width, align } = item.props;
                             return (
                                 <th key={ index }
-                                    style={ { width: `${ width }px` } }>
+                                    style={
+                                        {
+                                            width: `${ width }px`,
+                                            textAlign: align ? align : 'center'
+                                        }
+                                    }>
                                     { label }
                                 </th>
                             );
@@ -45,10 +42,17 @@ function Table ( props: propsTable ) {
                     {
                         data.map( ( item, index ) => {
                             return (
-                                <tr className='wdu-table__row' key={ index }>
+                                <tr className='wdu-table__row'
+                                    key={ index }
+                                >
                                     {
                                         TableColumnChildren.map( ( child: any ) => {
-                                            return React.cloneElement( child, { rowData: item } );
+                                            return React.cloneElement( child,
+                                                {
+                                                    rowData: item,
+                                                    align: align ? align : child.props.align
+                                                }
+                                            );
                                         } )
                                     }
                                 </tr>

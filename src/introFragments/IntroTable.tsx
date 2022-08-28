@@ -286,6 +286,17 @@ export default function () {
                 ),
                 info: '自定义列的宽度'
             },
+            {
+                component: (
+                    <Table data={ testData } >
+                        <TableColumn index="fruit" label="水果" align="left" />
+                        <TableColumn index="color" label="颜色"
+                        />
+                        <TableColumn index="weight" label="重量" align="right" />
+                    </Table>
+                ),
+                info: '自定义表格列的文字水平对齐方向'
+            },
         ],
         code: `
         
