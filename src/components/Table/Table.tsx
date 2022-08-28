@@ -5,7 +5,7 @@ import TableColumn from './TableColumn';
 import './table.less';
 
 function Table ( props: propsTable ) {
-    const { data, children, title } = props;
+    const { data, children, title, maxHeight } = props;
 
     // the children which are tableColumn
     const Children = React.Children.toArray( children );
@@ -19,33 +19,39 @@ function Table ( props: propsTable ) {
         tableIndex.push( index );
     } );
 
-    return (
-        <table className="wdu-table">
-            { title && <caption className='wdu-table__title'>{ title }</caption> }
-            <thead>
-                <tr className='wdu-table__header'>
-                    { tableHeader.map( item => {
-                        return <th key={ item }>{ item }</th>;
-                    } ) }
-                </tr>
-            </thead>
+    const tableMaxHeight = {
+        maxHeight: typeof maxHeight === 'number' ? `${ maxHeight }px` : maxHeight
+    };
 
-            <tbody>
-                {
-                    data.map( ( item, index ) => {
-                        return (
-                            <tr className='wdu-table__row' key={ index }>
-                                {
-                                    TableColumnChildren.map( ( child: any ) => {
-                                        return React.cloneElement( child, { rowData: item } );
-                                    } )
-                                }
-                            </tr>
-                        );
-                    } )
-                }
-            </tbody>
-        </table>
+    return (
+        <div className='wdu-table__container' style={ tableMaxHeight }>
+            <table className="wdu-table">
+                { title && <caption className='wdu-table__title'>{ title }</caption> }
+                <thead>
+                    <tr className='wdu-table__header'>
+                        { tableHeader.map( item => {
+                            return <th key={ item }>{ item }</th>;
+                        } ) }
+                    </tr>
+                </thead>
+
+                <tbody className='wdu-table__body'>
+                    {
+                        data.map( ( item, index ) => {
+                            return (
+                                <tr className='wdu-table__row' key={ index }>
+                                    {
+                                        TableColumnChildren.map( ( child: any ) => {
+                                            return React.cloneElement( child, { rowData: item } );
+                                        } )
+                                    }
+                                </tr>
+                            );
+                        } )
+                    }
+                </tbody>
+            </table>
+        </div>
     );
 }
 

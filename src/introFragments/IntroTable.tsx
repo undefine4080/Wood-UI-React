@@ -75,6 +75,17 @@ export default function () {
                 ),
                 info: '自定义单元格'
             },
+            {
+                component: (
+                    <Table data={ testData } maxHeight={ 200 }>
+                        <TableColumn key={ 1 } index="fruit" label="水果" />
+                        <TableColumn key={ 2 } index="color" label="颜色"
+                        />
+                        <TableColumn key={ 3 } index="weight" label="重量" template={ <MyCell /> } />
+                    </Table>
+                ),
+                info: '设置最大高度'
+            },
         ],
         code: `
         

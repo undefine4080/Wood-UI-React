@@ -12,10 +12,15 @@
     }
 }
 
+.wdu-table__container {
+    overflow: auto;
+}
+
 .wdu-table {
-    .wdu-text-large();
-    border: @borderStyle;
+    position: relative;
     border-collapse: collapse;
+    border: @borderStyle;
+    .wdu-text-large();
 
     &__title {
         .wdu-text-title();
@@ -23,14 +28,15 @@
     }
 
     &__header {
-        background-color: #f0f1f0;
         height: 40px;
         text-align: center;
         line-height: 40px;
+        .wdu-bg-plain();
 
         th {
             padding: 10px 20px;
             border-bottom: @borderStyle;
+            border-top: @borderStyle;
 
             .wdu-table__gridLine();
         }
@@ -45,6 +51,10 @@
         }
     }
 
+    &__body {
+        background-color: white;
+    }
+
     &__cell {
         padding: 10px 20px;
         height: 30px;
@@ -54,5 +64,10 @@
         border-bottom: @borderStyle;
 
         .wdu-table__gridLine();
+    }
+
+    thead {
+        position: sticky;
+        top: 0px;
     }
 }
