@@ -24,13 +24,19 @@ function Table ( props: propsTable ) {
     };
 
     return (
-        <div className='wdu-table__container' style={ tableMaxHeight }>
+        <div className='wdu-table__container' style={ { ...tableMaxHeight, width: '780px' } }>
             <table className="wdu-table">
                 { title && <caption className='wdu-table__title'>{ title }</caption> }
                 <thead>
                     <tr className='wdu-table__header'>
-                        { tableHeader.map( item => {
-                            return <th key={ item }>{ item }</th>;
+                        { TableColumnChildren.map( ( item: any ) => {
+                            const { index, label, width } = item.props;
+                            return (
+                                <th key={ index }
+                                    style={ { width: `${ width }px` } }>
+                                    { label }
+                                </th>
+                            );
                         } ) }
                     </tr>
                 </thead>

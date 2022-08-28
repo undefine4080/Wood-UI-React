@@ -42,6 +42,187 @@ const testData = [
     },
 ];
 
+const testData2 = [
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    },
+    {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    }, {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    }, {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    }, {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    }, {
+        name: 'VG^&*H',
+        info: 'hksajdhfiasfihhaujsdkhjfaiewufhuayhkwjksdfuaywheksdhfyawukhfyeuuhuayerukwehfbvhb',
+        long: 623747,
+        address: 'hyfhhfiherfreojiufjciusgjishreu',
+        person: 'sdhafh',
+        age: 34,
+        level: 'A',
+        class: 43543,
+        park: 'sadfai',
+        book: '7843r',
+        chess: 'iwe6429',
+        ime: 'dsywof583'
+    }
+];
+
 const MyCell = ( props: any ) => {
     return <span style={ { backgroundColor: '#89982e', color: 'black' } }>{ props.data } /吨</span>;
 };
@@ -67,10 +248,10 @@ export default function () {
             {
                 component: (
                     <Table data={ testData }>
-                        <TableColumn key={ 1 } index="fruit" label="水果" />
-                        <TableColumn key={ 2 } index="color" label="颜色"
+                        <TableColumn index="fruit" label="水果" />
+                        <TableColumn index="color" label="颜色"
                         />
-                        <TableColumn key={ 3 } index="weight" label="重量" template={ <MyCell /> } />
+                        <TableColumn index="weight" label="重量" template={ <MyCell /> } />
                     </Table>
                 ),
                 info: '自定义单元格'
@@ -78,13 +259,32 @@ export default function () {
             {
                 component: (
                     <Table data={ testData } maxHeight={ 200 }>
-                        <TableColumn key={ 1 } index="fruit" label="水果" />
-                        <TableColumn key={ 2 } index="color" label="颜色"
+                        <TableColumn index="fruit" label="水果" />
+                        <TableColumn index="color" label="颜色"
                         />
-                        <TableColumn key={ 3 } index="weight" label="重量" template={ <MyCell /> } />
+                        <TableColumn index="weight" label="重量" />
                     </Table>
                 ),
-                info: '设置最大高度'
+                info: '自定义表格的最大高度'
+            },
+            {
+                component: (
+                    <Table data={ testData2 }>
+                        <TableColumn index="name" label="name" width={ 80 } />
+                        <TableColumn index="info" label="info" width={ 300 } />
+                        <TableColumn index="long" label="long" width={ 80 } />
+                        <TableColumn index="address" label="address" width={ 250 } />
+                        <TableColumn index="person" label="person" width={ 80 } />
+                        <TableColumn index="age" label="age" width={ 80 } />
+                        <TableColumn index="level" label="level" width={ 80 } />
+                        <TableColumn index="class" label="class" width={ 80 } />
+                        <TableColumn index="park" label="park" width={ 80 } />
+                        <TableColumn index="book" label="book" width={ 80 } />
+                        <TableColumn index="chess" label="chess" width={ 100 } />
+                        <TableColumn index="ime" label="ime" width={ 100 } />
+                    </Table>
+                ),
+                info: '自定义列的宽度'
             },
         ],
         code: `

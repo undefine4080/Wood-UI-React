@@ -17,9 +17,11 @@
 }
 
 .wdu-table {
+    width: 100%;
     position: relative;
     border-collapse: collapse;
     border: @borderStyle;
+    table-layout: fixed;
     .wdu-text-large();
 
     &__title {
@@ -61,13 +63,16 @@
         line-height: 30px;
         text-align: center;
         box-sizing: border-box;
-        border-bottom: @borderStyle;
+        border: @borderStyle;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         .wdu-table__gridLine();
     }
 
     thead {
         position: sticky;
-        top: 0px;
+        top: -1px;
     }
 }

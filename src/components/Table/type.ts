@@ -27,7 +27,7 @@ interface innerPropsColumn {
     children?: ReactChildren;
     rowData?: any;
     template?: any;
-    key: string | number;
+    key?: string | number;
 }
 
 interface propsTableColumn extends innerPropsColumn {
