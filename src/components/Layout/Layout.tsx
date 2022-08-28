@@ -1,16 +1,15 @@
-import { ReactFragment } from 'react';
-
 import commonProps from '../../base/types/commonInterface';
+import type {
+    propsContainer,
+    propsAside,
+    propsRow,
+    propsCol
+} from './type';
+import { getCssSizeValue } from '../../utils';
+
 import './layout.less';
 
-interface propsContainer extends commonProps {
-    header?: ReactFragment,
-    main?: ReactFragment,
-    footer?: ReactFragment,
-    aside?: ReactFragment;
-}
-
-const Container: React.FC<propsContainer> = ( props ) => {
+function Container ( props: propsContainer ) {
     const { className, width, height, style, children } = props;
 
     let header: any = null,
@@ -56,20 +55,20 @@ const Container: React.FC<propsContainer> = ( props ) => {
     );
 };
 
-const Header: React.FC<commonProps> = ( props ) => {
-    const { className, children, style, height } = props;
+function Header ( props: commonProps ) {
+    const { children, height } = props;
 
     return (
-        <div style={ { ...style, height: `${ height }px` } } className={ `wdu-header ${ className }` }>{ children }</div>
+        <div
+            style={ { height: height ? getCssSizeValue( height ) : 'auto' } } className="wdu-header">
+            { children }
+        </div>
     );
 };
-
 Header.displayName = 'header';
 
-interface propsAside extends commonProps {
-    side?: string,
-}
-const Aside: React.FC<propsAside> = ( props ) => {
+
+function Aside ( props: propsAside ) {
     const { className, width, height, side = 'left', children, style } = props;
 
     return (
@@ -78,7 +77,7 @@ const Aside: React.FC<propsAside> = ( props ) => {
 };
 Aside.displayName = 'aside';
 
-const Footer: React.FC<commonProps> = ( props ) => {
+function Footer ( props: commonProps ) {
     const { className, children, style } = props;
 
     return (
@@ -87,7 +86,7 @@ const Footer: React.FC<commonProps> = ( props ) => {
 };
 Footer.displayName = 'footer';
 
-const Main: React.FC<commonProps> = ( props ) => {
+function Main ( props: commonProps ) {
     const { className, children, style } = props;
 
     return (
@@ -96,14 +95,7 @@ const Main: React.FC<commonProps> = ( props ) => {
 };
 Main.displayName = 'main';
 
-interface propsRow {
-    justify?: 'start' | 'center' | 'end' | 'around' | 'between';
-    align?: 'top' | 'middle' | 'bottom';
-    style?: object;
-    className?: string;
-}
-
-const Row: React.FC<propsRow> = ( props ) => {
+function Row ( props: propsRow ) {
     const { justify = 'start', align = 'top', children, style, className } = props;
 
     const baseStyle = 'wdu-row';
@@ -124,11 +116,7 @@ const Row: React.FC<propsRow> = ( props ) => {
     );
 };
 
-interface propsCol {
-    span?: number;
-}
-
-const Col: React.FC<propsCol> = ( props ) => {
+function Col ( props: propsCol ) {
     const baseStyle = 'wdu-col';
     const { span = 12, children } = props;
 

@@ -9,8 +9,8 @@ export default function () {
             {
                 component: (
                     <Container width="400px">
-                        <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
-                            Header
+                        <Header height={ 60 }>
+                            <div className="wdu-row-both-center" style={ { backgroundColor: '#e6e6e6', height: '100%' } }>Header</div>
                         </Header>
 
                         <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
@@ -21,61 +21,117 @@ export default function () {
                             Footer
                         </Footer>
                     </Container >
-                )
-            },
-            {
-                component: (
-                    <Container width="400px">
-                        <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
-                            Header
-                        </Header>
-
-                        <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
-
-                        <Aside side="right" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
-
-                        <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
-
-                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
-                            Footer
-                        </Footer>
-                    </Container >
-                )
-            },
-            {
-                component: (
-                    <Container width="400px">
-                        <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
-                            Header
-                        </Header>
-
-                        <Aside side="right" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
-
-                        <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
-
-                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
-                            Footer
-                        </Footer>
-                    </Container >
-                )
-            }
-        ],
-        code: `
-import { Container, Aside, Main, Header, Footer } from "wood-ui-react";
-
+                ),
+                code: `
 <Container width="400px">
-    <Header style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
-        Header
+    <Header height={ 60 }>
+        <div className="wdu-row-both-center" style={ { backgroundColor: '#e6e6e6', height: '100%' } }>Header</div>
     </Header>
 
-    <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
+    <Aside side="left" width="100px" 
+        height="200px" 
+        className="wdu-row-both-center" style={ { 
+        backgroundColor: 'rgb(209, 208, 208)' } }
+    >Aside</Aside>
 
-    <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
+    <Main className="wdu-row-both-center 
+        wdu-bg-important"> Main</Main>
 
-    <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
+    <Footer style={ { height: '60px', 
+        backgroundColor: 'rgb(230, 230, 230)' } } 
+        className="wdu-row-both-center">
         Footer
     </Footer>
 </Container >`
+            },
+            {
+                component: (
+                    <Container width="400px">
+                        <Header height={ 60 }>
+                            <div className="wdu-row-both-center"
+                                style={ {
+                                    backgroundColor: '#e6e6e6',
+                                    height: '100%'
+                                } }>Header</div>
+                        </Header>
+
+                        <Aside side="left" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
+
+                        <Aside side="right" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
+
+                        <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
+
+                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
+                            Footer
+                        </Footer>
+                    </Container >
+                ),
+                code: `
+<Container width="400px">
+    <Header height={ 60 }>
+        <div className="wdu-row-both-center" style={ { backgroundColor: '#e6e6e6', height: '100%' } }>Header</div>
+    </Header>
+
+    <Aside side="left" width="100px" 
+        height="200px" 
+        className="wdu-row-both-center" style={ { 
+        backgroundColor: 'rgb(209, 208, 208)' } }
+        >Aside</Aside>
+            <Aside side="right" width="100px" 
+        height="200px" 
+        className="wdu-row-both-center" style={ { 
+        backgroundColor: 'rgb(209, 208, 208)' } }
+        >Aside</Aside>
+            
+    <Main className="wdu-row-both-center 
+        wdu-bg-important"> Main</Main>
+
+    <Footer style={ { height: '60px', 
+        backgroundColor: 'rgb(230, 230, 230)' } } 
+        className="wdu-row-both-center">
+        Footer
+    </Footer>
+</Container >`
+            },
+            {
+                component: (
+                    <Container width="400px">
+                        <Header height={ 60 }>
+                            <div className="wdu-row-both-center" style={ { backgroundColor: '#e6e6e6', height: '100%' } }>Header</div>
+                        </Header>
+
+                        <Aside side="right" width="100px" height="200px" className="wdu-row-both-center" style={ { backgroundColor: 'rgb(209, 208, 208)' } }>Aside</Aside>
+
+                        <Main className="wdu-row-both-center wdu-bg-important"> Main</Main>
+
+                        <Footer style={ { height: '60px', backgroundColor: 'rgb(230, 230, 230)' } } className="wdu-row-both-center">
+                            Footer
+                        </Footer>
+                    </Container >
+                ),
+                code: `
+ <Container width="400px">
+    <Header height={ 60 }>
+        <div className="wdu-row-both-center" style={ { backgroundColor: '#e6e6e6', height: '100%' } }>Header</div>
+    </Header>
+    
+    <Aside side="right" width="100px" 
+        height="200px" 
+    className="wdu-row-both-center" style={ { 
+    backgroundColor: 'rgb(209, 208, 208)' } }
+        >Aside</Aside>
+
+    <Main className="wdu-row-both-center 
+        wdu-bg-important"> Main</Main>
+    
+    <Footer style={ { height: '60px', 
+        backgroundColor: 'rgb(230, 230, 230)' } } 
+        className="wdu-row-both-center">
+        Footer
+    </Footer>
+</Container >`
+            }
+        ]
     };
 
     return <IntroComponent { ...props } />;

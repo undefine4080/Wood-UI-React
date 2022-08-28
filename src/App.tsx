@@ -74,7 +74,7 @@ function App () {
 
         <Main style={ { marginLeft: '200px' } }>
           {/* 通用 */ }
-          {/* <IntroLayout /> */ }
+          <IntroLayout />
           <IntroButton />
           {/* <IntroMark /> */ }
           {/* <IntroSwitch /> */ }
