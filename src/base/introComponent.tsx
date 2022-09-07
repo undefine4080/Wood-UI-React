@@ -57,8 +57,8 @@ export function IntroComponent ( props: any ) {
             </header>
 
             <section className="intro__main">
-                { components.map( ( item: any ) => {
-                    return <IntroComponentItem key={ item.title } { ...item }></IntroComponentItem>;
+                { components.map( ( item: any, index: number ) => {
+                    return <IntroComponentItem key={ index } { ...item }></IntroComponentItem>;
                 } ) }
             </section>
         </article>

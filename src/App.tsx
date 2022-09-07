@@ -76,9 +76,9 @@ function App () {
           {/* 通用 */ }
           <IntroLayout />
           <IntroButton />
-          {/* <IntroMark /> */ }
-          {/* <IntroSwitch /> */ }
-          {/* <IntroDivider /> */ }
+          <IntroMark />
+          <IntroSwitch />
+          <IntroDivider />
           {/* <IntroPagination /> */ }
           {/* <IntroImage /> */ }
 

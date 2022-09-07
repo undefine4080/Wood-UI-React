@@ -8,10 +8,10 @@ export default function () {
         components: [
             {
                 component: <Switch id='r1' label="夜间模式" name="academic" value={ true } />,
+                code: `
+<Switch id='r1' label="夜间模式" name="academic" value={ true } />`
             }
         ],
-        code: `
-        `
     };
 
     return <IntroComponent { ...props } />;

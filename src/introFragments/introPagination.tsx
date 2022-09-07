@@ -8,6 +8,7 @@ export default function () {
         components: [
             {
                 component: <Pagination total={ 1300 } maxPageCount={ 5 } />,
+                info: ''
             }
         ],
         code: `
