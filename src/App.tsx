@@ -18,6 +18,7 @@ import IntroPagination from './introFragments/introPagination';
 import IntroImage from './introFragments/introImage';
 import IntroModal from './introFragments/introModal';
 import IntroTable from './introFragments/IntroTable';
+import IntroCarousel from './introFragments/IntroCarousel';
 
 import './App.less';
 
@@ -66,8 +67,8 @@ function App () {
               <CollapseNav label="Collapse 抽屉" url="#collapse" />
               <CollapseNav label="Tree 树" url="#tree" />
               <CollapseNav label="Table 表格" url="#table" />
-              <CollapseNav label="Carousel 轮播" disabled />
               <CollapseNav label="Tab 动态面板" url="#tab" />
+              <CollapseNav label="Carousel 轮播" url="#carousel" />
             </CollapseItem>
           </Collapse>
         </Aside>
@@ -97,6 +98,7 @@ function App () {
           <IntroTree /> */}
           <IntroTable />
           {/* <IntroTab /> */ }
+          <IntroCarousel />
         </Main>
       </Container>
     </div>

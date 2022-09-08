@@ -1,3 +1,4 @@
+import React, { ReactChildren } from 'react';
 /**
  * @param rawValue css property width or height which from props, the type maybe number or string
  * @returns legal css value
@@ -16,4 +17,12 @@ function getCssSizeValue ( rawValue: string | number | undefined ) {
     }
 }
 
-export { getCssSizeValue };
+function getNamedChild ( childrenNodeName: string, reactChildren: ReactChildren ) {
+    const children = React.Children.toArray( reactChildren );
+
+    const result = children.filter( ( item: any ) => item.type.displayName === childrenNodeName );
+
+    return result;
+}
+
+export { getCssSizeValue, getNamedChild };
