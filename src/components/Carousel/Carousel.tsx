@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { propsCarousel } from "./type";
 import { getNamedChild } from "../../utils";
-import { useController, useTimer, useLoopPlay, useSwitchVisible } from "./hooks";
+import { useController, useTimer, useLoopPlay, useSwitchVisible, paginationView } from "./hooks";
 
 import './style.less';
 
@@ -10,7 +10,9 @@ const Provider = carouselContext.Provider;
 
 function Carousel ( props: propsCarousel ) {
     const { width, interval: rawInterval = 3000,
-        autoPlay = true, indicatorVisible: visible = 'always' } = props;
+        autoPlay = true,
+        indicatorVisible: visible = 'always',
+        showIndex = false } = props;
     const interval = rawInterval < 3000 ? 3000 : rawInterval;
 
     const carouselItems = getNamedChild( 'CarouselItem', props.children );
@@ -50,6 +52,8 @@ function Carousel ( props: propsCarousel ) {
         autoPlay ? start() : pause();
     }, [] );
 
+
+
     return (
         <div className="wdu-carousel"
             ref={ refCarousel }
@@ -81,8 +85,9 @@ function Carousel ( props: propsCarousel ) {
                     return (
                         <span
                             key={ index }
-                            className="wdu-carousel__pagination-item"
-                            onClick={ () => { setPage( index + 1 ); } }></span>
+                            className={ paginationView( current, index ) }
+                            onClick={ () => { setPage( index + 1 ); } }>
+                            { showIndex && index + 1 }</span>
                     );
                 } ) }
             </div>

@@ -84,15 +84,25 @@
         left: 0;
         .wdu-row-both-center();
 
-        @size: 12px;
+        @size: 14px;
 
         &-item {
             width: @size;
             height: @size;
             border-radius: 50%;
-            background-color: gray;
+            background-color: rgb(138, 138, 138);
             margin: 0 5px;
+            font-size: 12px;
+            line-height: @size;
+            text-align: center;
             cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+
+            &--active {
+                transform: scale(1.2);
+                background-color: #d4d4d4;
+            }
         }
     }
 }

@@ -154,4 +154,11 @@ function useSwitchVisible ( switchVisible: propsCarousel[ 'indicatorVisible' ], 
     };
 }
 
-export { useController, useTimer, useLoopPlay, useSwitchVisible };
+function paginationView ( current: number, index: number ) {
+    const base = 'wdu-carousel__pagination-item';
+    const active = 'wdu-carousel__pagination-item--active';
+
+    return ( current === index + 1 ) ? `${ base } ${ active }` : base;
+};
+
+export { useController, useTimer, useLoopPlay, useSwitchVisible, paginationView };
