@@ -9,7 +9,8 @@ const carouselContext = React.createContext<any>( {} );
 const Provider = carouselContext.Provider;
 
 function Carousel ( props: propsCarousel ) {
-    const { width, interval = 1000 } = props;
+    const { width, interval: rawInterval = 3000 } = props;
+    const interval = rawInterval < 3000 ? 3000 : rawInterval;
 
     const carouselItems = getNamedChild( 'CarouselItem', props.children );
     const length = carouselItems.length;
@@ -19,7 +20,9 @@ function Carousel ( props: propsCarousel ) {
         current, setCurrent } = useController( length );
 
     // the timer of autoplay
-    const { start, pause, resume } = useTimer( () => { }, interval );
+    const { start, pause, resume } = useTimer( () => {
+        setCurrent( current => current + 1 );
+    }, interval );
 
     // set full width of the film to the width of carousel-item, make sure the that only one carousel-item is visible
     const refCarousel = useRef<any>();
@@ -32,7 +35,7 @@ function Carousel ( props: propsCarousel ) {
 
     useEffect( () => {
         setWidthOfItem();
-        // start();
+        start();
     }, [] );
 
     // make loop after switch the end or start of page

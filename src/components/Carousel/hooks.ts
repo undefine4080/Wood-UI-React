@@ -30,13 +30,13 @@ function useController ( total: number ) {
     };
 }
 
-function useTimer ( callback: any, interval: number ) {
+function useTimer ( callback: () => void, interval: number ) {
     const [ pause, setPause ] = useState( false );
     const [ timer, setTimer ] = useState<any>();
 
     const start = () => {
         const timer = setTimeout( () => {
-            console.log( 'run' );
+            callback();
             start();
         }, interval );
 
