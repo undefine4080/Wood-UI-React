@@ -19,11 +19,14 @@ export default function () {
         position: 'modal',
         components: [
             {
+                title: '默认模态框',
                 component: (
-                    <Button onClick={ () => {
-                        setVisible( { ...visible, m1: true } );
-                    } }>
-                        默认模态框
+                    <Button
+                        type="important"
+                        onClick={ () => {
+                            setVisible( { ...visible, m1: true } );
+                        } }>
+                        打开 Modal1
                         <Modal
                             title="这是模态框的标题"
                             visible={ visible.m1 }
@@ -31,13 +34,22 @@ export default function () {
                         >这是一段文字内容 </Modal>
                     </Button>
                 ),
+                code: `
+<Modal
+    title="这是模态框的标题"
+    visible={ visible.m1 }
+    onClose={ () => setVisible( { ...visible, m1: false } ) }
+>这是一段文字内容 </Modal>`
             },
             {
+                title: '使用背景遮罩',
                 component: (
-                    <Button onClick={ () => {
-                        setVisible( { ...visible, m2: true } );
-                    } }>
-                        背景遮罩
+                    <Button
+                        type="important"
+                        onClick={ () => {
+                            setVisible( { ...visible, m2: true } );
+                        } }>
+                        打开 Modal2
                         <Modal
                             title="这是模态框的标题"
                             visible={ visible.m2 }
@@ -46,13 +58,23 @@ export default function () {
                         >这是一段文字内容 </Modal>
                     </Button>
                 ),
+                code: `
+<Modal
+    title="这是模态框的标题"
+    visible={ visible.m2 }
+    onClose={ () => setVisible( { ...visible, m2: false } ) }
+    mask
+>这是一段文字内容 </Modal>`
             },
             {
+                title: '启用全屏模态框',
                 component: (
-                    <Button onClick={ () => {
-                        setVisible( { ...visible, m3: true } );
-                    } }>
-                        全屏模态框
+                    <Button
+                        type="important"
+                        onClick={ () => {
+                            setVisible( { ...visible, m3: true } );
+                        } }>
+                        打开 Modal3
                         <Modal
                             title="这是模态框的标题"
                             visible={ visible.m3 }
@@ -61,11 +83,15 @@ export default function () {
                         >这是一段文字内容 </Modal>
                     </Button>
                 ),
+                code: `
+<Modal
+    title="这是模态框的标题"
+    visible={ visible.m3 }
+    fullscreen
+    onClose={ () => setVisible( { ...visible, m3: false } ) }
+>这是一段文字内容 </Modal>`
             },
         ],
-        code: `
-        
-        `
     };
 
     return <IntroComponent { ...props } />;

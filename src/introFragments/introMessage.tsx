@@ -8,29 +8,45 @@ export default function () {
         position: 'message',
         components: [
             {
-                component: <Button type="plain" onClick={ () => Message.info( '你的假期余额已不足，请充值' ) }>info 全局消息</Button>
-            },
-            {
-                component: <Button type="warn" onClick={ () => Message.warn( '请洗干净手再来' ) }>warn 全局消息</Button>
-            },
-            {
-                component: <Button type="success" onClick={ () => Message.success( '哈哈哈' ) }>success 全局消息</Button>
-            },
-            {
-                component: <Button type="danger" onClick={ () => Message.danger( '这次请求失败了' ) }>danger 全局消息</Button>
+                title: '不同类型的 Message',
+                component: (
+                    <>
+                        <Button type="plain"
+                            onClick={ () => Message.info( '这是一条普通消息' ) }>
+                            info 消息</Button>
+
+                        <Button type="warn"
+                            onClick={ () => Message.warn( '这是一条警告消息' ) }>
+                            warn 消息</Button>
+
+                        <Button type="success"
+                            onClick={ () => Message.success( '这是一条成功消息' ) }>
+                            success 消息</Button>
+
+                        <Button type="danger"
+                            onClick={ () => Message.danger( '这是一条危险消息' ) }>
+                            danger 消息</Button>
+                    </>
+                ),
+                info: '一般消息（info）、警告消息（warn）、成功消息（success）、危险消息（danger）',
+                code: `
+<Button type="plain"
+    onClick={ () => Message.info( '这是一条普通消息' ) }>
+    info 消息</Button>
+
+<Button type="warn"
+    onClick={ () => Message.warn( '这是一条警告消息' ) }>
+    warn 消息</Button>
+
+<Button type="success"
+    onClick={ () => Message.success( '这是一条成功消息' ) }>
+    success 消息</Button>
+    
+<Button type="danger"
+    onClick={ () => Message.danger( '这是一条危险消息' ) }>
+    danger 消息</Button>`
             },
         ],
-        code: `
-        import { Message } from "../components/Message/Message";
-
-        <Button type="plain" onClick={ () => Message.info( '你的假期余额已不足，请充值' ) }>info 全局消息</Button>
-
-        <Button type="warn" onClick={ () => Message.warn( '请洗干净手再来' ) }>warn 全局消息</Button>
-
-        <Button type="success" onClick={ () => Message.success( '哈哈哈' ) }>success 全局消息</Button>
-
-        <Button type="danger" onClick={ () => Message.danger( '这次请求失败了' ) }>danger 全局消息</Button>
-        `
     };
 
     return <IntroComponent { ...props } />;

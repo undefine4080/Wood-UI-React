@@ -80,24 +80,24 @@ function App () {
           <IntroMark />
           <IntroSwitch />
           <IntroDivider />
-          {/* <IntroPagination /> */ }
-          {/* <IntroImage /> */ }
+          <IntroPagination />
+          <IntroImage />
 
           {/* 表单 */ }
-          {/* <IntroInput />
+          <IntroInput />
           <IntroRadio />
           <IntroCheckbox />
-          <IntroSelect /> */}
+          <IntroSelect />
 
           {/* 弹窗 */ }
-          {/* <IntroModal />
-          <IntroMessage /> */}
+          <IntroModal />
+          <IntroMessage />
 
           {/* 内容 */ }
-          {/* <IntroCollapse />
-          <IntroTree /> */}
+          <IntroCollapse />
+          <IntroTree />
           <IntroTable />
-          {/* <IntroTab /> */ }
+          <IntroTab />
           <IntroCarousel />
         </Main>
       </Container>

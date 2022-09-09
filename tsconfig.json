@@ -26,6 +26,9 @@
 			],
 			"@util": [
 				"utils.ts"
+			],
+			"@component/*": [
+				"components/*"
 			]
 		}
 	},

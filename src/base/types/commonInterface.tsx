@@ -1,4 +1,4 @@
-import { CSSProperties, EventHandler } from "react";
+import { CSSProperties, EventHandler, ReactElement } from "react";
 
 interface commonEventProps {
     onClick?: any;
@@ -15,3 +15,15 @@ export default interface commonProps extends commonEventProps {
     type?: string;
     size?: 'small' | 'normal' | 'large';
 }
+
+interface propsIntroComponent {
+    title?: string;
+    position: string;
+    components: Array<{
+        component: ReactElement,
+        info?: string;
+        code: string;
+    }>;
+}
+
+export type { propsIntroComponent };
