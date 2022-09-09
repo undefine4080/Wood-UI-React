@@ -1,6 +1,7 @@
-import React, { ElementRef, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { propsCarousel } from "./type";
 import { getNamedChild } from "../../utils";
+import { useController, useTimer, useLoopPlay } from "./hooks";
 
 import './style.less';
 
@@ -8,58 +9,54 @@ const carouselContext = React.createContext<any>( {} );
 const Provider = carouselContext.Provider;
 
 function Carousel ( props: propsCarousel ) {
-    const { width } = props;
+    const { width, interval = 1000 } = props;
 
     const carouselItems = getNamedChild( 'CarouselItem', props.children );
+    const length = carouselItems.length;
 
+    // the page controller
+    const { setPage, nextPage, prevPage,
+        current, setCurrent } = useController( length );
+
+    // the timer of autoplay
+    const { start, pause, resume } = useTimer( () => { }, interval );
+
+    // set full width of the film to the width of carousel-item, make sure the that only one carousel-item is visible
     const refCarousel = useRef<any>();
-
-    const [ state, setState ] = useState( {
-        current: 1,
-        total: carouselItems.length,
-        itemWidth: width || 0
-    } );
-
+    const [ viewWidth, setViewWidth ] = useState( width || 0 );
     const setWidthOfItem = () => {
         if ( !refCarousel.current ) return;
         const itemWidth = refCarousel.current.clientWidth;
-        setState( state => ( { ...state, itemWidth } ) );
+        setViewWidth( itemWidth );
     };
 
     useEffect( () => {
         setWidthOfItem();
+        // start();
     }, [] );
 
-    // manually switch to the number of page
-    const setPage = ( current: number ) => {
-        setState( state => ( { ...state, current } ) );
-    };
-
-    // manually switch to the next page
-    const nextPage = () => {
-        if ( state.current === state.total ) return;
-        setState( state => ( { ...state, current: state.current + 1 } ) );
-    };
-
-    // manually switch to the previous page
-    const prevPage = () => {
-        if ( state.current === 1 ) return;
-        setState( state => ( { ...state, current: state.current - 1 } ) );
-    };
-
-    const currentView = {
-        transform: `translate(-${ ( state.current - 1 ) * state.itemWidth }px, 0)`
-    };
+    // make loop after switch the end or start of page
+    const { items, classList, currentView } = useLoopPlay(
+        carouselItems,
+        current,
+        viewWidth,
+        setCurrent );
 
     return (
         <div className="wdu-carousel"
             ref={ refCarousel }
-            style={ { width: `${ state.itemWidth }px` } }>
-            <div className="wdu-carousel__film"
+            style={ { width: `${ viewWidth }px` } }
+            onMouseOver={ pause }
+            onMouseLeave={ resume }>
+            <div className={ classList }
                 style={ currentView }
             >
-                <Provider value={ { width: state.itemWidth } }>
-                    { carouselItems }
+                <Provider value={ { width: viewWidth } }>
+                    {
+                        items.map( ( item: any, index ) => {
+                            return React.cloneElement( item, { key: index } );
+                        } )
+                    }
                 </Provider>
             </div>
 

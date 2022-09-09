@@ -7,7 +7,7 @@ interface propsCarousel {
     height?: number | string;
     auto?: boolean;
     orientation?: 'vertical' | 'horizon';
-    time?: number;
+    interval?: number;
     indicatorVisible?: boolean;
     outerIndicator?: boolean; // if the indicator is outside the carousel container
     hoverPause?: boolean;

@@ -6,6 +6,17 @@ interface cssClass {
     [ key: string ]: string;
 }
 
+/**
+ * 
+ * @param cssClass key-value map ex:
+ * {
+    base: 'wdu-modal',
+    mask: 'wdu-modal__mask',
+    visible: 'wdu-modal__visible',
+    hidden: 'wdu-modal__hidden'
+  };
+ * @returns 
+ */
 function useCssClassManager ( cssClass: cssClass ) {
     const [ classMap, setClassMap ] = useState<cssClass>( { base: cssClass.base } );
     const [ classList, setClassList ] = useState( '' );
@@ -18,8 +29,8 @@ function useCssClassManager ( cssClass: cssClass ) {
         } );
     };
 
-    const addClassName = ( newClassName: string ) => {
-        setClassMap( prev => ( { ...prev, [ newClassName ]: cssClass[ newClassName ] } ) );
+    const addClassName = ( classKey: string ) => {
+        setClassMap( prev => ( { ...prev, [ classKey ]: cssClass[ classKey ] } ) );
     };
 
     useEffect( () => {
