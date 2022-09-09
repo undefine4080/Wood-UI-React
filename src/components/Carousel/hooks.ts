@@ -1,6 +1,6 @@
+import React, { ReactNode, Ref, useEffect, useState } from "react";
 import { useCssClassManager } from "@base/hooks";
-import React, { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { propsCarousel } from "./type";
 
 function useController ( total: number ) {
     const [ current, setCurrent ] = useState( 1 );
@@ -73,7 +73,7 @@ function useLoopPlay (
     viewWidth: number,
     setCurrent: any,
 ) {
-    const TRANSITION_TIME = 1000;
+    const TRANSITION_TIME = 800;
     const total = carouselItems.length;
 
     // copy nodes
@@ -98,9 +98,9 @@ function useLoopPlay (
 
     useEffect( () => {
         let timer: any;
+
         switch ( current ) {
             case 0:
-                clearTimeout( timer );
                 timer = setTimeout( () => {
                     addClassName( 'noTransition' );
                     setCurrent( total );
@@ -108,10 +108,11 @@ function useLoopPlay (
                 break;
             case 1:
             case total:
-                removeClassName( 'noTransition' );
+                timer = setTimeout( () => {
+                    removeClassName( 'noTransition' );
+                }, TRANSITION_TIME );
                 break;
             case total + 1:
-                clearTimeout( timer );
                 timer = setTimeout( () => {
                     addClassName( 'noTransition' );
                     setCurrent( 1 );
@@ -127,4 +128,30 @@ function useLoopPlay (
     };
 }
 
-export { useController, useTimer, useLoopPlay };
+function useSwitchVisible ( switchVisible: propsCarousel[ 'indicatorVisible' ], refCarousel: any ) {
+    const [ visible, setVisible ] = useState<'hidden' | 'visible'>( 'hidden' );
+
+    useEffect( () => {
+        if ( switchVisible === 'always' ) {
+            setVisible( 'visible' );
+        } else if ( switchVisible === 'never' ) {
+            setVisible( 'hidden' );
+        } else if ( switchVisible === 'hover' ) {
+            if ( refCarousel.current ) {
+                refCarousel.current.addEventListener( 'mouseenter', () => {
+                    setVisible( 'visible' );
+                } );
+
+                refCarousel.current.addEventListener( 'mouseleave', () => {
+                    setVisible( 'hidden' );
+                } );
+            }
+        }
+    }, [] );
+
+    return {
+        visibility: visible
+    };
+}
+
+export { useController, useTimer, useLoopPlay, useSwitchVisible };

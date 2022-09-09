@@ -1,17 +1,11 @@
-interface carouselEvents {
-
-}
-
 interface propsCarousel {
     width?: number;
-    height?: number | string;
-    auto?: boolean;
-    orientation?: 'vertical' | 'horizon';
+    height?: number;
+    autoPlay?: boolean;
     interval?: number;
-    indicatorVisible?: boolean;
-    outerIndicator?: boolean; // if the indicator is outside the carousel container
-    hoverPause?: boolean;
+    indicatorVisible?: 'hover' | 'never' | 'always';
     children?: any;
+    showIndex?: boolean; // show the number of indicator
 }
 
 export type { propsCarousel };

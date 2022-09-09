@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { propsCarousel } from "./type";
 import { getNamedChild } from "../../utils";
-import { useController, useTimer, useLoopPlay } from "./hooks";
+import { useController, useTimer, useLoopPlay, useSwitchVisible } from "./hooks";
 
 import './style.less';
 
@@ -9,7 +9,8 @@ const carouselContext = React.createContext<any>( {} );
 const Provider = carouselContext.Provider;
 
 function Carousel ( props: propsCarousel ) {
-    const { width, interval: rawInterval = 3000 } = props;
+    const { width, interval: rawInterval = 3000,
+        autoPlay = true, indicatorVisible: visible = 'always' } = props;
     const interval = rawInterval < 3000 ? 3000 : rawInterval;
 
     const carouselItems = getNamedChild( 'CarouselItem', props.children );
@@ -33,11 +34,6 @@ function Carousel ( props: propsCarousel ) {
         setViewWidth( itemWidth );
     };
 
-    useEffect( () => {
-        setWidthOfItem();
-        start();
-    }, [] );
-
     // make loop after switch the end or start of page
     const { items, classList, currentView } = useLoopPlay(
         carouselItems,
@@ -45,12 +41,21 @@ function Carousel ( props: propsCarousel ) {
         viewWidth,
         setCurrent );
 
+    // control the visible of indicator
+    const switchView = useSwitchVisible( visible, refCarousel );
+
+    // init the carousel core logic
+    useEffect( () => {
+        setWidthOfItem();
+        autoPlay ? start() : pause();
+    }, [] );
+
     return (
         <div className="wdu-carousel"
             ref={ refCarousel }
             style={ { width: `${ viewWidth }px` } }
             onMouseOver={ pause }
-            onMouseLeave={ resume }>
+            onMouseLeave={ () => ( autoPlay ? resume() : pause() ) }>
             <div className={ classList }
                 style={ currentView }
             >
@@ -63,18 +68,20 @@ function Carousel ( props: propsCarousel ) {
                 </Provider>
             </div>
 
-            <div className="wdu-carousel__pagination"
-                onClick={ prevPage }></div>
+            <div className="wdu-carousel__switch"
+                onClick={ prevPage }
+                style={ switchView }></div>
 
-            <div className="wdu-carousel__pagination"
-                onClick={ nextPage }></div>
+            <div className="wdu-carousel__switch"
+                onClick={ nextPage }
+                style={ switchView }></div>
 
-            <div className="wdu-carousel__indicator">
+            <div className="wdu-carousel__pagination">
                 { carouselItems.map( ( item, index ) => {
                     return (
                         <span
                             key={ index }
-                            className="wdu-carousel__indicator-item"
+                            className="wdu-carousel__pagination-item"
                             onClick={ () => { setPage( index + 1 ); } }></span>
                     );
                 } ) }
