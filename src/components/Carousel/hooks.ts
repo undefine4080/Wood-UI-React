@@ -1,6 +1,7 @@
 import React, { ReactNode, Ref, useEffect, useState } from "react";
 import { useCssClassManager } from "@base/hooks";
 import { propsCarousel } from "./type";
+import { throttle } from "../../utils";
 
 function useController ( total: number ) {
     const [ current, setCurrent ] = useState( 1 );
@@ -26,7 +27,10 @@ function useController ( total: number ) {
     };
 
     return {
-        setPage, nextPage, prevPage, current, setCurrent
+        setPage,
+        nextPage: throttle( nextPage, 1000 ),
+        prevPage: throttle( prevPage, 1000 ),
+        current, setCurrent
     };
 }
 

@@ -52,8 +52,6 @@ function Carousel ( props: propsCarousel ) {
         autoPlay ? start() : pause();
     }, [] );
 
-
-
     return (
         <div className="wdu-carousel"
             ref={ refCarousel }
