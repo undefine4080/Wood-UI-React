@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Select, Option } from "../Select/Select";
-import { Input } from '../Input/Input';
+import Input from '../Input/Input';
 import { Row } from '../Layout/Layout';
 import { ChangeEvent } from 'react';
 import './pagination.less';

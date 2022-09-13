@@ -52,7 +52,7 @@ function App () {
               <CollapseNav label="Radio 单选" url="#radio" />
               <CollapseNav label="Checkbox 多选" url="#checkbox" />
               <CollapseNav label="Select 选择" url="#select" />
-              <CollapseNav label="Form 表单" url='#form' />
+              <CollapseNav label="Form 表单" disabled url='#form' />
               <CollapseNav label="Cascade 级联选择" disabled />
               <CollapseNav label="DatePicker 日期选择" disabled />
             </CollapseItem>
@@ -89,7 +89,7 @@ function App () {
           <IntroRadio />
           <IntroCheckbox />
           <IntroSelect />
-          <IntroForm />
+          {/* <IntroForm /> */ }
 
           {/* 弹窗 */ }
           <IntroModal />
