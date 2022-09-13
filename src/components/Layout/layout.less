@@ -9,6 +9,8 @@ each(@selectors, {
 
 // 布局模块
 .wdu-container {
+    width: 100%;
+
     .wdu-header {
         overflow: auto;
     }
@@ -43,6 +45,7 @@ each(@selectors, {
 .wdu-row {
     display: flex;
     box-sizing: border-box;
+    flex-grow: 1;
 
     &-start {
         justify-content: flex-start;

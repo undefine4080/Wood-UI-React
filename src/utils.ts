@@ -3,7 +3,7 @@ import React from 'react';
  * @param rawValue css property width or height which from props, the type maybe number or string
  * @returns legal css value
  */
-function getCssSizeValue ( rawValue: string | number | undefined ) {
+function addUnitPx ( rawValue: string | number | undefined ) {
     if ( !rawValue ) return;
 
     if ( typeof rawValue === 'number' ) {
@@ -53,4 +53,4 @@ function throttle ( callback: any, delay: number ) {
     };
 }
 
-export { getCssSizeValue, getNamedChild, debounce, throttle };
+export { addUnitPx, getNamedChild, debounce, throttle };

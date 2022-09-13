@@ -26,7 +26,7 @@ import './App.less';
 function App () {
   return (
     <div className="app">
-      <Container width="1000px">
+      <Container width="1280px">
         <Aside side="left" width="200px" style={ { position: 'fixed', top: '0px' } }>
           <Collapse sticky>
             <CollapseItem label="快速上手">

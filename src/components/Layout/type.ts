@@ -1,33 +1,35 @@
-import { ReactChild } from "react";
-import commonProps from "../../base/types/commonInterface";
+import commonProps from "@base/types/commonInterface";
 
 interface propsContainer extends commonProps {
-    header?: ReactChild;
-    main?: ReactChild;
-    footer?: ReactChild;
-    aside?: ReactChild;
+    children?: any;
 }
 
 interface propsAside extends commonProps {
-    side?: string,
+    side?: 'left' | 'right';
+    width: string | number;
+}
+
+interface propsFooter extends commonProps {
+    height: number | string;
 }
 
 interface propsRow {
     justify?: 'start' | 'center' | 'end' | 'around' | 'between';
     align?: 'top' | 'middle' | 'bottom';
-    style?: object;
     className?: string;
     children?: any;
 }
 
 interface propsCol {
-    span?: number;
+    span: number;
+    className?: string;
     children?: any;
 }
 
 export type {
     propsContainer,
     propsAside,
+    propsFooter,
     propsRow,
     propsCol
 };
