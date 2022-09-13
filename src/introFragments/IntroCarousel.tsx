@@ -17,15 +17,15 @@ export default function () {
         component: (
           <Carousel>
             <CarouselItem>
-              <Image src={ imgList[ 0 ] } />
+              <Image src={ imgList[ 0 ] } width="100%" />
             </CarouselItem>
 
             <CarouselItem>
-              <Image src={ imgList[ 1 ] } />
+              <Image src={ imgList[ 1 ] } width="100%" />
             </CarouselItem>
 
             <CarouselItem>
-              <Image src={ imgList[ 2 ] } />
+              <Image src={ imgList[ 2 ] } width="100%" />
             </CarouselItem>
           </Carousel>
         ),

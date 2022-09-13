@@ -30,6 +30,9 @@
 			],
 			"@component/*": [
 				"components/*"
+			],
+			"@intro/*": [
+				"introFragments/*"
 			]
 		}
 	},

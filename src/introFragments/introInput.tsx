@@ -1,5 +1,5 @@
-import { IntroComponent } from "../base/introComponent";
-import { Input } from "../components/Input/Input";
+import { IntroComponent } from "@base/introComponent";
+import Input from "@component/Input/Input";
 
 export default function () {
     const formName = "personInfo";

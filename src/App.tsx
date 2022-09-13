@@ -1,24 +1,25 @@
-import { Collapse, CollapseItem, CollapseNav } from './components/Collapse/Collapse';
-import { Container, Main, Aside } from './components/Layout/Layout';
+import { Collapse, CollapseItem, CollapseNav } from '@component/Collapse/Collapse';
+import { Container, Main, Aside } from '@component/Layout/Layout';
 
-import IntroButton from './introFragments/introButton';
-import IntroLayout from './introFragments/introLayout';
-import IntroCollapse from './introFragments/introCollapse';
-import IntroMark from './introFragments/introMark';
-import IntroMessage from './introFragments/introMessage';
-import IntroDivider from './introFragments/introDivider';
-import IntroInput from './introFragments/introInput';
-import IntroRadio from './introFragments/introRadio';
-import IntroCheckbox from './introFragments/introCheckbox';
-import IntroTab from './introFragments/introTab';
-import IntroSelect from './introFragments/introSelect';
-import IntroSwitch from './introFragments/introSwitch';
-import IntroTree from './introFragments/introTree';
-import IntroPagination from './introFragments/introPagination';
-import IntroImage from './introFragments/introImage';
-import IntroModal from './introFragments/introModal';
-import IntroTable from './introFragments/IntroTable';
-import IntroCarousel from './introFragments/IntroCarousel';
+import IntroButton from '@intro/introButton';
+import IntroLayout from '@intro/introLayout';
+import IntroCollapse from '@intro/introCollapse';
+import IntroMark from '@intro/introMark';
+import IntroMessage from '@intro/introMessage';
+import IntroDivider from '@intro/introDivider';
+import IntroInput from '@intro/introInput';
+import IntroRadio from '@intro/introRadio';
+import IntroCheckbox from '@intro/introCheckbox';
+import IntroTab from '@intro/introTab';
+import IntroSelect from '@intro/introSelect';
+import IntroSwitch from '@intro/introSwitch';
+import IntroTree from '@intro/introTree';
+import IntroPagination from '@intro/introPagination';
+import IntroImage from '@intro/introImage';
+import IntroModal from '@intro/introModal';
+import IntroTable from '@intro/IntroTable';
+import IntroCarousel from '@intro/IntroCarousel';
+import IntroForm from '@intro/IntroForm';
 
 import './App.less';
 
@@ -51,7 +52,7 @@ function App () {
               <CollapseNav label="Radio 单选" url="#radio" />
               <CollapseNav label="Checkbox 多选" url="#checkbox" />
               <CollapseNav label="Select 选择" url="#select" />
-              <CollapseNav label="Form 表单" disabled />
+              <CollapseNav label="Form 表单" url='#form' />
               <CollapseNav label="Cascade 级联选择" disabled />
               <CollapseNav label="DatePicker 日期选择" disabled />
             </CollapseItem>
@@ -88,6 +89,7 @@ function App () {
           <IntroRadio />
           <IntroCheckbox />
           <IntroSelect />
+          <IntroForm />
 
           {/* 弹窗 */ }
           <IntroModal />

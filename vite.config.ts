@@ -8,9 +8,12 @@ export default defineConfig( {
   base: "./",
   resolve: {
     alias: {
-      '@': resolve( 'src' ),
-      '@base': resolve( 'src/base' ),
-      '@style': resolve( 'src/base/styles' )
+      '@': resolve( __dirname, 'src/' ),
+      '@base': resolve( __dirname, 'src/base/' ),
+      '@style': resolve( __dirname, 'src/base/styles/' ),
+      '@component': resolve( __dirname, 'src/components/' ),
+      '@intro': resolve( __dirname, 'src/introFragments' ),
+      '@util': resolve( __dirname, 'src/utils.ts' ),
     }
   }
 } );
