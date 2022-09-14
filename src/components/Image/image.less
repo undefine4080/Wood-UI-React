@@ -1,9 +1,23 @@
 @import (reference) "@base/styles/main.less";
 
 .wdu-image {
+    min-width: 500px;
+    min-height: 300px;
+    background-color: aliceblue;
+
+    &__loaded {
+        background-color: transparent;
+
+        img {
+            opacity: 1;
+        }
+    }
+
     &__img {
+        transition: all 1s ease-in-out;
         border-radius: 5px;
         overflow: hidden;
+        opacity: 0;
     }
 
     &__info {

@@ -10,20 +10,20 @@ export default function () {
         position: 'image',
         components: [
             {
-                component: <Image src={ src } />
+                component: <Image src={ src } lazy />
                 ,
                 info: '普通图片',
-                code: '<Image src={ src } />'
+                code: '<Image src={ src } lazy/>'
             },
             {
-                component: <Image src={ src } info="高山野寺" />,
+                component: <Image src={ src } info="高山野寺" lazy />,
                 info: '图片描述信息',
-                code: '<Image src={ src } info="高山野寺" />'
+                code: '<Image src={ src } info="高山野寺" lazy/>'
             },
             {
-                component: <Image src={ src } link={ link } />,
+                component: <Image src={ src } link={ link } lazy />,
                 info: '带链接的图片',
-                code: '<Image src={ src } link={ link } />'
+                code: '<Image src={ src } link={ link } lazy/>'
             },
         ]
     };

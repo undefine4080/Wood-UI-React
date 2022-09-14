@@ -1,9 +1,14 @@
 import { propsImage } from "./type";
+import { useRef, useState } from "react";
 
 import './image.less';
+import { useLazyLoad } from "@base/hooks";
 
 function Image ( props: propsImage ) {
-    const { width = 500, src, info, shadow = false, border = false, link } = props;
+    const { width = 500, src, info, shadow = false, border = false, link, lazy = false } = props;
+
+    const refImg: any = useRef();
+    const [ imgSrc, setSrc ] = useState( '' );
 
     const imageStyle = {
         width: `${ typeof width === 'number' ? `${ width }px` : width }`,
@@ -21,10 +26,13 @@ function Image ( props: propsImage ) {
         window.open( link.toString() );
     };
 
+    useLazyLoad( refImg, () => setSrc( src ), lazy );
+
     return (
-        <div className="wdu-image" >
+        <div className={ `wdu-image ${ imgSrc && 'wdu-image__loaded' }` }
+            ref={ refImg }>
             <img className="wdu-image__img"
-                src={ src }
+                src={ imgSrc }
                 alt={ info }
                 style={ imageStyle }
                 onClick={ linkTo } />
