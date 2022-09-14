@@ -80,6 +80,12 @@ function useLazyLoad ( target: any, callback: () => void, isLazy: boolean ) {
     }, [] );
 }
 
+/**
+ * toggle the callback execution if the target is display in the viewport
+ * @param target 
+ * @param visible callback while outside the viewport
+ * @param hidden callback while inside the viewport
+ */
 function useElementDisplay ( target: any, visible: Function, hidden: Function ) {
     useEffect( () => {
         if ( !target.current ) return;

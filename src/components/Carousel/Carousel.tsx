@@ -4,6 +4,7 @@ import { getNamedChild } from "../../utils";
 import { useController, useTimer, useLoopPlay, useSwitchVisible, paginationView } from "./hooks";
 
 import './style.less';
+import { useElementDisplay } from "@base/hooks";
 
 const carouselContext = React.createContext<any>( {} );
 const Provider = carouselContext.Provider;
@@ -23,7 +24,7 @@ function Carousel ( props: propsCarousel ) {
         current, setCurrent } = useController( length );
 
     // the timer of autoplay
-    const { start, pause, resume } = useTimer( () => {
+    const { start, stop } = useTimer( () => {
         setCurrent( current => current + 1 );
     }, interval );
 
@@ -49,15 +50,18 @@ function Carousel ( props: propsCarousel ) {
     // init the carousel core logic
     useEffect( () => {
         setWidthOfItem();
-        autoPlay ? start() : pause();
+        autoPlay && start();
     }, [] );
+
+    // toggle autoplay if the carousel is out of viewport
+    useElementDisplay( refCarousel, start, stop );
 
     return (
         <div className="wdu-carousel"
             ref={ refCarousel }
             style={ { width: `${ viewWidth }px` } }
-            onMouseOver={ pause }
-            onMouseLeave={ () => ( autoPlay ? resume() : pause() ) }>
+            onMouseOver={ stop }
+            onMouseLeave={ () => ( autoPlay ? start() : stop() ) }>
             <div className={ classList }
                 style={ currentView }
             >

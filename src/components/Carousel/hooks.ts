@@ -1,4 +1,4 @@
-import React, { ReactNode, Ref, useEffect, useState } from "react";
+import React, { ReactNode, Ref, useEffect, useRef, useState } from "react";
 import { useCssClassManager } from "@base/hooks";
 import { propsCarousel } from "./type";
 import { throttle } from "../../utils";
@@ -35,31 +35,27 @@ function useController ( total: number ) {
 }
 
 function useTimer ( callback: () => void, interval: number ) {
-    const [ pause, setPause ] = useState( false );
-    const [ timer, setTimer ] = useState<any>();
+    const timer: any = useRef();
+    const stop = useRef<boolean>( false );
 
     const start = () => {
-        const timer = setTimeout( () => {
-            callback();
-            start();
-        }, interval );
+        if ( timer.current ) clearTimeout( timer.current );
 
-        setTimer( timer );
+        timer.current = setTimeout( () => {
+            if ( !stop.current ) {
+                callback();
+                start();
+                stop.current = false;
+            }
+        }, interval );
     };
 
-    useEffect( () => {
-        if ( pause ) {
-            clearTimeout( timer );
-        }
-    }, [ pause ] );
-
     return {
-        pause: () => setPause( true ),
-        resume: () => {
-            setPause( false );
+        stop: () => stop.current = true,
+        start: () => {
+            stop.current = false;
             start();
         },
-        start,
     };
 }
 
