@@ -1,21 +1,16 @@
-import React, { ChangeEventHandler, HTMLInputTypeAttribute, useEffect, useState } from "react";
-import commonProps from "../../base/types/commonInterface";
+import React, { useEffect, useState } from "react";
+import { propsInput } from "./type";
 import './input.less';
+import { debounce } from "@util";
 
-interface propsInput extends commonProps {
-    type?: HTMLInputTypeAttribute,
-    label?: string,
-    placeholder?: string,
-    name?: string,
-    value?: string;
-    min?: number;
-    max?: number;
-    onChange?: ChangeEventHandler<HTMLInputElement>,
-    onBlur?: ChangeEventHandler<HTMLInputElement>,
-}
 
-const Input: React.FC<propsInput> = ( props ) => {
-    const { id, size = "normal", name, label, type = 'text', placeholder, value, onChange, onBlur, style, min, max } = props;
+function Input ( props: propsInput ) {
+    const { id, size = "normal", name,
+        label, type = 'text', placeholder,
+        value, onChange, onBlur,
+        onFocus, min, max
+    } = props;
+
     const classList = `wdu-input-container wdu-input-${ size }`;
 
     const [ inputValue, setInputValue ] = useState( value );
@@ -27,19 +22,25 @@ const Input: React.FC<propsInput> = ( props ) => {
     return (
         <div className={ classList }>
             {
-                label && <label htmlFor={ id } className="wdu-input-label">{ label?.toString() }</label>
+                label && (
+                    <label htmlFor={ id } className="wdu-input__label">
+                        { label.toString() }
+                    </label>
+                )
             }
+
             <input id={ id }
                 value={ inputValue }
                 type={ type }
                 name={ name }
                 min={ min }
                 max={ max }
-                className="wdu-input-input"
+                className={ `wdu-input__input ${ ( !label ) && 'wdu-input__input-noLabel' }` }
                 placeholder={ placeholder?.toString() }
-                onChange={ onChange }
+                onChange={ debounce( onChange, 500 ) }
                 onBlur={ onBlur }
-                style={ style } />
+                onFocus={ onFocus }
+            />
         </div>
     );
 };

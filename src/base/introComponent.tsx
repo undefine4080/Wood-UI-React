@@ -1,3 +1,5 @@
+import { Table } from "@component/Table/Table";
+import TableColumn from "@component/Table/TableColumn";
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button/Button";
 
@@ -6,7 +8,7 @@ function IntroComponentItem ( props: any ) {
     const [ codeOpen, setCodeOpen ] = useState( false );
 
     useEffect( () => {
-        document.querySelectorAll( "pre code" ).forEach( block => {
+        codeOpen && document.querySelectorAll( "pre code" ).forEach( block => {
             try {
                 // @ts-ignore
                 hljs.highlightBlock( block );
@@ -54,8 +56,18 @@ function IntroComponentItem ( props: any ) {
     );
 }
 
+function IntroApiItem ( props: any ) {
+    return (
+        <Table data={ props.data } align="left">
+            <TableColumn index={ "attribute" } label={ "属性" } ></TableColumn>
+            <TableColumn index={ "description" } label={ "描述" } ></TableColumn>
+            <TableColumn index={ "value" } label={ "取值" } ></TableColumn>
+        </Table>
+    );
+}
+
 export function IntroComponent ( props: any ) {
-    const { title, components, position } = props;
+    const { title, components, position, api } = props;
 
     return (
         <article className="intro__container" id={ position }>
@@ -68,6 +80,16 @@ export function IntroComponent ( props: any ) {
                     return <IntroComponentItem key={ index } { ...item }></IntroComponentItem>;
                 } ) }
             </section>
+
+            { api && api.map( ( item: any, index: number ) => {
+                return (
+                    <section className="intro__main" key={ index } style={ { display: 'block' } }>
+                        <h3>{ item.title }</h3>
+                        <IntroApiItem data={ item.api }></IntroApiItem>
+                    </section>
+                );
+            } ) }
+
         </article>
     );
 }

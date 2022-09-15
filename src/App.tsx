@@ -7,7 +7,7 @@ import IntroCollapse from '@intro/introCollapse';
 import IntroMark from '@intro/introMark';
 import IntroMessage from '@intro/introMessage';
 import IntroDivider from '@intro/introDivider';
-import IntroInput from '@intro/introInput';
+import IntroInput from '@intro/IntroInput';
 import IntroRadio from '@intro/introRadio';
 import IntroCheckbox from '@intro/introCheckbox';
 import IntroTab from '@intro/introTab';
@@ -29,11 +29,11 @@ function App () {
       <Container width="1280px">
         <Aside side="left" width="200px" style={ { position: 'fixed', top: '0px' } }>
           <Collapse sticky>
-            <CollapseItem label="快速上手">
+            {/* <CollapseItem label="快速上手">
               <CollapseNav label="介绍" />
               <CollapseNav label="安装" />
               <CollapseNav label="使用" />
-            </CollapseItem>
+            </CollapseItem> */}
 
             <CollapseItem label="通用">
               <CollapseNav label="Layout 布局" url="#layout" />
