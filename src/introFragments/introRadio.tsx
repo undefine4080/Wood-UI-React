@@ -1,5 +1,5 @@
-import { IntroComponent } from "../base/introComponent";
-import { Radio } from "../components/Radio/Radio";
+import { IntroComponent } from "@base/introComponent";
+import Radio from "@component/Radio/Radio";
 
 export default function () {
     const props = {

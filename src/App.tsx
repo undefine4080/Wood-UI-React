@@ -8,7 +8,6 @@ import IntroMark from '@intro/introMark';
 import IntroMessage from '@intro/introMessage';
 import IntroDivider from '@intro/introDivider';
 import IntroInput from '@intro/IntroInput';
-import IntroRadio from '@intro/introRadio';
 import IntroCheckbox from '@intro/introCheckbox';
 import IntroTab from '@intro/introTab';
 import IntroSelect from '@intro/introSelect';
@@ -20,6 +19,7 @@ import IntroModal from '@intro/introModal';
 import IntroTable from '@intro/IntroTable';
 import IntroCarousel from '@intro/IntroCarousel';
 import IntroForm from '@intro/IntroForm';
+import IntroRadio from '@intro/IntroRadio';
 
 import './App.less';
 

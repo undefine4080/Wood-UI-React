@@ -1,4 +1,4 @@
-import { CSSProperties, EventHandler, ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 
 interface commonEventProps {
     onClick?: any;
@@ -23,6 +23,11 @@ interface propsIntroComponent {
         component: ReactElement,
         info?: string;
         code: string;
+        api?: Array<{
+            title: string;
+            description: string;
+            value?: string | number;
+        }>;
     }>;
 }
 
