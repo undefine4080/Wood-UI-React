@@ -1,82 +1,84 @@
-import React, { useEffect, useState } from "react";
-import commonProps from "../../base/types/commonInterface";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
+import { propsOption, propsSelect, selectedValue } from './type';
+import { getNamedChild } from "@util";
+import Arrow from "@base/icon/Arrow/Arrow";
+
 import './select.less';
 
-interface propsOption extends commonProps {
-    label: string,
-    value: number | string,
-};
-
-const Option: React.FC<propsOption> = props => <></>;
-
-interface propsSelect extends commonProps {
-    label?: string,
-    name: string,
-    form?: string,
-    value: number | string,
-    onChange?: any,
-    trigger?: 'hover' | 'click';
-}
-interface selectedValue {
-    value: number | string;
-    label: number | string;
-}
-
 const optionHeight = '36px';
-const Select: React.FC<propsSelect> = ( props ) => {
-    const { label, children, onChange, trigger = 'click' } = props;
+const SelectContext = React.createContext( { value: '', label: '' } );
+const Provider = SelectContext.Provider;
 
+function Option ( props: propsOption ) {
+    const selectedValue: selectedValue = useContext( SelectContext );
+    const { value, label } = props;
+
+    return (
+        <li
+            className={ `wdu-select-option ${ value === selectedValue.value &&
+                'wdu-select-option__selected' }` }
+            data-value={ value }>
+            { label }
+        </li>
+    );
+};
+Option.displayName = 'Option';
+
+function Select ( props: propsSelect ) {
+    const { label, children, onSelect } = props;
     const [ curValue, setCurValue ] = useState<selectedValue>( { value: '', label: '' } );
     const [ expand, setExpand ] = useState( false );
 
-    const options = children.map( ( item: any, index: number ) => {
-        const { value, label } = item.props;
-
-        return <li className="wdu-select-option" key={ index }
-            onClick={ () => {
-                setCurValue( { value, label } );
-                setExpand( pre => !pre );
-            } }>{ label }</li>;
-    } );
+    const optionItems = getNamedChild( 'Option', children );
 
     useEffect( () => {
-        const { value, label } = children[ 0 ].props;
-        setCurValue( { value, label } );
+        const { value, label } = ( optionItems[ 0 ] as ReactElement ).props;
+        setCurValue( { value: value.toString(), label: label.toString() } );
     }, [] );
 
     let [ optionListHeight, setOptListHeight ] = useState( optionHeight );
     useEffect( () => {
         if ( expand ) {
-            setOptListHeight( `${ options.length * 36 }px` );
+            setOptListHeight( `${ optionItems.length * 36 }px` );
         } else {
             setOptListHeight( optionHeight );
         }
     }, [ expand ] );
 
-    useEffect( () => {
-        if ( onChange ) {
-            onChange( {
-                value: curValue.value,
-                label: curValue.label
-            } );
+    const handleSelect = ( e: any ) => {
+        const value = e.nativeEvent.target.dataset.value;
+        if ( value ) {
+            const label = e.target.innerText;
+            setCurValue( { value, label } );
+            onSelect && onSelect( { value, label } );
         }
-    }, [ curValue ] );
+        setExpand( pre => !pre );
+    };
 
     return (
         <div className="wdu-select-container">
-            { label && <div className="wdu-select-label">{ label.toString() }</div> }
-            <ul className="wdu-select"
+            { label &&
+                <div className="wdu-select-label">{ label.toString() }</div>
+            }
+
+            <ul className={ `wdu-select ${ !label && 'wdu-select__noLabel' }` }
                 tabIndex={ 1 }
                 style={ { height: optionListHeight } }
-                onBlur={ () => setExpand( false ) }>
-                <li className="wdu-select-option"
-                    onClick={ () => setExpand( pre => !pre ) }
-                >{ curValue.label }</li>
-                { options }
+                onBlur={ () => setExpand( false ) }
+                onClick={ handleSelect }
+            >
+                <Provider value={ curValue }>
+                    <li className="wdu-select-option">
+                        { curValue.label }
+
+                        <Arrow style={ expand ? 'bottom' : 'top' } />
+                    </li>
+
+                    { optionItems }
+                </Provider>
             </ul>
         </div>
     );
 };
 
 export { Select, Option };
-export type { selectedValue };

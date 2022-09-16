@@ -8,7 +8,7 @@ export default function () {
             {
                 component: (
                     <>
-                        <Select name="survey" label="城市" value="city" >
+                        <Select name="survey" value="city" >
                             <Option label="北京" value="beijing" />
                             <Option label="上海" value="shanghai" />
                             <Option label="南宁" value="nanning" />
@@ -24,7 +24,7 @@ export default function () {
                             <Option label="美国" value="American" />
                         </Select>
 
-                        <Select name="survey" label="颜色" value="color">
+                        <Select name="survey" label="颜色" value="color" >
                             <Option label="红色" value="red" />
                             <Option label="绿色" value="green" />
                             <Option label="黑色" value="black" />
