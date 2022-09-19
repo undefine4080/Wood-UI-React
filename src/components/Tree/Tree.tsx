@@ -6,7 +6,7 @@ import './tree.less';
 interface treeNodeData {
     id: string,
     label: string,
-    children?: Array<treeNodeData>;
+    children?: Array<any>;
 };
 
 interface propsTree extends commonProps {

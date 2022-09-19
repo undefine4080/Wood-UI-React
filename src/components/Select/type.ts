@@ -2,14 +2,14 @@ import commonProps from "@base/types/commonInterface";
 
 interface propsOption extends commonProps {
     label: string,
-    value: string,
+    value: string | number,
 };
 
 interface propsSelect extends commonProps {
     label?: string,
     name: string,
     form?: string,
-    value: string,
+    value: string | number,
     trigger?: 'hover' | 'click';
     onSelect?: ( value: selectedValue ) => any;
 }

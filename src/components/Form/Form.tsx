@@ -22,6 +22,9 @@ const Form = React.forwardRef( ( props: propsForm, ref: any ) => {
     useImperativeHandle( ref, () => ( {
         submit: ( callback: Function ) => {
             callback( formData );
+        },
+        reset: () => {
+            refForm.current.reset();
         }
     } ) );
 

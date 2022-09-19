@@ -27,6 +27,11 @@ export default function () {
         myForm.current.submit( request );
     };
 
+    const reset = ( e: any ) => {
+        e.stopPropagation();
+        myForm.current.reset( request );
+    };
+
     const props = {
         title: 'Form 表单',
         position: 'form',
@@ -49,7 +54,7 @@ export default function () {
                             </FormItem>
 
                             <FormItem refer="number" label="订单编号">
-                                <Input type="number" />
+                                <Input type="password" />
                             </FormItem>
 
                             <FormItem refer="type" label="订单类型">
@@ -67,7 +72,10 @@ export default function () {
                                         提交
                                     </Button>
 
-                                    <Button type={ "danger" }>重置</Button>
+                                    <Button type={ "danger" }
+                                        onClick={ reset }>
+                                        重置
+                                    </Button>
                                 </Row>
                             </FormItem>
                         </Form>
