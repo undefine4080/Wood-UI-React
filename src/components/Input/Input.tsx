@@ -37,12 +37,15 @@ function Input ( props: propsInput ) {
                 max={ max }
                 className={ `wdu-input__input ${ ( !label ) && 'wdu-input__input-noLabel' }` }
                 placeholder={ placeholder?.toString() }
-                onChange={ debounce( onChange, 500 ) }
+                onChange={ debounce( ( e: any ) => {
+                    onChange( e.target.value );
+                }, 500 ) }
                 onBlur={ onBlur }
                 onFocus={ onFocus }
             />
         </div>
     );
 };
+Input.displayName = 'Input';
 
 export default Input;

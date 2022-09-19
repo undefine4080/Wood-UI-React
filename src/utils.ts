@@ -30,10 +30,10 @@ function getNamedChild ( childrenNodeName: string, reactChildren: any ) {
 function debounce ( callback: any, delay: number ) {
     let timer: any;
 
-    return () => {
+    return ( ...args: any ) => {
         clearTimeout( timer );
 
-        timer = setTimeout( ( ...args: any ) => {
+        timer = setTimeout( () => {
             callback.apply( this, args );
         }, delay );
     };
@@ -53,4 +53,12 @@ function throttle ( callback: any, delay: number ) {
     };
 }
 
-export { addUnitPx, getNamedChild, debounce, throttle };
+function rqData ( data: any ) {
+    return new Promise( ( resolve, reject ) => {
+        setTimeout( () => {
+            resolve( data );
+        }, 1000 );
+    } );
+}
+
+export { addUnitPx, getNamedChild, debounce, throttle, rqData };

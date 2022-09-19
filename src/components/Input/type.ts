@@ -1,8 +1,8 @@
 import commonProps from "@base/types/commonInterface";
-import { ChangeEventHandler, FocusEventHandler, HTMLInputTypeAttribute } from "react";
+import { FocusEventHandler, HTMLInputTypeAttribute } from "react";
 
 interface inputEvents extends commonProps {
-    onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>,
+    onChange?: any,
     onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
     onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
 }

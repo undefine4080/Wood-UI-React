@@ -1,14 +1,16 @@
 interface propsForm {
-    // data: {
-    //     [ key: string ]: any;
-    // };
-    labelAlign?: 'center' | 'left' | 'right' | 'top';
-    onSubmit: ( formData: any ) => any;
+    data: {
+        [ key: string ]: any;
+    };
+    itemLayout?: 'vertical' | 'horizon';
+    labelAlign?: 'center' | 'left' | 'right';
+    // onSubmit?: ( formData: any ) => any;
     children?: any;
 }
 
 interface propsFormItem {
-    label: string;
+    refer?: string;
+    label?: string;
     children?: any;
 }
 
