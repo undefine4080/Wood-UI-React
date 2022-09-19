@@ -1,48 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, { useImperativeHandle, useRef, useState } from "react";
 import { propsInput } from "./type";
-import './input.less';
 import { debounce } from "@util";
+import Clear from "@base/icon/Clear/Clear";
 
+import './input.less';
 
 function Input ( props: propsInput ) {
     const { id, size = "normal", name,
         label, type = 'text', placeholder,
         value, onChange, onBlur,
-        onFocus, min, max
+        onFocus, min, max,
+        showClear = false,
     } = props;
 
-    const classList = `wdu-input-container wdu-input-${ size }`;
+    const inputContainerClass = `wdu-input-container wdu-input-${ size }`;
+    const inputClass = `wdu-input__input ${ ( !label ) && 'wdu-input__input-noLabel' }`;
 
-    const [ inputValue, setInputValue ] = useState( value );
+    const [ input, setInput ] = useState( false );
+    const refInput = useRef<any>();
 
-    useEffect( () => {
-        setInputValue( value );
-    }, [ value ] );
+    const clear = ( e: any ) => {
+        e.stopPropagation();
+        refInput.current.value = '';
+        setInput( false );
+    };
+
+    const handleOnChange = debounce( ( e: any ) => {
+        const inputVal = e.target.value;
+        setInput( inputVal.length > 0 );
+        onChange && onChange( inputVal );
+    }, 500 );
 
     return (
-        <div className={ classList }>
+        <div className={ inputContainerClass }>
             {
                 label && (
                     <label htmlFor={ id } className="wdu-input__label">
-                        { label.toString() }
+                        { label }
                     </label>
                 )
             }
 
             <input id={ id }
-                value={ inputValue }
+                ref={ refInput }
+                value={ value }
                 type={ type }
                 name={ name }
                 min={ min }
                 max={ max }
-                className={ `wdu-input__input ${ ( !label ) && 'wdu-input__input-noLabel' }` }
-                placeholder={ placeholder?.toString() }
-                onChange={ debounce( ( e: any ) => {
-                    onChange( e.target.value );
-                }, 500 ) }
+                className={ inputClass }
+                placeholder={ placeholder }
+                onChange={ handleOnChange }
                 onBlur={ onBlur }
                 onFocus={ onFocus }
             />
+
+            { showClear && input && (
+                <span className="wdu-input__clear">
+                    <Clear onClick={ clear } />
+                </span>
+            ) }
         </div>
     );
 };

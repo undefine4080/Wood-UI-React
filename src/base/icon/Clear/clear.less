@@ -1,0 +1,33 @@
+.wdu-icon-clear {
+    @size: 12px;
+    position: relative;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(45deg);
+    color: rgb(117, 117, 117);
+    cursor: pointer;
+
+    .block() {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background-color: currentColor;
+        border-radius: 2px;
+    }
+
+    &::before {
+        .block();
+        width: 100%;
+    }
+
+    &::after {
+        .block();
+        height: 100%;
+    }
+}

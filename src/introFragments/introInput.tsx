@@ -11,9 +11,9 @@ export default function () {
                 title: '不同尺寸的 Input',
                 component: (
                     <>
-                        <Input name={ formName } label="小" size="small" />
+                        <Input name={ formName } label="小" size="small" showClear />
 
-                        <Input name={ formName } label="中" type="password" size="normal" />
+                        <Input name={ formName } label="中" type="password" size="normal" showClear />
 
                         <Input name={ formName } label="大" type="number" size="large" />
                     </>

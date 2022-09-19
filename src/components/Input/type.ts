@@ -15,6 +15,7 @@ interface propsInput extends inputEvents {
     value?: string;
     min?: number;
     max?: number;
+    showClear?: boolean;
 }
 
 export type { propsInput };
