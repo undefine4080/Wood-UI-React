@@ -11,7 +11,7 @@ import { addUnitPx } from '@util';
 import './layout.less';
 
 function Container ( props: propsContainer ) {
-    const { className = '', width, height, style, children } = props;
+    const { id, className = '', width, height, style, children } = props;
 
     let header: any,
         main: any,
@@ -45,6 +45,7 @@ function Container ( props: propsContainer ) {
 
     return (
         <div
+            id={ id }
             style={ {
                 ...style,
                 width: addUnitPx( width ),
@@ -62,10 +63,11 @@ function Container ( props: propsContainer ) {
 };
 
 function Header ( props: commonProps ) {
-    const { className = '', children, height } = props;
+    const { id, className = '', children, height } = props;
 
     return (
         <div
+            id={ id }
             style={ { height: height ? addUnitPx( height ) : 'auto' } }
             className={ `wdu-header ${ className }` }>
             { children }
@@ -76,10 +78,12 @@ Header.displayName = 'header';
 
 
 function Aside ( props: propsAside ) {
-    const { className = '', width, side = 'left', children } = props;
+    const { id, className = '', width, side = 'left', children } = props;
 
     return (
-        <div style={ { width: addUnitPx( width ) } }
+        <div
+            id={ id }
+            style={ { width: addUnitPx( width ) } }
             className={ `wdu-aside-${ side } ${ className }` }>
             { children }
         </div>
@@ -88,20 +92,23 @@ function Aside ( props: propsAside ) {
 Aside.displayName = 'aside';
 
 function Footer ( props: propsFooter ) {
-    const { className = '', children, height } = props;
+    const { id, className = '', children, height } = props;
 
     return (
-        <div className={ `wdu-footer ${ className }` }
+        <div
+            id={ id }
+            className={ `wdu-footer ${ className }` }
             style={ { height: addUnitPx( height ) } }>{ children }</div>
     );
 };
 Footer.displayName = 'footer';
 
 function Main ( props: commonProps ) {
-    const { className = '', children, height } = props;
+    const { id, className = '', children, height } = props;
 
     return (
         <div
+            id={ id }
             style={ { height: addUnitPx( height ) } } className={ `wdu-main ${ className }` }>
             { children }
         </div>

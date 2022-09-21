@@ -27,13 +27,13 @@ function App () {
   return (
     <div className="app">
       <Container width="1280px">
-        <Aside side="left" width="200px" style={ { position: 'fixed', top: '0px' } }>
+        <Aside id="app__aside" side="left" width="200px">
           <Collapse sticky>
-            {/* <CollapseItem label="快速上手">
+            <CollapseItem label="快速上手">
               <CollapseNav label="介绍" />
               <CollapseNav label="安装" />
               <CollapseNav label="使用" />
-            </CollapseItem> */}
+            </CollapseItem>
 
             <CollapseItem label="通用">
               <CollapseNav label="Layout 布局" url="#layout" />
@@ -41,10 +41,10 @@ function App () {
               <CollapseNav label="Mark 标记" url="#mark" />
               <CollapseNav label="Switch 开关" url="#switch" />
               <CollapseNav label="Divider 分割线" url="#divider" />
-              <CollapseNav label="Pagination 分页器" url="#pagination" />
-              <CollapseNav label="Nav 导航栏" disabled />
-              <CollapseNav label="Progress 进度条" disabled />
+              <CollapseNav label="Pagination 分页" url="#pagination" />
               <CollapseNav label="Image 图片" url='#image' />
+              <CollapseNav label="Progress 进度条" disabled />
+              <CollapseNav label="Tag 标签" disabled />
             </CollapseItem>
 
             <CollapseItem label="表单">
@@ -53,28 +53,39 @@ function App () {
               <CollapseNav label="Checkbox 多选" url="#checkbox" />
               <CollapseNav label="Select 选择" url="#select" />
               <CollapseNav label="Form 表单" url='#form' />
-              <CollapseNav label="Cascade 级联选择" disabled />
-              <CollapseNav label="DatePicker 日期选择" disabled />
+              <CollapseNav label="Textarea 文本域" url='#textarea' disabled />
+              <CollapseNav label="Cascade 级联选择" url='#cascade' disabled />
+              <CollapseNav label="DatePicker 日期选择" url='#datepicker' disabled />
             </CollapseItem>
 
             <CollapseItem label="弹窗">
               <CollapseNav label="Modal 模态框" url="#modal" />
               <CollapseNav label="Message 消息" url="#message" />
-              <CollapseNav label="Tooltips 提示" disabled />
+              <CollapseNav label="Tooltips 文字提示" disabled />
+              <CollapseNav label="Nav 导航栏" disabled />
             </CollapseItem>
 
             <CollapseItem label="内容">
-              <CollapseNav label="List 列表" disabled />
               <CollapseNav label="Collapse 抽屉" url="#collapse" />
               <CollapseNav label="Tree 树" url="#tree" />
               <CollapseNav label="Table 表格" url="#table" />
               <CollapseNav label="Tab 动态面板" url="#tab" />
               <CollapseNav label="Carousel 轮播" url="#carousel" />
+              <CollapseNav label="List 列表" disabled />
+              <CollapseNav label="Card 卡片" disabled />
+            </CollapseItem>
+
+            <CollapseItem label="实用">
+              <CollapseNav label="Bullet 弹幕" disabled />
+              <CollapseNav label="Marker 水印" disabled />
+              <CollapseNav label="Occupation 占位" disabled />
+              <CollapseNav label="Scroll 瀑布流" disabled />
+              <CollapseNav label="BackTop 返回顶部" disabled />
             </CollapseItem>
           </Collapse>
         </Aside>
 
-        <Main style={ { marginLeft: '200px' } }>
+        <Main id="app__main">
           {/* 通用 */ }
           <IntroLayout />
           <IntroButton />
