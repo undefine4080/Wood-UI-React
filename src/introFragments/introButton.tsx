@@ -1,5 +1,5 @@
-import { IntroComponent } from "../base/introComponent";
-import { Button } from "../components/Button/Button";
+import { IntroComponent } from "@base/introComponent";
+import Button from "@component/Button/Button";
 
 export default function () {
     const props = {
@@ -16,7 +16,7 @@ export default function () {
                         <Button type="important">重要</Button>
                         <Button type="warn">警示</Button>
                         <Button type="line">边框</Button>
-                        <Button type="disabled">禁用</Button>
+                        <Button disabled>禁用</Button>
                     </> ),
                 info: '按钮类型通过 type 属性来定义',
                 code: `
@@ -26,7 +26,7 @@ export default function () {
 <Button type="important">重要</Button>
 <Button type="warn">警示</Button>
 <Button type="line">边框</Button>
-<Button type="disabled">禁用</Button>`
+<Button disabled>禁用</Button>`
             },
             {
                 title: '按钮尺寸',
@@ -42,6 +42,21 @@ export default function () {
 <Button size="small">小</Button>
 <Button size="normal">默认</Button>
 <Button size="large">大</Button>`
+            },
+            {
+                title: '加载状态',
+                component: (
+                    <>
+                        <Button size="small" type="important" loading>小</Button>
+                        <Button size="normal" type="danger" loading>默认</Button>
+                        <Button size="large" type="success" loading>大</Button>
+                    </>
+                ),
+                info: '按钮加载状态通过 loading 属性定义',
+                code: `
+<Button size="small" type="important" loading>小</Button>
+<Button size="normal" type="danger" loading>默认</Button>
+<Button size="large" type="success" loading>大</Button>`
             },
         ]
     };

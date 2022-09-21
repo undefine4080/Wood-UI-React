@@ -1,6 +1,6 @@
 import { IntroComponent } from "../base/introComponent";
-import { Button } from "../components/Button/Button";
 import { Message } from "../components/Message/Message";
+import Button from "@component/Button/Button";
 
 export default function () {
     const props = {

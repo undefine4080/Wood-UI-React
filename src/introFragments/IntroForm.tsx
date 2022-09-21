@@ -1,11 +1,11 @@
+import { useRef } from "react";
 import { IntroComponent } from "@base/introComponent";
-import { Button } from "@component/Button/Button";
+import Button from "@component/Button/Button";
 import { Form, FormItem } from '@component/Form/Form';
 import Input from "@component/Input/Input";
 import { Row } from "@component/Layout/Layout";
 import { Select, Option } from "@component/Select/Select";
 import { rqData } from "@util";
-import { useRef } from "react";
 
 export default function () {
     const formData = {

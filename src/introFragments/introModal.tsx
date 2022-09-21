@@ -1,7 +1,7 @@
-import { IntroComponent } from "../base/introComponent";
-import Modal from "../components/Modal/Modal";
-import { Button } from "../components/Button/Button";
 import { useState } from "react";
+import { IntroComponent } from "@base/introComponent";
+import Modal from "@component/Modal/Modal";
+import Button from "@component/Button/Button";
 
 const src = 'https://cdn.pixabay.com/photo/2022/08/15/05/23/sun-rays-7387131_1280.jpg';
 

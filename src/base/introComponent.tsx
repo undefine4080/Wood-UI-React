@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import { Table } from "@component/Table/Table";
 import TableColumn from "@component/Table/TableColumn";
-import { useEffect, useState } from "react";
-import { Button } from "../components/Button/Button";
+import Button from "@component/Button/Button";
 
 function IntroComponentItem ( props: any ) {
     const { title, info = '', component, code = '' } = props;
