@@ -1,0 +1,79 @@
+@import (reference) "@base/styles/main.less";
+
+@height: 60px;
+
+.wdu-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    height: @height;
+    .wdu-bg-plain();
+    .wdu-border-light();
+
+    &__item {
+        display: block;
+        text-decoration: none;
+        width: 100%;
+        height: @height;
+        box-sizing: border-box;
+        line-height: @height;
+        text-align: center;
+        border-bottom: 1px solid rgb(237, 237, 237);
+        color: #333333;
+        transition: background-color 0.1s ease;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #d3d3d3;
+        }
+    }
+
+    &__fixed {
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+    }
+}
+
+.wdu-navMenu {
+    position: relative;
+
+    &__title {
+        display: block;
+        height: 100%;
+        box-sizing: border-box;
+        .wdu-text-title();
+        font-size: 18px;
+        line-height: @height;
+        text-align: center;
+        margin: 0;
+        padding: 0 40px;
+        text-decoration: none;
+        transition: background-color 0.1s ease;
+
+        &:hover {
+            cursor: default;
+            background-color: #627abb;
+            color: white;
+        }
+
+        span {
+            vertical-align: baseline;
+        }
+    }
+
+    &__container {
+        height: 0;
+        min-width: 100%;
+        overflow: hidden;
+        background-color: white;
+        transition: height .3s ease-out;
+        position: absolute;
+
+        &-active {
+            height: max-content;
+            .wdu-border-light();
+        }
+    }
+}

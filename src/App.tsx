@@ -20,6 +20,7 @@ import IntroCarousel from '@intro/IntroCarousel';
 import IntroForm from '@intro/IntroForm';
 import IntroInput from '@intro/introInput';
 import IntroRadio from '@intro/introRadio';
+import IntroNav from '@intro/IntroNav';
 
 import './App.less';
 
@@ -62,7 +63,7 @@ function App () {
               <CollapseNav label="Modal 模态框" url="#modal" />
               <CollapseNav label="Message 消息" url="#message" />
               <CollapseNav label="Tooltips 文字提示" disabled />
-              <CollapseNav label="Nav 导航栏" disabled />
+              <CollapseNav label="Nav 导航菜单" url='#nav' />
             </CollapseItem>
 
             <CollapseItem label="内容">
@@ -105,6 +106,7 @@ function App () {
           {/* 弹窗 */ }
           <IntroModal />
           <IntroMessage />
+          <IntroNav />
 
           {/* 内容 */ }
           <IntroCollapse />

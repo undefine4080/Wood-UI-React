@@ -17,9 +17,7 @@ const Switch: React.FC<propsSwitch> = props => {
 
     const [ on, setOn ] = useState( value );
     useEffect( () => {
-        if ( onChange && Object.prototype.toString.call( onChange ) === '[object function]' ) {
-            onChange( on );
-        }
+        onChange && onChange( on );
     }, [ on ] );
 
     return (
