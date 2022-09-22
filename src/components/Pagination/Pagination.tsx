@@ -2,32 +2,17 @@ import { useEffect, useState } from "react";
 import { Select, Option } from "../Select/Select";
 import Input from '../Input/Input';
 import { Row } from '../Layout/Layout';
-import { ChangeEvent } from 'react';
+import { propsPagination, switchAvailable } from "./type";
 import './pagination.less';
 
-interface propsPagination {
-    onPageChange?: ( page: Number ) => void; // 页码改变的回调
-    onSizeChange?: ( size: Number ) => void; // 分页大小改变的回调
-    onPrevClick?: () => void; // 点击上一页回调
-    onNextClick?: () => void; // 点击下一页回调
-    onJumpClick?: ( num: Number ) => void; // 点击跳转回调
-    onSelect?: ( selectPage: Number ) => void; // 点击选择页码回调
-    maxPageCount?: number; // 最大页码按钮数
-    total?: number; // 总条数
-    size?: number; // 分页大小
-    page?: number; // 当前页码
-}
+const PREFIX = 'wdu-pagination';
 
-interface switchAvailable {
-    prev?: Boolean,
-    next?: Boolean,
-    prevSpan?: Boolean,
-    nextSpan?: Boolean,
-}
-
-const T = 'wdu-pagination';
-const Pagination: React.FC<propsPagination> = ( props ) => {
-    const { size = 20, total = 0, page = 1, maxPageCount = 7, onPageChange } = props;
+function Pagination ( props: propsPagination ) {
+    const { size = 20, total = 0, page = 1, maxPageCount = 7,
+        onPageChange,
+        onSizeChange,
+        onPrev, onNext, onJump,
+        onSelect } = props;
 
     const [ selectedPage, setSelectedPage ] = useState( page );
     const [ selectedSize, setSelectedSize ] = useState( size );
@@ -41,6 +26,7 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
         setSelectedPage( 1 );
     }, [ selectedSize ] );
 
+    // handle the page item button
     const [ pageItems, setPageItems ] = useState<any>();
     useEffect( () => {
         const items = [];
@@ -57,7 +43,7 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
             const item = (
                 <div
                     key={ i }
-                    className={ `${ T }__list-item ${ selectedPage === start ? `${ T }__list-selected` : '' }` }
+                    className={ `${ PREFIX }__list-item ${ selectedPage === start ? `${ PREFIX }__list-selected` : '' }` }
                     data-page={ start } >
                     { start }
                 </div> );
@@ -69,6 +55,7 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
         setPageItems( items );
     }, [ selectedPage, selectedSize, pageCount, pageCountStart ] );
 
+    // handle the available of all the buttons
     const [ switchAvailable, setSwitchAvailable ] = useState<switchAvailable>( {
         prev: false,
         next: true,
@@ -83,11 +70,16 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
         setSwitchAvailable( { prev, next, prevSpan, nextSpan } );
     }, [ selectedPage, pageCountStart ] );
 
+    // execute call while selected page had changed
+    useEffect( () => {
+        onPageChange && onPageChange( selectedPage );
+    }, [ selectedPage ] );
+
     const selectPage = ( event: any ) => {
         event.stopPropagation();
         const pageNum = parseInt( event.target.dataset.page );
-        if ( onPageChange ) onPageChange( pageNum );
         setSelectedPage( pageNum );
+        onSelect && onSelect( pageNum );
     };
 
     const switchPage = ( event: any, flag: string ) => {
@@ -97,11 +89,13 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
         if ( flag === '-' && switchAvailable.prev ) {
             setSelectedPage( prev => prev - 1 );
             pageCountStart > 1 && ( newCountStart -= 1 );
+            onPrev && onPrev();
         } else if ( flag === '+' && switchAvailable.next ) {
             setSelectedPage( prev => prev + 1 );
             if ( selectedPage + 1 > maxPageCount && pageCountStart + maxPageCount <= pageCount ) {
                 newCountStart += 1;
             }
+            onNext && onNext();
         }
         setPageCountStart( newCountStart );
     };
@@ -130,30 +124,36 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
                 setPageCountStart( pageCount - maxPageCount + 1 );
             }
         }
+        onJump && onJump( value );
     };
 
-    const disableStyle = `${ T }__option-disabled`;
+    const handleSizeChange = ( selected: any ) => {
+        setSelectedSize( selected.value );
+        onSizeChange && onSizeChange( selected.value );
+    };
+
+    const disableStyle = `${ PREFIX }__option-disabled`;
     const classMap = {
-        prev: `${ T }__prev ${ switchAvailable.prev ? '' : disableStyle }`,
-        next: `${ T }__next ${ switchAvailable.next ? '' : disableStyle }`,
-        prevSpan: `${ T }__prevSpan ${ switchAvailable.prevSpan ? '' : disableStyle }`,
-        nextSpan: `${ T }__nextSpan ${ switchAvailable.nextSpan ? '' : disableStyle }`,
+        prev: `${ PREFIX }__prev ${ switchAvailable.prev ? '' : disableStyle }`,
+        next: `${ PREFIX }__next ${ switchAvailable.next ? '' : disableStyle }`,
+        prevSpan: `${ PREFIX }__prevSpan ${ switchAvailable.prevSpan ? '' : disableStyle }`,
+        nextSpan: `${ PREFIX }__nextSpan ${ switchAvailable.nextSpan ? '' : disableStyle }`,
     };
 
     return (
         <div className="wdu-pagination">
-            <div className={ `${ T }__total` }>
+            <div className={ `${ PREFIX }__total` }>
                 共 { total } 条
             </div>
 
-            <div className={ `${ T }__listContainer` }>
+            <div className={ `${ PREFIX }__listContainer` }>
                 <div className={ classMap.prevSpan }
                     onClick={ ( event ) => switchPageSpan( event, '-' ) }></div>
 
                 <div className={ classMap.prev }
                     onClick={ ( event ) => switchPage( event, '-' ) }></div>
 
-                <div className={ `${ T }__list` } onClick={ selectPage }>
+                <div className={ `${ PREFIX }__list` } onClick={ selectPage }>
                     { pageItems }
                 </div>
 
@@ -164,8 +164,9 @@ const Pagination: React.FC<propsPagination> = ( props ) => {
                     onClick={ ( event ) => switchPageSpan( event, '+' ) }></div>
             </div>
 
-            <div className={ `${ T }__option` }>
-                <Select name={ "pagesize" } value={ size } onChange={ ( value: any ) => setSelectedSize( value.value ) }>
+            <div className={ `${ PREFIX }__option` }>
+                <Select name={ "pagesize" } value={ size }
+                    onChange={ handleSizeChange }>
                     <Option label="20条/页" value={ 20 }></Option>
                     <Option label="50条/页" value={ 50 }></Option>
                     <Option label="100条/页" value={ 100 }></Option>
