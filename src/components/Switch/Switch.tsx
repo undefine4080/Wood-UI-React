@@ -1,39 +1,37 @@
-import { useEffect, useState } from 'react';
-import commonProps from '../../base/types/commonInterface';
+import { useState } from 'react';
+import { propsSwitch } from './type';
 import './switch.less';
 
-interface propsSwitch extends commonProps {
-    label?: string;
-    name?: string;
-    value?: boolean;
-}
-
-const Switch: React.FC<propsSwitch> = props => {
-    const { id, label, value = false, name, onChange } = props;
-    const classMap = {
-        base: 'wdu-switch-wrapper',
-        active: 'wdu-switch-wrapper wdu-switch-active'
-    };
+function Switch ( props: propsSwitch ) {
+    const { id, label, value = false, onChange, disabled = false } = props;
 
     const [ on, setOn ] = useState( value );
-    useEffect( () => {
-        onChange && onChange( on );
-    }, [ on ] );
+    const handleClick = () => {
+        if ( disabled ) return;
+
+        setOn( ( pre: boolean ) => !pre );
+        onChange && onChange( !on );
+    };
+
+    const triggerClass = `wdu-switch__wrapper ${ on ? 'wdu-switch__active' : '' }`;
+    const switchClass = `wdu-switch ${ disabled ? 'wdu-switch__disabled' : '' }`;
 
     return (
-        <div className='wdu-switch-container'>
-            <span className='wdu-switch-label'>{ label }</span>
-            <div className="wdu-switch" id={ id }>
-                <div className={ on ? classMap.active : classMap.base }>
-                    <div className='wdu-switch-block'></div>
-                    <div className='wdu-switch-block wdu-switch-trigger' onClick={ () => {
-                        setOn( ( pre: boolean ) => !pre );
-                    } }></div>
-                    <div className='wdu-switch-block'></div>
+        <div className={ switchClass }>
+            { label && <span className='wdu-switch__label'>{ label }</span> }
+
+            <div className="wdu-switch__main" id={ id }>
+                <div className={ triggerClass }>
+                    <div className='wdu-switch__block'></div>
+
+                    <div className='wdu-switch__block-trigger'
+                        onClick={ handleClick }></div>
+
+                    <div className='wdu-switch__block'></div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
-export { Switch };
+export default Switch;

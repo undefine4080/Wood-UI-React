@@ -1,6 +1,6 @@
 import { IntroComponent } from "@base/introComponent";
 import { Nav, NavItem, NavMenu } from '@component/Nav/Nav';
-import { Switch } from "@component/Switch/Switch";
+import Switch from "@component/Switch/Switch";
 import Image from "@component/Image/Image";
 import { useState } from "react";
 import { Row } from "@component/Layout/Layout";
