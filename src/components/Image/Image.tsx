@@ -30,11 +30,10 @@ function Image ( props: propsImage ) {
 
     return (
         <div className={ `wdu-image ${ imgSrc && 'wdu-image__loaded' }` }
+            style={ imageStyle }
             ref={ refImg }>
-            <img className="wdu-image__img"
-                src={ imgSrc }
-                alt={ info }
-                style={ imageStyle }
+            <div className="wdu-image__img"
+                style={ { backgroundImage: `url(${ imgSrc })` } }
                 onClick={ linkTo } />
 
             { info && <p className="wdu-image__info">{ info }</p> }

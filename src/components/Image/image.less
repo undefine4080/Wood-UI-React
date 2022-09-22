@@ -3,13 +3,19 @@
 .wdu-image {
     min-width: 500px;
     min-height: 300px;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
     background-color: aliceblue;
 
     &__loaded {
         background-color: transparent;
 
-        img {
+        .wdu-image__img {
             opacity: 1;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
     }
 
@@ -18,6 +24,7 @@
         border-radius: 5px;
         overflow: hidden;
         opacity: 0;
+        flex-grow: 1;
     }
 
     &__info {
