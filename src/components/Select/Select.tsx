@@ -25,15 +25,24 @@ function Option ( props: propsOption ) {
 Option.displayName = 'Option';
 
 function Select ( props: propsSelect ) {
-    const { label, children, onSelect } = props;
+    const { label, value, children, onSelect, placeholder, disabled = false } = props;
     const [ curValue, setCurValue ] = useState<selectedValue>( { value: '', label: '' } );
     const [ expand, setExpand ] = useState( false );
 
     const optionItems = getNamedChild( 'Option', children );
 
     useEffect( () => {
-        const { value, label } = ( optionItems[ 0 ] as ReactElement ).props;
-        setCurValue( { value: value.toString(), label: label.toString() } );
+        if ( value ) {
+            const selectedValue: any = optionItems.find( ( item: any ) => item.props.value === value );
+            if ( selectedValue ) {
+                setCurValue( {
+                    value: selectedValue.props.value,
+                    label: selectedValue.props.label
+                } );
+            } else {
+                console.warn( 'Select: the value you set which is not exist, please checkout it again' );
+            }
+        }
     }, [] );
 
     let [ optionListHeight, setOptListHeight ] = useState( optionHeight );
@@ -46,6 +55,8 @@ function Select ( props: propsSelect ) {
     }, [ expand ] );
 
     const handleSelect = ( e: any ) => {
+        if ( disabled ) return;
+
         const value = e.nativeEvent.target.dataset.value;
         if ( value ) {
             const label = e.target.innerText;
@@ -56,7 +67,7 @@ function Select ( props: propsSelect ) {
     };
 
     return (
-        <div className="wdu-select-container">
+        <div className={ `wdu-select-container ${ disabled ? 'wdu-select__disabled' : '' }` }>
             { label &&
                 <div className="wdu-select-label">{ label.toString() }</div>
             }
@@ -69,7 +80,8 @@ function Select ( props: propsSelect ) {
             >
                 <Provider value={ curValue }>
                     <li className="wdu-select-option">
-                        { curValue.label }
+                        { curValue.label ? curValue.label :
+                            ( <span className="wdu-select__placeholder">{ placeholder }</span> ) }
 
                         <Arrow style={ expand ? 'bottom' : 'top' } />
                     </li>

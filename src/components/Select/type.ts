@@ -9,8 +9,9 @@ interface propsSelect extends commonProps {
     label?: string,
     name: string,
     form?: string,
-    value: string | number,
+    value?: string | number,
     trigger?: 'hover' | 'click';
+    placeholder?: string;
     onSelect?: ( value: selectedValue ) => any;
 }
 
