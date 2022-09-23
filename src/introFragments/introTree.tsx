@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import { Tree } from '../components/Tree/Tree';
+import Tree from '@component/Tree/Tree';
 
 const testData = [
     {
@@ -50,7 +50,11 @@ export default function () {
         position: 'tree',
         components: [
             {
-                component: <Tree data={ testData } />,
+                component: (
+                    <Tree data={ testData }
+                        onExpand={ ( value ) => console.log( 'expand', value ) }
+                        onCollapse={ ( value ) => console.log( 'collapse', value ) } />
+                ),
                 code: `
 const testData = [
     {
@@ -95,7 +99,9 @@ const testData = [
     }
 ];      
 
-<Tree data={ testData } />`
+<Tree data={ testData }
+    onExpand={ ( value ) => console.log( 'expand', value ) }
+    onCollapse={ ( value ) => console.log( 'collapse', value ) } />`
             }
         ],
     };
