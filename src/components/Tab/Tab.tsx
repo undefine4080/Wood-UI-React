@@ -1,15 +1,16 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import { useContext, useEffect, useState } from "react";
-import commonProps from "../../base/types/commonInterface";
+import {
+    propsTab,
+    childEleInstance,
+    propsTabPane,
+    propsTabHead,
+} from './type';
 import './tab.less';
 
 const CurTabName = React.createContext( '' );
 
-interface propsTabHead {
-    name: string,
-    activate: SetStateAction<any>;
-}
-const TabHead: React.FC<propsTabHead> = props => {
+function TabHead ( props: propsTabHead ) {
     const { name, activate } = props;
     const curTabName = useContext( CurTabName );
     const classMap = {
@@ -29,10 +30,7 @@ const TabHead: React.FC<propsTabHead> = props => {
     return <div className={ titleClassList } onClick={ () => activate( name ) } >{ name }</div>;
 };
 
-interface propsTabPane extends commonProps {
-    name?: string;
-}
-const TabPane: React.FC<propsTabPane> = props => {
+function TabPane ( props: propsTabPane ) {
     const { name, children } = props;
     const curTabName = useContext( CurTabName );
     const classMap = {
@@ -55,16 +53,7 @@ const TabPane: React.FC<propsTabPane> = props => {
     );
 };
 
-interface propsTab extends commonProps {
-    activate?: string,
-}
-interface childEleInstance {
-    props: {
-        name: string,
-        [ prop: string ]: any;
-    };
-}
-const Tab: React.FC<propsTab> = props => {
+function Tab ( props: propsTab ) {
     const PREFIX = 'wdu-tab';
     const { children } = props;
     const [ tabHeads, setTabHeads ] = useState( [] );

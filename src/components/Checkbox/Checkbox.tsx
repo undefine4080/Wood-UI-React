@@ -9,7 +9,7 @@ interface propsCheckbox extends commonProps {
     onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Checkbox: React.FC<propsCheckbox> = ( props ) => {
+function Checkbox ( props: propsCheckbox ) {
     const PREFIX = 'wdu-checkbox';
     const { label, name, value, id, onChange, disabled = false } = props;
 
@@ -30,4 +30,4 @@ const Checkbox: React.FC<propsCheckbox> = ( props ) => {
     );
 };
 
-export { Checkbox };
+export default Checkbox; 

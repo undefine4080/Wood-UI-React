@@ -11,7 +11,7 @@ interface propsMark extends commonProps {
     link?: string; // 跳转链接的目标 url 地址
 }
 
-const Mark: React.FC<propsMark> = ( props ) => {
+function Mark ( props: propsMark ) {
     const PREFIX = 'wdu-mark';
     const { type = TYPE.I, link, children } = props;
     const componentStyle = `${ PREFIX } ${ PREFIX }-${ type }`;
@@ -23,4 +23,4 @@ const Mark: React.FC<propsMark> = ( props ) => {
     );
 };
 
-export { Mark };
+export default Mark; 

@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import { Checkbox } from '../components/Checkbox/Checkbox';
+import Checkbox from '../components/Checkbox/Checkbox';
 
 export default function () {
     const props = {

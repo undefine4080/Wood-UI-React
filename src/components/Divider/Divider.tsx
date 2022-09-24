@@ -1,13 +1,12 @@
-import './divider.less';
 import commonProps from '../../base/types/commonInterface';
 import { useEffect, useRef, useState } from 'react';
-
+import './divider.less';
 interface propsDivider extends commonProps {
     color?: 'dash' | 'line' | 'dot' | 'wave';
     direction?: 'horizontal' | 'vertical';
 }
 
-const Divider: React.FC<propsDivider> = ( props: any ) => {
+function Divider ( props: propsDivider ) {
     const { type = 'line', color: styleColor = 'gray', direction = 'horizontal' } = props;
 
     const styleType = `wdu-divider-${ type }`;
@@ -33,4 +32,4 @@ const Divider: React.FC<propsDivider> = ( props: any ) => {
     </span>;
 };
 
-export { Divider };
+export default Divider; 

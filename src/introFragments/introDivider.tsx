@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import { Divider } from "../components/Divider/Divider";
+import Divider from "../components/Divider/Divider";
 
 function IntroDivider () {
   const props = {

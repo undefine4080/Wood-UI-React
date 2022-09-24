@@ -75,4 +75,4 @@ const Message = {
     success: ( message: string ) => renderMessage( 'success', message ),
 };
 
-export { Message };
+export default Message; 

@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import { Message } from "../components/Message/Message";
+import Message from "../components/Message/Message";
 import Button from "@component/Button/Button";
 
 export default function () {

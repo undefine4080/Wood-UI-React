@@ -1,13 +1,12 @@
-import React, { useState, useRef, useEffect, MutableRefObject, ReactFragment } from 'react';
-import commonProps from '../../base/types/commonInterface';
+import React, { useState, useRef, useEffect, MutableRefObject } from 'react';
+import {
+    propsCollapse,
+    propsCollapseItem,
+    propsCollapseNav
+} from './type';
 import './collapse.less';
 
-interface propsCollapse extends commonProps {
-    sticky?: boolean; // 是否 fixed 布局
-}
-
-// Collapse 容器
-const Collapse: React.FC<propsCollapse> = ( props ) => {
+function Collapse ( props: propsCollapse ) {
     const PREFIX = 'wdu-collapse';
     const { sticky, width, children } = props;
 
@@ -18,16 +17,7 @@ const Collapse: React.FC<propsCollapse> = ( props ) => {
     );
 };
 
-
-// Collapse 选项
-interface propsCollapseItem extends commonProps {
-    label?: string;
-    expand?: boolean;
-    height?: string;
-    autoHeight?: boolean;
-}
-
-const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
+function CollapseItem ( props: propsCollapseItem ) {
     const PREFIX = 'wdu-collapse-item';
     const { expand = false, label, height, children, disabled = false, autoHeight } = props;
     const itemNode: MutableRefObject<any> = useRef( {} );
@@ -63,14 +53,7 @@ const CollapseItem: React.FC<propsCollapseItem> = ( props ) => {
     );
 };
 
-// Collapse 导航面板模式 
-interface propsCollapseNav extends commonProps {
-    url?: string, // 导航目标 url
-    label?: string, // 标签文字
-    newTab?: boolean, // 是否在新标签页打开链接
-}
-
-const CollapseNav: React.FC<propsCollapseNav> = ( props ) => {
+function CollapseNav ( props: propsCollapseNav ) {
     const PREFIX = 'wdu-collapse-item';
     const { label, url, newTab = true, disabled = false } = props;
     let disableStyle = disabled ? { cursor: 'not-allowed', color: 'grey' } : { cursor: 'pointer' };

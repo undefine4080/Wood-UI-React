@@ -182,4 +182,4 @@ function Pagination ( props: propsPagination ) {
     );
 };
 
-export { Pagination };
+export default Pagination; 

@@ -1,5 +1,5 @@
 import { IntroComponent } from "../base/introComponent";
-import { Mark } from "../components/Mark/Mark";
+import Mark from "../components/Mark/Mark";
 
 export default function () {
     const props = {

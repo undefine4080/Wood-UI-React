@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { propsTable } from './type';
 import TableColumn from './TableColumn';
 
