@@ -12,12 +12,14 @@
     height: @nodeHeight;
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     overflow: hidden;
-    
+
     &-label {
         .wdu-text-normal();
         padding-left: 10px;
         line-height: @nodeHeight;
         height: @nodeHeight;
+        display: flex;
+        align-items: center;
 
         &:hover {
             color: white;
@@ -43,28 +45,28 @@
             transform: rotate(45deg);
         }
 
-        &--leaf{
-            &:hover{
+        &--leaf {
+            &:hover {
                 cursor: default;
             }
 
-            &::before{
+            &::before {
                 visibility: hidden;
             }
         }
 
-        &--open{
-            &::before{
+        &--open {
+            &::before {
                 transform: rotate(135deg);
             }
         }
     }
 
-    &-children{
+    &-children {
         margin-left: 25px;
         transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 
-        &--expand{
+        &--expand {
             height: max-content;
         }
     }
