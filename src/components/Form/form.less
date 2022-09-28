@@ -1,7 +1,11 @@
 .wdu-form {
 
-    &__item {
+    &__itemContainer {
         margin: 10px;
+    }
+
+    &__item {
+        position: relative;
 
         &-horizon {
             display: flex;
@@ -33,6 +37,20 @@
 
         &-body {
             flex-grow: 1;
+        }
+
+        &-info {
+            font-size: 12px;
+            color: red;
+            opacity: 0;
+            transition: opacity 0.2s ease-out;
+            text-indent: 90px;
+            position: relative;
+            top: -10px;
+        }
+
+        &-noVerified {
+            opacity: 1;
         }
     }
 }

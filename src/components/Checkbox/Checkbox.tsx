@@ -43,5 +43,6 @@ function Checkbox ( props: propsCheckbox ) {
         </div>
     );
 };
+Checkbox.displayName = 'Checkbox';
 
 export default Checkbox; 

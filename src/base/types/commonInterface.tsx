@@ -15,6 +15,7 @@ export default interface commonProps extends commonEventProps {
     type?: string;
     size?: 'small' | 'normal' | 'large';
     name?: string;
+    value?: string | number;
 }
 
 interface propsIntroComponent {

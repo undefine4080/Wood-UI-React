@@ -25,5 +25,7 @@ function Radio ( props: propsRadio ) {
         </div>
     );
 };
+Radio.displayName = 'Radio';
+
 
 export default Radio; 

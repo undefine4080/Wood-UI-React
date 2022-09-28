@@ -92,5 +92,7 @@ function Select ( props: propsSelect ) {
         </div>
     );
 };
+Select.displayName = 'Select';
+
 
 export { Select, Option };

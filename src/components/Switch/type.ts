@@ -1,8 +1,9 @@
-import commonProps from "@base/types/commonInterface";
-
-interface propsSwitch extends commonProps {
+interface propsSwitch {
+    id?: string;
     label?: string;
     value?: boolean;
+    name?: string;
+    disabled?: boolean;
     onChange?: ( value: boolean ) => any;
 }
 

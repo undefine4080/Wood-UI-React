@@ -6,6 +6,7 @@ interface propsForm {
     labelAlign?: 'center' | 'left' | 'right';
     // onSubmit?: ( formData: any ) => any;
     children?: any;
+    validateRule?: any;
 }
 
 interface propsFormItem {
@@ -14,4 +15,19 @@ interface propsFormItem {
     children?: any;
 }
 
-export type { propsForm, propsFormItem };
+type validator = ( inputValue: any ) => boolean;
+
+type ruleItem = {
+    type?: 'number' | 'string' | 'boolean';
+    required?: Boolean;
+    trigger?: 'onBlur' | 'onChange' | 'onSelect';
+    minLength?: Number;
+    maxLength?: Number;
+    info?: string;
+};
+
+interface validatorRules {
+    [ formItemName: string ]: ruleItem | validator;
+}
+
+export type { propsForm, propsFormItem, validatorRules, ruleItem };

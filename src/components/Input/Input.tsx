@@ -26,8 +26,11 @@ function Input ( props: propsInput ) {
     };
 
     const handleOnChange = debounce( ( e: any ) => {
-        const inputVal = e.target.value;
+        const value = e.target.value;
+        const inputVal = Number( value ) ? Number( value ) : value;
+
         setInput( inputVal.length > 0 );
+
         onChange && onChange( inputVal );
     }, 500 );
 

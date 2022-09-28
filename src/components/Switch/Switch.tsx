@@ -33,5 +33,6 @@ function Switch ( props: propsSwitch ) {
         </div >
     );
 };
+Switch.displayName = 'Switch';
 
 export default Switch;
