@@ -35,28 +35,33 @@ export default function () {
 
     const validateRules: validatorRules = {
         name: {
-            type: 'string',
-            trigger: 'onBlur'
+            required: true,
+            info: '长度超出了 3 ',
+            trigger: 'onChange',
+            validator: ( inputValue: any ) => {
+                console.log( inputValue );
+
+                if ( inputValue.toString().length > 3 ) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         },
         address: {
+            required: true,
             type: 'string',
             trigger: 'onBlur',
+            info: '地址不能是数字'
         },
         number: {
-            type: 'number',
             required: true,
+            type: 'number',
             trigger: 'onChange',
             minLength: 6,
             maxLength: 16,
-            info: '输入有误'
+            info: '数字长度在 6～16 之间'
         },
-        type: ( inputValue: any ) => {
-            if ( inputValue.length > 3 ) {
-                return false;
-            } else {
-                return true;
-            }
-        }
     };
 
     const props = {

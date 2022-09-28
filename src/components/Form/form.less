@@ -1,11 +1,10 @@
-.wdu-form {
+@import (reference) "@base/styles/main.less";
 
-    &__itemContainer {
-        margin: 10px;
-    }
+.wdu-form {
 
     &__item {
         position: relative;
+        padding-bottom: 20px;
 
         &-horizon {
             display: flex;
@@ -21,6 +20,7 @@
         &-label {
             display: block;
             min-width: 80px;
+            .wdu-text-normal();
 
             &--left {
                 text-align: left;
@@ -40,17 +40,40 @@
         }
 
         &-info {
+            height: 20px;
+            line-height: 20px;
             font-size: 12px;
             color: red;
             opacity: 0;
             transition: opacity 0.2s ease-out;
             text-indent: 90px;
-            position: relative;
-            top: -10px;
+            position: absolute;
+            bottom: 5px;
         }
 
         &-noVerified {
             opacity: 1;
+
+            &+.wdu-form__item-body>div {
+                border: 1px solid red;
+            }
+
+            &+.wdu-form__item-body input {
+                &:focus {
+                    transition: all 0.3s;
+                    border-color: transparent;
+                }
+            }
+        }
+
+        &-required {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: text-top;
+            margin-right: 5px;
+            .wdu-bg-danger();
         }
     }
 }

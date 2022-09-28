@@ -15,7 +15,7 @@ interface propsFormItem {
     children?: any;
 }
 
-type validator = ( inputValue: any ) => boolean;
+type userValidator = ( inputValue: any ) => boolean;
 
 type ruleItem = {
     type?: 'number' | 'string' | 'boolean';
@@ -24,10 +24,11 @@ type ruleItem = {
     minLength?: Number;
     maxLength?: Number;
     info?: string;
+    validator?: userValidator;
 };
 
 interface validatorRules {
-    [ formItemName: string ]: ruleItem | validator;
+    [ formItemName: string ]: ruleItem | userValidator;
 }
 
-export type { propsForm, propsFormItem, validatorRules, ruleItem };
+export type { propsForm, propsFormItem, validatorRules, ruleItem, userValidator };

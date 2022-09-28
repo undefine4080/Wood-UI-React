@@ -1,4 +1,4 @@
-import { ruleItem } from '@component/Form/type';
+import { ruleItem, userValidator } from '@component/Form/type';
 import React from "react";
 
 function validateFormItem ( children: any ): any {
@@ -44,7 +44,12 @@ function validator ( refer: string, rule: ruleItem, input: any ): Boolean {
     const { type,
         required,
         minLength,
-        maxLength } = rule;
+        maxLength,
+        validator } = rule;
+
+    if ( validator ) {
+        return validator( input );
+    }
 
     if ( required && !input ) {
         console.warn( `the value of ${ refer } is required` );
