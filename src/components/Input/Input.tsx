@@ -25,14 +25,24 @@ function Input ( props: propsInput ) {
         setInput( false );
     };
 
-    const handleOnChange = debounce( ( e: any ) => {
+    const getInputValue = ( e: any ) => {
         const value = e.target.value;
         const inputVal = Number( value ) ? Number( value ) : value;
-
         setInput( inputVal.length > 0 );
+        return inputVal;
+    };
 
-        onChange && onChange( inputVal );
+    const handleOnChange = debounce( ( e: any ) => {
+        onChange && onChange( getInputValue( e ) );
     }, 500 );
+
+    const handleOnBlur = ( e: any ) => {
+        onBlur && onBlur( getInputValue( e ) );
+    };
+
+    const handleOnFocus = ( e: any ) => {
+        onFocus && onFocus( getInputValue( e ) );
+    };
 
     return (
         <div className={ inputContainerClass }>
@@ -54,8 +64,8 @@ function Input ( props: propsInput ) {
                 className={ inputClass }
                 placeholder={ placeholder }
                 onChange={ handleOnChange }
-                onBlur={ onBlur }
-                onFocus={ onFocus }
+                onBlur={ handleOnBlur }
+                onFocus={ handleOnFocus }
             />
 
             { showClear && input && (

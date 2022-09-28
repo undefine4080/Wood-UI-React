@@ -1,10 +1,12 @@
+import { HTMLInputTypeAttribute } from "react";
 import commonProps from "@base/types/commonInterface";
-import { FocusEventHandler, HTMLInputTypeAttribute } from "react";
+
+type callback = ( inputValue: string | number | undefined ) => any;
 
 interface inputEvents extends commonProps {
-    onChange?: any,
-    onBlur?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
-    onFocus?: FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>,
+    onChange?: callback,
+    onBlur?: callback;
+    onFocus?: callback;
 }
 
 interface propsInput extends inputEvents {
