@@ -30,15 +30,16 @@
     }
 
     &__header {
-        height: 40px;
+        height: 30px;
         text-align: center;
-        line-height: 40px;
+        line-height: 30px;
         .wdu-bg-plain();
 
         th {
-            padding: 10px 20px;
+            padding: 8px 8px;
             border-bottom: @borderStyle;
             border-top: @borderStyle;
+            border-right: @borderStyle;
 
             .wdu-table__gridLine();
         }
@@ -49,7 +50,7 @@
         .wdu-transition-quick();
 
         &:hover {
-            background-color: rgb(239, 239, 239);
+            background-color: #c9c9c9;
         }
     }
 
@@ -77,6 +78,6 @@
 
     thead {
         position: sticky;
-        top: -1px;
+        top: 0px;
     }
 }
