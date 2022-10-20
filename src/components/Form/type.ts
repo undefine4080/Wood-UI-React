@@ -20,15 +20,24 @@ type userValidator = ( inputValue: any ) => boolean;
 type ruleItem = {
     type?: 'number' | 'string' | 'boolean';
     required?: Boolean;
-    trigger?: 'onBlur' | 'onChange' | 'onSelect';
+    trigger: 'onBlur' | 'onChange' | 'onSelect';
     minLength?: Number;
     maxLength?: Number;
     info?: string;
     validator?: userValidator;
 };
 
-interface validatorRules {
-    [ formItemName: string ]: ruleItem | userValidator;
-}
+type ruleItems = Array<ruleItem>;
 
-export type { propsForm, propsFormItem, validatorRules, ruleItem, userValidator };
+interface validatorRules {
+    [ referName: string ]: Array<ruleItem>;
+};
+
+export type {
+    propsForm,
+    propsFormItem,
+    validatorRules,
+    ruleItem,
+    ruleItems,
+    userValidator
+};

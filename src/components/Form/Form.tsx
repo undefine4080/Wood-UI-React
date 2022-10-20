@@ -21,10 +21,10 @@ const Form = React.forwardRef( ( props: propsForm, ref: any ) => {
     const formItems = getNamedChild( 'FormItem', props.children );
 
     useImperativeHandle( ref, () => ( {
-        submit: ( callback: Function ) => {
+        submit ( callback: Function ) {
             isVerify && callback( formData );
         },
-        reset: () => {
+        reset () {
             refForm.current.reset();
         }
     } ) );

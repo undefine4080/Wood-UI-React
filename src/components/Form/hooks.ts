@@ -1,6 +1,11 @@
 import { ruleItem, userValidator } from '@component/Form/type';
 import React from "react";
 
+/**
+ * 
+ * @param children child node of FormItem
+ * @returns the legal child node of FormItem
+ */
 function validateFormItem ( children: any ): any {
     if ( React.Children.toArray( children ).length > 1 ) {
         throw new Error( 'FormItem can only have one child React node' );
@@ -22,9 +27,16 @@ function validateFormItem ( children: any ): any {
     return children;
 }
 
-function bindFormData ( refer: string, formItem: any, setFormData: any ) {
-    const changeFormData = ( value: any ) => {
+/**
+ * @param refer the data name of form-item
+ * @param formItem 
+ * @param setFormData callback for set data in Form
+ * @returns clone node to which the event has been bound
+ */
+function bindFormData ( refer: string, formItem: any, setFormData: any, setFormItemData: any ) {
+    const changeData = ( value: any ) => {
         setFormData( ( data: any ) => ( { ...data, [ refer ]: value } ) );
+        setFormItemData( value );
     };
 
     let event = '';
@@ -36,42 +48,46 @@ function bindFormData ( refer: string, formItem: any, setFormData: any ) {
             event = 'onSelect';
             break;
     }
-    const bindEvent = { [ event ]: changeFormData };
+
+    const bindEvent = { [ event ]: changeData };
     return React.cloneElement( formItem, { ...bindEvent } );
 }
 
-function validator ( refer: string, rule: ruleItem, input: any ): Boolean {
+function validator ( refer: string, rule: ruleItem, input: any ): string | null {
     const { type,
         required,
         minLength,
         maxLength,
-        validator } = rule;
+        validator,
+        info = '' } = rule;
 
-    if ( validator ) {
-        return validator( input );
-    }
+    // if ( validator ) {
+    //     return validator( input );
+    // }
 
     if ( required && !input ) {
         console.warn( `the value of ${ refer } is required` );
-        return false;
+        return info;
     }
 
-    if ( typeof input !== type ) {
-        console.warn( `type of the "${ refer }" is not correct, it should be ${ type }` );
-        return false;
+    if ( input ) {
+        if ( type && ( typeof input !== type ) ) {
+            console.warn( `type of the "${ refer }" is not correct, it should be ${ type }` );
+            return info;
+        }
+
+        if ( minLength && input.toString().length < minLength ) {
+            console.warn( `length of the ${ refer } should more the the minimum length ${ minLength }` );
+            return info;
+        }
+
+        if ( maxLength && input.toString().length > maxLength ) {
+            console.warn( `the max length of the ${ refer } should be ${ maxLength }` );
+            return info;
+        }
     }
 
-    if ( minLength && input.toString().length < minLength ) {
-        console.warn( `length of the ${ refer } should more the the minimum length ${ minLength }` );
-        return false;
-    }
-
-    if ( maxLength && input.toString().length > maxLength ) {
-        console.warn( `the max length of the ${ refer } should be ${ maxLength }` );
-        return false;
-    }
-
-    return true;
+    return null;
 }
 
 export { bindFormData, validator, validateFormItem };

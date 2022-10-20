@@ -7,6 +7,7 @@ import { Row } from "@component/Layout/Layout";
 import { Select, Option } from "@component/Select/Select";
 import { rqData } from "@util";
 import { validatorRules } from "@component/Form/type";
+import Switch from "@component/Switch/Switch";
 
 export default function () {
     const formData = {
@@ -34,34 +35,38 @@ export default function () {
     };
 
     const validateRules: validatorRules = {
-        name: {
-            required: true,
-            info: '长度超出了 3 ',
-            trigger: 'onChange',
-            validator: ( inputValue: any ) => {
-                console.log( inputValue );
-
-                if ( inputValue.toString().length > 3 ) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        },
-        address: {
-            required: true,
-            type: 'string',
-            trigger: 'onBlur',
-            info: '地址不能是数字'
-        },
-        number: {
-            required: true,
-            type: 'number',
-            trigger: 'onChange',
-            minLength: 6,
-            maxLength: 16,
-            info: '数字长度在 6～16 之间'
-        },
+        number: [
+            {
+                trigger: 'onBlur',
+                required: true,
+                info: '编号不能为空'
+            }, {
+                trigger: 'onBlur',
+                type: 'number',
+                info: '编号只能为数字'
+            } ],
+        address: [
+            {
+                trigger: 'onBlur',
+                required: true,
+                info: '地址不能为空'
+            },
+            {
+                type: 'string',
+                trigger: 'onBlur',
+                info: '地址不能是数字'
+            },
+            {
+                trigger: 'onBlur',
+                info: '长度不可以超过 12',
+                maxLength: 12
+            },
+            {
+                trigger: 'onBlur',
+                info: '长度最低为 6',
+                minLength: 6
+            },
+        ]
     };
 
     const props = {
@@ -78,16 +83,20 @@ export default function () {
                         itemLayout="horizon"
                         validateRule={ validateRules }>
 
-                        <FormItem refer="name" label="名称">
+                        <FormItem refer="name" label="订单名称">
                             <Input />
                         </FormItem>
 
-                        <FormItem refer="address" label="籍贯">
-                            <Input />
+                        <FormItem refer="date" label="创建日期">
+                            <Input type="date" />
+                        </FormItem>
+
+                        <FormItem refer="address" label="收货地址">
+                            <Input type="text" />
                         </FormItem>
 
                         <FormItem refer="number" label="订单编号">
-                            <Input type="password" />
+                            <Input />
                         </FormItem>
 
                         <FormItem refer="type" label="订单类型">
