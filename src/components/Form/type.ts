@@ -13,6 +13,7 @@ interface propsFormItem {
     refer?: string;
     label?: string;
     children?: any;
+    [ props: string ]: any;
 }
 
 type userValidator = ( inputValue: any ) => boolean;

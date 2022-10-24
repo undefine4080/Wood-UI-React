@@ -22,7 +22,9 @@ function Button ( props: propsButton ) {
     };
 
     return (
-        <button className={ classList }
+        <button
+            type="button"
+            className={ classList }
             onClick={ handleClick }>
             { loading && <Loading /> }
             { children }

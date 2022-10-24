@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { useContext, useState } from "react";
-import { FormContext } from "./Form";
+import React, { useEffect, useState } from "react";
 import { bindFormData, validateFormItem, validator } from "./hooks";
 import { propsFormItem, ruleItem, ruleItems } from "./type";
 
-function FormItem ( props: propsFormItem ) {
-    const { label, children, refer = '' } = props;
+const FormItem: React.FC<propsFormItem> = React.memo( ( props, ref ) => {
+    const { label, children, refer = '', } = props;
+
+    // implicit props
     const { labelAlign,
         itemLayout,
         validateRule,
-        setFormData, setVerify } = useContext<any>( FormContext );
+        setFormData, setVerify } = props;
 
     const layoutStyle = `wdu-form__item-${ itemLayout }`;
     const labelStyle = `wdu-form__item-label--${ labelAlign }`;
@@ -88,7 +88,7 @@ function FormItem ( props: propsFormItem ) {
             </div>
         </div>
     );
-}
+} );
 FormItem.displayName = 'FormItem';
 
 export default FormItem;

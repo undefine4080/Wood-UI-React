@@ -1,5 +1,5 @@
 import { ruleItem, userValidator } from '@component/Form/type';
-import React from "react";
+import React, { useState } from "react";
 
 /**
  * 
@@ -9,7 +9,6 @@ import React from "react";
 function validateFormItem ( children: any ): any {
     if ( React.Children.toArray( children ).length > 1 ) {
         throw new Error( 'FormItem can only have one child React node' );
-        return null;
     }
 
     const name = children.type.displayName;
