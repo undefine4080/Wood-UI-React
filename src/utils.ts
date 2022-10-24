@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSXElementConstructor, ReactElement } from 'react';
 /**
  * @param rawValue css property width or height which from props, the type maybe number or string
  * @returns legal css value
@@ -20,12 +20,16 @@ function addUnitPx ( rawValue: string | number | undefined ) {
 // filter children node by the displayName of the component
 function getNamedChild ( childrenNodeName: string, reactChildren: any ) {
     const children = React.Children.toArray( reactChildren );
-
     const result = children.filter( ( item: any ) => item.type.displayName === childrenNodeName );
-
     return result;
 }
 
+function bindImplicitProps ( elements: Array<ReactElement>, hintProps: { [ propsName: string ]: any; } ): Array<any> {
+    const result = elements.map( element => {
+        return React.cloneElement( element, { ...hintProps } );
+    } );
+    return result;
+}
 
 function debounce ( callback: any, delay: number ) {
     let timer: any;
@@ -61,4 +65,4 @@ function rqData ( data: any ) {
     } );
 }
 
-export { addUnitPx, getNamedChild, debounce, throttle, rqData };
+export { addUnitPx, getNamedChild, debounce, throttle, rqData, bindImplicitProps };
