@@ -18,6 +18,7 @@ function Button ( props: propsButton ) {
 
     const handleClick = ( e: React.MouseEvent<HTMLButtonElement> ) => {
         e.stopPropagation();
+        if ( disabled ) return;
         onClick && onClick( e );
     };
 
