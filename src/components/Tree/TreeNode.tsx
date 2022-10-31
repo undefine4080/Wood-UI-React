@@ -1,102 +1,109 @@
 import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import { propsTreeNode, selectNodes, treeNodeData } from "./type";
 import Checkbox from "@component/Checkbox/Checkbox";
-import { TreeContext } from './Tree';
+import { TreeContext } from "./Tree";
 
-const nodeBase = 'wdu-tree__node';
-const labelBase = 'wdu-tree__node-label';
+const nodeBase = "wdu-tree__node";
+const labelBase = "wdu-tree__node-label";
 const nodeStyleMap = {
-    base: nodeBase,
-    expand: `${ nodeBase } ${ nodeBase }-children--expand`
+  base: nodeBase,
+  expand: `${nodeBase} ${nodeBase}-children--expand`,
 };
 const labelStyleMap = {
-    base: labelBase,
-    leaf: `${ labelBase } ${ labelBase }--leaf`,
-    open: `${ labelBase } ${ labelBase }--open`,
+  base: labelBase,
+  leaf: `${labelBase} ${labelBase}--leaf`,
+  open: `${labelBase} ${labelBase}--open`,
 };
 
-function TreeNode ( props: propsTreeNode ) {
-    const { id, label, children,
-        open = false, onExpand, onCollapse,
-        onSelect, select = false } = props;
+function TreeNode(props: propsTreeNode) {
+  const {
+    id,
+    label,
+    children,
+    open = false,
+    onExpand,
+    onCollapse,
+    onSelect,
+    select = false,
+  } = props;
 
-    const { selectable, setSelectNode } = useContext( TreeContext );
+  const { selectable, setSelectNode } = useContext(TreeContext);
 
-    const [ nodeSelect, setNodeSelect ] = useState( select );
-    const [ nodeExpand, setNodeExpand ] = useState( open );
-    const [ nodeStyle, setNodeStyle ] = useState( nodeStyleMap.base );
-    let [ labelStyle, setLabelStyle ] = useState( labelStyleMap.base );
+  const [nodeSelect, setNodeSelect] = useState(select);
+  const [nodeExpand, setNodeExpand] = useState(open);
+  const [nodeStyle, setNodeStyle] = useState(nodeStyleMap.base);
+  let [labelStyle, setLabelStyle] = useState(labelStyleMap.base);
 
-    const currentNode = { id, label };
+  const currentNode = { id, label };
 
-    useEffect( () => {
-        if ( nodeExpand ) {
-            setLabelStyle( labelStyleMap.open );
-            setNodeStyle( nodeStyleMap.expand );
-        } else {
-            setNodeStyle( nodeStyleMap.base );
-            setLabelStyle( labelStyleMap.base );
-        }
-    }, [ nodeExpand ] );
-
-    if ( !children ) {
-        labelStyle = labelStyleMap.leaf;
+  useEffect(() => {
+    if (nodeExpand) {
+      setLabelStyle(labelStyleMap.open);
+      setNodeStyle(nodeStyleMap.expand);
+    } else {
+      setNodeStyle(nodeStyleMap.base);
+      setLabelStyle(labelStyleMap.base);
     }
+  }, [nodeExpand]);
 
-    const toggleNode = ( e: MouseEvent ) => {
-        e.stopPropagation();
-        if ( !children ) return;
-        setNodeExpand( !nodeExpand );
-        !nodeExpand ? ( onExpand && onExpand( currentNode ) ) : ( onCollapse && onCollapse( currentNode ) );
-    };
+  if (!children) {
+    labelStyle = labelStyleMap.leaf;
+  }
 
-    const handleSelect = ( checked: boolean, triggerByClick = true ) => {
-        setSelectNode( ( prev: selectNodes ) => {
-            let newState;
-            if ( checked ) {
-                newState = { ...prev, [ id ]: currentNode };
-            } else {
-                delete prev[ id ];
-                newState = { ...prev };
-            }
+  const toggleNode = (e: MouseEvent) => {
+    e.stopPropagation();
+    if (!children) return;
+    setNodeExpand(!nodeExpand);
+    !nodeExpand
+      ? onExpand && onExpand(currentNode)
+      : onCollapse && onCollapse(currentNode);
+  };
 
-            // if it is not called by parent selection,then call the user callback
-            if ( triggerByClick ) {
-                const selectedNodes: Array<treeNodeData> = Object.values( newState );
-                onSelect && onSelect( selectedNodes );
-            }
+  const handleSelect = (checked: boolean, triggerByClick = true) => {
+    setSelectNode((prev: selectNodes) => {
+      let newState;
+      if (checked) {
+        newState = { ...prev, [id]: currentNode };
+      } else {
+        delete prev[id];
+        newState = { ...prev };
+      }
 
-            return newState;
-        } );
-        setNodeSelect( checked );
-    };
+      // if it is not called by parent selection,then call the user callback
+      if (triggerByClick) {
+        const selectedNodes: Array<treeNodeData> = Object.values(newState);
+        onSelect && onSelect(selectedNodes);
+      }
 
-    // handle child node selection when parent node is selected
-    useEffect( () => {
-        // todo
-    }, [ select ] );
+      return newState;
+    });
+    setNodeSelect(checked);
+  };
 
-    return (
-        <div className={ nodeStyle }>
-            <div className={ labelStyle } onClick={ toggleNode }>
-                { selectable &&
-                    ( <Checkbox
-                        onChange={ handleSelect }
-                        checked={ nodeSelect } />
-                    ) }
+  // handle child node selection when parent node is selected
+  useEffect(() => {
+    setNodeSelect(select);
+  }, [select]);
 
-                { label }
-            </div>
+  return (
+    <div className={nodeStyle}>
+      <div className={labelStyle} onClick={toggleNode}>
+        {selectable && (
+          <Checkbox onChange={handleSelect} checked={nodeSelect} />
+        )}
 
-            { children?.length && (
-                <div className="wdu-tree__node-children">
-                    { children.map( child => {
-                        return React.cloneElement( child, { select: nodeSelect } );
-                    } ) }
-                </div>
-            ) }
+        {label}
+      </div>
+
+      {children?.length && (
+        <div className="wdu-tree__node-children">
+          {children.map((child) => {
+            return React.cloneElement(child, { select: nodeSelect });
+          })}
         </div>
-    );
-};
+      )}
+    </div>
+  );
+}
 
 export default TreeNode;
