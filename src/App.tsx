@@ -1,30 +1,35 @@
-import { Collapse, CollapseItem, CollapseNav } from '@component/Collapse/Collapse';
-import { Container, Main, Aside } from '@component/Layout/Layout';
+import {
+  Collapse,
+  CollapseItem,
+  CollapseNav,
+} from "@component/Collapse/Collapse";
+import { Container, Main, Aside } from "@component/Layout/Layout";
 
-import IntroButton from '@intro/introButton';
-import IntroLayout from '@intro/introLayout';
-import IntroCollapse from '@intro/introCollapse';
-import IntroMark from '@intro/introMark';
-import IntroMessage from '@intro/introMessage';
-import IntroDivider from '@intro/introDivider';
-import IntroCheckbox from '@intro/introCheckbox';
-import IntroTab from '@intro/introTab';
-import IntroSelect from '@intro/introSelect';
-import IntroSwitch from '@intro/introSwitch';
-import IntroTree from '@intro/introTree';
-import IntroPagination from '@intro/introPagination';
-import IntroImage from '@intro/introImage';
-import IntroModal from '@intro/introModal';
-import IntroTable from '@intro/IntroTable';
-import IntroCarousel from '@intro/IntroCarousel';
-import IntroForm from '@intro/IntroForm';
-import IntroInput from '@intro/introInput';
-import IntroRadio from '@intro/introRadio';
-import IntroNav from '@intro/IntroNav';
+import IntroButton from "@intro/introButton";
+import IntroLayout from "@intro/introLayout";
+import IntroCollapse from "@intro/introCollapse";
+import IntroMark from "@intro/introMark";
+import IntroMessage from "@intro/introMessage";
+import IntroDivider from "@intro/introDivider";
+import IntroCheckbox from "@intro/introCheckbox";
+import IntroTab from "@intro/introTab";
+import IntroSelect from "@intro/introSelect";
+import IntroSwitch from "@intro/introSwitch";
+import IntroTree from "@intro/introTree";
+import IntroPagination from "@intro/introPagination";
+import IntroImage from "@intro/introImage";
+import IntroModal from "@intro/introModal";
+import IntroTable from "@intro/IntroTable";
+import IntroCarousel from "@intro/IntroCarousel";
+import IntroForm from "@intro/IntroForm";
+import IntroInput from "@intro/introInput";
+import IntroRadio from "@intro/introRadio";
+import IntroNav from "@intro/IntroNav";
+import IntroProgress from "@intro/IntroProgress";
 
-import './App.less';
+import "./App.less";
 
-function App () {
+function App() {
   return (
     <div className="app">
       <Container width="1280px">
@@ -43,8 +48,8 @@ function App () {
               <CollapseNav label="Switch 开关" url="#switch" />
               <CollapseNav label="Divider 分割线" url="#divider" />
               <CollapseNav label="Pagination 分页" url="#pagination" />
-              <CollapseNav label="Image 图片" url='#image' />
-              <CollapseNav label="Progress 进度条" disabled />
+              <CollapseNav label="Image 图片" url="#image" />
+              <CollapseNav label="Progress 进度条" url="#progress" />
               <CollapseNav label="Tag 标签" disabled />
             </CollapseItem>
 
@@ -53,17 +58,21 @@ function App () {
               <CollapseNav label="Radio 单选" url="#radio" />
               <CollapseNav label="Checkbox 多选" url="#checkbox" />
               <CollapseNav label="Select 选择" url="#select" />
-              <CollapseNav label="Form 表单" url='#form' />
-              <CollapseNav label="Textarea 文本域" url='#textarea' disabled />
-              <CollapseNav label="Cascade 级联选择" url='#cascade' disabled />
-              <CollapseNav label="DatePicker 日期选择" url='#datepicker' disabled />
+              <CollapseNav label="Form 表单" url="#form" />
+              <CollapseNav label="Textarea 文本域" url="#textarea" disabled />
+              <CollapseNav label="Cascade 级联选择" url="#cascade" disabled />
+              <CollapseNav
+                label="DatePicker 日期选择"
+                url="#datepicker"
+                disabled
+              />
             </CollapseItem>
 
             <CollapseItem label="弹窗">
               <CollapseNav label="Modal 模态框" url="#modal" />
               <CollapseNav label="Message 消息" url="#message" />
               <CollapseNav label="Tooltips 文字提示" disabled />
-              <CollapseNav label="Nav 导航菜单" url='#nav' />
+              <CollapseNav label="Nav 导航菜单" url="#nav" />
             </CollapseItem>
 
             <CollapseItem label="内容">
@@ -87,7 +96,7 @@ function App () {
         </Aside>
 
         <Main id="app__main">
-          {/* 通用 */ }
+          {/* 通用 */}
           <IntroLayout />
           <IntroButton />
           <IntroMark />
@@ -95,20 +104,21 @@ function App () {
           <IntroDivider />
           <IntroPagination />
           <IntroImage />
+          <IntroProgress />
 
-          {/* 表单 */ }
+          {/* 表单 */}
           <IntroInput />
           <IntroRadio />
           <IntroCheckbox />
           <IntroSelect />
           <IntroForm />
 
-          {/* 弹窗 */ }
+          {/* 弹窗 */}
           <IntroModal />
           <IntroMessage />
           <IntroNav />
 
-          {/* 内容 */ }
+          {/* 内容 */}
           <IntroCollapse />
           <IntroTree />
           <IntroTable />

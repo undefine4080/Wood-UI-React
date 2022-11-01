@@ -1,0 +1,41 @@
+@import (reference) "@base/styles/main.less";
+
+.wdu-progress {
+    flex: 1;
+    .inside-shadow-light();
+    .wdu-radius-normal();
+    border: 1px solid #eaeaea;
+    overflow: hidden;
+    position: relative;
+
+    &__bar {
+        transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+        height: 100%;
+    }
+
+    &__small {
+        height: 16px;
+        margin: 20px 0;
+    }
+
+    &__normal {
+        height: 20px;
+        margin: 30px 0;
+    }
+
+    &__large {
+        height: 24px;
+        margin: 40px 0;
+        border-radius: 16px;
+    }
+
+    &__percent {
+        display: inline-block;
+        height: 16px;
+        width: 40px;
+        position: absolute;
+        top: calc(50% - 8px);
+        left: calc(50% - 20px);
+        .wdu-text-normal();
+    }
+}
