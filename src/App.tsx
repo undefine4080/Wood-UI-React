@@ -26,6 +26,7 @@ import IntroInput from "@intro/introInput";
 import IntroRadio from "@intro/introRadio";
 import IntroNav from "@intro/IntroNav";
 import IntroProgress from "@intro/IntroProgress";
+import IntroTag from "@intro/IntroTag";
 
 import "./App.less";
 
@@ -50,7 +51,7 @@ function App() {
               <CollapseNav label="Pagination 分页" url="#pagination" />
               <CollapseNav label="Image 图片" url="#image" />
               <CollapseNav label="Progress 进度条" url="#progress" />
-              <CollapseNav label="Tag 标签" disabled />
+              <CollapseNav label="Tag 标签" url="#tag" />
             </CollapseItem>
 
             <CollapseItem label="表单">
@@ -105,6 +106,7 @@ function App() {
           <IntroPagination />
           <IntroImage />
           <IntroProgress />
+          <IntroTag />
 
           {/* 表单 */}
           <IntroInput />
