@@ -1,0 +1,107 @@
+@import (reference) "@base/styles/main.less";
+
+@size: 12px;
+@color: rgb(52, 52, 52);
+
+.corner {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: @size;
+    height: @size;
+    background-color: @color;
+    transform: rotate(45deg);
+}
+
+.wdu-tooltip {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+        .wdu-text-small();
+        width: max-content;
+        height: 30px;
+        padding: 5px 10px;
+        line-height: 30px;
+        text-align: center;
+        color: aliceblue;
+        position: absolute;
+        border-radius: 8px;
+        background-color: @color;
+        opacity: 0;
+        animation-name: unset;
+        animation-direction: unset;
+        animation-duration: 0.3s;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+        animation-iteration-count: 1;
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+    }
+
+    &__top {
+        top: calc(-100% + 50% - 20px);
+        left: auto;
+
+        &::before {
+            .corner();
+            bottom: -6px;
+            left: calc(50% - 4px);
+        }
+    }
+
+    &__bottom {
+        bottom: calc(-100% + 50% - 20px);
+        left: auto;
+
+        &::after {
+            .corner();
+            top: -6px;
+            left: calc(50% - 4px);
+        }
+    }
+
+    &__left {
+        top: auto;
+        left: calc(-100% - 5px);
+
+        &::before {
+            .corner();
+            right: -6px;
+            top: calc(50% - 5px);
+        }
+    }
+
+    &__right {
+        top: auto;
+        right: calc(-100% - 5px);
+
+        &::before {
+            .corner();
+            left: -6px;
+            top: calc(50% - 5px);
+        }
+    }
+
+    &__visible {
+        animation-name: show;
+        animation-direction: normal;
+    }
+
+    &__hidden {
+        animation-name: show;
+        animation-direction: reverse;
+    }
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

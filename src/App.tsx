@@ -27,6 +27,7 @@ import IntroRadio from "@intro/introRadio";
 import IntroNav from "@intro/IntroNav";
 import IntroProgress from "@intro/IntroProgress";
 import IntroTag from "@intro/IntroTag";
+import IntroTooltip from "@intro/IntroTooltip";
 
 import "./App.less";
 
@@ -72,7 +73,7 @@ function App() {
             <CollapseItem label="弹窗">
               <CollapseNav label="Modal 模态框" url="#modal" />
               <CollapseNav label="Message 消息" url="#message" />
-              <CollapseNav label="Tooltips 文字提示" disabled />
+              <CollapseNav label="Tooltips 文字提示" url="#tooltip" />
               <CollapseNav label="Nav 导航菜单" url="#nav" />
             </CollapseItem>
 
@@ -118,6 +119,7 @@ function App() {
           {/* 弹窗 */}
           <IntroModal />
           <IntroMessage />
+          <IntroTooltip />
           <IntroNav />
 
           {/* 内容 */}
