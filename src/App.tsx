@@ -28,6 +28,7 @@ import IntroNav from "@intro/IntroNav";
 import IntroProgress from "@intro/IntroProgress";
 import IntroTag from "@intro/IntroTag";
 import IntroTooltip from "@intro/IntroTooltip";
+import IntroList from "@intro/IntroList";
 
 import "./App.less";
 
@@ -83,7 +84,7 @@ function App() {
               <CollapseNav label="Table 表格" url="#table" />
               <CollapseNav label="Tab 动态面板" url="#tab" />
               <CollapseNav label="Carousel 轮播" url="#carousel" />
-              <CollapseNav label="List 列表" disabled />
+              <CollapseNav label="List 列表" url="#list" />
               <CollapseNav label="Card 卡片" disabled />
             </CollapseItem>
 
@@ -128,6 +129,7 @@ function App() {
           <IntroTable />
           <IntroTab />
           <IntroCarousel />
+          <IntroList />
         </Main>
       </Container>
     </div>
