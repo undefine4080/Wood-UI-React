@@ -9,6 +9,7 @@
     &__label {
         line-height: @size;
         margin: 0 5px;
+        .wdu-text-small();
     }
 
     &__main {
@@ -18,6 +19,7 @@
         overflow: hidden;
         border-radius: @size;
         .wdu-border-light();
+        cursor: pointer;
     }
 
     &__wrapper {
@@ -27,7 +29,7 @@
         width: @size*3;
         position: relative;
         left: -@size;
-        transition: all 0.3s ease-out;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     &__block {
@@ -44,11 +46,9 @@
             position: relative;
             left: (@gap / 2);
             background-color: white;
-            cursor: pointer;
             .out-shadow-normal();
         }
     }
-
 
     &__active {
         left: 0;
@@ -63,6 +63,10 @@
 
         .wdu-switch__block-trigger {
             cursor: not-allowed;
+        }
+
+        .wdu-switch__active {
+            background-color: grey;
         }
     }
 }

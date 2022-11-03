@@ -1,38 +1,40 @@
-import { useState } from 'react';
-import { propsSwitch } from './type';
-import './switch.less';
+import { useState } from "react";
+import { propsSwitch } from "./type";
+import "./switch.less";
 
-function Switch ( props: propsSwitch ) {
-    const { id, label, value = false, onChange, disabled = false } = props;
+function Switch(props: propsSwitch) {
+  const { id, label, value = false, onChange, disabled = false } = props;
 
-    const [ on, setOn ] = useState( value );
-    const handleClick = () => {
-        if ( disabled ) return;
+  const [state, setState] = useState(value);
 
-        setOn( ( pre: boolean ) => !pre );
-        onChange && onChange( !on );
-    };
+  const handleClick = () => {
+    if (disabled) return;
 
-    const triggerClass = `wdu-switch__wrapper ${ on ? 'wdu-switch__active' : '' }`;
-    const switchClass = `wdu-switch ${ disabled ? 'wdu-switch__disabled' : '' }`;
+    setState((pre: boolean) => !pre);
+    onChange && onChange(!state);
+  };
 
-    return (
-        <div className={ switchClass }>
-            { label && <span className='wdu-switch__label'>{ label }</span> }
+  const triggerClass = `wdu-switch__wrapper ${
+    state ? "wdu-switch__active" : ""
+  }`;
+  const switchClass = `wdu-switch ${disabled ? "wdu-switch__disabled" : ""}`;
 
-            <div className="wdu-switch__main" id={ id }>
-                <div className={ triggerClass }>
-                    <div className='wdu-switch__block'></div>
+  return (
+    <div className={switchClass}>
+      {label && <span className="wdu-switch__label">{label}</span>}
 
-                    <div className='wdu-switch__block-trigger'
-                        onClick={ handleClick }></div>
+      <div className="wdu-switch__main" id={id} onClick={handleClick}>
+        <div className={triggerClass}>
+          <span className="wdu-switch__block"></span>
 
-                    <div className='wdu-switch__block'></div>
-                </div>
-            </div>
-        </div >
-    );
-};
-Switch.displayName = 'Switch';
+          <span className="wdu-switch__block-trigger"></span>
+
+          <span className="wdu-switch__block"></span>
+        </div>
+      </div>
+    </div>
+  );
+}
+Switch.displayName = "Switch";
 
 export default Switch;
