@@ -1,28 +1,64 @@
-.wdu-divider{
-    border-color: rgb(231, 231, 231);
-    flex-grow: 0;
-    &-line{
-        border-style:solid;
-    }
+@import (reference) "../../base/styles/main.less";
 
-    &-wave{
-        text-decoration: wavy;
-    }
+.wdu-divider {
+    display: flex;
+    position: relative;
+    color: #d8d8d8;
 
-    &-vertical{
-        display: inline-block;
-        box-sizing: border-box;
-        height: 100%;
-        margin: 8px; 
-        border-right: 1px ;
-        align-self: stretch;
-    }
+    @bold: 1px;
 
-    &-horizontal{
+    &::before,
+    &::after {
+        content: '';
         display: block;
-        width: 100%;
-        margin: 8px 0px; 
-        border-top: 1px ;
+        border-radius: 1px;
+    }
+
+    &__horizontal {
+        flex-flow: row nowrap;
+        justify-content: stretch;
+        align-items: center;
+        margin: 20px 0;
+
+        &::before,
+        &::after {
+            width: auto;
+            height: @bold;
+            background-color: currentColor;
+            flex-grow: 1;
+        }
+    }
+
+    &__vertical {
+        flex-flow: column nowrap;
+        justify-content: stretch;
+        align-items: center;
+        margin: 0 20px;
+
+        &::before,
+        &::after {
+            width: @bold;
+            height: auto;
+            background-color: currentColor;
+            flex-grow: 1;
+        }
+
+        .wdu-divider__text {
+            width: 16px;
+            word-break: break-all;
+            line-height: 18px;
+            max-height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+        }
+    }
+
+    &__text {
+        .wdu-text-small();
+        word-break: keep-all;
+        position: relative;
+        margin: 0 5px;
+        color: rgb(150, 150, 150);
     }
 }
-

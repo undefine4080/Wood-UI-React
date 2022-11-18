@@ -1,23 +1,31 @@
 import { IntroComponent } from "../base/introComponent";
 import Divider from "../components/Divider/Divider";
 
-function IntroDivider () {
+function IntroDivider() {
   const props = {
-    title: 'Divider 分割线',
-    position: 'divider',
+    title: "Divider 分割线",
+    position: "divider",
     components: [
       {
-        title: '水平分割线',
+        title: "水平分割线",
         component: (
           <div>
-            <p>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.</p>
+            <p>
+              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
+              amet duis non non anim aliqua exercitation labore dolor ex ea.
+              Labore id anim deserunt fugiat dolore proident ipsum.
+            </p>
 
             <Divider />
 
-            <p>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.</p>
+            <p>
+              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
+              amet duis non non anim aliqua exercitation labore dolor ex ea.
+              Labore id anim deserunt fugiat dolore proident ipsum.
+            </p>
           </div>
         ),
-        info: '默认为水平分割',
+        info: "默认为水平分割",
         code: `
 <div>
   <p>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate 
@@ -29,25 +37,38 @@ function IntroDivider () {
   <p>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate 
     amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id 
     anim deserunt fugiat dolore proident ipsum.</p>
-</div>`
+</div>`,
       },
       {
-        title: '垂直分割线',
+        title: "垂直分割线",
         component: (
-          <div style={ { display: 'flex' } }>
-            <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.</p>
+          <div>
+            <p style={{ flexBasis: "auto" }}>
+              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
+              amet duis non non anim aliqua exercitation labore dolor ex ea.
+              Labore id anim deserunt fugiat dolore proident ipsum.
+            </p>
 
-            <Divider direction={ 'vertical' } />
+            <Divider direction={"vertical"} />
 
-            <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.</p>
+            <p style={{ flexBasis: "auto" }}>
+              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
+              amet duis non non anim aliqua exercitation labore dolor ex ea.
+              Labore id anim deserunt fugiat dolore proident ipsum.
+            </p>
 
-            <Divider direction={ 'vertical' } />
+            <Divider direction={"vertical"} />
 
-            <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.</p>
-          </div> ),
+            <p style={{ flexBasis: "auto" }}>
+              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
+              amet duis non non anim aliqua exercitation labore dolor ex ea.
+              Labore id anim deserunt fugiat dolore proident ipsum.
+            </p>
+          </div>
+        ),
         info: 'direction = "vertical"',
         code: `
-<div style={ { display: 'flex' } }>
+<div>
   <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. 
     Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation 
     labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.
@@ -66,12 +87,28 @@ function IntroDivider () {
     Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation 
     labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.
   </p>
-</div>`
+</div>`,
+      },
+      {
+        title: "带文字说明的分割线",
+        component: (
+          <div style={{ flexGrow: 1 }}>
+            <Divider text="点分割线" />
+
+            <Divider text="实线分割线" />
+          </div>
+        ),
+        info: "",
+        code: `
+<div style={{ flexGrow: 1 }}>
+  <Divider type="dot" text="点分割线" />
+  <Divider type="solid" text="实线分割线" />
+</div>`,
       },
     ],
   };
 
-  return <IntroComponent { ...props } />;
+  return <IntroComponent {...props} />;
 }
 
 export default IntroDivider;
