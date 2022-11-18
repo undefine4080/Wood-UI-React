@@ -1,33 +1,5 @@
 @import (reference) "@base/styles/main.less";
 
-@keyframes show {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes hide {
-    from {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(0);
-        opacity: 0;
-    }
-}
-
-.wdu-modal__mask {
-    background-color: rgba(0, 0, 0, 0.557);
-}
-
 .wdu-modal {
     width: 100vw;
     height: 100vh;
@@ -35,9 +7,7 @@
     z-index: 2000;
     left: 0;
     top: 0;
-    transform: scale(0);
-    visibility: hidden;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 
@@ -71,18 +41,83 @@
         width: 350px;
         height: 280px;
         position: relative;
+        opacity: 0;
         .wdu-bg-plain();
         .wdu-radius-normal();
         .out-shadow-normal();
     }
 
     &__visible {
-        visibility: visible;
-        animation: show 0.3s cubic-bezier(0.215, 0.610, 0.355, 1) 0.1s 1 normal forwards;
+        display: flex;
+        opacity: 0;
+        animation: maskShow 0.1s ease 0s 1 normal forwards;
+
+        .wdu-modal__container {
+            animation: show 0.1s ease 0.2s 1 normal forwards;
+        }
     }
 
     &__hidden {
-        visibility: visible;
-        animation: hide 0.3s ease-out 0s 1 normal forwards;
+        opacity: 1;
+        animation: maskHide 0.3s ease 0.2s 1 normal forwards;
+
+        .wdu-modal__container {
+            animation: hide 0.3s ease 0s 1 normal forwards;
+        }
+    }
+
+    &__mask {
+        background-color: rgba(0, 0, 0, 0.557);
+    }
+
+    &__fullScreen {
+        .wdu-modal__container {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@keyframes maskShow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes maskHide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes show {
+    from {
+        top: -30px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    from {
+        top: 0;
+        opacity: 1;
+    }
+
+    to {
+        top: -30px;
+        opacity: 0;
     }
 }
