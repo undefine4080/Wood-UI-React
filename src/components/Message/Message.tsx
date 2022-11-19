@@ -1,78 +1,96 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import './message.less';
+import { useEffect, useRef } from "react";
+import { propsMessage, messageOption, messageQueueItem } from "./type";
+import { createRoot } from "react-dom/client";
+import { uuid } from "@util";
+import { useCssClassManager } from "@base/hooks";
 
-const PREFIX = 'wdu-message';
-const ID = 'wdu-message-container';
+import "./message.less";
 
-// 消息队列
-let messages: Array<ReactElement> = [];
+const CONTAINER_ID = "wdu-message__container";
+const MESSAGE_QUEUE: Array<messageQueueItem> = [];
 
-const genId = () => {
-    const timestamp: number = Date.now();
-    timestamp.toString().slice( 0, 8 );
-    return timestamp;
+function createContainer() {
+  let container = document.getElementById(CONTAINER_ID);
+  if (!container) {
+    container = document.createElement("div");
+    container.setAttribute("id", CONTAINER_ID);
+    document.body.appendChild(container);
+  }
+  return container;
+}
+
+function addMessage(params: messageOption) {
+  const id = uuid(8);
+  MESSAGE_QUEUE.push({ ...params, id });
+  renderMessage([...MESSAGE_QUEUE]);
+}
+
+function removeMessage(id: string) {
+  const position = MESSAGE_QUEUE.findIndex((item) => item.id === id);
+  MESSAGE_QUEUE.splice(position, 1);
+  renderMessage([...MESSAGE_QUEUE]);
+}
+
+function BaseMessage(props: any) {
+  const { type, message, id } = props;
+
+  const refMessage = useRef<any>();
+
+  const classMap = {
+    base: "",
+    visible: "wdu-message__visible",
+    hidden: "wdu-message__hidden",
+  };
+
+  const { addClassName, classList } = useCssClassManager(classMap);
+
+  const clear = () => removeMessage(id);
+  const handleHidden = () => {
+    if (refMessage.current) {
+      refMessage.current.addEventListener("animationend", clear, {
+        once: true,
+      });
+    }
+    addClassName("hidden");
+  };
+
+  useEffect(() => {
+    addClassName("visible");
+
+    setTimeout(() => {
+      handleHidden();
+    }, 3000);
+  }, []);
+
+  return (
+    <p
+      ref={refMessage}
+      className={`wdu-message wdu-message__${type} ${classList}`}
+    >
+      {message}
+    </p>
+  );
+}
+
+let containerRoot: any;
+function renderMessage(messageQueue: Array<any>) {
+  const container = createContainer();
+  if (!containerRoot) {
+    containerRoot = createRoot(container);
+  }
+
+  const MessageComponents = messageQueue.map((props) => {
+    return <BaseMessage {...props} key={props.id} />;
+  });
+
+  containerRoot.render(MessageComponents);
+}
+
+const Message: propsMessage = {
+  info: (message: string) => addMessage({ type: "info", message }),
+  warn: (message: string) => addMessage({ type: "warning", message }),
+  error: (message: string) => addMessage({ type: "error", message }),
+  success: (message: string) => addMessage({ type: "success", message }),
 };
 
-function MessageContainer ( props?: any ) {
-    // 一个 message 容器 dom
-    let messageContainerDom: HTMLElement | null = document.getElementById( ID );
-
-    if ( !messageContainerDom ) {
-        messageContainerDom = document.createElement( 'div' );
-        messageContainerDom.id = ID;
-        document.body.appendChild( messageContainerDom );
-    }
-
-    return messageContainerDom;
-}
-
-type messageType = 'success' | 'error' | 'warning' | 'info';
-interface propsBaseMessage {
-    type: messageType;
-    remove?: boolean;
-    children?: string;
-}
-function BaseMessage ( props: propsBaseMessage ) {
-    const { type, remove } = props;
-    const classList = [ `${ PREFIX }`, `${ PREFIX }-${ type }` ];
-    if ( remove ) {
-        classList.push( `${ PREFIX }-remove` );
-    }
-
-    return (
-        <div { ...props } className={ classList.join( ' ' ) }>
-            { props.children }
-        </div>
-    );
-}
-
-function renderMessage ( type: messageType, message: string ) {
-    messages.push( <BaseMessage type={ type } key={ genId() }>{ message }</BaseMessage> );
-
-    const messageContainer = MessageContainer();
-    const revQueue = [ ...messages ].reverse();
-    ReactDOM.render(
-        revQueue,
-        messageContainer );
-
-    removeMessage( messages, messageContainer );
-}
-
-function removeMessage ( messages: React.ReactElement<any, string | React.JSXElementConstructor<any>>[], messageContainer: HTMLElement ) {
-    setTimeout( () => {
-        messages.pop();
-        ReactDOM.render(
-            [ ...messages ],
-            messageContainer );
-    }, 3000 );
-}
-
-const Message = {
-    info: ( message: string ) => renderMessage( 'info', message ),
-    warn: ( message: string ) => renderMessage( 'warning', message ),
-    danger: ( message: string ) => renderMessage( 'error', message ),
-    success: ( message: string ) => renderMessage( 'success', message ),
-};
-
-export default Message; 
+export default Message;

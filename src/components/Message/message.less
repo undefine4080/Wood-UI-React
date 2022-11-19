@@ -1,9 +1,9 @@
-@import url('../../base/styles/main.less');
+@import (reference) "@base/styles/main.less";
 
-#wdu-message-container {
+#wdu-message__container {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     pointer-events: none;
 }
 
@@ -11,46 +11,47 @@
     width: max-content;
     background: white;
     margin: 15px auto;
-    position: relative;
-    animation: slide-down-on 0.5s ease 0s 1 forwards;
     padding: 8px 20px;
-    top: -10px;
-    flex-grow: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    opacity: 0;
+    position: relative;
+
     .wdu-text-normal();
     .out-shadow-normal();
     .wdu-radius-small();
 
-    &-info {
-        .wdu-bg-plain();
+    &__info {
+        .wdu-raw-plain();
     }
 
-    &-error {
+    &__error {
         color: white;
-        .wdu-bg-danger();
+        .wdu-raw-danger();
     }
 
-    &-success {
+    &__success {
         color: white;
-        .wdu-bg-success();
+        .wdu-raw-success();
     }
 
-    &-warning {
-        .wdu-bg-warn();
+    &__warning {
+        .wdu-raw-warn();
+    }
+
+    &__visible {
+        opacity: 0;
+        animation: visible 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s 1 forwards;
+    }
+
+    &__hidden {
+        opacity: 1;
+        animation: hidden 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s 1 forwards;
     }
 }
 
-.wdu-message-remove {
-    animation: slide-down-off 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s 1;
-}
-
-@keyframes slide-down-on {
+@keyframes visible {
     from {
         opacity: 0;
-        top: -20px;
+        top: -30px;
     }
 
     to {
@@ -59,7 +60,7 @@
     }
 }
 
-@keyframes slide-down-off {
+@keyframes hidden {
     from {
         opacity: 1;
         top: 0;
@@ -67,6 +68,6 @@
 
     to {
         opacity: 0;
-        top: -20px;
+        top: -30px;
     }
 }

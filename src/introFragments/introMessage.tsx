@@ -24,7 +24,7 @@ export default function () {
                             success 消息</Button>
 
                         <Button type="danger"
-                            onClick={ () => Message.danger( '这是一条危险消息' ) }>
+                            onClick={ () => Message.error( '这是一条危险消息' ) }>
                             danger 消息</Button>
                     </>
                 ),

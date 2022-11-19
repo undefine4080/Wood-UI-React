@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { propsModal } from "./type";
-import { useCssClassManager } from "../../base/hooks";
+import { useCssClassManager } from "@base/hooks";
 
 import "./modal.less";
 
