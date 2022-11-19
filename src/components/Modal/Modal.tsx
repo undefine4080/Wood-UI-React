@@ -85,6 +85,10 @@ function Modal(props: propsModal) {
     if (firstLoad) {
       handleFullScreen(visible);
       handleVisible(visible);
+
+      if (!visible) {
+        handleClose(refModal.current);
+      }
     }
   }, [visible]);
 
