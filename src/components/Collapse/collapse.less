@@ -1,69 +1,66 @@
 @import (reference) '../../base/styles/main.less';
 
-@t: wdu-collapse;
-
-.@{t}-container {
-    .wdu-bg-plain();
-    height: 100%;
-}
-
-.@{t}-sticky {
-    position: sticky;
-    top: 0;
-    overflow: auto;
-}
-
-.@{t} {
+.wdu-collapse {
     .wdu-border-light();
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
+
+    &__container {
+        .wdu-bg-plain();
+        height: 100%;
+    }
+
+    &__sticky {
+        position: sticky;
+        top: 0;
+        overflow: auto;
+    }
 }
 
-.@{t}-item {
+.wdu-collapse-item {
     .inside-shadow-light();
     box-sizing: border-box;
     flex-grow: 0;
 
-    .@{t}-item-label {
+    &__label {
         height: 42px;
         padding: 10px;
+        .wdu-text-normal();
+        .wdu-row-flex();
+        .wdu-bg-plain();
         box-sizing: border-box;
         cursor: pointer;
         border-bottom: 1px solid @wdu-line-color-light;
         display: flex;
         align-items: center;
-        .wdu-text-normal();
-        .wdu-row-flex();
-        .wdu-bg-plain();
-
-        .@{t}-item-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            box-sizing: border-box;
-            border: 3px solid;
-            margin-right: 15px;
-            border-color: #aeaeae #aeaeae rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
-            transition: all 0.1s ease-in-out;
-            transform: rotate(45deg);
-        }
-
-        .@{t}-item-expand {
-            transform: rotate(135deg);
-        }
-
     }
 
-    .@{t}-item-body {
-        overflow: auto;
+    &__expand {
+        transform: rotate(135deg);
+    }
+
+    &__indicator {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        box-sizing: border-box;
+        border: 3px solid;
+        margin-right: 15px;
+        border-color: #aeaeae #aeaeae rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+        transition: all 0.1s ease-in-out;
+        transform: rotate(45deg);
+    }
+
+    &__body {
+        overflow: hidden;
         height: 0px;
         box-sizing: border-box;
         .wdu-transition-quick();
         .wdu-text-small();
     }
 
-    .@{t}-item-nav {
+    &__nav {
         height: 40px;
         transition: all 0.2s ease-in-out;
 
@@ -82,8 +79,8 @@
             }
         }
     }
-}
 
-.@{t}-item-autoHeight {
-    flex-grow: 1;
+    &__autoHeight {
+        flex-grow: 1;
+    }
 }
