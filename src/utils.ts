@@ -17,12 +17,29 @@ function addUnitPx(rawValue: string | number | undefined) {
   }
 }
 
-// filter children node by the displayName of the component
-function getNamedChild(childrenNodeName: string, reactChildren: any) {
+/**
+ * filter children node by the displayName of the component
+ * @param childrenNodeName
+ * @param reactChildren
+ * @returns childNodeList
+ */
+function getNamedChild(
+  childrenNodeName: string | Array<string>,
+  reactChildren: any
+) {
   const children = React.Children.toArray(reactChildren);
-  const result = children.filter(
-    (item: any) => item.type.displayName === childrenNodeName
-  );
+
+  const result = children.map((item: any) => {
+    if (typeof childrenNodeName === "string") {
+      if (item.type.displayName === childrenNodeName) {
+        return item;
+      }
+    } else if (Array.isArray(childrenNodeName)) {
+      if (childrenNodeName.includes(item.type.displayName)) {
+        return item;
+      }
+    }
+  });
   return result;
 }
 

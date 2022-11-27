@@ -1,0 +1,77 @@
+@import (reference) "@base/styles/main.less";
+
+.wdu-navMenu {
+    .wdu-border-light();
+    .wdu-radius-normal();
+    .out-shadow-light();
+    background-color: white;
+    min-width: 200px;
+    overflow: hidden;
+}
+
+.wdu-navMenuItem {
+    height: 40px;
+    padding: 10px 15px;
+    border-top: 1px solid rgb(212, 212, 212);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+
+    &:hover {
+        background-color: rgb(221, 221, 221);
+    }
+
+    &:first-child {
+        border-top: none;
+    }
+
+    &__icon,
+    &__label {
+        display: inline-block;
+    }
+
+    &__label {
+        text-decoration: none;
+        .wdu-text-normal();
+        font-size: 18px;
+        line-height: 40px;
+    }
+
+    .wdu-icon-arrow {
+        position: absolute;
+        right: 0;
+        top: 22px;
+    }
+}
+
+.wdu-subNavMenu {
+    padding: 0;
+    border: unset;
+    box-shadow: unset;
+    height: 100%;
+    background-color: #f0f0f0;
+    border-radius: 0;
+
+    .wdu-subNavMenu {
+        padding-left: 45px;
+    }
+
+    &__container {
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    }
+
+    .wdu-navMenuItem {
+        padding-left: 45px;
+
+        &:first-child {
+            background-color: white;
+            border-top: 1px solid rgb(212, 212, 212);
+            padding-left: 10px;
+
+            &:hover {
+                background-color: rgb(221, 221, 221);
+            }
+        }
+    }
+}

@@ -1,9 +1,13 @@
-import './arrow.less';
+import "./arrow.less";
 
-function Arrow ( props: any ) {
-    const { style = 'top' } = props;
+interface propsArrow {
+  style?: "top" | "right" | "bottom" | "left";
+}
 
-    return <i className={ `wdu-icon-arrow wdu-icon-arrow__${ style }` }></i>;
+function Arrow(props: propsArrow) {
+  const { style = "top" } = props;
+
+  return <i className={`wdu-icon-arrow wdu-icon-arrow__${style}`}></i>;
 }
 
 export default Arrow;

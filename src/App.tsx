@@ -29,6 +29,7 @@ import IntroProgress from "@intro/IntroProgress";
 import IntroTag from "@intro/IntroTag";
 import IntroTooltip from "@intro/IntroTooltip";
 import IntroList from "@intro/IntroList";
+import IntroNavMenu from "@intro/IntroNavMenu";
 
 import "./App.less";
 
@@ -56,6 +57,17 @@ function App() {
               <CollapseNav label="Tag 标签" url="#tag" />
             </CollapseItem>
 
+            <CollapseItem label="内容">
+              <CollapseNav label="Collapse 抽屉" url="#collapse" />
+              <CollapseNav label="NavMenu 导航菜单" url="#navMenu" />
+              <CollapseNav label="Tree 树" url="#tree" />
+              <CollapseNav label="Table 表格" url="#table" />
+              <CollapseNav label="Tab 动态面板" url="#tab" />
+              <CollapseNav label="Carousel 轮播" url="#carousel" />
+              <CollapseNav label="List 列表" url="#list" />
+              <CollapseNav label="Card 卡片" disabled />
+            </CollapseItem>
+
             <CollapseItem label="表单">
               <CollapseNav label="Input 输入" url="#input" />
               <CollapseNav label="Radio 单选" url="#radio" />
@@ -76,16 +88,6 @@ function App() {
               <CollapseNav label="Message 消息" url="#message" />
               <CollapseNav label="Tooltips 文字提示" url="#tooltip" />
               <CollapseNav label="Nav 导航菜单" url="#nav" />
-            </CollapseItem>
-
-            <CollapseItem label="内容">
-              <CollapseNav label="Collapse 抽屉" url="#collapse" />
-              <CollapseNav label="Tree 树" url="#tree" />
-              <CollapseNav label="Table 表格" url="#table" />
-              <CollapseNav label="Tab 动态面板" url="#tab" />
-              <CollapseNav label="Carousel 轮播" url="#carousel" />
-              <CollapseNav label="List 列表" url="#list" />
-              <CollapseNav label="Card 卡片" disabled />
             </CollapseItem>
 
             <CollapseItem label="实用">
@@ -110,6 +112,15 @@ function App() {
           <IntroProgress />
           <IntroTag />
 
+          {/* 内容 */}
+          <IntroCollapse />
+          <IntroNavMenu />
+          <IntroTree />
+          <IntroTable />
+          <IntroTab />
+          <IntroCarousel />
+          <IntroList />
+
           {/* 表单 */}
           <IntroInput />
           <IntroRadio />
@@ -122,14 +133,6 @@ function App() {
           <IntroMessage />
           <IntroTooltip />
           <IntroNav />
-
-          {/* 内容 */}
-          <IntroCollapse />
-          <IntroTree />
-          <IntroTable />
-          <IntroTab />
-          <IntroCarousel />
-          <IntroList />
         </Main>
       </Container>
     </div>
