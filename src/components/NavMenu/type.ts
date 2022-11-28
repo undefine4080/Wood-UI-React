@@ -14,11 +14,14 @@ interface propsNavMenuItem {
   to?: string;
   expand?: boolean;
   subMenuItem?: boolean;
+  disabled?: boolean;
   onClick?: MouseEventHandler;
 }
 
 interface propsSubNavMenu extends propsNavMenuItem {
-  children?: ReactElement<React.FC<propsNavMenuItem>>;
+  children?:
+    | ReactElement<React.FC<propsNavMenuItem>>
+    | Array<ReactElement<React.FC<propsNavMenuItem>>>;
   parentItemCount?: number;
   parentSetItemCount?: any;
 }

@@ -7,6 +7,10 @@
     background-color: white;
     min-width: 200px;
     overflow: hidden;
+
+    .wdu-navMenuItem:first-child {
+        border-top: none;
+    }
 }
 
 .wdu-navMenuItem {
@@ -18,7 +22,7 @@
     position: relative;
 
     &:hover {
-        background-color: rgb(221, 221, 221);
+        background-color: #6274b3;
     }
 
     &:first-child {
@@ -33,7 +37,7 @@
     &__label {
         text-decoration: none;
         .wdu-text-normal();
-        font-size: 18px;
+        font-size: 16px;
         line-height: 40px;
     }
 
@@ -47,9 +51,8 @@
 .wdu-subNavMenu {
     padding: 0;
     border: unset;
-    box-shadow: unset;
     height: 100%;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
     border-radius: 0;
 
     .wdu-subNavMenu {
@@ -58,20 +61,41 @@
 
     &__container {
         overflow: hidden;
-        transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
-    }
-
-    .wdu-navMenuItem {
-        padding-left: 45px;
+        transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+        border-top: 1px solid rgb(212, 212, 212);
 
         &:first-child {
-            background-color: white;
-            border-top: 1px solid rgb(212, 212, 212);
-            padding-left: 10px;
+            border-top: none;
+        }
 
-            &:hover {
-                background-color: rgb(221, 221, 221);
+        .wdu-navMenuItem {
+            padding-left: 45px;
+
+            &__label {
+                font-size: 14px;
+            }
+
+            &:first-child {
+                background-color: white;
+                padding-left: 10px;
+
+                .wdu-navMenuItem__label {
+                    font-size: 16px;
+                }
+
+                &:hover {
+                    background-color: #6274b3;
+                }
             }
         }
+    }
+}
+
+.wdu-navMenuItem__disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+        background-color: #f4f4f4
     }
 }
