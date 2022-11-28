@@ -1,9 +1,5 @@
-import {
-  Collapse,
-  CollapseItem,
-  CollapseNav,
-} from "@component/Collapse/Collapse";
 import { Container, Main, Aside } from "@component/Layout/Layout";
+import { NavMenu, NavMenuItem, SubNavMenu } from "@component/NavMenu/NavMenu";
 
 import IntroButton from "@intro/introButton";
 import IntroLayout from "@intro/introLayout";
@@ -37,67 +33,69 @@ function App() {
   return (
     <div className="app">
       <Container width="1280px">
-        <Aside id="app__aside" side="left" width="200px">
-          <Collapse sticky>
-            <CollapseItem label="快速上手">
-              <CollapseNav label="介绍" />
-              <CollapseNav label="安装" />
-              <CollapseNav label="使用" />
-            </CollapseItem>
+        <Aside id="app__aside" side="left" width={"auto"}>
+          <div id="navMenu-aside">
+            <NavMenu>
+              <SubNavMenu label="快速上手">
+                <NavMenuItem label="介绍" />
+                <NavMenuItem label="安装" />
+                <NavMenuItem label="使用" />
+              </SubNavMenu>
 
-            <CollapseItem label="通用">
-              <CollapseNav label="Layout 布局" url="#layout" />
-              <CollapseNav label="Button 按钮" url="#button" />
-              <CollapseNav label="Mark 标记" url="#mark" />
-              <CollapseNav label="Switch 开关" url="#switch" />
-              <CollapseNav label="Divider 分割线" url="#divider" />
-              <CollapseNav label="Pagination 分页" url="#pagination" />
-              <CollapseNav label="Image 图片" url="#image" />
-              <CollapseNav label="Progress 进度条" url="#progress" />
-              <CollapseNav label="Tag 标签" url="#tag" />
-            </CollapseItem>
+              <SubNavMenu label="通用">
+                <NavMenuItem label="Layout 布局" to="#layout" />
+                <NavMenuItem label="Button 按钮" to="#button" />
+                <NavMenuItem label="Mark 标记" to="#mark" />
+                <NavMenuItem label="Switch 开关" to="#switch" />
+                <NavMenuItem label="Divider 分割线" to="#divider" />
+                <NavMenuItem label="Pagination 分页" to="#pagination" />
+                <NavMenuItem label="Image 图片" to="#image" />
+                <NavMenuItem label="Progress 进度条" to="#progress" />
+                <NavMenuItem label="Tag 标签" to="#tag" />
+              </SubNavMenu>
 
-            <CollapseItem label="内容">
-              <CollapseNav label="Collapse 抽屉" url="#collapse" />
-              <CollapseNav label="NavMenu 导航菜单" url="#navMenu" />
-              <CollapseNav label="Tree 树" url="#tree" />
-              <CollapseNav label="Table 表格" url="#table" />
-              <CollapseNav label="Tab 动态面板" url="#tab" />
-              <CollapseNav label="Carousel 轮播" url="#carousel" />
-              <CollapseNav label="List 列表" url="#list" />
-              <CollapseNav label="Card 卡片" disabled />
-            </CollapseItem>
+              <SubNavMenu label="内容">
+                <NavMenuItem label="Collapse 抽屉" to="#collapse" />
+                <NavMenuItem label="NavMenu 导航菜单" to="#navMenu" />
+                <NavMenuItem label="Tree 树" to="#tree" />
+                <NavMenuItem label="Table 表格" to="#table" />
+                <NavMenuItem label="Tab 动态面板" to="#tab" />
+                <NavMenuItem label="Carousel 轮播" to="#carousel" />
+                <NavMenuItem label="List 列表" to="#list" />
+                <NavMenuItem label="Card 卡片" disabled />
+              </SubNavMenu>
 
-            <CollapseItem label="表单">
-              <CollapseNav label="Input 输入" url="#input" />
-              <CollapseNav label="Radio 单选" url="#radio" />
-              <CollapseNav label="Checkbox 多选" url="#checkbox" />
-              <CollapseNav label="Select 选择" url="#select" />
-              <CollapseNav label="Form 表单" url="#form" />
-              <CollapseNav label="Textarea 文本域" url="#textarea" disabled />
-              <CollapseNav label="Cascade 级联选择" url="#cascade" disabled />
-              <CollapseNav
-                label="DatePicker 日期选择"
-                url="#datepicker"
-                disabled
-              />
-            </CollapseItem>
+              <SubNavMenu label="表单">
+                <NavMenuItem label="Input 输入" to="#input" />
+                <NavMenuItem label="Radio 单选" to="#radio" />
+                <NavMenuItem label="Checkbox 多选" to="#checkbox" />
+                <NavMenuItem label="Select 选择" to="#select" />
+                <NavMenuItem label="Form 表单" to="#form" />
+                <NavMenuItem label="Textarea 文本域" to="#textarea" disabled />
+                <NavMenuItem label="Cascade 级联选择" to="#cascade" disabled />
+                <NavMenuItem
+                  label="DatePicker 日期选择"
+                  to="#datepicker"
+                  disabled
+                />
+              </SubNavMenu>
 
-            <CollapseItem label="弹窗">
-              <CollapseNav label="Modal 模态框" url="#modal" />
-              <CollapseNav label="Message 消息" url="#message" />
-              <CollapseNav label="Tooltips 文字提示" url="#tooltip" />
-              <CollapseNav label="Nav 导航菜单" url="#nav" />
-            </CollapseItem>
+              <SubNavMenu label="弹窗">
+                <NavMenuItem label="Modal 模态框" to="#modal" />
+                <NavMenuItem label="Message 消息" to="#message" />
+                <NavMenuItem label="Tooltips 文字提示" to="#tooltip" />
+                <NavMenuItem label="Nav 导航菜单" to="#nav" />
+              </SubNavMenu>
 
-            <CollapseItem label="实用">
-              <CollapseNav label="Bullet 弹幕" disabled />
-              <CollapseNav label="Marker 水印" disabled />
-              <CollapseNav label="Occupation 占位" disabled />
-              <CollapseNav label="Scroll 瀑布流" disabled />
-              <CollapseNav label="BackTop 返回顶部" disabled />
-            </CollapseItem>
-          </Collapse>
+              <SubNavMenu label="实用">
+                <NavMenuItem label="Bullet 弹幕" disabled />
+                <NavMenuItem label="Marker 水印" disabled />
+                <NavMenuItem label="Occupation 占位" disabled />
+                <NavMenuItem label="Scroll 瀑布流" disabled />
+                <NavMenuItem label="BackTop 返回顶部" disabled />
+              </SubNavMenu>
+            </NavMenu>
+          </div>
         </Aside>
 
         <Main id="app__main">
@@ -132,7 +130,7 @@ function App() {
           <IntroModal />
           <IntroMessage />
           <IntroTooltip />
-          <IntroNav />
+          {/* <IntroNav /> */}
         </Main>
       </Container>
     </div>
