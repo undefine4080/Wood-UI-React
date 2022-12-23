@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import Button from "@component/Button/Button";
 import { Form, FormItem } from '@component/Form/Form';
 import Input from "@component/Input/Input";

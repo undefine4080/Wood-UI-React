@@ -6,7 +6,7 @@ interface propsContainer extends commonProps {
 
 interface propsAside extends commonProps {
     side?: 'left' | 'right';
-    width: string | number;
+    width?: string | number;
 }
 
 interface propsFooter extends commonProps {

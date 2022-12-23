@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import { Select, Option } from "../components/Select/Select";
 export default function () {
     const props = {

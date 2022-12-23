@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import Pagination from "../components/Pagination/Pagination";
 import { propsIntroComponent } from "@base/types/commonInterface";
 

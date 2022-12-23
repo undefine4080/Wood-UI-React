@@ -40,40 +40,46 @@ code {
         padding: 20px 20px 0 20px;
     }
 
-    & .intro__intro {
+    .intro__intro {
         .wdu-text-paragraph();
         margin: 12px;
     }
 
-    & .intro__main {
+    .intro__main {
         .wdu-row-flex();
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: stretch;
         padding: 0 20px 20px 20px;
 
-        & .intro__main--items {
+        .intro__main--items {
             flex-grow: 1;
             margin: 20px 0;
 
-            & .intro__cpnt {
+            .intro__cpnt {
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
 
-            & .intro__info {
+            .intro__info {
                 .wdu-text-normal();
                 text-align: center;
             }
         }
+
+        .intro__block {
+            width: 100%;
+            padding: 0;
+            margin: 40px;
+        }
     }
 
-    & .intro__code {
+    .intro__code {
         width: 100%;
         border-top: 1px solid #dedede;
 
-        & .intro__code--title {
+        .intro__code--title {
             margin: 0;
             display: flex;
             justify-content: center;

@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import Input from "@component/Input/Input";
 
 export default function () {

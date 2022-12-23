@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import { NavMenu, NavMenuItem, SubNavMenu } from "@component/NavMenu/NavMenu";
 
 export default function () {

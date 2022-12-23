@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import { Container, Aside, Main, Header, Footer, Row, Col } from "@component/Layout/Layout";
 import { Table, TableColumn } from "@component/Table/Table";
 

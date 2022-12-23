@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import { Table, TableColumn } from "../components/Table/Table";
 
 const testData = [

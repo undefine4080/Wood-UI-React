@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import Switch from '../components/Switch/Switch';
 
 export default function () {

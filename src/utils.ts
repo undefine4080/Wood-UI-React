@@ -1,4 +1,5 @@
-import React, { JSXElementConstructor, ReactElement } from "react";
+import React, { ReactElement } from "react";
+
 /**
  * @param rawValue css property width or height which from props, the type maybe number or string
  * @returns legal css value
@@ -43,9 +44,15 @@ function getNamedChild(
   return result;
 }
 
+/**
+ * bind implicit property to the component
+ * @param elements 
+ * @param hintProps 
+ * @returns 
+ */
 function bindImplicitProps(
   elements: Array<ReactElement>,
-  hintProps: { [propsName: string]: any }
+  hintProps: { [propsName: string]: any; }
 ): Array<any> {
   const result = elements.map((element) => {
     return React.cloneElement(element, { ...hintProps });

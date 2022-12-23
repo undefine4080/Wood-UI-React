@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import List from "@component/List/List";
 import Tag from "@component/Tag/Tag";
 

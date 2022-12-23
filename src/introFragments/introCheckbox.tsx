@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import Checkbox from '../components/Checkbox/Checkbox';
 
 export default function () {
@@ -30,5 +30,5 @@ export default function () {
         ],
     };
 
-    return <IntroComponent { ...props } />;
+    return <IntroComponent {...props} />;
 };

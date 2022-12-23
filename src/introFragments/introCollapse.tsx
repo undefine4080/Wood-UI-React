@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import { Collapse, CollapseItem, CollapseNav } from "../components/Collapse/Collapse";
 import Image from "../components/Image/Image";
 

@@ -2,37 +2,17 @@ import { useEffect, useState } from "react";
 import { Table } from "@component/Table/Table";
 import TableColumn from "@component/Table/TableColumn";
 import Button from "@component/Button/Button";
+import SourceCode from "./SourceCode";
 
 function IntroComponentItem(props: any) {
   const { title, info = "", component, code = "", style } = props;
-  const [codeOpen, setCodeOpen] = useState(false);
 
-  useEffect(() => {
-    codeOpen &&
-      document.querySelectorAll("pre code").forEach((block) => {
-        try {
-          // @ts-ignore
-          hljs.highlightBlock(block);
-        } catch (e) {
-          console.log(e);
-        }
-      });
-  }, [codeOpen]);
+  const [codeShow, setCodeShow] = useState(false);
 
-  const [codeHeight, setCodeHeight] = useState("0px");
-
-  const switchCodePanel = () => {
-    if (codeHeight === "max-content") {
-      setCodeHeight("0px");
-      setCodeOpen(false);
-    } else {
-      setCodeOpen(true);
-      setCodeHeight("max-content");
-    }
-  };
+  const switchCodePanel = () => setCodeShow(!codeShow);
 
   return (
-    <article className="wdu-box" style={{ flexGrow: 1 }}>
+    <article className="wdu-box intro__block">
       <header>
         <h2>{title}</h2>
       </header>
@@ -49,13 +29,7 @@ function IntroComponentItem(props: any) {
       </section>
 
       <section className="intro__code">
-        {codeOpen && (
-          <pre
-            style={{ overflowX: "auto", height: codeHeight, width: "956px" }}
-          >
-            <code style={{ backgroundColor: "#dfefdd" }}>{code}</code>
-          </pre>
-        )}
+        <SourceCode code={code} show={codeShow}></SourceCode>
         <p className="intro__code--title">
           <Button type="plain" size="small" onClick={switchCodePanel}>
             查看代码

@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import { Nav, NavItem, NavMenu } from '@component/Nav/Nav';
 import Switch from "@component/Switch/Switch";
 import Image from "@component/Image/Image";

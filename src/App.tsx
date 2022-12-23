@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="app">
       <Container width="1280px">
-        <Aside id="app__aside" side="left" width={"auto"}>
+        <Aside id="app__aside" side="left">
           <div id="navMenu-aside">
             <NavMenu>
               <SubNavMenu label="快速上手">

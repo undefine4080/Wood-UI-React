@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/introComponent";
+import { IntroComponent } from "@base/components/IntroComponent";
 import Button from "@component/Button/Button";
 import Progress from "@component/Progress/Progress";
 import { useState } from "react";

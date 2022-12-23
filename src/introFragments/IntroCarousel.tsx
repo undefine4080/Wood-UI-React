@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import { Carousel, CarouselItem } from "../components/Carousel/Carousel";
 import Image from "../components/Image/Image";
 

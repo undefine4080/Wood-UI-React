@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/introComponent";
+import { IntroComponent } from "../base/components/IntroComponent";
 import Divider from "../components/Divider/Divider";
 
 function IntroDivider() {
