@@ -19,13 +19,12 @@ function NavMenuItem(props: propsNavMenuItem) {
     </a>
   );
 
-  const labelText = <span className={"wdu-navMenuItem__label"}>{label}</span>;
+  const labelText = (<span className={"wdu-navMenuItem__label"}>{label}</span>);
 
   return (
     <div
-      className={`wdu-navMenuItem ${
-        disabled ? "wdu-navMenuItem__disabled" : ""
-      }`}
+      className={`wdu-navMenuItem ${disabled ? "wdu-navMenuItem__disabled" : ""
+        }`}
       onClick={(e: MouseEvent) => !disabled && onClick && onClick(e)}
     >
       {icon && <span className={"wdu-navMenuItem__icon"}></span>}
@@ -40,4 +39,4 @@ function NavMenuItem(props: propsNavMenuItem) {
 NavMenuItem.displayName = "NavMenuItem";
 
 export default NavMenuItem;
-export const ItemHeight = 60;
+export const ItemHeight = 50;

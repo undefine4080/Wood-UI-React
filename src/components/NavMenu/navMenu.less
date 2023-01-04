@@ -15,14 +15,13 @@
 
 .wdu-navMenuItem {
     height: 40px;
-    padding: 10px 15px;
-    border-top: 1px solid rgb(212, 212, 212);
+    padding: 5px 15px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     position: relative;
 
     &:hover {
-        background-color: #6274b3;
+        background-color: #dadada;
     }
 
     &:first-child {
@@ -36,15 +35,14 @@
 
     &__label {
         text-decoration: none;
-        .wdu-text-normal();
-        font-size: 16px;
         line-height: 40px;
+        color: rgb(68, 68, 68);
     }
 
     .wdu-icon-arrow {
         position: absolute;
         right: 0;
-        top: 22px;
+        top: 18px;
     }
 }
 
@@ -73,18 +71,15 @@
 
             &__label {
                 font-size: 14px;
+                text-decoration: none;
             }
 
             &:first-child {
                 background-color: white;
-                padding-left: 10px;
-
-                .wdu-navMenuItem__label {
-                    font-size: 16px;
-                }
+                padding-left: 20px;
 
                 &:hover {
-                    background-color: #6274b3;
+                    background-color: #e5e5e5;
                 }
             }
         }
