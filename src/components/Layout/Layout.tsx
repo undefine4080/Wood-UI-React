@@ -1,160 +1,153 @@
-import commonProps from "@base/types/commonInterface";
 import type {
     propsContainer,
     propsAside,
     propsRow,
     propsCol,
-    propsFooter
+    propsFooterOrHeader,
+    propsMain
 } from './type';
 import { addUnitPx } from '@util';
 
 import './layout.less';
 
-function Container ( props: propsContainer ) {
-    const { id, className = '', width, height, style, children } = props;
+function Container(props: propsContainer) {
+    const { className = '', style, children } = props;
 
     let header: any,
         main: any,
         footer: any,
         aside: any[] = [];
-    const distributeChild = ( child: any ) => {
+
+    const distributeChild = (child: any) => {
         const childName = child.type.displayName;
-        switch ( childName ) {
-            case 'header':
+        switch (childName) {
+            case 'Header':
                 header = child;
                 break;
-            case 'main':
+            case 'Main':
                 main = child;
                 break;
-            case 'footer':
+            case 'Footer':
                 footer = child;
                 break;
-            case 'aside':
-                aside.push( child );
+            case 'Aside':
+                aside.push(child);
                 break;
             default:
                 return null;
         }
     };
 
-    if ( Array.isArray( children ) ) {
-        children.forEach( distributeChild );
+    if (Array.isArray(children)) {
+        children.forEach(distributeChild);
     } else {
-        distributeChild( children );
+        distributeChild(children);
     }
 
     return (
         <div
-            id={ id }
-            style={ {
-                ...style,
-                width: addUnitPx( width ),
-                height: addUnitPx( height ),
-            } }
-            className={ `wdu-container ${ className }` }>
-            <div className="wdu-header">{ header }</div>
+            style={style}
+            className={`wdu-container ${className}`}>
+            <div className="wdu-header">{header}</div>
+
             <div className="wdu-main-container">
-                { [ ...aside ] }
-                { main }
+                {[...aside]}
+                {main}
             </div>
-            <div className="wdu-footer">{ footer }</div>
+
+            <div className="wdu-footer">{footer}</div>
         </div>
     );
 };
 
-function Header ( props: commonProps ) {
-    const { id, className = '', children, height } = props;
+function Aside(props: propsAside) {
+    const { className = '', side = 'left', children } = props;
 
     return (
         <div
-            id={ id }
-            style={ { height: height ? addUnitPx( height ) : 'auto' } }
-            className={ `wdu-header ${ className }` }>
-            { children }
+            className={`wdu-aside-${side} ${className}`}>
+            {children}
         </div>
     );
 };
-Header.displayName = 'header';
+Aside.displayName = 'Aside';
 
-
-function Aside ( props: propsAside ) {
-    const { id, className = '', width, side = 'left', children } = props;
+function Header(props: propsFooterOrHeader) {
+    const { className = '', children } = props;
 
     return (
         <div
-            id={ id }
-            style={ { width: addUnitPx( width ) } }
-            className={ `wdu-aside-${ side } ${ className }` }>
-            { children }
+            className={`wdu-header ${className}`}>
+            {children}
         </div>
     );
 };
-Aside.displayName = 'aside';
+Header.displayName = 'Header';
 
-function Footer ( props: propsFooter ) {
-    const { id, className = '', children, height } = props;
+function Footer(props: propsFooterOrHeader) {
+    const { className = '', children } = props;
 
     return (
         <div
-            id={ id }
-            className={ `wdu-footer ${ className }` }
-            style={ { height: addUnitPx( height ) } }>{ children }</div>
+            className={`wdu-footer ${className}`}>{children}</div>
     );
 };
-Footer.displayName = 'footer';
+Footer.displayName = 'Footer';
 
-function Main ( props: commonProps ) {
-    const { id, className = '', children, height } = props;
+function Main(props: propsMain) {
+    const { className = '', children, style } = props;
 
     return (
         <div
-            id={ id }
-            style={ { height: addUnitPx( height ) } } className={ `wdu-main ${ className }` }>
-            { children }
+            style={style}
+            className={`wdu-main ${className}`}>
+            {children}
         </div>
     );
 };
-Main.displayName = 'main';
+Main.displayName = 'Main';
 
-function Row ( props: propsRow ) {
+function Row(props: propsRow) {
     const { justify = 'start', align = 'top', children, className = '' } = props;
 
     const baseStyle = 'wdu-row';
     const styleMap = {
         base: baseStyle,
-        start: `${ baseStyle }-start`,
-        center: `${ baseStyle }-center`,
-        end: `${ baseStyle }-end`,
-        around: `${ baseStyle }-around`,
-        between: `${ baseStyle }-between`,
-        top: `${ baseStyle }-top`,
-        bottom: `${ baseStyle }-bottom`,
-        middle: `${ baseStyle }-middle`,
+        start: `${baseStyle}-start`,
+        center: `${baseStyle}-center`,
+        end: `${baseStyle}-end`,
+        around: `${baseStyle}-around`,
+        between: `${baseStyle}-between`,
+        top: `${baseStyle}-top`,
+        bottom: `${baseStyle}-bottom`,
+        middle: `${baseStyle}-middle`,
     };
 
     return (
         <div
-            className={ `${ baseStyle } ${ justify && styleMap[ justify ] } ${ align && styleMap[ align ] } ${ className }` }>
-            { children }
+            className={`${baseStyle} ${justify && styleMap[justify]} ${align && styleMap[align]} ${className}`}>
+            {children}
         </div>
     );
 };
+Row.displayName = 'Row';
 
-function Col ( props: propsCol ) {
+function Col(props: propsCol) {
     const baseStyle = 'wdu-col';
     const { span = 12, children, className = '' } = props;
 
     let colSpan = span;
-    if ( span < 1 || span > 12 ) {
+    if (span < 1 || span > 12) {
         colSpan = 12;
-        console.warn( 'number of span of Col is wrong: ', span );
+        console.warn('number of span of Col is wrong: ', span);
     }
 
     return (
-        <div className={ `${ baseStyle } ${ colSpan && `${ baseStyle }-${ colSpan } ${ className }` }` }>
-            { children }
+        <div className={`${baseStyle} ${colSpan && `${baseStyle}-${colSpan} ${className}`}`}>
+            {children}
         </div>
     );
 };
+Col.displayName = 'Col';
 
 export { Container, Aside, Header, Footer, Main, Row, Col };

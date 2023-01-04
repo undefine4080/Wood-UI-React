@@ -1,16 +1,27 @@
 import commonProps from "@base/types/commonInterface";
 
-interface propsContainer extends commonProps {
+interface propsContainer {
     children?: any;
+    className?: string;
+    style?: Object;
 }
 
-interface propsAside extends commonProps {
+interface propsMain {
+    children?: any;
+    className?: string;
+    style?: Object;
+}
+
+interface propsAside {
     side?: 'left' | 'right';
-    width?: string | number;
+    style?: Object;
+    children?: any;
+    className?: string;
 }
 
-interface propsFooter extends commonProps {
-    height: number | string;
+interface propsFooterOrHeader {
+    children?: any;
+    className?: string;
 }
 
 interface propsRow {
@@ -18,18 +29,21 @@ interface propsRow {
     align?: 'top' | 'middle' | 'bottom';
     className?: string;
     children?: any;
+    style?: Object;
 }
 
 interface propsCol {
     span: number;
     className?: string;
     children?: any;
+    style?: Object;
 }
 
 export type {
     propsContainer,
+    propsMain,
     propsAside,
-    propsFooter,
+    propsFooterOrHeader,
     propsRow,
     propsCol
 };
