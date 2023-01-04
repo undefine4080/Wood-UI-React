@@ -73,9 +73,9 @@ export function IntroComponent(props: any) {
             <section
               className="intro__main"
               key={index}
-              style={{ display: "block" }}
+              style={{ display: "block", padding: '0 20px',margin: '50px 0'}}
             >
-              <h3>{item.title}</h3>
+              <h4>{item.title}</h4>
               <IntroApiItem data={item.api}></IntroApiItem>
             </section>
           );

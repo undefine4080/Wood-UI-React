@@ -32,8 +32,8 @@ import "./App.less";
 function App() {
   return (
     <div className="app">
-      <Container width="1280px">
-        <Aside id="app__aside" side="left">
+      <Container style={{ width: "1280px" }}>
+        <Aside side="left" className="app__aside">
           <div id="navMenu-aside">
             <NavMenu>
               <SubNavMenu label="快速上手">
@@ -98,7 +98,7 @@ function App() {
           </div>
         </Aside>
 
-        <Main id="app__main">
+        <Main className="app__main">
           {/* 通用 */}
           <IntroLayout />
           <IntroButton />

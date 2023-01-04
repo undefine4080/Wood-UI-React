@@ -11,16 +11,16 @@
     background-attachment: fixed;
 }
 
-#navMenu-aside {
-    margin: 10px;
-    overflow: auto;
+.app__aside {
+    height: 100vh;
+    overflow-y: auto;
+    padding-top: 10px;
 }
 
-#app__aside,
-#app__main {
+.app__main {
     height: 100vh;
-    overflow: auto;
     scroll-behavior: smooth;
+    overflow-y: auto;
 }
 
 body {
@@ -34,7 +34,6 @@ code {
 
 .intro__container {
     .wdu-box();
-    padding: 0;
 
     header {
         padding: 20px 20px 0 20px;
