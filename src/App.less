@@ -5,6 +5,11 @@
 @import '././base/styles/color.less';
 @import '././base/styles/border.less';
 
+body {
+    margin: 0;
+    overflow-y: hidden;
+}
+
 .app {
     display: flex;
     justify-content: center;
@@ -21,15 +26,6 @@
     height: 100vh;
     scroll-behavior: smooth;
     overflow-y: auto;
-}
-
-body {
-    margin: 0;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
 }
 
 .intro__container {
