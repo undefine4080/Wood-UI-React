@@ -1,6 +1,6 @@
 import { propsNavMenu } from "./type";
 import NavMenuItem from "./NavMenuItem";
-import { getNamedChild } from "@util";
+import { getNamedChild } from "@base/utils";
 import SubNavMenu from "./SubNavMenu";
 
 import "./navMenu.less";

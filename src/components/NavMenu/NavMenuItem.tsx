@@ -4,22 +4,28 @@ import { propsNavMenuItem } from "./type";
 
 function NavMenuItem(props: propsNavMenuItem) {
   const {
+    to,
     label,
     icon,
-    to,
     expand = false,
     onClick,
     subMenuItem = false,
     disabled = false,
+    children
   } = props;
 
-  const labelLink = (
-    <a className={"wdu-navMenuItem__label"} href={to}>
-      {label}
-    </a>
-  );
-
-  const labelText = (<span className={"wdu-navMenuItem__label"}>{label}</span>);
+  const renderItem = () => {
+    if (to) {
+      // normal <a> using
+      return <a className={"wdu-navMenuItem__label"} href={to}>{label}</a>;
+    } else if (!to && children) {
+      // <Link/> of react-router using
+      return children;
+    } else if (!to && label) {
+      // static title using
+      return <span className={"wdu-navMenuItem__label"}>{label}</span>;
+    }
+  };
 
   return (
     <div
@@ -29,7 +35,7 @@ function NavMenuItem(props: propsNavMenuItem) {
     >
       {icon && <span className={"wdu-navMenuItem__icon"}></span>}
 
-      {to ? labelLink : labelText}
+      {renderItem()}
 
       {subMenuItem && <Arrow style={expand ? "bottom" : "right"} />}
     </div>
