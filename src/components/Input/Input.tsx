@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef, useState } from "react";
 import { propsInput } from "./type";
-import { debounce } from "@util";
+import { debounce } from "@base/utils";
 import Clear from "@base/icon/Clear/Clear";
 
 import './input.less';

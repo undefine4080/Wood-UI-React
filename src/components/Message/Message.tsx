@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { propsMessage, messageOption, messageQueueItem } from "./type";
 import { createRoot } from "react-dom/client";
-import { uuid } from "@util";
+import { uuid } from "@base/utils";
 import { useCssClassManager } from "@base/hooks";
 
 import "./message.less";

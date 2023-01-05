@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { propsCarousel } from "./type";
-import { getNamedChild } from "../../utils";
+import { getNamedChild } from "../../base/utils";
 import { useController, useTimer, useLoopPlay, useSwitchVisible, paginationView } from "./hooks";
 
 import './style.less';

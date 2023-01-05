@@ -6,7 +6,7 @@ import type {
     propsFooterOrHeader,
     propsMain
 } from './type';
-import { addUnitPx } from '@util';
+import { addUnitPx } from '@base/utils';
 
 import './layout.less';
 

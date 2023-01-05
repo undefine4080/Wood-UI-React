@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext, useEffect, useState } from "react";
 import { propsOption, propsSelect, selectedValue } from './type';
-import { getNamedChild } from "@util";
+import { getNamedChild } from "@base/utils";
 import Arrow from "@base/icon/Arrow/Arrow";
 
 import './select.less';
