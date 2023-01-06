@@ -34,6 +34,39 @@ export default function () {
     不起人的态度是不科学的。中国是大国，要有国际主义精神。
     </p>
 </div >`
+            },
+            {
+                title: '带跳转链接的标记',
+                component: (
+                    <p>青年者，人生之王，人生之春，人生之华也。—— <Mark link="https://zh.wikipedia.org/wiki/%E6%9D%8E%E5%A4%A7%E9%92%8A">李大钊</Mark></p>
+                ),
+                info: '',
+                code: `
+<p>
+    青年者，人生之王，人生之春，人生之华也。—— 
+    <Mark 
+        link="https://zh.wikipedia.org/wiki/%E6%9D%8E%E5%A4%A7%E9%92%8A">
+        李大钊</Mark>
+</p>`
+            }
+        ],
+        api: [
+            {
+                title: 'Mark 属性',
+                api: [
+                    {
+                        attribute: 'type',
+                        description: '标记类型',
+                        value: 'important (重要) | light (高亮) | remind (提醒)',
+                        default: 'important',
+                    },
+                    {
+                        attribute: 'link',
+                        description: '标记的链接',
+                        value: 'string',
+                        default: '/',
+                    }
+                ]
             }
         ]
     };

@@ -3,7 +3,7 @@ import "./mark.less";
 
 interface propsMark {
   type?: "important" | "light" | "remind";
-  link?: string; // 跳转链接的目标 url 地址
+  link?: string; 
   children?: ReactNode;
 }
 
