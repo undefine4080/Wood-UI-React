@@ -46,6 +46,7 @@ function IntroApiItem(props: any) {
       <TableColumn index={"attribute"} label={"属性"}></TableColumn>
       <TableColumn index={"description"} label={"描述"}></TableColumn>
       <TableColumn index={"value"} label={"取值"}></TableColumn>
+      <TableColumn index={"default"} label={"默认值"}></TableColumn>
     </Table>
   );
 }

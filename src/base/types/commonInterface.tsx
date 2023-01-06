@@ -1,10 +1,6 @@
 import { CSSProperties, ReactElement } from "react";
 
-interface commonEventProps {
-  onClick?: any;
-  onChange?: any;
-}
-export default interface commonProps extends commonEventProps {
+export default interface commonProps {
   id?: string;
   className?: string;
   style?: CSSProperties;

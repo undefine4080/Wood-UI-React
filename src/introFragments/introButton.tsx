@@ -17,7 +17,7 @@ export default function () {
                         <Button type="warn">警示</Button>
                         <Button type="line">边框</Button>
                         <Button disabled>禁用</Button>
-                    </> ),
+                    </>),
                 info: '按钮类型通过 type 属性来定义',
                 code: `
 <Button type="plain">默认</Button>
@@ -32,34 +32,73 @@ export default function () {
                 title: '按钮尺寸',
                 component: (
                     <>
-                        <Button size="small">小</Button>
-                        <Button size="normal">默认</Button>
-                        <Button size="large">大</Button>
+                        <Button size="small">小尺寸按钮</Button>
+                        <Button size="normal">中尺寸按钮</Button>
+                        <Button size="large">大尺寸按钮</Button>
                     </>
                 ),
                 info: '按钮类型通过 size 属性来定义',
                 code: `
-<Button size="small">小</Button>
-<Button size="normal">默认</Button>
-<Button size="large">大</Button>`
+<Button size="small">小尺寸按钮</Button>
+<Button size="normal">中尺寸按钮</Button>
+<Button size="large">大尺寸按钮</Button>`
             },
             {
                 title: '加载状态',
                 component: (
                     <>
-                        <Button size="small" type="important" loading>小</Button>
-                        <Button size="normal" type="danger" loading>默认</Button>
-                        <Button size="large" type="success" loading>大</Button>
+                        <Button size="small" type="important" loading>请求中</Button>
+                        <Button size="normal" type="danger" loading>上传中</Button>
+                        <Button size="large" type="success" loading>请稍后</Button>
                     </>
                 ),
                 info: '按钮加载状态通过 loading 属性定义',
                 code: `
-<Button size="small" type="important" loading>小</Button>
-<Button size="normal" type="danger" loading>默认</Button>
-<Button size="large" type="success" loading>大</Button>`
+<Button size="small" type="important" loading>请求中</Button>
+<Button size="normal" type="danger" loading>上传中</Button>
+<Button size="large" type="success" loading>请稍后</Button>`
             },
+        ],
+        api: [
+            {
+                title: 'Button 属性',
+                api: [
+                    {
+                        attribute: 'size',
+                        description: '按钮尺寸',
+                        value: 'small (小) | normal (普通) | large (大)',
+                        default: 'normal',
+                    }, {
+                        attribute: 'type',
+                        description: '按钮类型',
+                        value: 'plain (普通) | important (重要) | danger (警示) | success (成功) | warn (提示) | line (边框)',
+                        default: 'plain',
+                    }, {
+                        attribute: 'loading',
+                        description: '按钮加载状态，当 loading 为 true 时表示正在加载，此时按钮不可用，直到加载状态结束',
+                        value: 'boolean',
+                        default: 'false',
+                    }, {
+                        attribute: 'disabled',
+                        description: '按钮禁用状态，禁用后，按钮一切事件不生效，鼠标移入指针显示为禁用',
+                        value: 'boolean',
+                        default: 'false',
+                    }
+                ]
+            },
+            {
+                title: 'Button 事件',
+                api: [
+                    {
+                        attribute: 'onClick',
+                        description: '按钮单击事件',
+                        value: 'function',
+                        default: '/',
+                    }
+                ]
+            }
         ]
     };
 
-    return <IntroComponent { ...props } />;
+    return <IntroComponent {...props} />;
 };
