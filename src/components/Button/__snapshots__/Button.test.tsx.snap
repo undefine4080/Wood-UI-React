@@ -1,0 +1,303 @@
+// Vitest Snapshot v1
+
+exports[`Button > the loading button 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__normal wdu-button__loading"
+    type="button"
+  >
+    <i
+      class="wdu-icon-loading"
+    />
+    loading Button
+  </button>
+</div>
+`;
+
+exports[`test the size of button > large size 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__large"
+    type="button"
+  >
+    large
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the size of button > normal size 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__normal"
+    type="button"
+  >
+    normal
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the size of button > small size 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__small"
+    type="button"
+  >
+    small
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > border type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__border wdu-button__normal"
+    type="button"
+  >
+    border
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > danger type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__danger wdu-button__normal"
+    type="button"
+  >
+    danger
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > important type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__important wdu-button__normal"
+    type="button"
+  >
+    important
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > line type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__line wdu-button__normal"
+    type="button"
+  >
+    line
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > plain type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__normal"
+    type="button"
+  >
+    plain
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__normal"
+    type="button"
+  >
+    plain
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 2`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__important wdu-button__normal"
+    type="button"
+  >
+    important
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 3`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__danger wdu-button__normal"
+    type="button"
+  >
+    danger
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 4`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__success wdu-button__normal"
+    type="button"
+  >
+    success
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 5`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__border wdu-button__normal"
+    type="button"
+  >
+    border
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 6`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__warn wdu-button__normal"
+    type="button"
+  >
+    warn
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns undefined 7`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__line wdu-button__normal"
+    type="button"
+  >
+    line
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__border 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__border wdu-button__normal"
+    type="button"
+  >
+    border
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__danger 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__danger wdu-button__normal"
+    type="button"
+  >
+    danger
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__important 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__important wdu-button__normal"
+    type="button"
+  >
+    important
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__line 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__line wdu-button__normal"
+    type="button"
+  >
+    line
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__plain 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__plain wdu-button__normal"
+    type="button"
+  >
+    plain
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__success 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__success wdu-button__normal"
+    type="button"
+  >
+    success
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > returns wdu-button__warn 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__warn wdu-button__normal"
+    type="button"
+  >
+    warn
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > success type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__success wdu-button__normal"
+    type="button"
+  >
+    success
+     Button
+  </button>
+</div>
+`;
+
+exports[`test the type of button > warn type 1`] = `
+<div>
+  <button
+    class="wdu-button wdu-button__warn wdu-button__normal"
+    type="button"
+  >
+    warn
+     Button
+  </button>
+</div>
+`;
