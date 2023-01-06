@@ -35,8 +35,8 @@
         line-height: 30px;
         .wdu-bg-plain();
 
-        th {
-            padding: 8px 8px;
+        &-cell {
+            padding: 10px 20px;
             border-bottom: @borderStyle;
             border-top: @borderStyle;
             border-right: @borderStyle;
@@ -71,8 +71,13 @@
 
         .wdu-table__gridLine();
 
-        &-count {
-            width: 40px;
+        // &:first-child {
+        //     padding: 10px;
+        // }
+
+        &-index {
+            width: 80px;
+            border-right: @borderStyle;
         }
     }
 

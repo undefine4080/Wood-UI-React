@@ -223,8 +223,8 @@ const testData2 = [
     }
 ];
 
-const MyCell = ( props: any ) => {
-    return <span style={ { backgroundColor: '#89982e', color: 'black' } }>{ props.data } /吨</span>;
+const MyCell = (props: any) => {
+    return <span style={{ backgroundColor: '#89982e', color: 'black' }}>{props.data} /吨</span>;
 };
 
 export default function () {
@@ -236,7 +236,7 @@ export default function () {
                 title: '带标题的表格',
                 info: '',
                 component: (
-                    <Table data={ testData }
+                    <Table data={testData}
                         title="去年购买水果情况一览表">
                         <TableColumn index="fruit" label="水果" />
                         <TableColumn index="color" label="颜色" />
@@ -248,22 +248,22 @@ export default function () {
                 code: `
 <Table data={ testData }
     title="去年购买水果情况一览表">
-    <TableColumn key={ 1 } index="fruit" label="水果" />
-    <TableColumn key={ 2 } index="color" label="颜色" />
-    <TableColumn key={ 3 } index="weight" label="重量" />
-    <TableColumn key={ 3 } index="productArea" label="产地" />
-    <TableColumn key={ 3 } index="date" label="日期" />
+    <TableColumn index="fruit" label="水果" />
+    <TableColumn index="color" label="颜色" />
+    <TableColumn index="weight" label="重量" />
+    <TableColumn index="productArea" label="产地" />
+    <TableColumn index="date" label="日期" />
 </Table>`
             },
             {
                 title: '自定义单元格',
                 info: '',
                 component: (
-                    <Table data={ testData }>
+                    <Table data={testData}>
                         <TableColumn index="fruit" label="水果" />
                         <TableColumn index="color" label="颜色"
                         />
-                        <TableColumn index="weight" label="重量" template={ <MyCell /> } />
+                        <TableColumn index="weight" label="重量" template={<MyCell />} />
                     </Table>
                 ),
                 code: `
@@ -277,7 +277,7 @@ export default function () {
                 title: '自定义表格的最大高度',
                 info: '',
                 component: (
-                    <Table data={ testData } maxHeight={ 200 }>
+                    <Table data={testData} maxHeight={200}>
                         <TableColumn index="fruit" label="水果" />
                         <TableColumn index="color" label="颜色"
                         />
@@ -294,19 +294,19 @@ export default function () {
             {
                 title: '自定义列的宽度',
                 component: (
-                    <Table data={ testData2 }>
-                        <TableColumn index="name" label="name" width={ 80 } />
-                        <TableColumn index="info" label="info" width={ 300 } />
-                        <TableColumn index="long" label="long" width={ 80 } />
-                        <TableColumn index="address" label="address" width={ 250 } />
-                        <TableColumn index="person" label="person" width={ 80 } />
-                        <TableColumn index="age" label="age" width={ 80 } />
-                        <TableColumn index="level" label="level" width={ 80 } />
-                        <TableColumn index="class" label="class" width={ 80 } />
-                        <TableColumn index="park" label="park" width={ 80 } />
-                        <TableColumn index="book" label="book" width={ 80 } />
-                        <TableColumn index="chess" label="chess" width={ 100 } />
-                        <TableColumn index="ime" label="ime" width={ 100 } />
+                    <Table data={testData2}>
+                        <TableColumn index="name" label="name" width={80} />
+                        <TableColumn index="info" label="info" width={300} />
+                        <TableColumn index="long" label="long" width={80} />
+                        <TableColumn index="address" label="address" width={250} />
+                        <TableColumn index="person" label="person" width={80} />
+                        <TableColumn index="age" label="age" width={80} />
+                        <TableColumn index="level" label="level" width={80} />
+                        <TableColumn index="class" label="class" width={80} />
+                        <TableColumn index="park" label="park" width={80} />
+                        <TableColumn index="book" label="book" width={80} />
+                        <TableColumn index="chess" label="chess" width={100} />
+                        <TableColumn index="ime" label="ime" width={100} />
                     </Table>
                 ),
                 info: '',
@@ -329,7 +329,7 @@ export default function () {
             {
                 title: '文字对齐',
                 component: (
-                    <Table data={ testData } >
+                    <Table data={testData} >
                         <TableColumn index="fruit" label="水果" align="left" />
                         <TableColumn index="color" label="颜色"
                         />
@@ -347,7 +347,7 @@ export default function () {
             {
                 title: '行序号',
                 component: (
-                    <Table data={ testData } countable>
+                    <Table data={testData} showNum>
                         <TableColumn index="fruit" label="水果" />
                         <TableColumn index="color" label="颜色" />
                         <TableColumn index="weight" label="重量" />
@@ -364,5 +364,5 @@ export default function () {
         ],
     };
 
-    return <IntroComponent { ...props } />;
+    return <IntroComponent {...props} />;
 };
