@@ -41,8 +41,13 @@
   box-shadow: inset 0 0 9px rgba(100, 100, 100, 0.6);
 }
 
-.wdu-component__disabled {
-  cursor: not-allowed;
-  pointer-events: none;
-  filter: grayscale(0.7);
+.wdu-disabled {
+  box-shadow: none;
+  background: whitesmoke;
+  color: rgb(189, 189, 189);
+
+  &:hover {
+    cursor: not-allowed;
+    background: whitesmoke;
+  }
 }

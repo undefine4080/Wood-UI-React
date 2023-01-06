@@ -1,14 +1,11 @@
 @import (reference) "../../base/styles/main.less";
 
-@t: wdu-button;
-
 .wdu-button {
     box-sizing: border-box;
-    padding: 0 20px;
+    padding: 0 15px;
     outline: none;
     letter-spacing: 2px;
     white-space: nowrap;
-    margin: 10px 10px;
     .wdu-transition-quick();
     .wdu-radius-normal();
     .wdu-border-solid();
@@ -80,24 +77,23 @@
     }
 
     &__disabled {
-        box-shadow: none;
-        background: whitesmoke;
-        color: rgb(189, 189, 189);
-
-        &:hover {
-            cursor: not-allowed;
-            background: whitesmoke;
-        }
+        .wdu-disabled();
     }
 
     &__line {
         box-shadow: none;
         color: @wdu-font-color-main;
         background-color: @wdu-color-front;
-        border: 2px solid rgb(231, 231, 231);
+        border: 1px solid rgb(231, 231, 231);
 
         &:hover {
             background-color: #f2f0f0;
+        }
+    }
+
+    &__loading {
+        &:hover {
+            cursor: progress;
         }
     }
 }

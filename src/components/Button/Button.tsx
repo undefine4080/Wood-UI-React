@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, MouseEvent } from 'react';
 import { propsButton } from './type';
-import './button.less';
 import Loading from '@base/icon/Loading/Loading';
 import { useCssClassManager } from '@base/hooks';
 
+import './button.less';
+
+const CLS = 'wdu-button';
 function Button(props: propsButton) {
     const {
         type = 'plain',
@@ -14,23 +16,28 @@ function Button(props: propsButton) {
         loading = false } = props;
 
     const classMap = {
-        base: "wdu-button",
-        type: `wdu-button__${type}`,
-        size: `wdu-button__${size}`,
-        disable: 'wdu-button__disabled'
+        base: CLS,
+        type: `${CLS}__${type}`,
+        size: `${CLS}__${size}`,
+        disabled: `${CLS}__disabled`,
+        loading: `${CLS}__loading`
     };
 
-    const { addClassName, classList } = useCssClassManager(classMap);
+    const { addClassName, removeClassName, classList } = useCssClassManager(classMap);
 
     useEffect(() => {
         addClassName('type');
         addClassName('size');
-        disabled && (addClassName('disable'));
+        disabled && (addClassName('disabled'));
     }, []);
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    useEffect(() => {
+        loading ? addClassName('loading') : removeClassName('loading');
+    }, [loading]);
+
+    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        if (disabled) return;
+        if (disabled || loading) return;
         if (typeof onClick === 'function') {
             onClick(e);
         }
