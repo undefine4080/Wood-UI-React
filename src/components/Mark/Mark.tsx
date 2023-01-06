@@ -1,26 +1,26 @@
+import { ReactNode } from "react";
 import "./mark.less";
 
 interface propsMark {
   type?: "important" | "light" | "remind";
   link?: string; // 跳转链接的目标 url 地址
-  children?: any;
+  children?: ReactNode;
 }
 
+const CLS = "wdu-mark";
 function Mark(props: propsMark) {
-  const PREFIX = "wdu-mark";
   const { type = "important", link, children } = props;
-  const componentStyle = `${PREFIX} ${PREFIX}-${type}`;
+
+  const componentStyle = `${CLS} ${CLS}__${type}`;
 
   return (
-    <span className={componentStyle}>
-      {link && link.length > 0 ? (
-        <a href={link} target="_blank">
+    <mark className={componentStyle}>
+      {link ? (
+        <a href={link} target="_blank" rel="noopener noreferrer">
           {children}
         </a>
-      ) : (
-        children
-      )}
-    </span>
+      ) : children}
+    </mark>
   );
 }
 
