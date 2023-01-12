@@ -1,10 +1,15 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode, MouseEvent } from "react";
+
+type cellData = string | number | null | undefined;
+interface rowData {
+    [key: string]: cellData;
+};
 
 interface propsTableEvents {
     onSelect?: () => any;
     onChange?: () => any;
-    onRowClick?: (rowData: Object) => any;
-    onCeilClick?: (ceilData: Object) => any;
+    onRowClick?: (event: MouseEvent<HTMLTableRowElement>, rowData: rowData) => any;
+    onCellClick?: (event: MouseEvent<HTMLTableCellElement>, ceilData: ReactNode) => any;
     onPageChange?: () => any;
     onNextPage?: () => any;
     onPrevPage?: () => any;
@@ -26,9 +31,10 @@ interface propsTable extends propsTableEvents {
 // the internal properties while table rendering
 interface innerPropsColumn {
     children?: ReactNode;
-    rowData?: Object;
+    rowData?: rowData;
     template?: any; // user define cell node
     key?: string | number;
+    onCellClick?: propsTableEvents['onCellClick'];
 }
 
 interface propsTableColumn extends innerPropsColumn {
@@ -40,4 +46,4 @@ interface propsTableColumn extends innerPropsColumn {
     align?: propsTable['align'];
 }
 
-export type { propsTable, propsTableColumn };
+export type { propsTable, propsTableColumn, rowData, cellData };

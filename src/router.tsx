@@ -29,7 +29,12 @@ import IntroTooltip from "@intro/IntroTooltip";
 import IntroList from "@intro/IntroList";
 import IntroNavMenu from "@intro/IntroNavMenu";
 
-type navListItem = Array<{ path: string; element: JSX.Element | undefined; label?: string; }>;
+type navListItem = Array<{
+    path?: string;
+    element: JSX.Element | undefined;
+    label?: string;
+    index?: boolean;
+}>;
 
 interface navList {
     [key: string]: navListItem;
@@ -42,7 +47,7 @@ const navList: navList = {
         { path: 'use', label: '使用', element: undefined },
     ],
     common: [
-        { path: 'layout', label: 'Layout 布局', element: <IntroLayout /> },
+        { path: 'layout', label: 'Layout 布局', element: <IntroLayout />, index: true },
         { path: 'button', label: 'Button 按钮', element: <IntroButton /> },
         { path: 'mark', label: 'Mark 标记', element: <IntroMark /> },
         { path: 'switch', label: 'Switch 开关', element: <IntroSwitch /> },
@@ -107,6 +112,7 @@ const renderSubRoutes = () => {
         const copy = { ...item };
         copy.path = copy.element ? (`/${copy.path}`) : '/root';
         delete copy.label;
+        if (copy.index) delete copy.path;
         return copy;
     });
     return route;
@@ -117,7 +123,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-        children: subRoutes
+        children: subRoutes,
     }
 ]);
 

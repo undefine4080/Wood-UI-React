@@ -12,7 +12,8 @@ interface propsSelect extends commonProps {
     value?: string | number,
     trigger?: 'hover' | 'click';
     placeholder?: string;
-    onSelect?: ( value: selectedValue ) => any;
+    onSelect?: (value: selectedValue) => any;
+    onChange?: (value: selectedValue) => any;
 }
 
 interface selectedValue {
