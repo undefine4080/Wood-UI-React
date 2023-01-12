@@ -2,21 +2,21 @@ import React, { MouseEvent } from 'react';
 import { cellData, propsTableColumn } from './type';
 
 function TableColumn(props: propsTableColumn) {
-    const { index, key, rowData, template, align, onCellClick } = props;
+    const { prop, key, rowData, template, align, onCellClick } = props;
 
     const cellNode = () => {
         let result;
-        if (rowData && index) {
+        if (rowData && prop) {
             if (template) {
-                result = React.cloneElement(template, { data: rowData[index] });
+                result = React.cloneElement(template, { data: rowData[prop] });
             } else {
-                result = rowData[index];
+                result = rowData[prop];
             }
         }
         return result;
     };
 
-    const cellData: cellData = rowData ? rowData[index] : null;
+    const cellData: cellData = rowData ? rowData[prop] : null;
 
     const handleCellClick = (event: MouseEvent<HTMLTableCellElement>) => {
         event.stopPropagation();

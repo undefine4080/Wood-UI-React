@@ -38,8 +38,8 @@ function Table(props: propsTable) {
     );
 
     // header cells of the table
-    const headerCells = TableColumnChildren.map((item: any) => {
-        const { index, label, width } = item.props;
+    const headerCells = TableColumnChildren.map((item: any, index: number) => {
+        const { prop, label, width } = item.props;
         const style = {
             width: `${width}px`,
             textAlign: item.props.align ?? align,

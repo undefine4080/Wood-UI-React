@@ -30,7 +30,7 @@
     }
 
     &__header {
-        height: 30px;
+        // height: 30px;
         text-align: center;
         line-height: 30px;
         .wdu-bg-plain();
@@ -59,21 +59,14 @@
     }
 
     &__cell {
-        padding: 10px 20px;
-        height: 30px;
-        line-height: 30px;
+        padding: 15px 20px;
+        word-break: break-all;
+        white-space: break-spaces;
         text-align: center;
         box-sizing: border-box;
         border: @borderStyle;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
 
         .wdu-table__gridLine();
-
-        // &:first-child {
-        //     padding: 10px;
-        // }
 
         &-index {
             width: 80px;

@@ -38,7 +38,7 @@ interface innerPropsColumn {
 }
 
 interface propsTableColumn extends innerPropsColumn {
-    index: string; // the key of data item of table column 
+    prop: string; // the key of data item of table column 
     label?: string; // text of table column
     width?: string | number;
     height?: string | number;
