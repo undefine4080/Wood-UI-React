@@ -32,7 +32,6 @@ interface propsTable extends propsTableEvents {
 interface innerPropsColumn {
     children?: ReactNode;
     rowData?: rowData;
-    template?: any; // user define cell node
     key?: string | number;
     onCellClick?: propsTableEvents['onCellClick'];
 }
@@ -41,8 +40,8 @@ interface propsTableColumn extends innerPropsColumn {
     prop: string; // the key of data item of table column 
     label?: string; // text of table column
     width?: string | number;
-    height?: string | number;
     maxWidth?: string | number;
+    template?: any; // user define cell node
     align?: propsTable['align'];
 }
 

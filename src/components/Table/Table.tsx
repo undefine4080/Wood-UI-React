@@ -4,6 +4,7 @@ import { TableColumn } from './TableColumn';
 import { addUnitPx } from '@base/utils';
 
 import './table.less';
+import { useHeaderMaskWidth } from './hooks';
 
 function Table(props: propsTable) {
     const {
@@ -11,7 +12,7 @@ function Table(props: propsTable) {
         children,
         title,
         maxHeight,
-        align = 'center',
+        align = 'left',
         showNum,
         onRowClick,
         onCellClick,
@@ -22,7 +23,7 @@ function Table(props: propsTable) {
     };
 
     const Children = React.Children.toArray(children);
-    const TableColumnChildren = Children.filter(
+    const TableColumns = Children.filter(
         (item: any) => item.type.displayName === 'TableColumn',
     );
 
@@ -34,11 +35,11 @@ function Table(props: propsTable) {
 
     // index cell
     const indexCell = (index: number) => (
-        <td className='wdu-table__cell'>{index + 1}</td>
+        <td className='wdu-table__cell wdu-table__cell-index'>{index + 1}</td>
     );
 
     // header cells of the table
-    const headerCells = TableColumnChildren.map((item: any, index: number) => {
+    const headerCells = TableColumns.map((item: any) => {
         const { prop, label, width } = item.props;
         const style = {
             width: `${width}px`,
@@ -46,15 +47,25 @@ function Table(props: propsTable) {
         };
 
         return (
-            <th className='wdu-table__header-cell' key={index} style={style}>
+            <th className='wdu-table__header-cell' key={prop} style={style}>
                 {label}
             </th>
         );
     });
 
+    const tableHeader = (
+        <thead>
+            <tr className='wdu-table__header'>
+                {showNum && indexCellOfHeader}
+
+                {headerCells}
+            </tr>
+        </thead>
+    );
+
     // cell of the column
     const cellColumn = (dataItem: Object) => {
-        return TableColumnChildren.map((child: any) => {
+        return TableColumns.map((child: any) => {
             const props = {
                 rowData: dataItem,
                 align: child.props.align ?? align,
@@ -74,35 +85,47 @@ function Table(props: propsTable) {
         }
     };
 
+    const headerMask = () => {
+        return <table className='wdu-table'>{tableHeader}</table>;
+    };
+
+    const { refTable, refTableContainer, headerMaskWidth } =
+        useHeaderMaskWidth(maxHeight);
+
     return (
-        <div className='wdu-table__container' style={{ ...tableMaxHeight }}>
-            <table className='wdu-table'>
-                {title && titleTable}
-                <thead>
-                    <tr className='wdu-table__header'>
-                        {showNum && indexCellOfHeader}
+        <div className='wdu-table__container' ref={refTableContainer}>
+            {maxHeight && (
+                <div
+                    className='wdu-table__headerMask'
+                    style={{ width: headerMaskWidth }}>
+                    {headerMask()}
+                </div>
+            )}
 
-                        {headerCells}
-                    </tr>
-                </thead>
+            <div className='wdu-table__realBody' style={{ ...tableMaxHeight }}>
+                <table className='wdu-table' ref={refTable}>
+                    {title && titleTable}
 
-                <tbody className='wdu-table__body'>
-                    {data.map((dataItem, index) => {
-                        return (
-                            <tr
-                                className='wdu-table__row'
-                                key={index}
-                                onClick={(e: MouseEvent<HTMLTableRowElement>) =>
-                                    handleRowClick(e, dataItem)
-                                }>
-                                {showNum && indexCell(index)}
+                    {!maxHeight && tableHeader}
 
-                                {cellColumn(dataItem)}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                    <tbody className='wdu-table__body'>
+                        {data.map((dataItem, index) => {
+                            return (
+                                <tr
+                                    className='wdu-table__row'
+                                    key={index}
+                                    onClick={(
+                                        e: MouseEvent<HTMLTableRowElement>,
+                                    ) => handleRowClick(e, dataItem)}>
+                                    {showNum && indexCell(index)}
+
+                                    {cellColumn(dataItem)}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

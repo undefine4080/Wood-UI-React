@@ -1,4 +1,4 @@
-@import (reference) "@base/styles/main.less";
+@import (reference) '@base/styles/main.less';
 
 @borderStyle: 1px solid rgb(231, 231, 231);
 
@@ -13,7 +13,8 @@
 }
 
 .wdu-table__container {
-    overflow: auto;
+    position: relative;
+    overflow: hidden;
 }
 
 .wdu-table {
@@ -23,6 +24,11 @@
     border: @borderStyle;
     table-layout: fixed;
     font-size: 14px;
+    z-index: inherit;
+
+    &__realBody {
+        overflow: auto;
+    }
 
     &__title {
         .wdu-text-title();
@@ -30,7 +36,6 @@
     }
 
     &__header {
-        // height: 30px;
         text-align: center;
         line-height: 30px;
         .wdu-bg-plain();
@@ -40,6 +45,9 @@
             border-bottom: @borderStyle;
             border-top: @borderStyle;
             border-right: @borderStyle;
+            box-sizing: border-box;
+            word-break: break-all;
+            white-space: break-spaces;
 
             .wdu-table__gridLine();
         }
@@ -62,7 +70,7 @@
         padding: 15px 20px;
         word-break: break-all;
         white-space: break-spaces;
-        text-align: center;
+        text-align: left;
         box-sizing: border-box;
         border: @borderStyle;
 
@@ -71,11 +79,20 @@
         &-index {
             width: 80px;
             border-right: @borderStyle;
+            text-align: center;
         }
     }
 
     thead {
         position: sticky;
         top: 0px;
+    }
+
+    &__headerMask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
     }
 }
