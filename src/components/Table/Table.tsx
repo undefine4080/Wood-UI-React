@@ -81,7 +81,7 @@ function Table(props: propsTable) {
     ) => {
         event.stopPropagation();
         if (onRowClick && typeof onRowClick === 'function') {
-            onRowClick(event, rowData);
+            onRowClick(rowData, event);
         }
     };
 

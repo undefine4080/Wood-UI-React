@@ -8,8 +8,8 @@ interface rowData {
 interface propsTableEvents {
     onSelect?: () => any;
     onChange?: () => any;
-    onRowClick?: (event: MouseEvent<HTMLTableRowElement>, rowData: rowData) => any;
-    onCellClick?: (event: MouseEvent<HTMLTableCellElement>, ceilData: ReactNode) => any;
+    onRowClick?: (rowData: rowData, event?: MouseEvent<HTMLTableRowElement>) => any;
+    onCellClick?: (ceilData: ReactNode, event?: MouseEvent<HTMLTableCellElement>) => any;
     onPageChange?: () => any;
     onNextPage?: () => any;
     onPrevPage?: () => any;
@@ -22,8 +22,8 @@ interface propsTable extends propsTableEvents {
     maxHeight?: string | number;
     align?: 'left' | 'center' | 'right';
     pagination?: boolean;
-    showNum?: boolean; // if show the num of row 
-    selectable?: boolean; // if the row can be selected
+    showNum?: boolean; // show the No. of row 
+    selectable?: boolean; // row can be selected
     hoverStyle?: CSSProperties; // user define the hover style of row
     children?: ReactNode;
 }

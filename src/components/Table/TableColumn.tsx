@@ -21,7 +21,7 @@ function TableColumn(props: propsTableColumn) {
     const handleCellClick = (event: MouseEvent<HTMLTableCellElement>) => {
         event.stopPropagation();
         if (onCellClick && typeof onCellClick === 'function') {
-            onCellClick(event, cellData);
+            onCellClick(cellData, event);
         }
     };
 
