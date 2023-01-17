@@ -1,30 +1,34 @@
 import { MouseEventHandler, ReactElement } from "react";
 
 interface propsNavMenu {
-  mode?: "vertical" | "horizontal";
-  collapse?: boolean;
+  single?: boolean; // just expand single item while click
   children?: any;
   className?: string;
 }
 
 interface propsNavMenuItem {
   to?: string; // target url
-  label?: string; // text of item
-  icon?: any; 
-  key?: string | number;
+  icon?: any;
   expand?: boolean;
+  indent?: number;
   subMenuItem?: boolean;
   disabled?: boolean;
   onClick?: MouseEventHandler;
   children?: any;
+  className?: string;
+}
+
+interface internalPropsNavMenuItem {
+  collapsePrevExpandItem?: () => any;
 }
 
 interface propsSubNavMenu extends propsNavMenuItem {
   children?:
   | ReactElement<React.FC<propsNavMenuItem>>
   | Array<ReactElement<React.FC<propsNavMenuItem>>>;
+  title: string | number;
   parentItemCount?: number;
   parentSetItemCount?: any;
 }
 
-export type { propsNavMenu, propsNavMenuItem, propsSubNavMenu };
+export type { propsNavMenu, propsNavMenuItem, propsSubNavMenu, internalPropsNavMenuItem };

@@ -1,4 +1,4 @@
-@import (reference) "@base/styles/main.less";
+@import (reference) '@base/styles/main.less';
 
 .wdu-navMenu {
     .wdu-border-light();
@@ -6,25 +6,32 @@
     .out-shadow-light();
     background-color: white;
     min-width: 200px;
-    overflow: hidden;
     font-size: 14px;
+    padding: 0;
 
     .wdu-navMenuItem:first-child {
         border-top: none;
+    }
+
+    .wdu-subNavMenu {
+        padding: 0;
+        box-shadow: none;
     }
 }
 
 .wdu-navMenuItem {
     height: 40px;
-    padding: 5px 15px;
+    padding: 5px 20px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     position: relative;
+    list-style: none;
+    line-height: 40px;
 
     a {
         text-decoration: none;
         color: rgb(68, 68, 68);
-        line-height: 40px;
+        line-height: inherit;
     }
 
     &:hover {
@@ -54,43 +61,37 @@
 }
 
 .wdu-subNavMenu {
-    padding: 0;
+    padding: 5px 20px;
+    margin: 0;
     border: unset;
-    height: 100%;
     background-color: #f4f4f4;
     border-radius: 0;
 
-    .wdu-subNavMenu {
-        padding-left: 45px;
-    }
+    .wdu-navMenuItem {
+        padding-left: 40px;
 
-    &__container {
-        overflow: hidden;
-        transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
-        border-top: 1px solid rgb(212, 212, 212);
+        &__label {
+            font-size: 14px;
+            text-decoration: none;
+        }
 
         &:first-child {
-            border-top: none;
-        }
+            background-color: #ffffff;
+            padding-left: 20px;
 
-        .wdu-navMenuItem {
-            padding-left: 45px;
-
-            &__label {
-                font-size: 14px;
-                text-decoration: none;
-            }
-
-            &:first-child {
-                background-color: white;
-                padding-left: 20px;
-
-                &:hover {
-                    background-color: #e5e5e5;
-                }
+            &:hover {
+                background-color: #e5e5e5;
             }
         }
     }
+
+    .wdu-subNavMenu {
+        // padding-left: 20px;
+    }
+}
+
+.wdu-subNavMenu__title {
+    background-color: #d1d1d1;
 }
 
 .wdu-navMenuItem__disabled {
@@ -103,6 +104,6 @@
     }
 
     &:hover {
-        background-color: #f4f4f4
+        background-color: #f4f4f4;
     }
 }
