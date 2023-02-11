@@ -1,6 +1,7 @@
 import React, {
     JSXElementConstructor,
     ReactNode,
+    useCallback,
     useEffect,
     useState,
 } from 'react';
@@ -9,7 +10,7 @@ import { internalPropsNavMenuItem, propsSubNavMenu } from './type';
 import { ItemHeight } from './NavMenuItem';
 
 const INITIAL_HEIGHT = `${ItemHeight}px`;
-const INDENT = 40;
+const INDENT = 20;
 
 function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
     const {
@@ -19,12 +20,12 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
         // parentSetItemCount,
         collapsePrevExpandItem,
         title,
-        indent = 0,
+        indent = 20,
         ...propsNavMenuItem
     } = props;
 
     const [menuExpand, setExpand] = useState(() => expand);
-    const [containerHeight, setContainerHeight] = useState(INITIAL_HEIGHT);
+    // const [containerHeight, setContainerHeight] = useState(INITIAL_HEIGHT);
     const [firstLoad, setFirstLoad] = useState(false);
 
     // +1 because at least including the SubNavItem itself
@@ -33,7 +34,7 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
 
     const handleExpand = (menuExpand: boolean) => {
         if (menuExpand) {
-            setContainerHeight(`${menuItemsCount * ItemHeight}px`);
+            // setContainerHeight(`${menuItemsCount * ItemHeight}px`);
 
             // apply the increase of count to the parent SubNavMenu
             // parentSetItemCount &&
@@ -41,7 +42,7 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
 
             setFirstLoad(true);
         } else {
-            setContainerHeight(INITIAL_HEIGHT);
+            // setContainerHeight(INITIAL_HEIGHT);
 
             if (firstLoad) {
                 // apply the decrease of count to the parent SubNavMenu
@@ -54,7 +55,7 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
     };
 
     useEffect(() => {
-        setContainerHeight(`${menuItemsCount * ItemHeight}px`);
+        // setContainerHeight(`${menuItemsCount * ItemHeight}px`);
     }, [menuItemsCount]);
 
     useEffect(() => {
@@ -63,18 +64,28 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
 
     const menuItems = React.Children.toArray(children);
 
+    const handleClick = () => {
+        setExpand(!menuExpand);
+    };
+    
     return (
         <NavMenu className='wdu-subNavMenu'>
             <NavMenuItem
                 className='wdu-subNavMenu__title'
-                indent={indent + INDENT}
-                onClick={() => setExpand(!menuExpand)}>
+                indent={indent}
+                onClick={handleClick}>
                 {title}
             </NavMenuItem>
 
-            <div style={{ display: menuExpand ? 'block' : 'none' }}>
+            <div
+                className='wdu-subNavMenu__items'
+                style={{
+                    display: menuExpand ? 'block' : 'none',
+                }}>
                 {menuItems.map((item: any) =>
-                    React.cloneElement(item, { indent: indent + INDENT }),
+                    React.cloneElement(item, {
+                        indent: indent + INDENT,
+                    }),
                 )}
             </div>
         </NavMenu>

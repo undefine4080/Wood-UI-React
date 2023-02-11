@@ -1,5 +1,5 @@
 import Arrow from '@base/icon/Arrow/Arrow';
-import { MouseEvent } from 'react';
+import { MouseEvent, useCallback } from 'react';
 import { propsNavMenuItem } from './type';
 
 function NavMenuItem(props: propsNavMenuItem) {
@@ -32,13 +32,19 @@ function NavMenuItem(props: propsNavMenuItem) {
         }
     };
 
+    const handleClick = (e: MouseEvent) => {
+        if (!disabled) {
+            if (typeof onClick === 'function') onClick(e);
+        }
+    };
+
     return (
         <li
             className={`wdu-navMenuItem ${className} ${
                 disabled ? 'wdu-navMenuItem__disabled' : ''
             }`}
             style={{ paddingLeft: `${indent}px` }}
-            onClick={(e: MouseEvent) => !disabled && onClick && onClick(e)}>
+            onClick={handleClick}>
             {icon && <span className={'wdu-navMenuItem__icon'}>{icon}</span>}
 
             {renderItem()}

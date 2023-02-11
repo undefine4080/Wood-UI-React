@@ -6,11 +6,9 @@ import SubNavMenu from './SubNavMenu';
 import './navMenu.less';
 
 function NavMenu(props: propsNavMenu) {
-    const { children, className = '', single=false } = props;
+    const { children, className = '', single = false } = props;
 
-    const navMenuItems = getNamedChild(['NavMenuItem', 'SubNavMenu'], children);
-    
-    return <ul className={`wdu-navMenu ${className}`}>{navMenuItems}</ul>;
+    return <ul className={`wdu-navMenu ${className}`}>{children}</ul>;
 }
 
 export { NavMenu, NavMenuItem, SubNavMenu };

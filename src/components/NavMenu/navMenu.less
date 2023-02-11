@@ -1,5 +1,7 @@
 @import (reference) '@base/styles/main.less';
 
+@hoverColor: #e2e2e2;
+
 .wdu-navMenu {
     .wdu-border-light();
     .wdu-radius-normal();
@@ -8,6 +10,7 @@
     min-width: 200px;
     font-size: 14px;
     padding: 0;
+    overflow: hidden;
 
     .wdu-navMenuItem:first-child {
         border-top: none;
@@ -28,6 +31,13 @@
     list-style: none;
     line-height: 40px;
 
+    &>a,
+    span {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
     a {
         text-decoration: none;
         color: rgb(68, 68, 68);
@@ -35,7 +45,7 @@
     }
 
     &:hover {
-        background-color: #dadada;
+        background-color: @hoverColor;
     }
 
     &:first-child {
@@ -58,52 +68,57 @@
         right: 0;
         top: 18px;
     }
+
+    &__disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+
+        a {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        &:hover {
+            background-color: #f4f4f4;
+        }
+    }
 }
 
 .wdu-subNavMenu {
     padding: 5px 20px;
     margin: 0;
     border: unset;
-    background-color: #f4f4f4;
     border-radius: 0;
 
     .wdu-navMenuItem {
-        padding-left: 40px;
-
         &__label {
             font-size: 14px;
             text-decoration: none;
         }
 
         &:first-child {
-            background-color: #ffffff;
+            // background-color: #ffffff;
             padding-left: 20px;
 
             &:hover {
-                background-color: #e5e5e5;
+                background-color: @hoverColor;
             }
         }
     }
 
-    .wdu-subNavMenu {
-        // padding-left: 20px;
-    }
-}
-
-.wdu-subNavMenu__title {
-    background-color: #d1d1d1;
-}
-
-.wdu-navMenuItem__disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-
-    a {
-        cursor: not-allowed;
-        pointer-events: none;
+    &__title {
+        background-color: #ffffff;
     }
 
-    &:hover {
-        background-color: #f4f4f4;
+    &__items {
+        background-color: #ededed;
+
+        .wdu-subNavMenu__title {
+            background-color: #ededed;
+        }
+
+        .wdu-navMenuItem:hover {
+            background-color: @hoverColor;
+        }
     }
 }
