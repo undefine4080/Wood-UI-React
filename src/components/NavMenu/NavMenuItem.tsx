@@ -19,15 +19,19 @@ function NavMenuItem(props: propsNavMenuItem) {
         if (to) {
             // normal <a>
             return (
-                <a className={'wdu-navMenuItem__label'} href={to}>
+                <a
+                    className={'wdu-navMenuItem__label'}
+                    href={to}
+                    target='_blank'
+                    referrerPolicy='no-referrer'>
                     {children}
                 </a>
             );
         } else if (!to && children) {
             // <Link/> of react-router
             return children;
-        } else if (!to && children) {
-            // static title
+        } else if (!to && !children.length) {
+            // text
             return <span className={'wdu-navMenuItem__label'}>{children}</span>;
         }
     };
