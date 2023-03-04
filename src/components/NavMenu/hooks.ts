@@ -1,26 +1,38 @@
-import React, { ReactElement } from "react";
-import { useState } from "react";
+import React, { Children, cloneElement, ReactElement } from 'react';
+import { useState } from 'react';
 
-function useSingleMenu(single: boolean, navItemChild: Array<ReactElement>) {
-    const [navMenuItems, setNavMenuItems] = useState();
+function useSingleMenu(single: boolean, children: Array<any>, indent?: number) {
+    const [lastExpandItemIndex, setLastExpandItemIndex] = useState<
+        number | undefined
+    >();
 
-    let curExpandItemIndex: number;
-    let lastExpandItemIndex: number;
+    const [navMenuChildren, setNavMenuChildren] = useState<any>();
 
-    const collapsePrevExpandItem = () => {
-        navItemChild.map((item, index) => {
-            if (index === lastExpandItemIndex) {
-                item = React.cloneElement(item, { expand: false });
+    const childNodes: any = [];
+    Children.toArray(children).forEach((node: any, index: number) => {
+        if (node) {
+            let newNode;
+            if (node.type.name === 'SubNavMenu') {
+                newNode = cloneElement(node, {
+                    single,
+                    menuId: index,
+                    indent,
+                    lastExpandItem: lastExpandItemIndex,
+                    submitExpandId: setLastExpandItemIndex,
+                });
+            } else {
+                newNode = node;
             }
-            return item;
-        });
-    };
+            childNodes.push(newNode);
+        }
+    });
+    setNavMenuChildren(childNodes);
 
-    if (single) {
-        navItemChild.map(item => {
-            return React.cloneElement(item, { collapsePrevExpandItem });
-        });
-    }
+    console.log(children);
+
+    return {
+        navMenuChildren,
+    };
 }
 
 export { useSingleMenu };

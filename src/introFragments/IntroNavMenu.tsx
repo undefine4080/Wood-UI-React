@@ -9,7 +9,7 @@ export default function () {
             {
                 title: '',
                 component: (
-                    <NavMenu>
+                    <NavMenu single>
                         <NavMenuItem>菜单 1</NavMenuItem>
 
                         <NavMenuItem>菜单 2</NavMenuItem>
@@ -49,6 +49,23 @@ export default function () {
                                         </SubNavMenu>
                                     </SubNavMenu>
                                 </SubNavMenu>
+                            </SubNavMenu>
+                        </SubNavMenu>
+
+                        <SubNavMenu title='菜单 4'>
+                            <NavMenuItem>菜单 4-1</NavMenuItem>
+                            <NavMenuItem>菜单 4-2</NavMenuItem>
+                            <SubNavMenu title='菜单 4-3'>
+                                <NavMenuItem>菜单 4-1</NavMenuItem>
+                                <NavMenuItem>菜单 4-2</NavMenuItem>
+                            </SubNavMenu>
+                            <SubNavMenu title='菜单 4-4'>
+                                <NavMenuItem>菜单 4-1</NavMenuItem>
+                                <NavMenuItem>菜单 4-2</NavMenuItem>
+                            </SubNavMenu>
+                            <SubNavMenu title='菜单 4-5'>
+                                <NavMenuItem>菜单 4-1</NavMenuItem>
+                                <NavMenuItem>菜单 4-2</NavMenuItem>
                             </SubNavMenu>
                         </SubNavMenu>
                     </NavMenu>

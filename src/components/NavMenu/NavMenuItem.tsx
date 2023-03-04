@@ -1,5 +1,5 @@
 import Arrow from '@base/icon/Arrow/Arrow';
-import { MouseEvent, useCallback } from 'react';
+import { MouseEvent } from 'react';
 import { propsNavMenuItem } from './type';
 
 function NavMenuItem(props: propsNavMenuItem) {
