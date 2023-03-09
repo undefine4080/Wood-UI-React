@@ -8,7 +8,7 @@ import './App.less';
 function App() {
     return (
         <div className='app'>
-            <Container style={{ width: '1280px' }}>
+            <Container style={{ width: '1024px' }}>
                 <Aside side='left' className='app__aside'>
                     <div id='navMenu-aside'>
                         <NavMenu>

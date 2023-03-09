@@ -1,4 +1,4 @@
-import { Children, cloneElement, useState } from 'React';
+import { Children, cloneElement, useState } from 'react';
 import { propsNavMenu } from './type';
 import NavMenuItem from './NavMenuItem';
 import SubNavMenu from './SubNavMenu';

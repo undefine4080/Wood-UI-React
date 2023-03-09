@@ -27,6 +27,7 @@ import IntroTag from '@intro/IntroTag';
 import IntroTooltip from '@intro/IntroTooltip';
 import IntroList from '@intro/IntroList';
 import IntroNavMenu from '@intro/IntroNavMenu';
+import Introducing from '@intro/Introducing';
 
 type navListItem = Array<{
     path?: string;
@@ -47,10 +48,13 @@ const navList: navList = {
     ],
     common: [
         {
+            path: '/',
+            element: <IntroLayout />,
+        },
+        {
             path: 'layout',
             label: 'Layout 布局',
             element: <IntroLayout />,
-            index: true,
         },
         { path: 'button', label: 'Button 按钮', element: <IntroButton /> },
         { path: 'mark', label: 'Mark 标记', element: <IntroMark /> },
@@ -129,16 +133,18 @@ const navList: navList = {
 };
 
 const renderLinks = (targets: navListItem) => {
-    const result = targets.map((target) => {
-        return (
-            <NavMenuItem
-                key={target.path}
-                disabled={target.element ? false : true}>
-                <Link to={`/${target.path}`}>{target.label}</Link>
-            </NavMenuItem>
-        );
+    const result: JSX.Element[] = [];
+    targets.forEach((target) => {
+        if (target.path !== '/') {
+            result.push(
+                <NavMenuItem
+                    key={target.path}
+                    disabled={target.element ? false : true}>
+                    <Link to={`/${target.path}`}>{target.label}</Link>
+                </NavMenuItem>,
+            );
+        }
     });
-
     return result;
 };
 
