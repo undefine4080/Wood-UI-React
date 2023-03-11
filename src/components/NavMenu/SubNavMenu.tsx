@@ -1,14 +1,23 @@
-import React, { Children, cloneElement, useEffect, useState } from 'react';
+import React, {
+    Children,
+    cloneElement,
+    useEffect,
+    useRef,
+    useState,
+    TransitionEvent,
+} from 'react';
 import { NavMenu, NavMenuItem } from './NavMenu';
 import { internalPropsNavMenuItem, propsSubNavMenu } from './type';
 
-const nestItemIndent = 20;
+const ITEM_HEIGHT = 50;
+const NEST_ITEM_INDENT = 20;
+
 function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
     const {
         children,
         expand = false,
         title,
-        indent = nestItemIndent,
+        indent = NEST_ITEM_INDENT,
         single = false,
         lastExpandItem,
         submitExpandId,
@@ -16,29 +25,37 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
     } = props;
 
     const [menuExpand, setExpand] = useState(() => expand);
+    const refSubNavContainer = useRef<HTMLDivElement>(null);
 
-    const handleClick = () => {
-        setExpand(!menuExpand);
+    const setRealHeightToContainer = () => {
+        if (refSubNavContainer.current) {
+            const { clientHeight } = refSubNavContainer.current;
+            refSubNavContainer.current.style.height = clientHeight + 'px';
+            return clientHeight;
+        }
     };
 
+    // single-expand mode
     useEffect(() => {
         if (menuExpand) {
-            submitExpandId && submitExpandId(menuId as number);
+            // @ts-ignore
+            submitExpandId(menuId as number);
         }
     }, [menuExpand]);
-
     useEffect(() => {
         if (!single) return;
 
         if (lastExpandItem !== undefined && lastExpandItem !== menuId) {
+            setRealHeightToContainer();
             setExpand(false);
         }
     }, [lastExpandItem]);
 
+    // keep the id of last item which is expanded
     const [lastExpandItemIndex, setLastExpandItemIndex] = useState<
         number | undefined
     >();
-
+    // pass the same props to the SubNavMenu child node
     const childNodes = Children.toArray(children).map(
         (node: any, index: number) => {
             if (node.type === 'div') {
@@ -47,13 +64,54 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
                 return cloneElement(node, {
                     single,
                     menuId: index,
-                    indent: indent + nestItemIndent,
+                    indent: indent + NEST_ITEM_INDENT,
                     lastExpandItem: lastExpandItemIndex,
                     submitExpandId: setLastExpandItemIndex,
                 });
             }
         },
     );
+
+    // initially, every child item of a SubNavMenu is collapsed
+    const initialHeight = childNodes.length * ITEM_HEIGHT + 'px';
+    // height of subNav container that expanded the last time
+    const [lastHeight, setLastHeight] = useState<number>();
+    const handleClick = () => {
+        // while the click event is triggered, first of all set the height of the container which in order to make the transition effect work.
+        if (menuExpand && refSubNavContainer.current) {
+            const clientHeight = setRealHeightToContainer();
+            setLastHeight(clientHeight);
+        }
+        // wait 50ms ensure the height of container has been modified
+        setTimeout(() => setExpand(!menuExpand), 50);
+    };
+
+    // calculate the height before item expanding
+    const [expandHeight, setExpandHeight] = useState<{
+        height: string | number;
+    }>({ height: 0 });
+    useEffect(() => {
+        let height: string | number;
+        if (menuExpand) {
+            height = lastHeight || initialHeight;
+        } else {
+            height = 0;
+        }
+        setExpandHeight((prev) => ({ ...prev, height }));
+    }, [menuExpand]);
+
+    const keepChildItemExpandable = (e: TransitionEvent) => {
+        if (e.propertyName !== 'height' && e.propertyName !== 'width') return;
+
+        let height: string | number;
+        if (menuExpand) {
+            // the value 'auto' can make it transitioning while child item expanding
+            height = 'auto';
+        } else {
+            height = 0;
+        }
+        setExpandHeight((prev) => ({ ...prev, height }));
+    };
 
     return (
         <NavMenu className='wdu-subNavMenu'>
@@ -68,9 +126,9 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
 
             <div
                 className='wdu-subNavMenu__items'
-                style={{
-                    display: menuExpand ? 'block' : 'none',
-                }}>
+                style={expandHeight}
+                ref={refSubNavContainer}
+                onTransitionEnd={keepChildItemExpandable}>
                 {childNodes}
             </div>
         </NavMenu>
