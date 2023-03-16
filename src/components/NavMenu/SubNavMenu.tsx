@@ -25,9 +25,11 @@ function SubNavMenu(props: propsSubNavMenu) {
     } = props as propsSubNavMenu & internalPropsSubNavMenu;
 
     const [menuExpand, setExpand] = useState(() => expand);
+
     const refSubNavContainer = useRef<HTMLDivElement>(null);
 
-    const setRealHeightToContainer = () => {
+    // compute the height of SubNavMenu in order to make transition
+    const setComputedHeightToContainer = () => {
         if (refSubNavContainer.current) {
             const { clientHeight } = refSubNavContainer.current;
             refSubNavContainer.current.style.height = clientHeight + 'px';
@@ -42,11 +44,13 @@ function SubNavMenu(props: propsSubNavMenu) {
             submitExpandId(menuId as number);
         }
     }, [menuExpand]);
+
+    // close the item expanded last time
     useEffect(() => {
         if (!single) return;
 
         if (lastExpandItem !== undefined && lastExpandItem !== menuId) {
-            setRealHeightToContainer();
+            setComputedHeightToContainer();
             setExpand(false);
         }
     }, [lastExpandItem]);
@@ -74,14 +78,17 @@ function SubNavMenu(props: propsSubNavMenu) {
 
     // initially, every child item of a SubNavMenu is collapsed
     const initialHeight = childNodes.length * ITEM_HEIGHT + 'px';
+
     // height of subNav container that expanded the last time
     const [lastHeight, setLastHeight] = useState<number>();
+
     const handleClick = () => {
         // while the click event is triggered, first of all set the height of the container which in order to make the transition effect work.
         if (menuExpand && refSubNavContainer.current) {
-            const clientHeight = setRealHeightToContainer();
+            const clientHeight = setComputedHeightToContainer();
             setLastHeight(clientHeight);
         }
+
         // wait 50ms ensure the height of container has been modified
         setTimeout(() => setExpand(!menuExpand), 50);
     };
@@ -90,6 +97,8 @@ function SubNavMenu(props: propsSubNavMenu) {
     const [expandHeight, setExpandHeight] = useState<{
         height: string | number;
     }>({ height: 0 });
+
+    // toggle the item
     useEffect(() => {
         let height: string | number;
         if (menuExpand) {

@@ -1,4 +1,4 @@
-import { MouseEventHandler, ReactElement } from 'react';
+import { MouseEvent, ReactElement } from 'react';
 interface internalPropsNavMenuItem {
     single?: boolean;
     menuId?: number;
@@ -18,11 +18,11 @@ interface propsNavMenu {
     className?: string;
 }
 
-interface propsNavMenuItem {
+interface propsNavMenuItem extends internalPropsNavMenuItem {
     to?: string;
     icon?: any;
     disabled?: boolean;
-    onClick?: MouseEventHandler;
+    onClick?: (event: MouseEvent, navMenuItemData: any) => any;
     label?: string;
     children?: any;
 }
@@ -31,7 +31,7 @@ interface propsSubNavMenu {
     label: string;
     icon?: any;
     disabled?: boolean;
-    onClick?: MouseEventHandler;
+    onClick?: (event: MouseEvent, navMenuItemData: any) => any;
     expand?: boolean;
     children?: any;
 }

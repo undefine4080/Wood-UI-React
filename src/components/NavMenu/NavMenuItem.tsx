@@ -41,9 +41,16 @@ function NavMenuItem(props: propsNavMenuItem) {
         }
     };
 
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (event: MouseEvent) => {
         if (!disabled) {
-            if (typeof onClick === 'function') onClick(e);
+            if (typeof onClick === 'function') {
+                onClick(event, {
+                    to,
+                    expand,
+                    disabled,
+                    label,
+                });
+            }
         }
     };
 
