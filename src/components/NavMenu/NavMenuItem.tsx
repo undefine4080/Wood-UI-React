@@ -1,6 +1,6 @@
 import Arrow from '@base/icon/Arrow/Arrow';
-import { MouseEvent } from 'react';
-import { propsNavMenuItem } from './type';
+import React, { MouseEvent } from 'react';
+import { internalPropsNavMenuItem, propsNavMenuItem } from './type';
 
 function NavMenuItem(props: propsNavMenuItem) {
     const {
@@ -13,7 +13,8 @@ function NavMenuItem(props: propsNavMenuItem) {
         children,
         className = '',
         indent,
-    } = props;
+        label,
+    } = props as propsNavMenuItem & internalPropsNavMenuItem;
 
     const renderItem = () => {
         if (to) {
@@ -24,15 +25,19 @@ function NavMenuItem(props: propsNavMenuItem) {
                     href={to}
                     target='_blank'
                     referrerPolicy='no-referrer'>
-                    {children}
+                    {label}
                 </a>
             );
         } else if (!to && children) {
             // <Link/> of react-router
             return children;
-        } else if (!to && !children.length) {
+        } else if (!to && !children && label) {
             // text
-            return <span className={'wdu-navMenuItem__label'}>{children}</span>;
+            return (
+                <span className={'wdu-navMenuItem__label'}>
+                    {label.toString()}
+                </span>
+            );
         }
     };
 
@@ -58,7 +63,7 @@ function NavMenuItem(props: propsNavMenuItem) {
     );
 }
 
-NavMenuItem.displayName = 'NavMenuItem';
+const memoNavMenuItem = React.memo(NavMenuItem);
+memoNavMenuItem.displayName = 'NavMenuItem';
 
-export default NavMenuItem;
-export const ItemHeight = 50;
+export default memoNavMenuItem;

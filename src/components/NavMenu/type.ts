@@ -1,37 +1,39 @@
 import { MouseEventHandler, ReactElement } from 'react';
-
-interface propsNavMenu {
-    single?: boolean; // just expand single item while click
-    children?: any;
-    className?: string;
-}
-
-interface propsNavMenuItem {
-    to?: string; // target url
-    icon?: any;
-    expand?: boolean;
-    indent?: number;
-    subMenuItem?: boolean;
-    disabled?: boolean;
-    onClick?: MouseEventHandler;
-    children?: any;
-    className?: string;
-}
-
 interface internalPropsNavMenuItem {
     single?: boolean;
     menuId?: number;
     lastExpandItem?: number;
     submitExpandId?: (menuId: number) => void;
+    indent?: number;
+    subMenuItem?: boolean;
+    className?: string;
+    expand?: boolean;
 }
 
-interface propsSubNavMenu extends propsNavMenuItem {
-    children?:
-        | ReactElement<React.FC<propsNavMenuItem>>
-        | Array<ReactElement<React.FC<propsNavMenuItem>>>;
-    title: string | number;
-    parentItemCount?: number;
-    parentSetItemCount?: any;
+interface internalPropsSubNavMenu extends internalPropsNavMenuItem {}
+
+interface propsNavMenu {
+    single?: boolean;
+    children?: any;
+    className?: string;
+}
+
+interface propsNavMenuItem {
+    to?: string;
+    icon?: any;
+    disabled?: boolean;
+    onClick?: MouseEventHandler;
+    label?: string;
+    children?: any;
+}
+
+interface propsSubNavMenu {
+    label: string;
+    icon?: any;
+    disabled?: boolean;
+    onClick?: MouseEventHandler;
+    expand?: boolean;
+    children?: any;
 }
 
 export type {
@@ -39,4 +41,5 @@ export type {
     propsNavMenuItem,
     propsSubNavMenu,
     internalPropsNavMenuItem,
+    internalPropsSubNavMenu,
 };

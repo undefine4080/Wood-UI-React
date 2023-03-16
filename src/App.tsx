@@ -12,27 +12,27 @@ function App() {
                 <Aside side='left' className='app__aside'>
                     <div id='navMenu-aside'>
                         <NavMenu>
-                            <SubNavMenu title='快速上手'>
+                            <SubNavMenu label='快速上手'>
                                 {renderLinks(navList.tutorial)}
                             </SubNavMenu>
 
-                            <SubNavMenu title='通用'>
+                            <SubNavMenu label='通用'>
                                 {renderLinks(navList.common)}
                             </SubNavMenu>
 
-                            <SubNavMenu title='内容'>
+                            <SubNavMenu label='内容'>
                                 {renderLinks(navList.content)}
                             </SubNavMenu>
 
-                            <SubNavMenu title='表单'>
+                            <SubNavMenu label='表单'>
                                 {renderLinks(navList.form)}
                             </SubNavMenu>
 
-                            <SubNavMenu title='弹窗'>
+                            <SubNavMenu label='弹窗'>
                                 {renderLinks(navList.modal)}
                             </SubNavMenu>
 
-                            <SubNavMenu title='实用'>
+                            <SubNavMenu label='实用'>
                                 {renderLinks(navList.tool)}
                             </SubNavMenu>
                         </NavMenu>

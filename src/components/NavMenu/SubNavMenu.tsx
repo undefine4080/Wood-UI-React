@@ -7,22 +7,22 @@ import React, {
     TransitionEvent,
 } from 'react';
 import { NavMenu, NavMenuItem } from './NavMenu';
-import { internalPropsNavMenuItem, propsSubNavMenu } from './type';
+import { internalPropsSubNavMenu, propsSubNavMenu } from './type';
 
 const ITEM_HEIGHT = 50;
 const NEST_ITEM_INDENT = 20;
 
-function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
+function SubNavMenu(props: propsSubNavMenu) {
     const {
         children,
         expand = false,
-        title,
+        label,
         indent = NEST_ITEM_INDENT,
         single = false,
         lastExpandItem,
         submitExpandId,
         menuId,
-    } = props;
+    } = props as propsSubNavMenu & internalPropsSubNavMenu;
 
     const [menuExpand, setExpand] = useState(() => expand);
     const refSubNavContainer = useRef<HTMLDivElement>(null);
@@ -120,9 +120,8 @@ function SubNavMenu(props: propsSubNavMenu & internalPropsNavMenuItem) {
                 expand={menuExpand}
                 indent={indent}
                 onClick={handleClick}
-                subMenuItem>
-                {title}
-            </NavMenuItem>
+                label={label}
+                subMenuItem></NavMenuItem>
 
             <div
                 className='wdu-subNavMenu__items'
