@@ -1,33 +1,36 @@
-import { Children, cloneElement, useState } from 'react';
-import { propsNavMenu } from './type';
+import React, { useState, createContext } from 'react';
+import { propsNavMenu, NavMenuContext } from './type';
+import { bindImplicitProps } from '@base/utils';
 import NavMenuItem from './NavMenuItem';
 import SubNavMenu from './SubNavMenu';
 
 import './navMenu.less';
 
+const NavContext = createContext<NavMenuContext>({});
+const NavProvider = NavContext.Provider;
+
 function NavMenu(props: propsNavMenu) {
     const { children, className = '', single = false } = props;
 
-    const [lastExpandItemIndex, setLastExpandItemIndex] = useState<
-        number | undefined
-    >();
+    const [lastExpandItemId, setLastExpandItemId] = useState<string>();
+    const [selectedItem, setSelectedItem] = useState<string>();
 
-    const childNodes = Children.toArray(children).map(
-        (node: any, index: number) => {
-            if (node.type === 'div') {
-                return node;
-            } else {
-                return cloneElement(node, {
-                    single,
-                    menuId: index,
-                    lastExpandItem: lastExpandItemIndex,
-                    submitExpandId: setLastExpandItemIndex,
-                });
-            }
-        },
+    const childNodes = bindImplicitProps(React.Children.toArray(children), {
+        lastExpandItem: lastExpandItemId,
+        submitExpandId: setLastExpandItemId,
+    });
+
+    const contextValue = {
+        single,
+        selectedItem,
+        submitSelectedItem: setSelectedItem,
+    };
+
+    return (
+        <ul className={`wdu-navMenu ${className}`}>
+            <NavProvider value={contextValue}>{childNodes}</NavProvider>
+        </ul>
     );
-
-    return <ul className={`wdu-navMenu ${className}`}>{childNodes}</ul>;
 }
 
-export { NavMenu, NavMenuItem, SubNavMenu };
+export { NavMenu, NavMenuItem, SubNavMenu, NavContext };

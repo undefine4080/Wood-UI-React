@@ -1,5 +1,12 @@
 import Arrow from '@base/icon/Arrow/Arrow';
-import React, { MouseEvent } from 'react';
+import React, {
+    MouseEvent,
+    useContext,
+    useEffect,
+    useId,
+    useState,
+} from 'react';
+import { NavContext } from './NavMenu';
 import { internalPropsNavMenuItem, propsNavMenuItem } from './type';
 
 function NavMenuItem(props: propsNavMenuItem) {
@@ -16,7 +23,21 @@ function NavMenuItem(props: propsNavMenuItem) {
         label,
     } = props as propsNavMenuItem & internalPropsNavMenuItem;
 
-    const renderItem = () => {
+    const { selectedItem, submitSelectedItem } = useContext(NavContext);
+
+    const menuId = useId();
+
+    const [navItemClassList, setNavItemClassList] = useState(() => {
+        const classes = [
+            'wdu-navMenuItem',
+            className,
+            disabled && 'wdu-navMenuItem__disabled',
+        ];
+
+        return classes.filter((item) => Boolean(item)).join(' ');
+    });
+
+    const renderNavItem = () => {
         if (to) {
             // normal <a>
             return (
@@ -42,28 +63,47 @@ function NavMenuItem(props: propsNavMenuItem) {
     };
 
     const handleClick = (event: MouseEvent) => {
-        if (!disabled) {
-            if (typeof onClick === 'function') {
-                onClick(event, {
-                    to,
-                    expand,
-                    disabled,
-                    label,
-                });
-            }
+        if (disabled) return;
+
+        // ignore the menuId of first NavMenuItem in SubNavMenu
+        if (!subMenuItem) submitSelectedItem(menuId);
+        
+        if (typeof onClick === 'function') {
+            onClick(event, {
+                to,
+                expand,
+                disabled,
+                label,
+            });
         }
     };
 
+    useEffect(() => {
+        if (selectedItem) {
+            if (selectedItem === menuId) {
+                setNavItemClassList(
+                    (prev) => prev + ' wdu-navMenuItem__active',
+                );
+            } else {
+                setNavItemClassList((prev) => {
+                    const classes = prev.split(' ');
+                    const result = classes
+                        .filter((item) => item !== 'wdu-navMenuItem__active')
+                        .join(' ');
+                    return result;
+                });
+            }
+        }
+    }, [selectedItem]);
+
     return (
         <li
-            className={`wdu-navMenuItem ${className} ${
-                disabled ? 'wdu-navMenuItem__disabled' : ''
-            }`}
+            className={navItemClassList}
             style={{ paddingLeft: `${indent}px` }}
             onClick={handleClick}>
             {icon && <span className={'wdu-navMenuItem__icon'}>{icon}</span>}
 
-            {renderItem()}
+            {renderNavItem()}
 
             {subMenuItem && <Arrow style={expand ? 'bottom' : 'right'} />}
         </li>

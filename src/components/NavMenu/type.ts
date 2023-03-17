@@ -2,8 +2,8 @@ import { MouseEvent, ReactElement } from 'react';
 interface internalPropsNavMenuItem {
     single?: boolean;
     menuId?: number;
-    lastExpandItem?: number;
-    submitExpandId?: (menuId: number) => void;
+    lastExpandItem?: string;
+    submitExpandId?: any;
     indent?: number;
     subMenuItem?: boolean;
     className?: string;
@@ -36,10 +36,19 @@ interface propsSubNavMenu {
     children?: any;
 }
 
+interface NavMenuContext {
+    readonly single?: boolean;
+    readonly lastExpandItem?: string;
+    readonly submitExpandId?: any;
+    readonly selectedItem?: string;
+    readonly submitSelectedItem?: any;
+}
+
 export type {
     propsNavMenu,
     propsNavMenuItem,
     propsSubNavMenu,
     internalPropsNavMenuItem,
     internalPropsSubNavMenu,
+    NavMenuContext,
 };

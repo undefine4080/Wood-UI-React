@@ -1,13 +1,14 @@
 import React, {
-    Children,
-    cloneElement,
     useEffect,
     useRef,
     useState,
     TransitionEvent,
+    useId,
+    useContext,
 } from 'react';
-import { NavMenu, NavMenuItem } from './NavMenu';
+import { NavContext, NavMenuItem } from './NavMenu';
 import { internalPropsSubNavMenu, propsSubNavMenu } from './type';
+import { bindImplicitProps } from '@base/utils';
 
 const ITEM_HEIGHT = 50;
 const NEST_ITEM_INDENT = 20;
@@ -18,15 +19,17 @@ function SubNavMenu(props: propsSubNavMenu) {
         expand = false,
         label,
         indent = NEST_ITEM_INDENT,
-        single = false,
         lastExpandItem,
         submitExpandId,
-        menuId,
     } = props as propsSubNavMenu & internalPropsSubNavMenu;
+
+    const { single } = useContext(NavContext);
 
     const [menuExpand, setExpand] = useState(() => expand);
 
     const refSubNavContainer = useRef<HTMLDivElement>(null);
+
+    const menuId = useId();
 
     // compute the height of SubNavMenu in order to make transition
     const setComputedHeightToContainer = () => {
@@ -40,8 +43,7 @@ function SubNavMenu(props: propsSubNavMenu) {
     // single-expand mode
     useEffect(() => {
         if (menuExpand) {
-            // @ts-ignore
-            submitExpandId(menuId as number);
+            submitExpandId(menuId);
         }
     }, [menuExpand]);
 
@@ -59,22 +61,13 @@ function SubNavMenu(props: propsSubNavMenu) {
     const [lastExpandItemIndex, setLastExpandItemIndex] = useState<
         number | undefined
     >();
-    // pass the same props to the SubNavMenu child node
-    const childNodes = Children.toArray(children).map(
-        (node: any, index: number) => {
-            if (node.type === 'div') {
-                return node;
-            } else {
-                return cloneElement(node, {
-                    single,
-                    menuId: index,
-                    indent: indent + NEST_ITEM_INDENT,
-                    lastExpandItem: lastExpandItemIndex,
-                    submitExpandId: setLastExpandItemIndex,
-                });
-            }
-        },
-    );
+    
+    // pass the props to the SubNavMenu child node
+    const childNodes = bindImplicitProps(React.Children.toArray(children), {
+        indent: indent + NEST_ITEM_INDENT,
+        lastExpandItem: lastExpandItemIndex,
+        submitExpandId: setLastExpandItemIndex,
+    });
 
     // initially, every child item of a SubNavMenu is collapsed
     const initialHeight = childNodes.length * ITEM_HEIGHT + 'px';
@@ -123,7 +116,7 @@ function SubNavMenu(props: propsSubNavMenu) {
     };
 
     return (
-        <NavMenu className='wdu-subNavMenu'>
+        <ul className='wdu-subNavMenu'>
             <NavMenuItem
                 className='wdu-subNavMenu__title'
                 expand={menuExpand}
@@ -139,7 +132,7 @@ function SubNavMenu(props: propsSubNavMenu) {
                 onTransitionEnd={keepChildItemExpandable}>
                 {childNodes}
             </div>
-        </NavMenu>
+        </ul>
     );
 }
 
