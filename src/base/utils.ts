@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import React, { ReactElement } from 'react';
 
 /**
@@ -28,8 +29,12 @@ function addUnitPx(rawValue: string | number | undefined) {
  */
 function getNamedChild(
     childrenNodeName: string | Array<string>,
-    reactChildren: any,
+    reactChildren: ReactNode,
 ) {
+    if (!reactChildren) {
+        throw new TypeError('reactChildren is undefined');
+    }
+
     const children = React.Children.toArray(reactChildren);
 
     const result = children.map((item: any) => {

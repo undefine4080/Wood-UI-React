@@ -13,22 +13,25 @@ function Button(props: propsButton) {
         children,
         onClick,
         disabled = false,
-        loading = false } = props;
+        loading = false,
+        icon,
+    } = props as propsButton;
 
     const classMap = {
         base: CLS,
         type: `${CLS}__${type}`,
         size: `${CLS}__${size}`,
         disabled: `${CLS}__disabled`,
-        loading: `${CLS}__loading`
+        loading: `${CLS}__loading`,
     };
 
-    const { addClassName, removeClassName, classList } = useCssClassManager(classMap);
+    const { addClassName, removeClassName, classList } =
+        useCssClassManager(classMap);
 
     useEffect(() => {
         addClassName('type');
         addClassName('size');
-        disabled && (addClassName('disabled'));
+        disabled && addClassName('disabled');
     }, []);
 
     useEffect(() => {
@@ -44,14 +47,16 @@ function Button(props: propsButton) {
     };
 
     return (
-        <button
-            type="button"
-            className={classList}
-            onClick={handleClick}>
+        <button type='button' className={classList} onClick={handleClick}>
             {loading && <Loading />}
+
+            {icon}
+
             {children}
         </button>
     );
-};
+}
+
+Button.displayName = 'Button';
 
 export default Button;

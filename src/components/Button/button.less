@@ -96,4 +96,33 @@
             cursor: progress;
         }
     }
+
+    &-group {
+        .wdu-radius-normal();
+        .wdu-border-solid();
+        .out-shadow-light();
+        overflow: hidden;
+
+        .wdu-button {
+            padding: 0 15px;
+            outline: none;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            .wdu-transition-quick();
+            border-radius: 0;
+            border: none;
+
+            &:first-child {
+                border-radius: 5px 0 0 5px;
+            }
+
+            &:last-child {
+                border-radius: 0 5px 5px 0;
+            }
+
+            &:focus {
+                filter: brightness(0.7);
+            }
+        }
+    }
 }
