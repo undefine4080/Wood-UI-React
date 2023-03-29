@@ -28,6 +28,7 @@ import IntroTooltip from '@intro/IntroTooltip';
 import IntroList from '@intro/IntroList';
 import IntroNavMenu from '@intro/IntroNavMenu';
 import Introducing from '@intro/Introducing';
+import IntroPopover from '@intro/IntroPopover';
 
 type navListItem = Array<{
     path?: string;
@@ -116,6 +117,11 @@ const navList: navList = {
     modal: [
         { path: 'modal', label: 'Modal 模态框', element: <IntroModal /> },
         { path: 'message', label: 'Message 消息', element: <IntroMessage /> },
+        {
+            path: 'popover',
+            label: 'Popover 弹出框',
+            element: <IntroPopover />,
+        },
         {
             path: 'tooltip',
             label: 'Tooltips 文字提示',

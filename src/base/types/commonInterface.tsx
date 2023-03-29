@@ -18,6 +18,7 @@ interface propsIntroComponent {
     title?: string;
     position: string;
     components: Array<{
+        title?: string;
         component: ReactElement;
         info?: string;
         code: string;
