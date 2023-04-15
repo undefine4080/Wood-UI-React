@@ -11,7 +11,7 @@ const T = 'wdu-popover';
 
 function Popover(props: propsPopover) {
     const {
-        position = 'bottom',
+        position = 'left',
         className,
         children,
         trigger = 'hover',
@@ -29,24 +29,23 @@ function Popover(props: propsPopover) {
     const popoverId = `wdu-popover-${randomId}`;
     const [visible, setVisible] = useState(active);
     const refPopover = useRef<HTMLDivElement>(null);
-    const refPopoverTarget = useRef<Element>();
+    const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
 
     const classMap = {
-        base: T,
+        base: `${T}${className ?? ''}`,
         active: `${T}__active`,
     };
-
     const { classList, removeClassName, addClassName } =
         useCssClassManager(classMap);
 
+    /**get the dom node of the element wrapped by Popover */
     const findPopoverTarget = () => {
         let isFind = false;
         const findTarget = () => {
             const target = document.querySelector('.' + popoverId);
             if (target) {
                 isFind = true;
-                refPopoverTarget.current = target;
-                handlePopoverActive();
+                setRefPopoverTarget(target);
             } else {
                 window.requestAnimationFrame(findTarget);
             }
@@ -54,23 +53,16 @@ function Popover(props: propsPopover) {
         window.requestAnimationFrame(findTarget);
     };
 
-    const togglePopover = () => {
-        setVisible((prev) => !prev);
-    };
-
+    const togglePopover = () => setVisible((prev) => !prev);
+    const openPopover = () => setVisible(true);
+    const closePopover = () => setVisible(false);
     const handlePopoverActive = () => {
-        if (refPopoverTarget.current) {
-            const target = refPopoverTarget.current;
+        if (refPopoverTarget) {
             if (trigger === 'click') {
-                target.addEventListener('click', togglePopover);
+                refPopoverTarget.addEventListener('click', togglePopover);
             } else if (trigger === 'hover') {
-                target.addEventListener('mouseenter', () => {
-                    setVisible(true);
-                });
-
-                target.addEventListener('mouseleave', () => {
-                    setVisible(false);
-                });
+                refPopoverTarget.addEventListener('mouseenter', openPopover);
+                refPopoverTarget.addEventListener('mouseleave', closePopover);
             }
         }
     };
@@ -78,7 +70,32 @@ function Popover(props: propsPopover) {
     useEffect(() => {
         findPopoverTarget();
         createPopoverContent();
+
+        return () => {
+            const events = [
+                ['click', togglePopover],
+                ['mouseenter', openPopover],
+                ['mouseleave', closePopover],
+            ];
+            events.forEach(([type, listener]) => {
+                if (refPopoverTarget) {
+                    // @ts-ignore
+                    refPopoverTarget.removeEventListener(type, listener);
+                }
+            });
+        };
     }, []);
+
+    useEffect(() => {
+        handlePopoverActive();
+    }, [refPopoverTarget]);
+
+    const { popoverStyle } = usePopoverPosition(
+        refPopoverTarget,
+        refPopover,
+        visible,
+        position,
+    );
 
     const createPopoverContent = () => {
         const popover = (
@@ -86,9 +103,11 @@ function Popover(props: propsPopover) {
                 ref={refPopover}
                 className={classList}
                 tabIndex={0}
-                onBlur={() => {
-                    setVisible(false);
-                }}>
+                onBlur={closePopover}
+                onMouseLeave={() => {
+                    if (trigger === 'hover') closePopover();
+                }}
+                style={popoverStyle}>
                 {content}
             </div>
         );
@@ -103,8 +122,11 @@ function Popover(props: propsPopover) {
     useEffect(() => {
         if (visible) {
             addClassName('active');
-            // js cannot focus an element that is not visible in the DOM, so wait milliseconds
-            setTimeout(() => refPopover.current?.focus());
+
+            if (trigger === 'click') {
+                // js cannot focus an element that is not visible in the DOM, so wait milliseconds
+                setTimeout(() => refPopover.current?.focus());
+            }
         } else {
             removeClassName('active');
         }

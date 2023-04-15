@@ -1,58 +1,69 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import {
+    MutableRefObject,
+    RefObject,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { activeType, position } from './type';
 
 function usePopoverPosition(
-    container: RefObject<HTMLDivElement | null>,
+    popoverTarget: Element | undefined,
+    popover: MutableRefObject<HTMLDivElement | null>,
+    visible: boolean,
     position: position,
 ) {
-    const refPopover = useRef<HTMLDivElement>(null);
-    const [popoverSize, setPopoverSize] = useState<[number, number]>([0, 0]);
-    const [popoverTarget, setPopoverTarget] = useState<HTMLElement>();
-    const [popoverStyle, setPopoverStyle] = useState({});
+    const [popoverStyle, setPopoverStyle] = useState({
+        transform: '',
+    });
+
+    const [popoverSize, setPopoverSize] = useState<{
+        width: number;
+        height: number;
+    }>({
+        width: 0,
+        height: 0,
+    });
 
     useEffect(() => {
-        if (container && container.current) {
-            setPopoverTarget(container.current.firstChild as HTMLElement);
-        }
-
-        if (refPopover.current) {
-            const { clientWidth, clientHeight } = refPopover.current;
-            setPopoverSize([clientWidth, clientHeight]);
+        if (popover.current) {
+            const popoverPos = popover.current?.getBoundingClientRect();
+            const { width, height } = popoverPos;
+            setPopoverSize({ width, height });
         }
     }, []);
 
-    const calcPopoverStyle = () => {};
+    const calcPosition = () => {
+        if (popoverTarget && visible) {
+            const targetPos = popoverTarget.getBoundingClientRect();
+            const { width, height } = popoverSize;
 
-    const active: activeType = {
-        bottom: () => {
-            if (popoverTarget) {
-                const { x, y, width, height } = (
-                    popoverTarget as HTMLElement
-                ).getBoundingClientRect();
+            console.log(targetPos);
 
-                const top = y + height + 8;
-                const left = x - (width - popoverSize[0]);
-
-                const popoverStyle = {
-                    translate: `translate(${left}px, ${top}px)`,
-                };
-                setPopoverStyle((prev) => {
-                    return { ...prev, ...popoverStyle };
-                });
-            }
-        },
-        top: () => {},
-        left: () => {},
-        right: () => {},
+            // let transform: string;
+            // switch (position) {
+            //     case 'left':
+            //         const X = targetPos.left - width;
+            //         const Y = height / 2 - targetPos.height / 2;
+            //         debugger;
+            //         transform = `translate(${X}px, ${Y}px)`;
+            //         break;
+            // }
+            // setPopoverStyle((prev) => {
+            //     return {
+            //         ...prev,
+            //         transform,
+            //     };
+            // });
+        }
     };
 
-    const activePopover = () => active[position]();
+    useEffect(() => {
+        calcPosition();
+    }, [popoverTarget, visible]);
 
     return {
-        refPopover,
         popoverStyle,
-        popoverTarget,
-        activePopover,
     };
 }
 
