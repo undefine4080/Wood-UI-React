@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 interface popoverEvents {
     onBeforeOpen?: () => any;
     onAfterClosed?: () => any;
@@ -6,14 +6,22 @@ interface popoverEvents {
     onClosed?: () => any;
 }
 
+interface activeType {
+    top: () => any;
+    bottom: () => any;
+    left: () => any;
+    right: () => any;
+}
+
+type position = 'left' | 'bottom' | 'right' | 'top';
 interface propsPopover extends popoverEvents {
-    position?: 'left' | 'bottom' | 'right' | 'top' | 'auto';
+    position?: position;
     className?: string;
-    children?: ReactNode;
+    children: ReactElement;
     trigger?: 'hover' | 'click';
     active?: boolean;
     width?: number;
     content: ReactNode;
 }
 
-export type { propsPopover };
+export type { propsPopover, activeType, position };

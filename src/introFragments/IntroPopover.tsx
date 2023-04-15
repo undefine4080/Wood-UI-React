@@ -1,7 +1,7 @@
 import { IntroComponent } from '../base/components/IntroComponent';
 import Popover from '@component/Popover/Popover';
 import { propsIntroComponent } from '@base/types/commonInterface';
-import Input from '@component/Input/Input';
+import Button from '@component/Button/Button';
 
 const ex = 'this is a popover';
 
@@ -13,14 +13,14 @@ export default function () {
             {
                 title: '触发方式',
                 component: (
-                    <div>
+                    <>
                         <Popover trigger='click' content={ex}>
-                            <Input placeholder='点击触发'></Input>
+                            <Button>点击触发</Button>
                         </Popover>
                         <Popover trigger='hover' content={ex}>
-                            <Input placeholder='悬浮触发'></Input>
+                            <Button>悬浮触发</Button>
                         </Popover>
-                    </div>
+                    </>
                 ),
                 info: '',
                 code: '',
@@ -28,23 +28,33 @@ export default function () {
             {
                 title: '触发位置',
                 component: (
-                    <Popover content={ex}>
-                        <Input></Input>
-                    </Popover>
+                    <>
+                        {/* <Popover content={ex} position='top'>
+                            <Button>顶部</Button>
+                        </Popover> */}
+
+                        <Popover content={ex} position='bottom'>
+                            <Button>底部</Button>
+                        </Popover>
+
+                        {/* <Popover content={ex} position='left'>
+                            <Button>左侧</Button>
+                        </Popover>
+
+                        <Popover content={ex} position='right'>
+                            <Button>右侧</Button>
+                        </Popover> */}
+                    </>
                 ),
                 info: '',
                 code: '',
             },
-            {
-                title: '自定义内容',
-                component: (
-                    <Popover content={ex}>
-                        <Input></Input>
-                    </Popover>
-                ),
-                info: '',
-                code: '',
-            },
+            // {
+            //     title: '自定义内容',
+            //     component: <Popover content={ex}></Popover>,
+            //     info: '',
+            //     code: '',
+            // },
         ],
     };
 

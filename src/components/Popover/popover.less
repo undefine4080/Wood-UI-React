@@ -1,45 +1,16 @@
 @import (reference) "@base/styles/main.less";
 
 .wdu-popover {
-    position: relative;
+    .wdu-box();
+    width: max-content;
+    height: max-content;
+    position: fixed;
+    visibility: hidden;
 
-    &__content {
-        width: 100%;
-        .wdu-box();
-        position: absolute;
-        margin: 0;
-        visibility: hidden;
-    }
+    top: 50%;
+    left: 50%;
 
     &__active {
-        .wdu-popover__content {
-            visibility: visible;
-        }
-    }
-
-    &__bottom {
-        .wdu-popover__content {
-            top: 0;
-        }
-    }
-
-    &__top {
-        .wdu-popover__content {
-            top: calc(-100% - 8px);
-        }
-    }
-
-    &__left {
-        .wdu-popover__content {
-            left: -100%;
-            top: 0;
-        }
-    }
-
-    &__right {
-        .wdu-popover__content {
-            right: -100%;
-            top: 0;
-        }
+        visibility: visible;
     }
 }

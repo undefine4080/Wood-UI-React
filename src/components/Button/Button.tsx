@@ -4,8 +4,9 @@ import Loading from '@base/icon/Loading/Loading';
 import { useCssClassManager } from '@base/hooks';
 
 import './button.less';
+import commonProps from '@base/types/commonInterface';
 
-const CLS = 'wdu-button';
+const T = 'wdu-button';
 function Button(props: propsButton) {
     const {
         type = 'plain',
@@ -15,14 +16,15 @@ function Button(props: propsButton) {
         disabled = false,
         loading = false,
         icon,
-    } = props as propsButton;
+        className,
+    } = props as propsButton & commonProps;
 
     const classMap = {
-        base: CLS,
-        type: `${CLS}__${type}`,
-        size: `${CLS}__${size}`,
-        disabled: `${CLS}__disabled`,
-        loading: `${CLS}__loading`,
+        base: `${T} ${className}`,
+        type: `${T}__${type}`,
+        size: `${T}__${size}`,
+        disabled: `${T}__disabled`,
+        loading: `${T}__loading`,
     };
 
     const { addClassName, removeClassName, classList } =
@@ -39,8 +41,7 @@ function Button(props: propsButton) {
     }, [loading]);
 
     const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
-        if (disabled || loading) return;
+        if (disabled) return;
         if (typeof onClick === 'function') {
             onClick(e);
         }
