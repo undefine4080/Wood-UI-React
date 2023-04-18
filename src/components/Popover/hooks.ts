@@ -1,11 +1,5 @@
-import {
-    MutableRefObject,
-    RefObject,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
-import { activeType, position } from './type';
+import { MutableRefObject, useEffect, useState } from 'react';
+import { position } from './type';
 
 function usePopoverPosition(
     popoverTarget: Element | undefined,
@@ -17,44 +11,46 @@ function usePopoverPosition(
         transform: '',
     });
 
-    const [popoverSize, setPopoverSize] = useState<{
-        width: number;
-        height: number;
-    }>({
-        width: 0,
-        height: 0,
-    });
-
-    useEffect(() => {
-        if (popover.current) {
-            const popoverPos = popover.current?.getBoundingClientRect();
-            const { width, height } = popoverPos;
-            setPopoverSize({ width, height });
-        }
-    }, []);
-
     const calcPosition = () => {
         if (popoverTarget && visible) {
+            // size of popover target
             const targetPos = popoverTarget.getBoundingClientRect();
-            const { width, height } = popoverSize;
+            const {
+                x: targetX,
+                y: targetY,
+                width: targetW,
+                height: targetH,
+            } = targetPos;
 
-            console.log(targetPos);
+            // size of Popover
+            let sourceW = 0,
+                sourceH = 0;
+            if (popover.current) {
+                const { width, height } =
+                    popover.current.getBoundingClientRect();
+                [sourceW, sourceH] = [width, height];
+            }
 
-            // let transform: string;
-            // switch (position) {
-            //     case 'left':
-            //         const X = targetPos.left - width;
-            //         const Y = height / 2 - targetPos.height / 2;
-            //         debugger;
-            //         transform = `translate(${X}px, ${Y}px)`;
-            //         break;
-            // }
-            // setPopoverStyle((prev) => {
-            //     return {
-            //         ...prev,
-            //         transform,
-            //     };
-            // });
+            // position of Popover
+            let left, top;
+            if (position === 'left') {
+                left = targetX - sourceW - 12;
+                top = targetY + (targetH - sourceH) / 2;
+            } else if (position === 'right') {
+                left = targetX + targetW + 12;
+                top = targetY + (targetH - sourceH) / 2;
+            } else if (position === 'top') {
+                left = targetX + (targetW - sourceW) / 2;
+                top = targetY - sourceH - 12;
+            } else if (position === 'bottom') {
+                left = targetX + (targetW - sourceW) / 2;
+                top = targetY + targetH + 12;
+            }
+
+            let applyStyle = {
+                transform: `translate(${left}px, ${top}px)`,
+            };
+            setPopoverStyle((prev) => ({ ...prev, ...applyStyle }));
         }
     };
 

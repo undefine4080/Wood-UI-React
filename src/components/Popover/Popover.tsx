@@ -31,6 +31,13 @@ function Popover(props: propsPopover) {
     const refPopover = useRef<HTMLDivElement>(null);
     const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
 
+    const { popoverStyle } = usePopoverPosition(
+        refPopoverTarget,
+        refPopover,
+        visible,
+        position,
+    );
+
     const classMap = {
         base: `${T}${className ?? ''}`,
         active: `${T}__active`,
@@ -89,13 +96,6 @@ function Popover(props: propsPopover) {
     useEffect(() => {
         handlePopoverActive();
     }, [refPopoverTarget]);
-
-    const { popoverStyle } = usePopoverPosition(
-        refPopoverTarget,
-        refPopover,
-        visible,
-        position,
-    );
 
     const createPopoverContent = () => {
         const popover = (

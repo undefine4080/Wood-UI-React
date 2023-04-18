@@ -29,21 +29,21 @@ export default function () {
                 title: '触发位置',
                 component: (
                     <>
-                        {/* <Popover content={ex} position='top'>
+                        <Popover content={ex} position='top'>
                             <Button>顶部</Button>
-                        </Popover> */}
+                        </Popover>
 
                         <Popover content={ex} position='bottom'>
                             <Button>底部</Button>
                         </Popover>
 
-                        {/* <Popover content={ex} position='left'>
+                        <Popover content={ex} position='left'>
                             <Button>左侧</Button>
                         </Popover>
 
                         <Popover content={ex} position='right'>
                             <Button>右侧</Button>
-                        </Popover> */}
+                        </Popover>
                     </>
                 ),
                 info: '',
