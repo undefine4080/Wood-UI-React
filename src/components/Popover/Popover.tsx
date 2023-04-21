@@ -1,4 +1,11 @@
-import { Children, cloneElement, useEffect, useRef, useState } from 'react';
+import {
+    Children,
+    cloneElement,
+    useEffect,
+    useRef,
+    useState,
+    MouseEvent,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { propsPopover } from './type';
 import { useCssClassManager } from '@base/hooks';
@@ -31,11 +38,13 @@ function Popover(props: propsPopover) {
     const refPopover = useRef<HTMLDivElement>(null);
     const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
 
-    const { popoverStyle } = usePopoverPosition(
+    const { setInitialPosition } = usePopoverPosition(
         refPopoverTarget,
         refPopover,
         visible,
         position,
+        trigger,
+        setVisible,
     );
 
     const classMap = {
@@ -61,8 +70,18 @@ function Popover(props: propsPopover) {
         window.requestAnimationFrame(findTarget);
     };
 
-    const togglePopover = () => setVisible((prev) => !prev);
-    const openPopover = () => setVisible(true);
+    const keepInitialPosition = (popoverTarget: Element) => {
+        const { scrollLeft, scrollTop } = popoverTarget;
+        setInitialPosition([scrollLeft, scrollTop]);
+    };
+    const togglePopover = (e: any) => {
+        setVisible((prev) => !prev);
+        keepInitialPosition(e.target);
+    };
+    const openPopover = (e: any) => {
+        setVisible(true);
+        keepInitialPosition(e.target);
+    };
     const closePopover = () => setVisible(false);
     const handlePopoverActive = () => {
         if (refPopoverTarget) {
@@ -84,8 +103,7 @@ function Popover(props: propsPopover) {
                 onBlur={closePopover}
                 onMouseLeave={() => {
                     if (trigger === 'hover') closePopover();
-                }}
-                style={popoverStyle}>
+                }}>
                 {content}
             </div>
         );
