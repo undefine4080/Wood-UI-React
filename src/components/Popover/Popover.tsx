@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom';
 import { propsPopover } from './type';
 import { useCssClassManager } from '@base/hooks';
 import { usePopoverPosition } from './hooks';
+import { uuid } from '@base/utils';
 
 import './popover.less';
-import { uuid } from '@base/utils';
 
 const T = 'wdu-popover';
 
@@ -53,6 +53,7 @@ function Popover(props: propsPopover) {
             if (target) {
                 isFind = true;
                 setRefPopoverTarget(target);
+                return;
             } else {
                 window.requestAnimationFrame(findTarget);
             }
@@ -73,29 +74,6 @@ function Popover(props: propsPopover) {
             }
         }
     };
-
-    useEffect(() => {
-        findPopoverTarget();
-        createPopoverContent();
-
-        return () => {
-            const events = [
-                ['click', togglePopover],
-                ['mouseenter', openPopover],
-                ['mouseleave', closePopover],
-            ];
-            events.forEach(([type, listener]) => {
-                if (refPopoverTarget) {
-                    // @ts-ignore
-                    refPopoverTarget.removeEventListener(type, listener);
-                }
-            });
-        };
-    }, []);
-
-    useEffect(() => {
-        handlePopoverActive();
-    }, [refPopoverTarget]);
 
     const createPopoverContent = () => {
         const popover = (
@@ -118,6 +96,28 @@ function Popover(props: propsPopover) {
             console.warn('Popover content is empty');
         }
     };
+    useEffect(() => {
+        findPopoverTarget();
+        createPopoverContent();
+
+        return () => {
+            const events = [
+                ['click', togglePopover],
+                ['mouseenter', openPopover],
+                ['mouseleave', closePopover],
+            ];
+            events.forEach(([type, listener]) => {
+                if (refPopoverTarget) {
+                    // @ts-ignore
+                    refPopoverTarget.removeEventListener(type, listener);
+                }
+            });
+        };
+    }, []);
+
+    useEffect(() => {
+        handlePopoverActive();
+    }, [refPopoverTarget]);
 
     useEffect(() => {
         if (visible) {
