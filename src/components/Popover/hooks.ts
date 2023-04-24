@@ -1,28 +1,31 @@
-import { MutableRefObject, useCallback, useEffect, useState } from 'react';
+import {
+    UIEvent,
+    MutableRefObject,
+    useCallback,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+    MouseEvent,
+} from 'react';
 import { position } from './type';
 
 /**
- *  find the container of the popoverTarget while scrolling
+ *  find the container of the popoverTarget while scrolling, and trigger the scroll event
  * @param visible
  * @returns
  */
-function useScrollContainer(visible: boolean) {
-    const [hasFindParents, setHasFindParents] = useState(false);
+function useScrollContainer(visible: boolean, onScroll: Function) {
+    // the flag of the parent nodes cache
+    const [hasParents, setHasParents] = useState(false);
     const [parentList, setParentList] = useState<Array<Element>>([]);
-    const [initialScroll, setInitialScroll] = useState([0, 0]);
-    const [scrollLength, setScrollLength] = useState([0, 0]);
 
-    const onScroll = useCallback((e: any) => {
-        const { scrollLeft, scrollTop } = e.target;
-        setScrollLength([scrollLeft, scrollTop]);
-    }, []);
-
-    const getInitialScroll = () => {};
+    const scroll = useCallback((e: Event) => onScroll(e), []);
 
     const watchScroll = () => {
         if (parentList.length) {
             parentList.forEach((element) => {
-                element.addEventListener('scroll', onScroll);
+                element.addEventListener('scroll', scroll);
             });
         }
     };
@@ -30,15 +33,15 @@ function useScrollContainer(visible: boolean) {
     const unWatchScroll = () => {
         if (parentList.length) {
             parentList.forEach((element) => {
-                element.removeEventListener('scroll', onScroll);
+                element.removeEventListener('scroll', scroll);
             });
         }
     };
+
     const findScrollContainerParents = (node: Element) => {
         if (!node) return;
 
         const parent = node.parentElement;
-
         if (parent) {
             if (parent.scrollHeight > parent.clientHeight) {
                 setParentList((prev) => [...prev, parent]);
@@ -54,14 +57,15 @@ function useScrollContainer(visible: boolean) {
         } else {
             unWatchScroll();
         }
+
+        return () => unWatchScroll();
     }, [parentList, visible]);
 
     return {
-        hasFindParents,
+        hasParents,
         parentList,
-        setHasFindParents,
+        setHasParents,
         findScrollContainerParents,
-        scrollLength,
     };
 }
 
@@ -81,29 +85,38 @@ function usePopoverPosition(
     trigger: 'click' | 'hover',
     setVisible: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-    const [initialPosition, setInitialPosition] = useState([0, 0]);
+    const scrollBarPosition = useRef([0, 0]);
+    const popoverPosition = useRef([0, 0]);
+    const firstScrollFlag = useRef(false);
 
-    const {
-        hasFindParents,
-        setHasFindParents,
-        findScrollContainerParents,
-        scrollLength,
-    } = useScrollContainer(visible);
-
-    // sync the move position to the Popover
-    useEffect(() => {
-        // ignore the hover way
+    const onScroll = (e: MouseEvent) => {
+        // ignore the scroll behavior while hovering
         if (trigger === 'hover') {
             setVisible(false);
+            return;
         }
 
-        const [startX, startY] = initialPosition;
-        const [endX, endY] = scrollLength;
-        const newPosition = `translate(${startX - endX}px, ${startY - endY}px)`;
+        // get the distance of the scroll bar when scrolling at first time
+        const { scrollLeft, scrollTop } = e.target as HTMLElement;
+        if (!firstScrollFlag.current) {
+            scrollBarPosition.current = [scrollLeft, scrollTop];
+            firstScrollFlag.current = true;
+        }
+
+        // position of the Popover when it is activating
+        const [x, y] = popoverPosition.current;
+        const [exitLeft, exitTop] = scrollBarPosition.current;
         window.requestAnimationFrame(() => {
-            (popover.current as HTMLElement).style.transform = newPosition;
+            const position = `translate(${x - scrollLeft + exitLeft}px, ${
+                y - scrollTop + exitTop
+            }px)`;
+
+            (popover.current as HTMLElement).style.transform = position;
         });
-    }, [scrollLength]);
+    };
+
+    const { hasParents, setHasParents, findScrollContainerParents } =
+        useScrollContainer(visible, onScroll);
 
     const calcStaticPos = () => {
         if (popoverTarget && visible) {
@@ -142,26 +155,28 @@ function usePopoverPosition(
                 top = targetY + targetH + 12;
             }
 
-            // keep the start position
-            setInitialPosition([left, top]);
+            popoverPosition.current = [left, top];
+
             (
                 popover.current as HTMLElement
             ).style.transform = `translate(${left}px, ${top}px)`;
         }
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         calcStaticPos();
 
-        if (popoverTarget && visible && !hasFindParents) {
+        if (popoverTarget && visible && !hasParents) {
             findScrollContainerParents(popoverTarget);
-            setHasFindParents(true);
+            setHasParents(true);
         }
     }, [popoverTarget, visible]);
 
-    return {
-        setInitialPosition,
-    };
+    useEffect(() => {
+        if (visible) {
+            firstScrollFlag.current = false;
+        }
+    }, [visible]);
 }
 
 export { usePopoverPosition };

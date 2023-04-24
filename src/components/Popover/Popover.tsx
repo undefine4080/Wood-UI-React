@@ -1,11 +1,4 @@
-import {
-    Children,
-    cloneElement,
-    useEffect,
-    useRef,
-    useState,
-    MouseEvent,
-} from 'react';
+import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { propsPopover } from './type';
 import { useCssClassManager } from '@base/hooks';
@@ -38,7 +31,7 @@ function Popover(props: propsPopover) {
     const refPopover = useRef<HTMLDivElement>(null);
     const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
 
-    const { setInitialPosition } = usePopoverPosition(
+    usePopoverPosition(
         refPopoverTarget,
         refPopover,
         visible,
@@ -69,19 +62,13 @@ function Popover(props: propsPopover) {
         };
         window.requestAnimationFrame(findTarget);
     };
+    useEffect(() => {
+        findPopoverTarget();
+    }, []);
 
-    const keepInitialPosition = (popoverTarget: Element) => {
-        const { scrollLeft, scrollTop } = popoverTarget;
-        setInitialPosition([scrollLeft, scrollTop]);
-    };
-    const togglePopover = (e: any) => {
-        setVisible((prev) => !prev);
-        keepInitialPosition(e.target);
-    };
-    const openPopover = (e: any) => {
-        setVisible(true);
-        keepInitialPosition(e.target);
-    };
+    // add active eventlistener to popover
+    const togglePopover = () => setVisible((prev) => !prev);
+    const openPopover = () => setVisible(true);
     const closePopover = () => setVisible(false);
     const handlePopoverActive = () => {
         if (refPopoverTarget) {
@@ -93,6 +80,9 @@ function Popover(props: propsPopover) {
             }
         }
     };
+    useEffect(() => {
+        handlePopoverActive();
+    }, [refPopoverTarget]);
 
     const createPopoverContent = () => {
         const popover = (
@@ -115,7 +105,6 @@ function Popover(props: propsPopover) {
         }
     };
     useEffect(() => {
-        findPopoverTarget();
         createPopoverContent();
 
         return () => {
@@ -133,10 +122,7 @@ function Popover(props: propsPopover) {
         };
     }, []);
 
-    useEffect(() => {
-        handlePopoverActive();
-    }, [refPopoverTarget]);
-
+    // control hide or visible
     useEffect(() => {
         if (visible) {
             addClassName('active');
