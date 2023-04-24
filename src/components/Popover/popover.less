@@ -12,4 +12,51 @@
     &__active {
         visibility: visible;
     }
+
+    @borderColor: #e7e7e7;
+
+    .popoverCorner {
+        .corner();
+        background-color: white;
+        box-sizing: border-box;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    &__top {
+        &::before {
+            .popoverCorner();
+            border-color: transparent @borderColor @borderColor transparent;
+            bottom: -6px;
+            left: calc(50% - 4px);
+        }
+    }
+
+    &__bottom {
+        &::after {
+            .popoverCorner();
+            border-color: @borderColor transparent transparent @borderColor ;
+            top: -6px;
+            left: calc(50% - 4px);
+        }
+    }
+
+    &__left {
+        &::before {
+            .popoverCorner();
+            border-color: @borderColor @borderColor transparent transparent;
+            right: -6px;
+            top: calc(50% - 5px);
+        }
+    }
+
+    &__right {
+        &::before {
+            .popoverCorner();
+            border-color: transparent transparent @borderColor @borderColor ;
+            left: -6px;
+            top: calc(50% - 5px);
+        }
+    }
+
 }

@@ -41,7 +41,7 @@ function Popover(props: propsPopover) {
     );
 
     const classMap = {
-        base: `${T}${className ?? ''}`,
+        base: `${T} ${T}__${position} ${className ?? ''}`,
         active: `${T}__active`,
     };
     const { classList, removeClassName, addClassName } =
@@ -126,7 +126,7 @@ function Popover(props: propsPopover) {
     useEffect(() => {
         if (visible) {
             addClassName('active');
-
+            
             if (trigger === 'click') {
                 // js cannot focus an element that is not visible in the DOM, so wait milliseconds
                 setTimeout(() => refPopover.current?.focus());
