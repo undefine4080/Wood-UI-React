@@ -20,7 +20,6 @@ interface propsPopover extends popoverEvents {
     children: ReactElement;
     trigger?: 'hover' | 'click';
     active?: boolean;
-    width?: number;
     content: ReactNode;
 }
 

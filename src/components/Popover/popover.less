@@ -1,8 +1,33 @@
 @import (reference) "@base/styles/main.less";
 
+@keyframes fadeIn {
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+}
+
 .wdu-popover {
     .wdu-box();
     position: fixed;
+    opacity: 0;
     visibility: hidden;
     margin: 0;
     top: 0;
@@ -11,6 +36,11 @@
 
     &__active {
         visibility: visible;
+        animation: fadeIn .2s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 forwards normal;
+    }
+
+    &__hidden {
+        animation: fadeOut .2s cubic-bezier(0.075, 0.82, 0.165, 1) 0s 1 forwards normal;
     }
 
     @borderColor: #e7e7e7;
@@ -24,6 +54,8 @@
     }
 
     &__top {
+        transform-origin: bottom;
+
         &::before {
             .popoverCorner();
             border-color: transparent @borderColor @borderColor transparent;
@@ -33,6 +65,8 @@
     }
 
     &__bottom {
+        transform-origin: top;
+
         &::after {
             .popoverCorner();
             border-color: @borderColor transparent transparent @borderColor ;
@@ -42,6 +76,8 @@
     }
 
     &__left {
+        transform-origin: right;
+
         &::before {
             .popoverCorner();
             border-color: @borderColor @borderColor transparent transparent;
@@ -51,6 +87,8 @@
     }
 
     &__right {
+        transform-origin: left;
+
         &::before {
             .popoverCorner();
             border-color: transparent transparent @borderColor @borderColor ;

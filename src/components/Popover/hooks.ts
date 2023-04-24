@@ -1,5 +1,4 @@
 import {
-    UIEvent,
     MutableRefObject,
     useCallback,
     useEffect,
@@ -107,11 +106,12 @@ function usePopoverPosition(
         const [x, y] = popoverPosition.current;
         const [exitLeft, exitTop] = scrollBarPosition.current;
         window.requestAnimationFrame(() => {
-            const position = `translate(${x - scrollLeft + exitLeft}px, ${
+            (popover.current as HTMLElement).style.left = `${
+                x - scrollLeft + exitLeft
+            }px`;
+            (popover.current as HTMLElement).style.top = `${
                 y - scrollTop + exitTop
-            }px)`;
-
-            (popover.current as HTMLElement).style.transform = position;
+            }px`;
         });
     };
 
@@ -155,11 +155,10 @@ function usePopoverPosition(
                 top = targetY + targetH + 12;
             }
 
+            // keep the position of the Popover while it is activated
             popoverPosition.current = [left, top];
-
-            (
-                popover.current as HTMLElement
-            ).style.transform = `translate(${left}px, ${top}px)`;
+            (popover.current as HTMLElement).style.left = `${left}px`;
+            (popover.current as HTMLElement).style.top = `${top}px`;
         }
     };
 

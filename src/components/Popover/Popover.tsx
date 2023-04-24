@@ -1,4 +1,11 @@
-import { Children, cloneElement, useEffect, useRef, useState } from 'react';
+import {
+    Children,
+    cloneElement,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { propsPopover } from './type';
 import { useCssClassManager } from '@base/hooks';
@@ -16,7 +23,6 @@ function Popover(props: propsPopover) {
         children,
         trigger = 'hover',
         active = false,
-        width,
         content,
     } = props;
 
@@ -43,8 +49,9 @@ function Popover(props: propsPopover) {
     const classMap = {
         base: `${T} ${T}__${position} ${className ?? ''}`,
         active: `${T}__active`,
+        hidden: `${T}__hidden`,
     };
-    const { classList, removeClassName, addClassName } =
+    const { classList, removeClassName, addClassName, hasClassName } =
         useCssClassManager(classMap);
 
     /**get the dom node of the element wrapped by Popover */
@@ -122,17 +129,38 @@ function Popover(props: propsPopover) {
         };
     }, []);
 
-    // control hide or visible
+    // control hidden or visible animation
+    const clearClassNames = useCallback(() => {
+        removeClassName('active');
+        removeClassName('hidden');
+    }, []);
+    useEffect(() => {
+        if (visible) {
+            refPopover.current?.removeEventListener(
+                'animationend',
+                clearClassNames,
+            );
+        } else {
+            refPopover.current?.addEventListener(
+                'animationend',
+                clearClassNames,
+            );
+        }
+    }, [visible]);
+
+    // toggle the classNames of hidden and visible
     useEffect(() => {
         if (visible) {
             addClassName('active');
-            
+
             if (trigger === 'click') {
                 // js cannot focus an element that is not visible in the DOM, so wait milliseconds
                 setTimeout(() => refPopover.current?.focus());
             }
         } else {
-            removeClassName('active');
+            if (hasClassName('active')) {
+                addClassName('hidden');
+            }
         }
     }, [visible]);
 
