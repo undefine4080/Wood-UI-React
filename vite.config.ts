@@ -15,7 +15,7 @@ export default defineConfig( {
       '@base': resolve( __dirname, 'src/base/' ),
       '@style': resolve( __dirname, 'src/base/styles/' ),
       '@component': resolve( __dirname, 'src/components/' ),
-      '@intro': resolve( __dirname, 'src/introFragments' ),
+      '@doc': resolve( __dirname, 'src/doc' ),
       '@util': resolve( __dirname, 'src/utils.ts' ),
     }
   },

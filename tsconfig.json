@@ -31,8 +31,8 @@
 			"@component/*": [
 				"components/*"
 			],
-			"@intro/*": [
-				"introFragments/*"
+			"@doc/*": [
+				"doc/*"
 			]
 		}
 	},
