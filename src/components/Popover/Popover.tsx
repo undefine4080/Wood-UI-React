@@ -31,8 +31,7 @@ function Popover(props: propsPopover) {
         throw new Error('Popover can only accept one child');
     }
 
-    const randomId = uuid(8);
-    const popoverId = `wdu-popover-${randomId}`;
+    const popoverId = useRef(`wdu-popover-${uuid(8)}`);
     const [visible, setVisible] = useState(active);
     const refPopover = useRef<HTMLDivElement>(null);
     const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
@@ -55,22 +54,26 @@ function Popover(props: propsPopover) {
         useCssClassManager(classMap);
 
     /**get the dom node of the element wrapped by Popover */
-    const findPopoverTarget = () => {
+    const findPopoverTarget = (id: string) => {
         let isFind = false;
+        let query: number;
         const findTarget = () => {
-            const target = document.querySelector('.' + popoverId);
-            if (target) {
-                isFind = true;
-                setRefPopoverTarget(target);
-                return;
+            if (isFind) {
+                window.cancelAnimationFrame(query);
             } else {
-                window.requestAnimationFrame(findTarget);
+                const target = document.querySelector(`.${id}`);
+                if (target) {
+                    isFind = true;
+                    setRefPopoverTarget(target);
+                } else {
+                    query = window.requestAnimationFrame(findTarget);
+                }
             }
         };
-        window.requestAnimationFrame(findTarget);
+        query = window.requestAnimationFrame(findTarget);
     };
     useEffect(() => {
-        findPopoverTarget();
+        findPopoverTarget(popoverId.current);
     }, []);
 
     // add active eventlistener to popover
@@ -164,9 +167,15 @@ function Popover(props: propsPopover) {
         }
     }, [visible]);
 
+    const exitChildClassName = children.props.className
+        ? children.props.className.trim()
+        : '';
+
     return (
         <>
-            {cloneElement(children, { className: popoverId })}
+            {cloneElement(children, {
+                className: `${exitChildClassName} ${popoverId.current}`,
+            })}
             {createPopoverContent()}
         </>
     );
