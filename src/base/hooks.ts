@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Ref, RefObject, useEffect, useRef, useState } from 'react';
 interface cssClass {
     base: string;
     [key: string]: string;
@@ -118,6 +118,30 @@ function useElementDisplay(target: any, visible: Function, hidden: Function) {
             observer.disconnect();
         };
     }, []);
+}
+
+function useComponentBlur(componentRef: RefObject<Element>, isFocus: boolean) {
+    const handle = (e: any) => {
+        if(e.target !== componentRef.current){
+            console.log('点击了组件外面');
+        }else{
+            
+        }
+    };
+
+    useEffect(() => {
+        if (isFocus) {
+            if (componentRef.current) {
+                window.addEventListener('click', handle);
+            }
+        } else {
+            window.removeEventListener('click', handle);
+        }
+
+        return () => {
+            window.removeEventListener('click', handle);
+        };
+    }, [isFocus]);
 }
 
 export { useCssClassManager, useLazyLoad, useElementDisplay };

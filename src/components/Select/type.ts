@@ -7,7 +7,6 @@ interface propsOption extends commonProps {
 
 interface propsSelect extends commonProps {
     label?: string;
-    name: string;
     form?: string;
     value?: string | number;
     trigger?: 'hover' | 'click';
@@ -18,8 +17,8 @@ interface propsSelect extends commonProps {
 }
 
 interface selectedValue {
-    value: string;
-    label: string;
+    value: string | number;
+    label: string | number;
 }
 
 export type { propsOption, propsSelect, selectedValue };

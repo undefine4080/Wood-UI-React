@@ -13,7 +13,6 @@ import { usePopoverPosition } from './hooks';
 import { uuid } from '@base/utils';
 
 import './popover.less';
-import { vi } from 'vitest';
 
 const T = 'wdu-popover';
 
@@ -25,6 +24,7 @@ function Popover(props: propsPopover) {
         trigger = 'hover',
         active = false,
         content,
+        onChange,
     } = props;
 
     // popover can only accept one child
@@ -36,11 +36,6 @@ function Popover(props: propsPopover) {
     const [visible, setVisible] = useState(active);
     const refPopover = useRef<HTMLDivElement>(null);
     const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
-
-    // sync the props.active to visible
-    useEffect(() => {
-        setVisible(active);
-    }, [active]);
 
     const classMap = {
         base: `${T} ${T}__${position} ${className ?? ''}`,
@@ -84,13 +79,19 @@ function Popover(props: propsPopover) {
     }, []);
 
     // add active eventlistener to popover
-    const togglePopover = () => setVisible((prev) => !prev);
+    const togglePopover = () => {
+        if (visible) {
+            setVisible(false);
+        } else {
+            setVisible(true);
+        }
+    };
     const openPopover = () => setVisible(true);
     const closePopover = () => setVisible(false);
     const addPopoverTargetEvents = () => {
         if (refPopoverTarget) {
             if (trigger === 'click') {
-                refPopoverTarget.addEventListener('click', togglePopover);
+                refPopoverTarget.addEventListener('focus', togglePopover);
             } else if (trigger === 'hover') {
                 refPopoverTarget.addEventListener('mouseenter', openPopover);
                 refPopoverTarget.addEventListener('mouseleave', closePopover);
@@ -172,6 +173,14 @@ function Popover(props: propsPopover) {
                 addClassName('hidden');
             }
         }
+    }, [visible]);
+
+    // sync the props.active to visible
+    useEffect(() => {
+        setVisible(active);
+    }, [active]);
+    useEffect(() => {
+        onChange && onChange(visible);
     }, [visible]);
 
     // mixin the classNames of the child component

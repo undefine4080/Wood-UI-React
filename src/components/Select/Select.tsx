@@ -58,10 +58,9 @@ function Select(props: propsSelect) {
                 (item: any) => item.props.value === value,
             );
             if (selectedValue) {
-                setSelected({
-                    value: selectedValue.props.value,
-                    label: selectedValue.props.label,
-                });
+                const { value, label } = selectedValue.props;
+                refSelect.current.value = label;
+                onSelect && onSelect({ value, label });
             } else {
                 console.warn(
                     'the value you set which is not exist, please checkout it again',
@@ -70,7 +69,7 @@ function Select(props: propsSelect) {
         }
     }, []);
 
-    const handleSelect = useCallback((e: any) => {
+    const handleSelect = (e: any) => {
         const value = e.nativeEvent.target.dataset.value;
         const label = e.target.innerText;
 
@@ -82,7 +81,7 @@ function Select(props: propsSelect) {
 
         // close popover
         setOptionsActive(false);
-    }, []);
+    };
 
     const options = (
         <ul className={`wdu-select__options`} onClick={handleSelect}>
@@ -93,15 +92,23 @@ function Select(props: propsSelect) {
     return (
         <Popover
             active={optionsActive}
+            onChange={(isOpen: boolean) => setOptionsActive(isOpen)}
             trigger={trigger}
             position='bottom'
             className='wdu-select-popover'
             content={options}>
-            <input
-                ref={refSelect}
-                className={`wdu-select ${className || ''}`}
-                placeholder={placeholder}
-                onClick={() => setOptionsActive(!optionsActive)}></input>
+            <div
+                className={`wdu-select ${className || ''} ${
+                    disabled && 'wdu-select__disabled'
+                } ${optionsActive && 'wdu-select__active'}`}>
+                <input
+                    ref={refSelect}
+                    className='wdu-select__input'
+                    placeholder={placeholder}
+                    onClick={() => setOptionsActive(!optionsActive)}
+                    disabled={disabled}></input>
+                <Arrow style={optionsActive ? 'top' : 'bottom'} />
+            </div>
         </Popover>
     );
 }

@@ -4,6 +4,7 @@ interface popoverEvents {
     onAfterClosed?: () => any;
     onOpened?: () => any;
     onClosed?: () => any;
+    onChange?: (isActive: boolean) => any;
 }
 
 interface activeType {
