@@ -1,21 +1,10 @@
-import React, {
-    ReactElement,
-    useCallback,
-    useContext,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import React, { cloneElement, useEffect, useRef, useState } from 'react';
 import { propsOption, propsSelect, selectedValue } from './type';
 import Popover from '@component/Popover/Popover';
 import { getNamedChild } from '@base/utils';
 import Arrow from '@base/icon/Arrow/Arrow';
 
 import './select.less';
-
-const optionHeight = '36px';
-const SelectContext = React.createContext({ value: '', label: '' });
-const Provider = SelectContext.Provider;
 
 function Option(props: propsOption) {
     const { value, label } = props;
@@ -38,6 +27,7 @@ function Select(props: propsSelect) {
         disabled = false,
         prepend,
         append,
+        size,
         className,
         trigger = 'click',
     } = props;
@@ -89,6 +79,26 @@ function Select(props: propsSelect) {
         </ul>
     );
 
+    const prependContent = () => {
+        if (prepend) {
+            return (
+                <div className='wdu-select__prepend'>
+                    {cloneElement(prepend, {
+                        className: 'wdu-select__prependItem',
+                    })}
+                </div>
+            );
+        } else if (label) {
+            return <div className='wdu-select__label'>{label}</div>;
+        } else {
+            return null;
+        }
+    };
+
+    const classList = `wdu-select ${className || ''} ${
+        disabled && 'wdu-select__disabled'
+    } ${optionsActive && 'wdu-select__active'} wdu-select__${size}`;
+
     return (
         <Popover
             active={optionsActive}
@@ -97,17 +107,26 @@ function Select(props: propsSelect) {
             position='bottom'
             className='wdu-select-popover'
             content={options}>
-            <div
-                className={`wdu-select ${className || ''} ${
-                    disabled && 'wdu-select__disabled'
-                } ${optionsActive && 'wdu-select__active'}`}>
-                <input
-                    ref={refSelect}
-                    className='wdu-select__input'
-                    placeholder={placeholder}
-                    onClick={() => setOptionsActive(!optionsActive)}
-                    disabled={disabled}></input>
-                <Arrow style={optionsActive ? 'top' : 'bottom'} />
+            <div className={classList}>
+                {prependContent()}
+
+                <div className='wdu-select__main'>
+                    <input
+                        ref={refSelect}
+                        className='wdu-select__input'
+                        placeholder={placeholder}
+                        onClick={() => setOptionsActive(!optionsActive)}
+                        disabled={disabled}></input>
+                    <Arrow style={optionsActive ? 'top' : 'bottom'} />
+                </div>
+
+                {append && (
+                    <div className='wdu-select__append'>
+                        {cloneElement(append, {
+                            className: 'wdu-select__appendItem',
+                        })}
+                    </div>
+                )}
             </div>
         </Popover>
     );

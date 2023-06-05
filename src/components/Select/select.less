@@ -3,13 +3,16 @@
 .wdu-select {
     .out-shadow-light();
     .wdu-border-light();
+    .wdu-row-flex();
     border-radius: 8px;
     overflow: hidden;
     position: relative;
+    width: max-content;
+    height: max-content;
 
     &__input {
-        width: 160px;
-        height: 40px;
+        width: 180px;
+        height: 35px;
         box-sizing: border-box;
         padding: 10px;
         border: 0;
@@ -35,7 +38,7 @@
         margin: 0;
         padding: 0;
         width: max-content;
-        min-width: 160px;
+        min-width: 180px;
     }
 
     &__options {
@@ -60,69 +63,50 @@
         right: 0;
         top: calc(50% - 8px);
     }
+
+    &__large {
+        .wdu-select__input {
+            height: 40px;
+        }
+    }
+
+    &__small {
+        .wdu-select__input {
+            height: 30px;
+        }
+    }
+
+    &__main {
+        position: relative;
+    }
+
+    &__label {
+        .wdu-bg-plain();
+        .wdu-text-normal();
+        .wdu-center();
+        padding: 0 12px;
+        border-radius: 8px 0 0 8px;
+    }
+
+    &__prepend {
+        .wdu-text-normal();
+        .wdu-center();
+        border-radius: 8px 0 0 8px;
+    }
+
+    &__append {
+        .wdu-bg-plain();
+        .wdu-text-normal();
+        .wdu-center();
+    }
+
+    &__appendItem {
+        border: none;
+        border-radius: 0;
+    }
+
+    &__prependItem {
+        border: none;
+        border-radius: 0;
+    }
 }
-
-// .wdu-select-label {
-//     line-height: @height;
-//     padding: 0 8px;
-//     border-radius: 5px 0 0 5px;
-//     .wdu-bg-plain();
-//     .wdu-text-normal();
-//     .wdu-border-light();
-//     border-right: none;
-// }
-
-// .wdu-select__disabled {
-//     .wdu-disabled();
-
-//     .wdu-select-option {
-//         .wdu-disabled();
-//     }
-// }
-
-// .wdu-select-option {
-//     height: @height;
-//     list-style: none;
-//     line-height: @height;
-//     padding: 0 15px;
-//     background-color: white;
-//     position: relative;
-//     text-align: left;
-//     cursor: pointer;
-//     .wdu-transition-quick();
-//     .wdu-text-normal();
-//     border-bottom: 1px solid rgb(229, 229, 229);
-
-//     &:first-child {
-//         background-color: white;
-
-//         &:hover {
-//             background-color: white;
-//         }
-//     }
-
-//     &:hover {
-//         background-color: rgb(229, 229, 229);
-//     }
-
-//     &__selected {
-//         &::after {
-//             content: '';
-//             display: inline-block;
-//             width: 10px;
-//             height: 10px;
-//             border-radius: 50%;
-//             position: absolute;
-//             right: 12px;
-//             top: calc(50% - 5px);
-//             .out-shadow-light();
-//             .wdu-bg-important();
-//         }
-//     }
-
-//     i {
-//         position: absolute;
-//         right: 0px;
-//         top: calc(50% - 5px);
-//     }
-// }

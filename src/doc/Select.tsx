@@ -1,5 +1,30 @@
+import Button from '@component/Button/Button';
 import { IntroComponent } from '../base/components/IntroComponent';
 import { Select, Option } from '../components/Select/Select';
+import Tag from '@component/Tag/Tag';
+
+const options = [
+    {
+        label: 'option-1',
+        value: 'option-1',
+    },
+    {
+        label: 'option-2',
+        value: 'option-2',
+    },
+    {
+        label: 'option-3',
+        value: 'option-3',
+    },
+    {
+        label: 'option-4',
+        value: 'option-4',
+    },
+    {
+        label: 'option-5',
+        value: 'option-5',
+    },
+];
 
 export default function () {
     const props = {
@@ -7,61 +32,197 @@ export default function () {
         position: 'select',
         components: [
             {
+                title: '基础用法',
+                component: (
+                    <Select placeholder='请选择一项'>
+                        {options.map(({ label, value }) => (
+                            <Option label={label} value={value} key={value} />
+                        ))}
+                    </Select>
+                ),
+                code: `
+const options = [
+    {
+        label: 'option-1',
+        value: 'option-1',
+    },
+    {
+        label: 'option-2',
+        value: 'option-2',
+    },
+    {
+        label: 'option-3',
+        value: 'option-3',
+    },
+    {
+        label: 'option-4',
+        value: 'option-4',
+    },
+    {
+        label: 'option-5',
+        value: 'option-5',
+    },
+];
+
+<Select placeholder='请选择一项'>
+    {options.map(({ label, value }) => (
+        <Option label={label} value={value} key={value} />
+    ))}
+</Select>`,
+            },
+            {
+                title: '不同尺寸',
+                info: '通过 size 来制定不同尺寸的 Select',
                 component: (
                     <>
-                        <Select value='haikou' placeholder='请选择一个城市'>
-                            <Option label='北京' value='beijing' />
-                            <Option label='上海' value='shanghai' />
-                            <Option label='南宁' value='nanning' />
-                            <Option label='兰州' value='lanzhou' />
-                            <Option label='海口' value='haikou' />
+                        <Select placeholder='请选择一项' size='large'>
+                            {options.map(({ label, value }) => (
+                                <Option
+                                    label={label}
+                                    value={value}
+                                    key={value}
+                                />
+                            ))}
                         </Select>
 
-                        <Select
-                            label='国家'
-                            value='China'
-                            placeholder='请选择一个城市'>
-                            <Option label='中国' value='China' />
-                            <Option label='俄罗斯' value='Russia' />
-                            <Option label='巴西' value='Brazil' />
-                            <Option label='印度' value='Indian' />
-                            <Option label='美国' value='American' />
+                        <Select placeholder='请选择一项' size='normal'>
+                            {options.map(({ label, value }) => (
+                                <Option
+                                    label={label}
+                                    value={value}
+                                    key={value}
+                                />
+                            ))}
                         </Select>
 
-                        <Select
-                            label='颜色'
-                            disabled
-                            placeholder='请选择一个颜色'>
-                            <Option label='红色' value='red' />
-                            <Option label='绿色' value='green' />
-                            <Option label='黑色' value='black' />
-                            <Option label='蓝色' value='blue' />
+                        <Select placeholder='请选择一项' size='small'>
+                            {options.map(({ label, value }) => (
+                                <Option
+                                    label={label}
+                                    value={value}
+                                    key={value}
+                                />
+                            ))}
                         </Select>
                     </>
                 ),
                 code: `
-<Select name="survey" label="城市" placeholder="请选择一个城市">
-    <Option label="北京" value="beijing" />
-    <Option label="上海" value="shanghai" />
-    <Option label="南宁" value="nanning" />
-    <Option label="兰州" value="lanzhou" />
-    <Option label="海口" value="haikou" />
+<Select placeholder='请选择一项' size='large'>
+    {options.map(({ label, value }) => (
+        <Option
+            label={label}
+            value={value}
+            key={value}
+        />
+    ))}
+</Select>
+<Select placeholder='请选择一项' size='normal'>
+    {options.map(({ label, value }) => (
+        <Option
+            label={label}
+            value={value}
+            key={value}
+        />
+    ))}
+</Select>
+<Select placeholder='请选择一项' size='small'>
+    {options.map(({ label, value }) => (
+        <Option
+            label={label}
+            value={value}
+            key={value}
+        />
+    ))}
+</Select>
+`,
+            },
+            {
+                title: '前缀与后缀内容',
+                component: [
+                    {
+                        title: '如果只需要设置标签文字则可以使用 label ，否则可以使用 prepend ，后者会覆盖前者',
+                        item: (
+                            <Select label='选项' placeholder='请选择一项'>
+                                {options.map(({ label, value }) => (
+                                    <Option
+                                        label={label}
+                                        value={value}
+                                        key={value}
+                                    />
+                                ))}
+                            </Select>
+                        ),
+                    },
+                    {
+                        title: '通过 append 设置后置内容',
+                        item: (
+                            <Select
+                                append={<Button type='important'>搜索</Button>}
+                                placeholder='请选择一项'>
+                                {options.map(({ label, value }) => (
+                                    <Option
+                                        label={label}
+                                        value={value}
+                                        key={value}
+                                    />
+                                ))}
+                            </Select>
+                        ),
+                    },
+                    {
+                        title: '前后同时设置内容',
+                        item: (
+                            <Select
+                                prepend={<Button>HTTPS://</Button>}
+                                append={<Button type='important'>搜索</Button>}
+                                placeholder='请选择一项'>
+                                {options.map(({ label, value }) => (
+                                    <Option
+                                        label={label}
+                                        value={value}
+                                        key={value}
+                                    />
+                                ))}
+                            </Select>
+                        ),
+                    },
+                ],
+                code: `
+<Select label='选项' placeholder='请选择一项'>
+    {options.map(({ label, value }) => (
+        <Option
+            label={label}
+            value={value}
+            key={value}
+        />
+    ))}
 </Select>
 
-<Select name="survey" label="国家" value="China">
-    <Option label="中国" value="China" />
-    <Option label="俄罗斯" value="Russia" />
-    <Option label="巴西" value="Brazil" />
-    <Option label="印度" value="Indian" />
-    <Option label="美国" value="American" />
+<Select
+    append={<Button type='important'>搜索</Button>}
+    placeholder='请选择一项'>
+    {options.map(({ label, value }) => (
+        <Option
+            label={label}
+            value={value}
+            key={value}
+        />
+    ))}
 </Select>
 
-<Select name="survey" label="颜色" >
-    <Option label="红色" value="red" />
-    <Option label="绿色" value="green" />
-    <Option label="黑色" value="black" />
-    <Option label="蓝色" value="blue" />
-</Select>`,
+<Select
+    prepend={<Button>HTTPS://</Button>}
+    append={<Button type='important'>搜索</Button>}
+    placeholder='请选择一项'>
+    {options.map(({ label, value }) => (
+        <Option
+            label={label}
+            value={value}
+            key={value}
+        />
+    ))}
+</Select>
+`,
             },
         ],
     };

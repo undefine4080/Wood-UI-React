@@ -12,12 +12,12 @@ export default function () {
                 component: (
                     <Container >
                         <Aside side="left" >
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100px', height: '200px', backgroundColor: '#a0a0a0' }}>Aside</div>
                         </Aside>
 
                         <Main>
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100%', height: '100%', backgroundColor: '#5d75b8' }}>Main</div>
                         </Main>
                     </Container >
@@ -25,12 +25,12 @@ export default function () {
                 code: `
 <Container >
     <Aside side="left" >
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100px', height: '200px', 
             backgroundColor: '#a0a0a0' }}>Aside</div>
     </Aside>
     <Main>
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100%', height: '100%', 
             backgroundColor: '#5d75b8' }}>Main</div>
     </Main>
@@ -42,27 +42,27 @@ export default function () {
                 component: (
                     <Container>
                         <Header>
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100%', height: '60px', backgroundColor: '#cfcfcf' }}>Header</div>
                         </Header>
 
                         <Aside side="left">
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100px', height: '200px', backgroundColor: '#a0a0a0' }}>Aside Left</div>
                         </Aside>
 
                         <Aside side="right">
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100px', height: '200px', backgroundColor: '#a0a0a0' }}>Aside Right</div>
                         </Aside>
 
                         <Main>
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100%', height: '100%', backgroundColor: '#5d75b8' }}>Main</div>
                         </Main>
 
                         <Footer>
-                            <div className="wdu-row-both-center"
+                            <div className="wdu-center"
                                 style={{ width: '100%', height: '60px', backgroundColor: '#cfcfcf' }}>Footer</div>
                         </Footer>
                     </Container >
@@ -70,27 +70,27 @@ export default function () {
                 code: `
 <Container>
     <Header>
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100%', height: '60px', 
             backgroundColor: '#cfcfcf' }}>Header</div>
     </Header>
     <Aside side="left">
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100px', height: '200px', 
             backgroundColor: '#a0a0a0' }}>Aside Left</div>
     </Aside>
     <Aside side="right">
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100px', height: '200px', 
             backgroundColor: '#a0a0a0' }}>Aside Right</div>
     </Aside>
     <Main>
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100%', height: '100%', 
             backgroundColor: '#5d75b8' }}>Main</div>
     </Main>
     <Footer>
-        <div className="wdu-row-both-center"
+        <div className="wdu-center"
             style={{ width: '100%', height: '60px', 
             backgroundColor: '#cfcfcf' }}>Footer</div>
     </Footer>

@@ -17,14 +17,27 @@ function IntroComponentItem(props: any) {
                 <h2>{title}</h2>
             </header>
 
-            <p
-                className='wdu-text-paragraph'
-                style={{ textIndent: '20px', padding: '10px' }}>
-                {info}
-            </p>
+            {info && (
+                <p
+                    className='wdu-text-paragraph'
+                    style={{ textIndent: '20px', padding: '10px' }}>
+                    {info}
+                </p>
+            )}
 
             <section className='intro__main' style={style}>
-                {component}
+                {Array.isArray(component)
+                    ? component.map((item) => {
+                          return (
+                              <div className='intro__main-sub'>
+                                  <p className='wdu-text-paragraph'>
+                                      {item.title}
+                                  </p>
+                                  {item.item}
+                              </div>
+                          );
+                      })
+                    : component}
             </section>
 
             <section className='intro__code'>
