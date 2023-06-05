@@ -13,6 +13,7 @@ import { usePopoverPosition } from './hooks';
 import { uuid } from '@base/utils';
 
 import './popover.less';
+import { vi } from 'vitest';
 
 const T = 'wdu-popover';
 
@@ -36,14 +37,10 @@ function Popover(props: propsPopover) {
     const refPopover = useRef<HTMLDivElement>(null);
     const [refPopoverTarget, setRefPopoverTarget] = useState<Element>();
 
-    usePopoverPosition(
-        refPopoverTarget,
-        refPopover,
-        visible,
-        position,
-        trigger,
-        setVisible,
-    );
+    // sync the props.active to visible
+    useEffect(() => {
+        setVisible(active);
+    }, [active]);
 
     const classMap = {
         base: `${T} ${T}__${position} ${className ?? ''}`,
@@ -52,6 +49,16 @@ function Popover(props: propsPopover) {
     };
     const { classList, removeClassName, addClassName, hasClassName } =
         useCssClassManager(classMap);
+
+    // set the position of popover
+    usePopoverPosition(
+        refPopoverTarget,
+        refPopover,
+        visible,
+        position,
+        trigger,
+        setVisible,
+    );
 
     /**get the dom node of the element wrapped by Popover */
     const findPopoverTarget = (id: string) => {
@@ -80,7 +87,7 @@ function Popover(props: propsPopover) {
     const togglePopover = () => setVisible((prev) => !prev);
     const openPopover = () => setVisible(true);
     const closePopover = () => setVisible(false);
-    const handlePopoverActive = () => {
+    const addPopoverTargetEvents = () => {
         if (refPopoverTarget) {
             if (trigger === 'click') {
                 refPopoverTarget.addEventListener('click', togglePopover);
@@ -91,7 +98,7 @@ function Popover(props: propsPopover) {
         }
     };
     useEffect(() => {
-        handlePopoverActive();
+        addPopoverTargetEvents();
     }, [refPopoverTarget]);
 
     const createPopoverContent = () => {
@@ -167,6 +174,7 @@ function Popover(props: propsPopover) {
         }
     }, [visible]);
 
+    // mixin the classNames of the child component
     const exitChildClassName = children.props.className
         ? children.props.className.trim()
         : '';

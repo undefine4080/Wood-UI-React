@@ -1,98 +1,113 @@
-@import (reference) "@base/styles/main.less";
+@import (reference) '@base/styles/main.less';
 
 @height: 36px;
 
-.wdu-select-container {
-    display: flex;
-    height: @height + 2;
-    position: relative;
-    z-index: 9999;
-    width: max-content;
-    margin: 10px;
-    min-width: 150px;
-    .wdu-radius-small();
-}
-
-.wdu-select-label {
-    line-height: @height;
-    padding: 0 8px;
-    border-radius: 5px 0 0 5px;
-    .wdu-bg-plain();
-    .wdu-text-normal();
-    .wdu-border-light();
-    border-right: none;
-}
+// .wdu-select-container {
+//     display: flex;
+//     height: @height + 2;
+//     position: relative;
+//     z-index: 9999;
+//     width: max-content;
+//     margin: 10px;
+//     min-width: 150px;
+//     .wdu-radius-small();
+// }
 
 .wdu-select {
+    width: 160px;
+    height: 40px;
     overflow: hidden;
-    transition: height 0.2s ease-out;
-    padding: 0;
-    margin: 0;
-    border-radius: 0 5px 5px 0;
-    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 8px;
     .out-shadow-light();
     .wdu-border-light();
 
-    &__noLabel {
-        border-radius: 5px;
+    &-popover {
+        margin: 0;
+        padding: 0;
+        width: 160px;
     }
 
-    &__placeholder {
-        color: rgb(192, 192, 192);
+    &__options {
+        padding: 0;
     }
-}
 
-.wdu-select__disabled {
-    .wdu-disabled();
-
-    .wdu-select-option {
-        .wdu-disabled();
-    }
-}
-
-.wdu-select-option {
-    height: @height;
-    list-style: none;
-    line-height: @height;
-    padding: 0 15px;
-    background-color: white;
-    position: relative;
-    text-align: left;
-    cursor: pointer;
-    .wdu-transition-quick();
-    .wdu-text-normal();
-    border-bottom: 1px solid rgb(229, 229, 229);
-
-    &:first-child {
-        background-color: white;
+    &__option {
+        list-style: none;
+        height: 20px;
+        padding: 8px;
+        text-indent: 15px;
+        cursor: pointer;
 
         &:hover {
-            background-color: white;
-        }
-    }
-
-    &:hover {
-        background-color: rgb(229, 229, 229);
-    }
-
-    &__selected {
-        &::after {
-            content: '';
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            position: absolute;
-            right: 12px;
-            top: calc(50% - 5px);
-            .out-shadow-light();
             .wdu-bg-important();
+            color: white;
         }
-    }
-
-    i {
-        position: absolute;
-        right: 0px;
-        top: calc(50% - 5px);
     }
 }
+
+// .wdu-select-label {
+//     line-height: @height;
+//     padding: 0 8px;
+//     border-radius: 5px 0 0 5px;
+//     .wdu-bg-plain();
+//     .wdu-text-normal();
+//     .wdu-border-light();
+//     border-right: none;
+// }
+
+// .wdu-select__disabled {
+//     .wdu-disabled();
+
+//     .wdu-select-option {
+//         .wdu-disabled();
+//     }
+// }
+
+// .wdu-select-option {
+//     height: @height;
+//     list-style: none;
+//     line-height: @height;
+//     padding: 0 15px;
+//     background-color: white;
+//     position: relative;
+//     text-align: left;
+//     cursor: pointer;
+//     .wdu-transition-quick();
+//     .wdu-text-normal();
+//     border-bottom: 1px solid rgb(229, 229, 229);
+
+//     &:first-child {
+//         background-color: white;
+
+//         &:hover {
+//             background-color: white;
+//         }
+//     }
+
+//     &:hover {
+//         background-color: rgb(229, 229, 229);
+//     }
+
+//     &__selected {
+//         &::after {
+//             content: '';
+//             display: inline-block;
+//             width: 10px;
+//             height: 10px;
+//             border-radius: 50%;
+//             position: absolute;
+//             right: 12px;
+//             top: calc(50% - 5px);
+//             .out-shadow-light();
+//             .wdu-bg-important();
+//         }
+//     }
+
+//     i {
+//         position: absolute;
+//         right: 0px;
+//         top: calc(50% - 5px);
+//     }
+// }
