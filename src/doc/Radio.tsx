@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/components/IntroComponent";
+import { IntroComponent } from "@doc/IntroComponent";
 import Radio from "@component/Radio/Radio";
 
 export default function () {

@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { NavContext, NavMenuItem } from './NavMenu';
 import { internalPropsSubNavMenu, propsSubNavMenu } from './type';
-import { bindImplicitProps } from '@base/utils';
+import { bindImplicitProps } from '@common/utils';
 
 const ITEM_HEIGHT = 50;
 const NEST_ITEM_INDENT = 20;

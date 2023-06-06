@@ -1,5 +1,5 @@
-import { IntroComponent } from '@base/components/IntroComponent';
-import { docItem } from '@base/types/commonInterface';
+import { IntroComponent } from '@doc/IntroComponent';
+import { docItem } from 'types/commonInterface';
 import { NavMenu, NavMenuItem, SubNavMenu } from '@component/NavMenu/NavMenu';
 import { Link } from 'react-router-dom';
 

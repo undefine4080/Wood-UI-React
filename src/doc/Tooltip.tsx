@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/components/IntroComponent";
+import { IntroComponent } from "@doc/IntroComponent";
 import Button from "@component/Button/Button";
 import Tooltip from "@component/Tooltip/Tooltip";
 

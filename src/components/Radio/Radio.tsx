@@ -1,4 +1,4 @@
-import commonProps from "@base/types/commonInterface";
+import commonProps from "types/commonInterface";
 import './radio.less';
 
 interface propsRadio extends commonProps {

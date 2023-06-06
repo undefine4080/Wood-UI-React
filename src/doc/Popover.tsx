@@ -1,6 +1,6 @@
-import { IntroComponent } from '../base/components/IntroComponent';
+import { IntroComponent } from './IntroComponent';
 import Popover from '@component/Popover/Popover';
-import { propsIntroComponent } from '@base/types/commonInterface';
+import { propsIntroComponent } from 'types/commonInterface';
 import Button from '@component/Button/Button';
 import { Table, TableColumn } from '@component/Table/Table';
 

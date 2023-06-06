@@ -22,18 +22,21 @@
 		"jsx": "react-jsx",
 		"baseUrl": "./src",
 		"paths": {
-			"@base/*": [
-				"base/*"
+			"@common/*": [
+				"common/*"
 			],
-			"@util": [
-				"utils.ts"
+			"@style/*": [
+				"styles/*"
 			],
 			"@component/*": [
 				"components/*"
 			],
 			"@doc/*": [
 				"doc/*"
-			]
+			],
+			"@icon/*": [
+				"icon/*"
+			],
 		}
 	},
 	"include": [

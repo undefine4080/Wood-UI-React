@@ -1,5 +1,5 @@
 import Button from '@component/Button/Button';
-import { IntroComponent } from '../base/components/IntroComponent';
+import { IntroComponent } from './IntroComponent';
 import { Select, Option } from '../components/Select/Select';
 import Tag from '@component/Tag/Tag';
 

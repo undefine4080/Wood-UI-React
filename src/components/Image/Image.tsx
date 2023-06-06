@@ -1,8 +1,8 @@
-import { propsImage } from "./type";
 import { useRef, useState } from "react";
+import { propsImage } from "./type";
+import { useLazyLoad } from "@common/hooks";
 
 import './image.less';
-import { useLazyLoad } from "@base/hooks";
 
 function Image ( props: propsImage ) {
     const { width = 500, src, info, shadow = false, border = false, link, lazy = false } = props;

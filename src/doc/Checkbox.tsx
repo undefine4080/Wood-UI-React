@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/components/IntroComponent";
+import { IntroComponent } from "./IntroComponent";
 import Checkbox from '../components/Checkbox/Checkbox';
 
 export default function () {

@@ -1,4 +1,4 @@
-import { IntroComponent } from '../base/components/IntroComponent';
+import { IntroComponent } from './IntroComponent';
 import { Table, TableColumn } from '../components/Table/Table';
 import Tag from '@component/Tag/Tag';
 

@@ -1,4 +1,4 @@
-import commonProps from '@base/types/commonInterface';
+import commonProps from 'types/commonInterface';
 
 interface propsOption extends commonProps {
     label: string;

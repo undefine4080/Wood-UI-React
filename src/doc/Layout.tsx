@@ -1,4 +1,4 @@
-import { IntroComponent } from "@base/components/IntroComponent";
+import { IntroComponent } from "@doc/IntroComponent";
 import { Container, Aside, Main, Header, Footer, Row, Col } from "@component/Layout/Layout";
 
 export default function () {
