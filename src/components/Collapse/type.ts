@@ -1,4 +1,4 @@
-import commonProps from "@base/types/commonInterface";
+import commonProps from "types/commonInterface";
 
 interface propsCollapse extends commonProps {
     sticky?: boolean; // 是否 fixed 布局

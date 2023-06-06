@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { propsNavMenu, NavMenuContext } from './type';
-import { bindImplicitProps } from '@base/utils';
+import { bindImplicitProps } from '@common/utils';
 import NavMenuItem from './NavMenuItem';
 import SubNavMenu from './SubNavMenu';
 

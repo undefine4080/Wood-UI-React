@@ -1,7 +1,7 @@
 import React, { ReactNode, Ref, useEffect, useRef, useState } from "react";
-import { useCssClassManager } from "@base/hooks";
+import { useCssClassManager } from "@common/hooks";
 import { propsCarousel } from "./type";
-import { throttle } from "../../base/utils";
+import { throttle } from "@common/utils";
 
 function useController ( total: number ) {
     const [ current, setCurrent ] = useState( 1 );

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { propsCarousel } from "./type";
-import { getNamedChild } from "../../base/utils";
+import { getNamedChild } from "@common/utils";
 import { useController, useTimer, useLoopPlay, useSwitchVisible, paginationView } from "./hooks";
 
 import './style.less';
-import { useElementDisplay } from "@base/hooks";
+import { useElementDisplay } from "@common/hooks";
 
 const carouselContext = React.createContext<any>( {} );
 const Provider = carouselContext.Provider;

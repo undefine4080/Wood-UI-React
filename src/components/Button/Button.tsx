@@ -1,10 +1,10 @@
 import { useEffect, MouseEvent } from 'react';
 import { propsButton } from './type';
-import Loading from '@base/icon/Loading/Loading';
-import { useCssClassManager } from '@base/hooks';
+import Loading from '@icon/Loading/Loading';
+import { useCssClassManager } from '@common/hooks';
 
 import './button.less';
-import commonProps from '@base/types/commonInterface';
+import commonProps from 'types/commonInterface';
 
 const T = 'wdu-button';
 function Button(props: propsButton) {

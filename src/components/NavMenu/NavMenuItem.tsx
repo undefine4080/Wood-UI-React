@@ -1,4 +1,4 @@
-import Arrow from '@base/icon/Arrow/Arrow';
+import Arrow from '@icon/Arrow/Arrow';
 import React, {
     MouseEvent,
     useContext,

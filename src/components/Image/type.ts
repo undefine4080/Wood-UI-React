@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import commonProps from "../../base/types/commonInterface";
+import commonProps from "../../types/commonInterface";
 
 interface propsImage extends commonProps {
     src: string;

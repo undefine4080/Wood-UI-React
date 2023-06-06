@@ -1,5 +1,5 @@
-import { getNamedChild } from '@base/utils';
 import { ReactNode } from 'react';
+import { getNamedChild } from '@common/utils';
 
 function ButtonGroup(props: { children: ReactNode }) {
     const buttonNodes = getNamedChild('Button', props.children);

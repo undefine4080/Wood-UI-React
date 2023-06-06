@@ -1,11 +1,11 @@
 import { useRef } from "react";
-import { IntroComponent } from "@base/components/IntroComponent";
+import { IntroComponent } from "@doc/IntroComponent";
 import Button from "@component/Button/Button";
 import { Form, FormItem } from '@component/Form/Form';
 import Input from "@component/Input/Input";
 import { Row } from "@component/Layout/Layout";
 import { Select, Option } from "@component/Select/Select";
-import { rqData } from "@base/utils";
+import { rqData } from "@common/utils";
 import { validatorRules } from "@component/Form/type";
 import Switch from "@component/Switch/Switch";
 

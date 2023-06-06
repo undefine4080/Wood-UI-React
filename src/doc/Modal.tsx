@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IntroComponent } from "@base/components/IntroComponent";
+import { IntroComponent } from "@doc/IntroComponent";
 import Modal from "@component/Modal/Modal";
 import Button from "@component/Button/Button";
 import { Row } from "@component/Layout/Layout";

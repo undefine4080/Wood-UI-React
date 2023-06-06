@@ -1,5 +1,5 @@
 import { type } from "os";
-import commonProps from "@base/types/commonInterface";
+import commonProps from "types/commonInterface";
 
 interface eventProgress {
   onProgress?: (progress: number) => any;

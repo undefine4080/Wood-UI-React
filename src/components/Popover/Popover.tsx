@@ -8,9 +8,9 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { propsPopover } from './type';
-import { useCssClassManager } from '@base/hooks';
+import { useCssClassManager } from '@common/hooks';
 import { usePopoverPosition } from './hooks';
-import { uuid } from '@base/utils';
+import { uuid } from '@common/utils';
 
 import './popover.less';
 
