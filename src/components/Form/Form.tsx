@@ -1,5 +1,5 @@
 import React, { useRef, useImperativeHandle, useState } from "react";
-import { bindImplicitProps, getNamedChild } from "@base/utils";
+import { bindImplicitProps, getNamedChild } from "@common/utils";
 import { propsForm } from "./type";
 import FormItem from "./FormItem";
 

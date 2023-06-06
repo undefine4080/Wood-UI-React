@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/components/IntroComponent";
+import { IntroComponent } from "./IntroComponent";
 import Tree from '@component/Tree/Tree';
 
 const testData = [

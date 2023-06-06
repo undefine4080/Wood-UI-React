@@ -1,6 +1,6 @@
-import { IntroComponent } from "../base/components/IntroComponent";
+import { IntroComponent } from "./IntroComponent";
 import Pagination from "../components/Pagination/Pagination";
-import { propsIntroComponent } from "@base/types/commonInterface";
+import { propsIntroComponent } from "types/commonInterface";
 
 export default function () {
     const props: propsIntroComponent = {

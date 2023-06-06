@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/components/IntroComponent";
+import { IntroComponent } from "./IntroComponent";
 import Message from "../components/Message/Message";
 import Button from "@component/Button/Button";
 

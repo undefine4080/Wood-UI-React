@@ -1,6 +1,6 @@
 import NavMenuItem from '@component/NavMenu/NavMenuItem';
 import { Link, createHashRouter } from 'react-router-dom';
-import App from './App';
+import App from './doc/App';
 
 import IntroButton from '@doc/Button';
 import IntroLayout from '@doc/Layout';

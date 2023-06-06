@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react';
 import { rowData, propsTable } from './type';
 import { TableColumn } from './TableColumn';
-import { addUnitPx } from '@base/utils';
+import { addUnitPx } from '@common/utils';
 
 import './table.less';
 import { useHeaderMaskWidth } from './hooks';

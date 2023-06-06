@@ -1,6 +1,6 @@
-import { getNamedChild } from "@base/utils";
-import { propsNav, propsNavItem, propsNavMenu } from "./type";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { getNamedChild } from "@common/utils";
+import { propsNav, propsNavItem, propsNavMenu } from "./type";
 
 import './nav.less';
 

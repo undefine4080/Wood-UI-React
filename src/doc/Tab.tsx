@@ -1,4 +1,4 @@
-import { IntroComponent } from "../base/components/IntroComponent";
+import { IntroComponent } from "./IntroComponent";
 import { Tab, TabPane } from "../components/Tab/Tab";
 export default function () {
     const props = {
