@@ -1,6 +1,32 @@
 {
     "name": "wood-ui-react",
-    "version": "0.0.0",
+    "version": "0.0.5",
+    "description": "a ui library build by react and typescript",
+    "author": "ztf",
+    "license": "MIT",
+    "types": "./build/index.d.ts",
+    "keywords": [
+        "react",
+        "typescript",
+        "ui library"
+    ],
+    "homepage": "https://zhengtengfei.gitee.io/wood-ui-react/",
+    "repository": "https://github.com/undefine4080/Wood-UI-React",
+    "files": [
+        "build"
+    ],
+    "module": "./build/wood-ui.es.js",
+    "main": "./build/wood-ui.umd.js",
+    "exports": {
+        ".": {
+            "import": "./build/wood-ui.es.js",
+            "require": "./build/wood-ui.umd.js"
+        },
+        "./style": {
+            "import": "./build/style.css",
+            "require": "./build/style.css"
+        }
+    },
     "scripts": {
         "dev": "vite",
         "clear": "vite --force",
@@ -16,7 +42,8 @@
         "monaco-editor": "^0.34.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.6.1"
+        "react-router-dom": "^6.6.1",
+        "vite-plugin-dts": "^2.3.0"
     },
     "devDependencies": {
         "@types/node": "^18.7.18",
