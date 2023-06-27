@@ -14,7 +14,7 @@ interface internalPropsSubNavMenu extends internalPropsNavMenuItem {}
 
 interface propsNavMenu {
     single?: boolean;
-    children?: any;
+    children?: Array<JSX.Element>;
     className?: string;
 }
 
