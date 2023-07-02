@@ -1,58 +1,61 @@
+@small-size: 18px;
+@normal-size: 20px;
+@large-size: 24px;
 
-@size: 24px;
+@t: wdu-switch;
 
 .wdu-switch {
-    display: flex;
-    flex-wrap: nowrap;
+    background: none;
+    border: none;
+    .wdu-center();
 
     &__label {
-        line-height: @size;
         margin: 0 5px;
-        .wdu-text-small();
+        .wdu-text-normal();
     }
 
     &__main {
-        .inside-shadow-light();
-        width: @size*2;
-        height: @size;
+        display: inline-block;
+        width: @normal-size * 2;
+        height: @normal-size;
         overflow: hidden;
-        border-radius: @size;
-        .wdu-border-light();
+        border-radius: @normal-size;
         cursor: pointer;
+        .inside-shadow-light();
+        .wdu-border-light();
+        .wdu-transition-quick();
     }
 
     &__wrapper {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        width: @size*3;
         position: relative;
-        left: -@size;
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    &__block {
-        width: @size;
-        height: @size;
+        left: -50%;
+        width: 150%;
+        height: 100%;
+        padding: 2px;
+        white-space: nowrap;
         box-sizing: border-box;
+        .wdu-transition-quick();
 
-        @gap: 2px;
-
-        &-trigger {
-            width: (@size - @gap);
-            height: (@size - @gap);
+        &::before {
+            content: '';
+            display: inline-block;
+            width: calc(33.33% - 2px);
+            height: 100%;
+            background-clip: content-box;
             border-radius: 50%;
             position: relative;
-            left: (@gap / 2);
             background-color: white;
             .out-shadow-normal();
         }
     }
 
     &__active {
-        left: 0;
         background-color: #9bc657;
-        .inside-shadow-normal();
+
+        .wdu-switch__wrapper {
+            left: 0;
+            .inside-shadow-normal();
+        }
     }
 
     &__disabled {
@@ -60,12 +63,37 @@
         cursor: not-allowed;
         opacity: 0.7;
 
-        .wdu-switch__block-trigger {
+        .wdu-switch__block-trigger,
+        .wdu-switch__wrapper {
             cursor: not-allowed;
         }
 
         .wdu-switch__active {
             background-color: grey;
+        }
+    }
+
+    &__small {
+        .@{t}__main {
+            width: @small-size * 2;
+            height: @small-size;
+            border-radius: @small-size;
+        }
+    }
+
+    &__normal {
+        .@{t}__main {
+            width: @normal-size * 2;
+            height: @normal-size;
+            border-radius: @normal-size;
+        }
+    }
+
+    &__large {
+        .@{t}__main {
+            width: @large-size * 2;
+            height: @large-size;
+            border-radius: @large-size;
         }
     }
 }

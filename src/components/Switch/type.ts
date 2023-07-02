@@ -1,9 +1,11 @@
+import commonProps from "@common/types";
+
 interface propsSwitch {
     id?: string;
     label?: string;
-    value?: boolean;
-    name?: string;
+    defaultValue?: boolean;
     disabled?: boolean;
+    size?: commonProps['size']
     onChange?: ( value: boolean ) => any;
 }
 
