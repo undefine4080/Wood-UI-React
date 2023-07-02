@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { propsSwitch } from './type';
 
 import './switch.less';
@@ -6,29 +6,46 @@ import './switch.less';
 function Switch(props: propsSwitch) {
     const {
         id,
-        label,
-        defaultValue = false,
-        onChange,
+        activeLabel,
+        inactiveLabel,
+        activeValue = true,
+        inactiveValue = false,
+        defaultValue=false,
         disabled = false,
         size = 'normal',
+        onChange,
     } = props;
 
-    const [state, setState] = useState(defaultValue);
+    const formatSwitchValue = (value: any) => {
+        if (value === activeValue) {
+            return true;
+        } else if (value === inactiveValue) {
+            return false;
+        } else {
+            throw new RangeError('the value of the Switch is illegal');
+        }
+    };
+
+    const [state, setState] = useState(formatSwitchValue(defaultValue));
 
     const handleClick = () => {
         if (disabled) return;
 
-        setState((pre: boolean) => !pre);
+        setState((prev) => !prev);
         onChange && onChange(!state);
     };
 
-    const classList = `wdu-switch ${
+    const classList = `wdu-switch wdu-switch__${size} ${
         disabled ? 'wdu-switch__disabled' : ''
-    } wdu-switch__${size}`;
+    }`;
 
     return (
         <button className={classList}>
-            {label && <span className='wdu-switch__label'>{label}</span>}
+            {inactiveLabel && (
+                <span className='wdu-switch__label wdu-switch__label-inactive'>
+                    {inactiveLabel}
+                </span>
+            )}
 
             <div
                 className={`wdu-switch__main ${
@@ -38,6 +55,12 @@ function Switch(props: propsSwitch) {
                 onClick={handleClick}>
                 <div className='wdu-switch__wrapper'></div>
             </div>
+
+            {activeLabel && (
+                <span className='wdu-switch__label wdu-switch__label-active'>
+                    {activeLabel}
+                </span>
+            )}
         </button>
     );
 }
