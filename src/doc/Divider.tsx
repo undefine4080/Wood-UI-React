@@ -1,32 +1,33 @@
-import { IntroComponent } from "./IntroComponent";
-import Divider from "../components/Divider/Divider";
+import { IntroComponent } from './IntroComponent';
+import Divider from '../components/Divider/Divider';
 
 function IntroDivider() {
-  const props = {
-    title: "Divider 分割线",
-    position: "divider",
-    components: [
-      {
-        title: "水平分割线",
-        component: (
-          <div>
-            <p>
-              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
-              amet duis non non anim aliqua exercitation labore dolor ex ea.
-              Labore id anim deserunt fugiat dolore proident ipsum.
-            </p>
+    const props = {
+        title: 'Divider 分割线',
+        position: 'divider',
+        components: [
+            {
+                title: '默认分割线',
+                component: (
+                    <div>
+                        <p>
+                            Anim tempor enim laboris est minim id. Dolor ut
+                            deserunt voluptate amet duis non non anim aliqua
+                            exercitation labore dolor ex ea. Labore id anim
+                            deserunt fugiat dolore proident ipsum.
+                        </p>
 
-            <Divider />
+                        <Divider />
 
-            <p>
-              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
-              amet duis non non anim aliqua exercitation labore dolor ex ea.
-              Labore id anim deserunt fugiat dolore proident ipsum.
-            </p>
-          </div>
-        ),
-        info: "默认为水平分割",
-        code: `
+                        <p>
+                            Anim tempor enim laboris est minim id. Dolor ut
+                            deserunt voluptate amet duis non non anim aliqua
+                            exercitation labore dolor ex ea. Labore id anim
+                            deserunt fugiat dolore proident ipsum.
+                        </p>
+                    </div>
+                ),
+                code: `
 <div>
   <p>Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate 
     amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id 
@@ -38,77 +39,61 @@ function IntroDivider() {
     amet duis non non anim aliqua exercitation labore dolor ex ea. Labore id 
     anim deserunt fugiat dolore proident ipsum.</p>
 </div>`,
-      },
-      {
-        title: "垂直分割线",
-        component: (
-          <div>
-            <p style={{ flexBasis: "auto" }}>
-              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
-              amet duis non non anim aliqua exercitation labore dolor ex ea.
-              Labore id anim deserunt fugiat dolore proident ipsum.
-            </p>
+            },
+            {
+                title: '带文字说明的分割线',
+                component: (
+                    <div style={{ flexGrow: 1 }}>
+                        <Divider text='this is a divider' />
 
-            <Divider direction={"vertical"} />
-
-            <p style={{ flexBasis: "auto" }}>
-              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
-              amet duis non non anim aliqua exercitation labore dolor ex ea.
-              Labore id anim deserunt fugiat dolore proident ipsum.
-            </p>
-
-            <Divider direction={"vertical"} />
-
-            <p style={{ flexBasis: "auto" }}>
-              Anim tempor enim laboris est minim id. Dolor ut deserunt voluptate
-              amet duis non non anim aliqua exercitation labore dolor ex ea.
-              Labore id anim deserunt fugiat dolore proident ipsum.
-            </p>
-          </div>
-        ),
-        info: 'direction = "vertical"',
-        code: `
-<div>
-  <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. 
-    Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation 
-    labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.
-  </p>
-
-  <Divider direction={ 'vertical' } />
-
-  <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. 
-    Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation 
-    labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.
-  </p>
-
-  <Divider direction={ 'vertical' } />
-
-  <p style={ { flexBasis: 'auto' } }>Anim tempor enim laboris est minim id. 
-    Dolor ut deserunt voluptate amet duis non non anim aliqua exercitation 
-    labore dolor ex ea. Labore id anim deserunt fugiat dolore proident ipsum.
-  </p>
-</div>`,
-      },
-      {
-        title: "带文字说明的分割线",
-        component: (
-          <div style={{ flexGrow: 1 }}>
-            <Divider text="点分割线" />
-
-            <Divider text="实线分割线" />
-          </div>
-        ),
-        info: "",
-        code: `
+                        <Divider text='this is a xxxxxxxxxxxxxxxxxxx divider' />
+                    </div>
+                ),
+                info: '',
+                code: `
 <div style={{ flexGrow: 1 }}>
-  <Divider type="dot" text="点分割线" />
-  <Divider type="solid" text="实线分割线" />
+    <Divider text='this is a divider' />
+    <Divider text='this is a xxxxxxxxxxxxxxxxxxx divider' />
 </div>`,
-      },
-    ],
-  };
+            },
+            {
+                title: '不同样式的分割线',
+                component: (
+                    <div style={{ flexGrow: 1 }}>
+                        <Divider text='dot' type='dot' />
+                        <Divider text='dash' type='dash' />
+                        <Divider text='double' type='double' />
+                    </div>
+                ),
+                info: '',
+                code: `
+<div style={{ flexGrow: 1 }}>
+    <Divider text='dot' type='dot' />
+    <Divider text='dash' type='dash' />
+    <Divider text='double' type='double' />
+</div>`,
+            },
+        ],
+        api: [
+            {
+                title: 'Divider 属性',
+                api: [
+                    {
+                        attribute: 'text',
+                        description: '分割线文字',
+                        value: 'string',
+                    },
+                    {
+                        attribute: 'type',
+                        description: '分割线类型',
+                        value: 'dot (圆点) | dash (横线) | double (双线)',
+                    },
+                ],
+            },
+        ],
+    };
 
-  return <IntroComponent {...props} />;
+    return <IntroComponent {...props} />;
 }
 
 export default IntroDivider;
