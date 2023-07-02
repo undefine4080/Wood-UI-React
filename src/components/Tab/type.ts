@@ -1,5 +1,5 @@
 import { SetStateAction } from 'react';
-import commonProps from "types/commonInterface";
+import commonProps from "@common/types";
 
 interface propsTab extends commonProps {
     activate?: string,

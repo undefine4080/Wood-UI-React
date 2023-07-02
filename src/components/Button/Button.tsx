@@ -4,7 +4,7 @@ import Loading from '@icon/Loading/Loading';
 import { useCssClassManager } from '@common/hooks';
 
 import './button.less';
-import commonProps from 'types/commonInterface';
+import commonProps from '@common/types';
 
 const T = 'wdu-button';
 function Button(props: propsButton) {
