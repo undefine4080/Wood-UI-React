@@ -1,40 +1,69 @@
-import { useState } from "react";
-import { propsSwitch } from "./type";
-import "./switch.less";
+import { useState } from 'react';
+import { propsSwitch } from './type';
+
+import './switch.less';
 
 function Switch(props: propsSwitch) {
-  const { id, label, value = false, onChange, disabled = false } = props;
+    const {
+        id,
+        activeLabel,
+        inactiveLabel,
+        activeValue = true,
+        inactiveValue = false,
+        defaultValue=false,
+        disabled = false,
+        size = 'normal',
+        onChange,
+    } = props;
 
-  const [state, setState] = useState(value);
+    const formatSwitchValue = (value: any) => {
+        if (value === activeValue) {
+            return true;
+        } else if (value === inactiveValue) {
+            return false;
+        } else {
+            throw new RangeError('the value of the Switch is illegal');
+        }
+    };
 
-  const handleClick = () => {
-    if (disabled) return;
+    const [state, setState] = useState(formatSwitchValue(defaultValue));
 
-    setState((pre: boolean) => !pre);
-    onChange && onChange(!state);
-  };
+    const handleClick = () => {
+        if (disabled) return;
 
-  const triggerClass = `wdu-switch__wrapper ${
-    state ? "wdu-switch__active" : ""
-  }`;
-  const switchClass = `wdu-switch ${disabled ? "wdu-switch__disabled" : ""}`;
+        setState((prev) => !prev);
+        onChange && onChange(!state);
+    };
 
-  return (
-    <div className={switchClass}>
-      {label && <span className="wdu-switch__label">{label}</span>}
+    const classList = `wdu-switch wdu-switch__${size} ${
+        disabled ? 'wdu-switch__disabled' : ''
+    }`;
 
-      <div className="wdu-switch__main" id={id} onClick={handleClick}>
-        <div className={triggerClass}>
-          <span className="wdu-switch__block"></span>
+    return (
+        <button className={classList}>
+            {inactiveLabel && (
+                <span className='wdu-switch__label wdu-switch__label-inactive'>
+                    {inactiveLabel}
+                </span>
+            )}
 
-          <span className="wdu-switch__block-trigger"></span>
+            <div
+                className={`wdu-switch__main ${
+                    state ? 'wdu-switch__active' : ''
+                }`}
+                id={id}
+                onClick={handleClick}>
+                <div className='wdu-switch__wrapper'></div>
+            </div>
 
-          <span className="wdu-switch__block"></span>
-        </div>
-      </div>
-    </div>
-  );
+            {activeLabel && (
+                <span className='wdu-switch__label wdu-switch__label-active'>
+                    {activeLabel}
+                </span>
+            )}
+        </button>
+    );
 }
-Switch.displayName = "Switch";
+Switch.displayName = 'Switch';
 
 export default Switch;

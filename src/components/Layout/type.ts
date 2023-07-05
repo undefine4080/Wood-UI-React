@@ -1,4 +1,4 @@
-import commonProps from "types/commonInterface";
+import commonProps from "@common/types";
 
 interface propsContainer {
     children?: any;

@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import commonProps from "../../types/commonInterface";
+import commonProps from "../../common/types";
 import './checkbox.less';
 
 interface propsCheckbox extends commonProps {

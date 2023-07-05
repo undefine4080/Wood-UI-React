@@ -1,64 +1,57 @@
-@import (reference) '@/styles/main.less';
 
 .wdu-divider {
-    display: flex;
     position: relative;
     color: #d8d8d8;
-
-    @bold: 1px;
-
-    &::before,
-    &::after {
-        content: '';
-        display: block;
-        border-radius: 1px;
-    }
-
-    &__horizontal {
-        flex-flow: row nowrap;
-        justify-content: stretch;
-        align-items: center;
-        margin: 20px 0;
-
-        &::before,
-        &::after {
-            width: auto;
-            height: @bold;
-            background-color: currentColor;
-            flex-grow: 1;
-        }
-    }
-
-    &__vertical {
-        flex-flow: column nowrap;
-        justify-content: stretch;
-        align-items: center;
-        margin: 0 20px;
-
-        &::before,
-        &::after {
-            width: @bold;
-            height: auto;
-            background-color: currentColor;
-            flex-grow: 1;
-        }
-
-        .wdu-divider__text {
-            width: 16px;
-            word-break: break-all;
-            line-height: 18px;
-            max-height: 100px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: normal;
-        }
-    }
+    margin: 20px 0;
 
     &__text {
         .wdu-text-small();
-        word-break: keep-all;
         position: relative;
         margin: 0 5px;
         color: rgb(150, 150, 150);
+        white-space: nowrap;
+    }
+
+    &__noText {
+        border-bottom: currentColor 1px solid;
+    }
+
+    &__withText {
+        display: flex;
+        align-items: center;
+        &::before,
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+            border-bottom: currentColor 1px solid;
+            position: relative;
+            height: 1px;
+            top: calc(-50% - 1px);
+        }
+    }
+
+    &__dash {
+        &::before,
+        &::after {
+            border-bottom-style: dashed;
+            border-bottom-width: 2px;
+        }
+    }
+
+    &__dot {
+        &::before,
+        &::after {
+            border-bottom-width: 3px;
+            border-bottom-style: dotted;
+        }
+    }
+
+    &__double {
+        &::before,
+        &::after {
+            border-bottom-style: double;
+            border-bottom-width: 4px;
+        }
     }
 }

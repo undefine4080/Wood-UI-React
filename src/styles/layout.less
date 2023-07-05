@@ -1,49 +1,35 @@
-// Flex 布局
-.wdu-row-flex {
-  display: flex;
-  flex-direction: row;
+.wdu-flex {
+    display: flex;
+    flex-direction: row;
 }
 
-// 水平排列，居中
-.wdu-row-center {
-  .wdu-row-flex();
-  justify-content: center;
-}
-
-// 水平末端对齐
-.wdu-row-end {
-  .wdu-row-flex();
-  justify-content: flex-end;
-}
-
-// 水平垂直居中
 .wdu-center {
-  .wdu-row-center();
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-// 隐藏滚动条
 .wdu-hide-scroll {
-  &::-webkit-scrollbar {
-    display: none;
-  }
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
-  scrollbar-width: none;
+    scrollbar-width: none;
 }
 
 .wdu-box {
-  margin: 10px;
-  padding: 20px;
-  transition: box-shadow 0.2s linear;
-  background-color: white;
-  border-radius: 10px;
-  box-sizing: border-box;
-  border: 1px solid #e7e7e7;
-  box-shadow: 0 0 12px rgb(168 168 168 / 20%);
+    margin: 10px;
+    padding: 20px;
+    transition: box-shadow 0.2s linear;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e7e7e7;
+    box-shadow: 0 0 12px rgb(168 168 168 / 20%);
 }
 
 .wdu-bgImage {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

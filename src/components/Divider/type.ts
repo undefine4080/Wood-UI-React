@@ -1,6 +1,6 @@
 interface propsDivider {
-  direction?: "horizontal" | "vertical";
-  text?: string;
+    text?: string;
+    type?: 'dash' | 'dot' | 'double';
 }
 
 export type { propsDivider };

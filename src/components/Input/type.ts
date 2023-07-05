@@ -1,4 +1,4 @@
-import commonProps from "types/commonInterface";
+import commonProps from "@common/types";
 import { HTMLInputTypeAttribute } from "react";
 
 type callback = (inputValue: string | number | undefined) => any;
