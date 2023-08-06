@@ -1,14 +1,13 @@
-import commonProps from "../../common/types";
+import commonProps from '../../common/types';
 
 interface propsModal extends commonProps {
-  title?: string;
-  top?: string;
-  visible: boolean;
-  mask?: boolean;
-  fullscreen?: boolean;
-  onOpen?: () => any;
-  onClose: () => any;
-  onAfterClose?: () => any;
+    visible: boolean;
+    mask?: boolean;
+    fullscreen?: boolean;
+    top?: string;
+    close: () => void;
+    onOpen?: () => any;
+    onClose?: () => any;
 }
 
 export type { propsModal };

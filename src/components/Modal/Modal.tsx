@@ -1,126 +1,105 @@
-import ReactDOM from "react-dom";
-import { MouseEvent, useEffect, useRef, useState } from "react";
-import { propsModal } from "./type";
-import { useCssClassManager } from "@common/hooks";
+import ReactDOM from 'react-dom';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { propsModal } from './type';
+import { useCssClassManager } from '@common/hooks';
 
-import "./modal.less";
+import './modal.less';
 
 function Modal(props: propsModal) {
-  const {
-    width = "350px",
-    height,
-    top,
-    title,
-    mask,
-    className,
-    visible = false,
-    fullscreen = false,
-    children,
-    onOpen,
-    onClose,
-    onAfterClose,
-  } = props;
+    const {
+        mask,
+        visible = false,
+        fullscreen = false,
+        top,
+        children,
+        onOpen,
+        onClose,
+        close,
+    } = props;
 
-  const classMap = {
-    base: "wdu-modal",
-    mask: "wdu-modal__mask",
-    visible: "wdu-modal__visible",
-    hidden: "wdu-modal__hidden",
-    fullscreen: "wdu-modal__fullScreen",
-  };
+    const refModal = useRef<any>();
 
-  const { addClassName, removeClassName, classList } =
-    useCssClassManager(classMap);
-
-  const refModal = useRef<any>();
-
-  const [firstLoad, setFirstLoad] = useState(false);
-  useEffect(() => {
-    setFirstLoad(true);
-    mask && addClassName("mask");
-  }, []);
-
-  const handleClose = (modal: any) => {
-    const clear = () => {
-      removeClassName("visible");
-      removeClassName("hidden");
-      modal.removeEventListener("animationend", clear);
-      onAfterClose && onAfterClose();
+    const classMap = {
+        base: 'wdu-modal',
+        mask: 'wdu-modal__mask',
+        visible: 'wdu-modal__visible',
+        hidden: 'wdu-modal__hidden',
+        fullscreen: 'wdu-modal__fullScreen',
     };
 
-    if (modal) {
-      modal.addEventListener("animationend", clear);
-    }
-  };
+    const { addClassName, removeClassName, classList } =
+        useCssClassManager(classMap);
 
-  const close = (e: MouseEvent) => {
-    handleClose(refModal.current);
-    e.stopPropagation();
-    onClose && onClose();
-    addClassName("hidden");
-  };
+    const [firstLoad, setFirstLoad] = useState(false);
+    useEffect(() => {
+        setFirstLoad(true);
+        mask && addClassName('mask');
+    }, []);
 
-  const handleFullScreen = (visible: Boolean) => {
-    if (fullscreen) {
-      if (visible) {
-        document.body.style.overflow = "hidden";
-        addClassName("fullscreen");
-      } else {
-        document.body.style.overflow = "auto";
-        removeClassName("fullscreen");
-      }
-    }
-  };
+    const resetClassList = () => {
+        const modal = refModal.current;
 
-  const handleVisible = (visible: Boolean) => {
-    if (visible) {
-      addClassName("visible");
-      onOpen && onOpen();
-    } else {
-      addClassName("hidden");
-    }
-  };
+        const clear = () => {
+            removeClassName('visible');
+            removeClassName('hidden');
+            modal.removeEventListener('animationend', clear);
+        };
 
-  useEffect(() => {
-    if (firstLoad) {
-      handleFullScreen(visible);
-      handleVisible(visible);
+        if (modal) {
+            modal.addEventListener('animationend', clear);
+        }
+    };
 
-      if (!visible) {
-        handleClose(refModal.current);
-      }
-    }
-  }, [visible]);
+    const handleClose = (e: MouseEvent) => {
+        e.stopPropagation();
+        close();
+        resetClassList();
+    };
 
-  const modal = (
-    <div
-      ref={refModal}
-      className={`${classList} ${className ?? ""}`}
-      onClick={(e: MouseEvent) => close(e)}
-    >
-      <div
-        className="wdu-modal__container"
-        onClick={(e) => e.stopPropagation()}
-        style={{ width: fullscreen ? "100%" : width, height, top }}
-      >
-        <i
-          className="wdu-modal__close"
-          onClick={(e: MouseEvent) => close(e)}
-        ></i>
+    const handleFullScreen = (visible: Boolean) => {
+        if (fullscreen) {
+            if (visible) {
+                document.body.style.overflow = 'hidden';
+                addClassName('fullscreen');
+            } else {
+                document.body.style.overflow = 'auto';
+                removeClassName('fullscreen');
+            }
+        }
+    };
 
-        {title && <p className="wdu-modal__title">{title}</p>}
+    const handleVisibility = (visible: Boolean) => {
+        if (visible) {
+            addClassName('visible');
+            onOpen && onOpen();
+        } else {
+            addClassName('hidden');
+            onClose && onClose();
+        }
+    };
 
+    useEffect(() => {
+        if (firstLoad) {
+            handleFullScreen(visible);
+            handleVisibility(visible);
+        }
+    }, [visible]);
+
+    const modal = (
         <div
-          className="wdu-modal__body"
-          style={{ marginTop: title ? 0 : "48px" }}
-        >
-          {children}
+            ref={refModal}
+            className={classList}
+            onClick={(e: MouseEvent) => handleClose(e)}>
+            <div
+                className='wdu-modal__container'
+                onClick={(e) => e.stopPropagation()}
+                style={{ marginTop: top }}>
+                {children}
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 
-  return ReactDOM.createPortal(modal, document.body);
+    return ReactDOM.createPortal(modal, document.body);
 }
 
 export default Modal;
