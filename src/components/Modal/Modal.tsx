@@ -50,12 +50,6 @@ function Modal(props: propsModal) {
         }
     };
 
-    const handleClose = (e: MouseEvent) => {
-        e.stopPropagation();
-        close();
-        resetClassList();
-    };
-
     const handleFullScreen = (visible: Boolean) => {
         if (fullscreen) {
             if (visible) {
@@ -74,6 +68,7 @@ function Modal(props: propsModal) {
             onOpen && onOpen();
         } else {
             addClassName('hidden');
+            resetClassList();
             onClose && onClose();
         }
     };
@@ -89,7 +84,10 @@ function Modal(props: propsModal) {
         <div
             ref={refModal}
             className={classList}
-            onClick={(e: MouseEvent) => handleClose(e)}>
+            onClick={(e: MouseEvent) => {
+                e.stopPropagation();
+                close();
+            }}>
             <div
                 className='wdu-modal__container'
                 onClick={(e) => e.stopPropagation()}

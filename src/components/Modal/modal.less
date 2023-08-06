@@ -12,6 +12,7 @@
         margin: 0 auto;
         margin-top: 15vh;
         overflow: auto;
+        padding: 20px;
     }
 
     &__visible {
@@ -20,17 +21,17 @@
         animation: maskShow 0.1s ease 0s 1 normal forwards;
 
         .wdu-modal__container {
-            animation: show 0.3s cubic-bezier(0.32, 0.32, 0.19, 1) 0.2s 1 normal
+            animation: show 0.2s cubic-bezier(0.32, 0.32, 0.19, 1) 0.2s 1 normal
                 forwards;
         }
     }
 
     &__hidden {
         opacity: 1;
-        animation: maskHide 0.3s ease 0.2s 1 normal forwards;
+        animation: maskHide 0.2s ease 0.2s 1 normal forwards;
 
         .wdu-modal__container {
-            animation: hide 0.3s cubic-bezier(0.44, 0.11, 0, 0.99) 0s 1 normal
+            animation: hide 0.2s cubic-bezier(0.44, 0.11, 0, 0.99) 0s 1 normal
                 forwards;
         }
     }

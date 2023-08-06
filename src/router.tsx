@@ -15,7 +15,6 @@ import IntroSwitch from '@doc/Switch';
 import IntroTree from '@doc/Tree';
 import IntroPagination from '@doc/Pagination';
 import IntroImage from '@doc/Image';
-import IntroModal from '@doc/Modal';
 import IntroTable from '@doc/Table';
 import IntroCarousel from '@doc/Carousel';
 import IntroForm from '@doc/Form';
@@ -27,8 +26,8 @@ import IntroTag from '@doc/Tag';
 import IntroTooltip from '@doc/Tooltip';
 import IntroList from '@doc/List';
 import IntroNavMenu from '@doc/NavMenu';
-import Introducing from '@doc/Introducing';
 import IntroPopover from '@doc/Popover';
+import IntroDialog from '@doc/Dialog';
 
 type navListItem = Array<{
     path?: string;
@@ -115,7 +114,7 @@ const navList: navList = {
         },
     ],
     modal: [
-        { path: 'modal', label: 'Modal 模态框', element: <IntroModal /> },
+        { path: 'dialog', label: 'Dialog 对话框', element: <IntroDialog /> },
         { path: 'message', label: 'Message 消息', element: <IntroMessage /> },
         {
             path: 'popover',
@@ -127,7 +126,7 @@ const navList: navList = {
             label: 'Tooltips 文字提示',
             element: <IntroTooltip />,
         },
-        { path: 'nav', label: 'Nav 导航菜单', element: <IntroNav /> },
+        // { path: 'nav', label: 'Nav 导航菜单', element: <IntroNav /> },
     ],
     tool: [
         { path: 'bullet', label: 'Bullet 弹幕', element: undefined },
