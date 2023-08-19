@@ -4,7 +4,6 @@
     "description": "a ui library build by react and typescript",
     "author": "ztf",
     "license": "MIT",
-    "types": "./build/index.d.ts",
     "keywords": [
         "react",
         "typescript",
