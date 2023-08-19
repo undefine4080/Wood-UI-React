@@ -8,6 +8,7 @@ interface propsDialog {
     children?: any;
     mask?: boolean;
     showClose?: boolean;
+    closeOnMaskClick?: boolean;
     close: () => void;
     onOpen?: () => void;
     onClose?: () => void;

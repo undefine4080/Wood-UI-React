@@ -10,9 +10,10 @@ function Dialog(props: propsDialog) {
         title,
         header,
         footer,
-        mask = true,
+        mask = false,
         showClose = true,
         children,
+        closeOnMaskClick = true,
         close,
         onOpen,
         onClose,
@@ -23,11 +24,12 @@ function Dialog(props: propsDialog) {
             visible={visible}
             close={close}
             mask={mask}
+            closeOnMaskClick={closeOnMaskClick}
             onClose={onClose}
             onOpen={onOpen}>
             <div className='wdu-dialog'>
                 {header ? (
-                    header
+                    <div className='wdu-dialog__header'>{header}</div>
                 ) : (
                     <div className='wdu-dialog__header'>
                         {title && (

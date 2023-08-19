@@ -6,6 +6,8 @@
     position: relative;
 
     &__header {
+        margin-right: 30px;
+
         &-title {
             .wdu-text-title();
             padding: 15px;
@@ -35,5 +37,9 @@
     &__footer {
         display: flex;
         justify-content: flex-end;
+
+        & > * {
+            margin: 0 5px;
+        }
     }
 }

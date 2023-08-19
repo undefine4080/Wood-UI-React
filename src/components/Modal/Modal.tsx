@@ -12,6 +12,7 @@ function Modal(props: propsModal) {
         fullscreen = false,
         top,
         children,
+        closeOnMaskClick = true,
         onOpen,
         onClose,
         close,
@@ -86,7 +87,7 @@ function Modal(props: propsModal) {
             className={classList}
             onClick={(e: MouseEvent) => {
                 e.stopPropagation();
-                close();
+                if (closeOnMaskClick) close();
             }}>
             <div
                 className='wdu-modal__container'

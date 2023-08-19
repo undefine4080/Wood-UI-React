@@ -5,6 +5,7 @@ interface propsModal extends commonProps {
     mask?: boolean;
     fullscreen?: boolean;
     top?: string;
+    closeOnMaskClick?: boolean;
     close: () => void;
     onOpen?: () => any;
     onClose?: () => any;
