@@ -95,13 +95,12 @@ export default function () {
                         }}>
                         打开 Modal3
                         <Modal
-                            title='这是模态框的标题'
                             visible={visible.m3}
                             fullscreen
-                            onClose={() =>
-                                setVisible({ ...visible, m3: false })
-                            }>
-                            这是一段文字内容{' '}
+                            onClose={() => setVisible({ ...visible, m3: false })} close={function (): void {
+                                throw new Error('Function not implemented.');
+                            } }>
+                            这是一段文字内容
                         </Modal>
                     </Button>
                 ),
