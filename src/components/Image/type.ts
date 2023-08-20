@@ -1,16 +1,17 @@
 import { ReactElement } from 'react';
-import commonProps from "../../common/types";
 
-interface propsImage extends commonProps {
+interface propsImage {
+    width?: number | string;
+    height?: number | string;
     src: string;
-    hoverSlot?: ReactElement;
+    hoverContent?: ReactElement;
     lazy?: boolean;
-    info?: string; // image description
+    title?: string;
     link?: string;
     preview?: boolean;
-    hoverStyle?: boolean; // if show effect while mouse over image
-    border?: boolean; // show the border of image container
-    shadow?: boolean; // show the shadow of image container
+    alt?: string;
+    fit?: 'contain' | 'cover' | 'fill' | 'scale-down';
+    errorContent?: ReactElement;
 }
 
 export type { propsImage };

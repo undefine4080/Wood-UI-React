@@ -10,6 +10,7 @@ function Modal(props: propsModal) {
         mask,
         visible = false,
         fullscreen = false,
+        containerClass = '',
         top,
         children,
         closeOnMaskClick = true,
@@ -90,7 +91,7 @@ function Modal(props: propsModal) {
                 if (closeOnMaskClick) close();
             }}>
             <div
-                className='wdu-modal__container'
+                className={`wdu-modal__container ${containerClass}`}
                 onClick={(e) => e.stopPropagation()}
                 style={{ marginTop: top }}>
                 {children}

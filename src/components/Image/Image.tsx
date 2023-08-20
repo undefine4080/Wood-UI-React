@@ -1,44 +1,111 @@
-import { useRef, useState } from "react";
-import { propsImage } from "./type";
-import { useLazyLoad } from "@common/hooks";
+import { useRef, useState, MouseEvent, useEffect } from 'react';
+import { propsImage } from './type';
+import { useLazyLoad } from '@common/hooks';
 
 import './image.less';
+import Modal from '@component/Modal/Modal';
+import ImageViewer from './ImageViewer';
 
-function Image ( props: propsImage ) {
-    const { width = 500, src, info, shadow = false, border = false, link, lazy = false } = props;
+function Image(props: propsImage) {
+    const {
+        width,
+        height,
+        src,
+        title,
+        link,
+        lazy = false,
+        fit,
+        preview = false,
+        alt,
+        hoverContent,
+        errorContent,
+    } = props;
 
     const refImg: any = useRef();
-    const [ imgSrc, setSrc ] = useState( '' );
-
+    const [imgSrc, setSrc] = useState('');
+    const [previewVisible, setPreviewVisible] = useState(false);
+    const [loading, setLoading] = useState<'lazy' | 'eager' | 'internal'>();
     const imageStyle = {
-        width: `${ typeof width === 'number' ? `${ width }px` : width }`,
+        width: `${typeof width === 'number' ? `${width}px` : width}`,
+        height: `${typeof height === 'number' ? `${height}px` : height}`,
+        cursor: preview ? 'pointer' : 'initial',
+        objectFit: fit,
     };
 
-    shadow && Object.assign( imageStyle, { boxShadow: '#c0c0c0 0px 0px 16px 4px' } );
-
-    border && Object.assign( imageStyle, { border: '4px solid black' } );
-
-    link && Object.assign( imageStyle, { cursor: 'pointer' } );
+    link && Object.assign(imageStyle, { cursor: 'pointer' });
 
     const linkTo = () => {
-        if ( !link ) return;
+        if (!link) return;
 
-        window.open( link.toString() );
+        window.open(link.toString());
     };
 
-    useLazyLoad( refImg, () => setSrc( src ), lazy );
+    const close = () => setPreviewVisible(false);
+
+    const handleClick = (e: MouseEvent) => {
+        e.stopPropagation();
+
+        if (preview) {
+            setPreviewVisible(true);
+        }
+    };
+
+    const handleLoading = () => {
+        const imgElement = document.createElement('img');
+        const hasLoadingApi = 'loading' in imgElement;
+        if (hasLoadingApi) {
+            setSrc(src);
+            setLoading(lazy ? 'lazy' : 'eager');
+        } else {
+            setLoading('internal');
+        }
+    };
+
+    useEffect(handleLoading, []);
+
+    useLazyLoad(
+        refImg,
+        () => {
+            if (loading === 'internal') {
+                setSrc(src);
+            }
+        },
+        lazy,
+    );
 
     return (
-        <div className={ `wdu-image ${ imgSrc && 'wdu-image__loaded' }` }
-            style={ imageStyle }
-            ref={ refImg }>
-            <div className="wdu-image__img"
-                style={ { backgroundImage: `url(${ imgSrc })` } }
-                onClick={ linkTo } />
+        <div
+            className={`wdu-image ${imgSrc && 'wdu-image__loaded'}`}
+            style={imageStyle}
+            ref={refImg}
+            onClick={handleClick}>
+            <img
+                className='wdu-image__img'
+                src={imgSrc}
+                onClick={linkTo}
+                loading={loading as 'lazy' | 'eager'}
+                width={width}
+                height={height}
+                alt={alt}
+            />
 
-            { info && <p className="wdu-image__info">{ info }</p> }
-        </ div>
+            {title && <p className='wdu-image__info'>{title}</p>}
+
+            {preview && (
+                <Modal
+                    containerClass='wdu-image__previewContainer'
+                    visible={previewVisible}
+                    close={close}
+                    closeOnMaskClick={false}
+                    mask>
+                    <ImageViewer
+                        src={src}
+                        close={close}
+                        active={previewVisible}></ImageViewer>
+                </Modal>
+            )}
+        </div>
     );
 }
 
-export default Image;;
+export default Image;
