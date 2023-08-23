@@ -1,4 +1,5 @@
 import { Ref, RefObject, useEffect, useRef, useState } from 'react';
+
 interface cssClass {
     base: string;
     [key: string]: string;
@@ -120,28 +121,27 @@ function useElementDisplay(target: any, visible: Function, hidden: Function) {
     }, []);
 }
 
-function useComponentBlur(componentRef: RefObject<Element>, isFocus: boolean) {
-    const handle = (e: any) => {
-        if(e.target !== componentRef.current){
-            console.log('点击了组件外面');
-        }else{
-            
-        }
-    };
+function useDrag() {
+    const dragTarget = useRef<Element>();
+    const [startPosition, setStartPosition] = useState([0, 0]);
+
+    const dragStart = () => {};
+    const dragMove = () => {};
+    const dragEnd = () => {};
 
     useEffect(() => {
-        if (isFocus) {
-            if (componentRef.current) {
-                window.addEventListener('click', handle);
-            }
-        } else {
-            window.removeEventListener('click', handle);
+        if(dragTarget.current){
+            const el = dragTarget.current;
+            // el.addEventListener()
         }
+    },[])
 
-        return () => {
-            window.removeEventListener('click', handle);
-        };
-    }, [isFocus]);
+    return {
+        dragTarget,
+        dragStart,
+        dragMove,
+        dragEnd,
+    };
 }
 
 export { useCssClassManager, useLazyLoad, useElementDisplay };
