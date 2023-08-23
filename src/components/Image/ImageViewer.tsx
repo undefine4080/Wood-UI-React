@@ -1,6 +1,6 @@
+import { CSSProperties, MouseEventHandler, useEffect, useState } from 'react';
 import { Size } from '@common/types';
 import { getImageSize } from '@common/utils';
-import { CSSProperties, MouseEventHandler, useEffect, useState } from 'react';
 
 function ImageViewer(props: {
     src: string;
@@ -14,15 +14,17 @@ function ImageViewer(props: {
         if (active && !imageStyle) {
             getImageSize(props.src).then((size: Size) => {
                 const { width, height } = size;
-                let imageStyle;
+                const { innerWidth, innerHeight } = window;
 
-                if (width > height) {
+                let imageStyle;
+                const edge = width > height ? 'width' : 'height';
+                if (innerWidth > innerHeight) {
                     imageStyle = {
-                        maxWidth: '100vw',
+                        [edge]: innerHeight + 'px',
                     };
-                } else if (width < height) {
+                } else if (innerWidth < innerHeight) {
                     imageStyle = {
-                        maxHeight: '100vh',
+                        [edge]: innerWidth + 'px',
                     };
                 } else {
                     imageStyle = undefined;
@@ -39,7 +41,7 @@ function ImageViewer(props: {
                 className='wdu-image__preview-btn wdu-icon-close wdu-image__preview-btn--close'
                 onClick={close}></i>
 
-            <img src={src} style={imageStyle} onDragStart={() => {}}/>
+            <img src={src} style={imageStyle} onDragStart={() => {}} />
 
             <div className='wdu-image__preview-controller'>
                 <i className='wdu-image__preview-btn wdu-icon-scaleDown'></i>
