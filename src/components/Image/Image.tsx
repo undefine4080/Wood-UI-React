@@ -63,7 +63,6 @@ function Image(props: propsImage) {
 
     useEffect(handleLoading, []);
 
-    // custom lazy load when the browser is not support
     useLazyLoad(
         refImg,
         () => {
