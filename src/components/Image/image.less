@@ -35,12 +35,16 @@
         position: absolute !important;
         overflow: hidden !important;
         padding: 0 !important;
-        .wdu-full();
+        width: 100vw !important;
+        height: 100vh !important;
         display: flex;
-        align-items: center;
+        justify-content: center;
     }
 
     &__preview {
+        transform-origin: center;
+        transition: all 0.3s ease-out;
+
         &-btn {
             @icon-size: 30px;
             width: @icon-size;
@@ -57,10 +61,10 @@
 
         &-controller {
             width: max-content;
-            background-color: rgba(0, 0, 0, 0.288);
+            background-color: rgba(0, 0, 0, 0.467);
             border-radius: 10px;
             position: fixed;
-            left: calc(50% - 168px);
+            left: calc(50% - 210px);
             bottom: 30px;
         }
     }

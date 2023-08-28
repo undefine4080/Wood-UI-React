@@ -3,11 +3,7 @@ import { Size } from '@common/types';
 import { getImageSize } from '@common/utils';
 import { useTransform } from './hooks';
 
-function ImageViewer(props: {
-    src: string;
-    close: MouseEventHandler<HTMLElement>;
-    active: boolean;
-}) {
+function ImageViewer(props: { src: string; close: Function; active: boolean }) {
     const { src, close, active } = props;
     const [imageStyle, setImageStyle] = useState<CSSProperties>();
 
@@ -32,17 +28,32 @@ function ImageViewer(props: {
         }
     }, [active]);
 
-    const { scaleDown, scaleUp, reset, full, rotate } = useTransform();
+    const { target, scaleDown, scaleUp, reset, rotate } = useTransform();
 
     return (
-        <div className='wdu-image__preview'>
+        <>
+            <img
+                ref={target}
+                className='wdu-image__preview'
+                src={src}
+                style={imageStyle}
+                onDragStart={() => {}}
+            />
+
             <i
                 className='wdu-image__preview-btn wdu-icon-close wdu-image__preview-btn--close'
-                onClick={close}></i>
-
-            <img src={src} style={imageStyle} onDragStart={() => {}} />
+                onClick={() => {
+                    setTimeout(reset, 300);
+                    close();
+                }}></i>
 
             <div className='wdu-image__preview-controller'>
+                <i
+                    className='wdu-image__preview-btn wdu-icon-rotate-left'
+                    onClick={() => rotate('left')}></i>
+                <i
+                    className='wdu-image__preview-btn wdu-icon-rotate-right'
+                    onClick={() => rotate('right')}></i>
                 <i
                     className='wdu-image__preview-btn wdu-icon-scaleDown'
                     onClick={scaleDown}></i>
@@ -52,11 +63,8 @@ function ImageViewer(props: {
                 <i
                     className='wdu-image__preview-btn wdu-icon-reset'
                     onClick={reset}></i>
-                <i
-                    className='wdu-image__preview-btn wdu-icon-full'
-                    onClick={full}></i>
             </div>
-        </div>
+        </>
     );
 }
 
