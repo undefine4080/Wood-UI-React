@@ -9,9 +9,9 @@ function useTransform() {
     const scaleDown = () => {
         if (scaleFactor >= 0.4) {
             target.current.style.transform = `rotate(${rotateAngle}deg) scale(${
-                scaleFactor - 0.2
+                scaleFactor - 0.5
             })`;
-            setScaleFactor(scaleFactor - 0.2);
+            setScaleFactor(scaleFactor - 0.5);
         }
     };
 

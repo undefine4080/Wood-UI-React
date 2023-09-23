@@ -1,10 +1,10 @@
-import { useRef, useState, MouseEvent, useEffect } from 'react';
-import { propsImage } from './type';
 import { useLazyLoad } from '@common/hooks';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { propsImage } from './type';
 
-import './image.less';
 import Modal from '@component/Modal/Modal';
 import ImageViewer from './ImageViewer';
+import './image.less';
 
 function Image(props: propsImage) {
     const {
