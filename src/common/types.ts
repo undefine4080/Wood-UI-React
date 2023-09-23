@@ -28,6 +28,15 @@ interface propsIntroComponent {
             value?: string | number;
         }>;
     }>;
+    api?: Array<{
+        title: string;
+        api: Array<{
+            attribute: string;
+            description: string;
+            value: string;
+            default: string;
+        }>;
+    }>;
 }
 
 interface docItem {

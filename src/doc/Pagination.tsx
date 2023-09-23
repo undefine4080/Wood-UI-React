@@ -79,6 +79,90 @@ export default function () {
 />`,
             },
         ],
+        api: [
+            {
+                title: 'Pagination 属性',
+                api: [
+                    {
+                        attribute: 'pageButtonCount',
+                        description: '分页按钮数量',
+                        value: 'Number',
+                        default: '5',
+                    },
+                    {
+                        attribute: 'total',
+                        description: '总数',
+                        value: 'Number',
+                        default: '0',
+                    },
+                    {
+                        attribute: 'limit',
+                        description: '分页大小',
+                        value: 'Number',
+                        default: '20',
+                    },
+                    {
+                        attribute: 'page',
+                        description: '当前页码',
+                        value: 'Number',
+                        default: '1',
+                    },
+                    {
+                        attribute: 'limitChange',
+                        description: '是否启用分页大小修改',
+                        value: 'Boolean',
+                        default: 'false',
+                    },
+                    {
+                        attribute: 'jump',
+                        description: '是否启用指定页码跳转',
+                        value: 'Boolean',
+                        default: 'false',
+                    },
+                    {
+                        attribute: 'simple',
+                        description: '是否启用简洁模式',
+                        value: 'Boolean',
+                        default: 'false',
+                    },
+                ],
+            },
+            {
+                title: 'Pagination 事件',
+                api: [
+                    {
+                        attribute: 'onPageChange',
+                        description: '分页页码改变时触发',
+                        value: '(page: number) => void',
+                        default: '',
+                    },
+                    {
+                        attribute: 'onLimitChange',
+                        description: '分页大小改变时触发',
+                        value: '(limit: number) => void',
+                        default: '',
+                    },
+                    {
+                        attribute: 'onPrev',
+                        description: '上一页按钮点击时触发',
+                        value: '(page: number) => void',
+                        default: '',
+                    },
+                    {
+                        attribute: 'onNext',
+                        description: '下一页按钮点击时触发',
+                        value: '(page: number) => void',
+                        default: '',
+                    },
+                    {
+                        attribute: 'onJump',
+                        description: '跳转到指定页码时触发',
+                        value: '(page: number) => void',
+                        default: '',
+                    },
+                ],
+            },
+        ],
     };
 
     return <IntroComponent {...props} />;
