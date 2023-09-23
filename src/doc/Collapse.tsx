@@ -1,8 +1,13 @@
-import { IntroComponent } from "./IntroComponent";
-import { Collapse, CollapseItem, CollapseNav } from "../components/Collapse/Collapse";
-import Image from "../components/Image/Image";
+import { IntroComponent } from './IntroComponent';
+import {
+    Collapse,
+    CollapseItem,
+    CollapseNav,
+} from '../components/Collapse/Collapse';
+import Image from '../components/Image/Image';
 
-const imgSrc = 'https://images.unsplash.com/photo-1662574428878-6969eba0b86c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1931&q=80';
+const imgSrc =
+    'https://images.unsplash.com/photo-1662574428878-6969eba0b86c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1931&q=80';
 
 export default function () {
     const props = {
@@ -12,17 +17,15 @@ export default function () {
             {
                 title: '自由内容项',
                 component: (
-                    <Collapse >
-                        <CollapseItem label="选项1" >
-                            <p style={ { margin: '8px' } }>
-                                这是一段文字
-                            </p>
+                    <Collapse>
+                        <CollapseItem label='选项1'>
+                            <p style={{ margin: '8px' }}>这是一段文字</p>
                         </CollapseItem>
 
-                        <CollapseItem label="选项1" >
-                            <Image src={ imgSrc } info="这是一张图片" />
+                        <CollapseItem label='选项1'>
+                            <Image src={imgSrc} />
                         </CollapseItem>
-                    </Collapse >
+                    </Collapse>
                 ),
                 info: 'CollapseItem 中可以放入任意内容，作为抽屉的一个子项',
                 code: `
@@ -36,7 +39,7 @@ export default function () {
     <CollapseItem label="选项1" key="1">
         <Image src={ imgSrc } info="这是一张图片" />
     </CollapseItem>
-</Collapse >`
+</Collapse >`,
             },
             //             {
             //                 title: '仅作为导航链接',
@@ -74,5 +77,5 @@ export default function () {
         ],
     };
 
-    return <IntroComponent { ...props } />;
+    return <IntroComponent {...props} />;
 }
