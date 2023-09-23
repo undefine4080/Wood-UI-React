@@ -12,16 +12,15 @@ function Pagination(props: propsPagination) {
         limit = 20,
         total = 0,
         page = 1,
-        pageButtonCount = 5,
+        pageButtonCount = 5, // number of the pagination buttons
         limitChange = false,
-        turnPage = false,
+        jump = false,
         simple = false,
         onPageChange,
         onLimitChange,
         onPrev,
         onNext,
         onJump,
-        onSelect,
     } = props;
 
     const [selectedPage, setSelectedPage] = useState(page);
@@ -70,7 +69,7 @@ function Pagination(props: propsPagination) {
         setPageButtons(items);
     }, [selectedPage, selectedLimit, pageCount, pageCountStart]);
 
-    // handle the available of all the buttons
+    // handle the available of the switch buttons
     const [switchAvailable, setSwitchAvailable] = useState<switchAvailable>({
         prev: false,
         next: true,
@@ -79,12 +78,9 @@ function Pagination(props: propsPagination) {
     });
     useEffect(() => {
         const prev = selectedPage > 1;
-
         const next = selectedPage < pageCount;
-
         const prevSpan =
             pageCountStart - pageButtonCount >= 0 || pageCountStart > 1;
-
         const nextSpan =
             pageCountStart + pageButtonCount * 2 <= pageCount ||
             pageCountStart + pageButtonCount <= pageCount;
@@ -92,26 +88,29 @@ function Pagination(props: propsPagination) {
         setSwitchAvailable({ prev, next, prevSpan, nextSpan });
     }, [selectedPage, pageCountStart]);
 
-    // callback of the page change
+    const [firstLoad, setFirstLoad] = useState(false);
     useEffect(() => {
-        onPageChange && onPageChange(selectedPage);
+        if (!firstLoad) {
+            setFirstLoad(true);
+        } else {
+            onPageChange && onPageChange(selectedPage);
+        }
     }, [selectedPage]);
 
     const selectPage = (event: any) => {
         event.stopPropagation();
         const pageNum = parseInt(event.target.dataset.page);
         setSelectedPage(pageNum);
-        onSelect && onSelect(pageNum);
     };
 
     const switchPage = (event: any, flag: string) => {
         event.stopPropagation();
-        let newCountStart = pageCountStart;
 
+        let newCountStart = pageCountStart;
         if (flag === '-' && switchAvailable.prev) {
             setSelectedPage((prev) => prev - 1);
             pageCountStart > 1 && (newCountStart -= 1);
-            onPrev && onPrev();
+            onPrev && onPrev(selectedPage - 1);
         } else if (flag === '+' && switchAvailable.next) {
             setSelectedPage((prev) => prev + 1);
             if (
@@ -120,7 +119,7 @@ function Pagination(props: propsPagination) {
             ) {
                 newCountStart += 1;
             }
-            onNext && onNext();
+            onNext && onNext(selectedPage + 1);
         }
         setPageCountStart(newCountStart);
     };
@@ -148,20 +147,26 @@ function Pagination(props: propsPagination) {
         setSelectedPage(newCountStart);
     };
 
-    const turnToPage = (event: any) => {
-        const value = parseInt(event.target.value);
-        if (value >= 1 && value <= pageCount) {
-            setSelectedPage(value);
-            if (value + pageButtonCount < pageCount) {
-                setPageCountStart(value);
+    const jumpToPage = (input: any) => {
+        const page = input as number;
+        if (page < 1) {
+            setSelectedPage(1);
+            setPageCountStart(1);
+        } else if (page > pageCount) {
+            setSelectedPage(pageCount);
+            setPageCountStart(pageCount - pageButtonCount + 1);
+        } else {
+            setSelectedPage(page);
+            if (page + pageButtonCount < pageCount) {
+                setPageCountStart(page);
             } else {
                 setPageCountStart(pageCount - pageButtonCount + 1);
             }
         }
-        onJump && onJump(value);
+        onJump && onJump(page);
     };
 
-    const handleSizeChange = (selected: any) => {
+    const handleLimitChange = (selected: any) => {
         setSelectedLimit(selected.value);
         onLimitChange && onLimitChange(selected.value);
     };
@@ -214,7 +219,7 @@ function Pagination(props: propsPagination) {
                         name={'pagesize'}
                         value={limit}
                         size='small'
-                        onSelect={handleSizeChange}>
+                        onSelect={handleLimitChange}>
                         <Option label='20条/页' value={20}></Option>
                         <Option label='50条/页' value={50}></Option>
                         <Option label='100条/页' value={100}></Option>
@@ -222,14 +227,13 @@ function Pagination(props: propsPagination) {
                     </Select>
                 )}
 
-                {turnPage && (
+                {jump && (
                     <Row align='middle'>
                         <Input
                             type={'number'}
                             min={1}
                             max={pageCount}
-                            style={{ width: '60px' }}
-                            onBlur={turnToPage}
+                            onBlur={jumpToPage}
                             size='small'
                         />
                         页

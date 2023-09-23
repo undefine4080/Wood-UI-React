@@ -22,7 +22,7 @@ export default function () {
             },
             {
                 title: '跳转到指定页码',
-                component: <Pagination total={400} turnPage />,
+                component: <Pagination total={400} jump />,
                 code: `
 <Pagination total={ 1300 } turnPage/>`,
             },
@@ -31,6 +31,52 @@ export default function () {
                 component: <Pagination total={400} simple />,
                 code: `
 <Pagination total={ 1300 } simple/>`,
+            },
+            {
+                title: '分页器回调事件',
+                component: (
+                    <Pagination
+                        total={400}
+                        limitChange
+                        jump
+                        onJump={(value) => {
+                            console.log('jump', value);
+                        }}
+                        onLimitChange={(value) => {
+                            console.log('limitChange', value);
+                        }}
+                        onNext={(value) => {
+                            console.log('next', value);
+                        }}
+                        onPrev={(value) => {
+                            console.log('prev', value);
+                        }}
+                        onPageChange={(value) => {
+                            console.log('pageChange', value);
+                        }}
+                    />
+                ),
+                code: `
+<Pagination
+    total={400}
+    limitChange
+    jump
+    onJump={(value) => {
+        console.log('jump', value);
+    }}
+    onLimitChange={(value) => {
+        console.log('limitChange', value);
+    }}
+    onNext={(value) => {
+        console.log('next', value);
+    }}
+    onPrev={(value) => {
+        console.log('prev', value);
+    }}
+    onPageChange={(value) => {
+        console.log('pageChange', value);
+    }}
+/>`,
             },
         ],
     };

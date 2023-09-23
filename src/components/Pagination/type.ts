@@ -1,24 +1,23 @@
 interface propsPagination {
-    onPageChange?: (page: Number) => void;
-    onLimitChange?: (size: Number) => void;
-    onPrev?: () => void;
-    onNext?: () => void;
-    onJump?: (num: Number) => void;
-    onSelect?: (selectPage: Number) => void;
+    onPageChange?: (page: number) => void;
+    onLimitChange?: (limit: number) => void;
+    onPrev?: (page: number) => void;
+    onNext?: (page: number) => void;
+    onJump?: (page: number) => void;
     pageButtonCount?: number;
     total?: number;
     limit?: number;
     page?: number;
     limitChange?: boolean;
-    turnPage?: boolean;
+    jump?: boolean;
     simple?: boolean;
 }
 
 interface switchAvailable {
-    prev?: Boolean;
-    next?: Boolean;
-    prevSpan?: Boolean;
-    nextSpan?: Boolean;
+    prev?: boolean;
+    next?: boolean;
+    prevSpan?: boolean;
+    nextSpan?: boolean;
 }
 
 export type { propsPagination, switchAvailable };
