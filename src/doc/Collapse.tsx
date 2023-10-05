@@ -4,7 +4,7 @@ import {
     CollapseItem,
     CollapseNav,
 } from '../components/Collapse/Collapse';
-import Image from '../components/Image/Image';
+import { WDImage } from '../components/Image/Image';
 
 const imgSrc =
     'https://images.unsplash.com/photo-1662574428878-6969eba0b86c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1931&q=80';
@@ -23,7 +23,7 @@ export default function () {
                         </CollapseItem>
 
                         <CollapseItem label='选项1'>
-                            <Image src={imgSrc} />
+                            <WDImage src={imgSrc} />
                         </CollapseItem>
                     </Collapse>
                 ),

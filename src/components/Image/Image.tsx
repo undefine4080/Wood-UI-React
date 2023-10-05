@@ -1,12 +1,14 @@
 import { useLazyLoad } from '@common/hooks';
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 import { propsImage } from './type';
 
 import Modal from '@component/Modal/Modal';
 import ImageViewer from './ImageViewer';
 import './image.less';
+import { WDLoading } from '@component/Loading/Loading';
+import { LoadingState } from '@common/types';
 
-function Image(props: propsImage) {
+function WDImage(props: propsImage) {
     const {
         width,
         height,
@@ -21,10 +23,10 @@ function Image(props: propsImage) {
         errorContent,
     } = props;
 
-    const refImg: any = useRef();
+    const refImg = useRef<any>();
     const [imgSrc, setSrc] = useState('');
     const [previewVisible, setPreviewVisible] = useState(false);
-    const [loading, setLoading] = useState<'lazy' | 'eager' | 'internal'>();
+    const [loading, setLoading] = useState(LoadingState.PENDING);
     const imageStyle = {
         width: `${typeof width === 'number' ? `${width}px` : width}`,
         height: `${typeof height === 'number' ? `${height}px` : height}`,
@@ -50,32 +52,28 @@ function Image(props: propsImage) {
         }
     };
 
-    const handleLoading = () => {
-        const imgElement = document.createElement('img');
-        const hasLoadingApi = 'loading' in imgElement;
-        if (hasLoadingApi) {
-            setSrc(src);
-            setLoading(lazy ? 'lazy' : 'eager');
-        } else {
-            setLoading('internal');
-        }
-    };
-
-    useEffect(handleLoading, []);
-
     useLazyLoad(
         refImg,
         () => {
-            if (loading === 'internal') {
+            const image = new Image();
+
+            image.onload = function () {
+                setLoading(LoadingState.SUCCESS);
                 setSrc(src);
-            }
+            };
+
+            image.onerror = function () {
+                setLoading(LoadingState.ERROR);
+            };
+
+            image.src = src;
         },
         lazy,
     );
 
     return (
         <div
-            className={`wdu-image ${imgSrc && 'wdu-image__loaded'}`}
+            className='wdu-image'
             style={imageStyle}
             ref={refImg}
             onClick={handleClick}>
@@ -83,11 +81,13 @@ function Image(props: propsImage) {
                 className='wdu-image__img'
                 src={imgSrc}
                 onClick={linkTo}
-                loading={loading as 'lazy' | 'eager'}
+                loading='lazy'
                 width={width}
                 height={height}
                 alt={alt}
             />
+
+            <WDLoading loading={loading}></WDLoading>
 
             {title && <p className='wdu-image__info'>{title}</p>}
 
@@ -108,4 +108,4 @@ function Image(props: propsImage) {
     );
 }
 
-export default Image;
+export { WDImage };

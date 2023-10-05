@@ -1,7 +1,7 @@
 import { IntroComponent } from '@doc/IntroComponent';
 import { Nav, NavItem, NavMenu } from '@component/Nav/Nav';
 import Switch from '@component/Switch/Switch';
-import Image from '@component/Image/Image';
+import { WDImage } from '@component/Image/Image';
 import { useState } from 'react';
 import { Row } from '@component/Layout/Layout';
 
@@ -24,7 +24,7 @@ export default function () {
                             <NavItem url='https://www.jd.com' label='京东' />
                         </NavMenu>
                         <NavMenu title='图片'>
-                            <Image src={img} />
+                            <WDImage src={img} />
                         </NavMenu>
                         <NavMenu
                             title='微软'

@@ -51,4 +51,12 @@ interface Size {
     height: number;
 }
 
+enum LoadingState {
+    PENDING,
+    SUCCESS,
+    ERROR,
+}
+
 export type { propsIntroComponent, docItem, Size };
+
+export { LoadingState };

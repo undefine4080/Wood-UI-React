@@ -1,5 +1,5 @@
 import { IntroComponent } from './IntroComponent';
-import Image from '../components/Image/Image';
+import { WDImage } from '../components/Image/Image';
 
 const w =
     'https://cdn.pixabay.com/photo/2022/08/15/05/23/sun-rays-7387131_1280.jpg';
@@ -15,15 +15,16 @@ export default function () {
         components: [
             {
                 title: '普通图片',
-                component: <Image src={w} lazy />,
+                component: <WDImage src={w} />,
                 code: '<Image src={ src } lazy/>',
             },
             {
                 title: '启用图片预览',
                 component: (
                     <>
-                        <Image title='长图' src={h} preview />
-                        <Image title='宽图' src={w} preview />
+                        <WDImage title='长图' src={h} preview />
+                        <WDImage title='宽图' src={w} preview lazy />
+                        <WDImage title='宽图' src="https://developer.mozilla.org/zh-CN/docs/Web" preview lazy />
                     </>
                 ),
                 code: '<Image src={ src } link={ link } />',
