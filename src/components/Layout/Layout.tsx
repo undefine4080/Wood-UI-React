@@ -110,7 +110,7 @@ Main.displayName = 'Main';
 function Row(props: propsRow) {
     const { justify = 'start', align = 'top', children, className = '' } = props;
 
-    const baseStyle = 'wdu-row';
+    const baseStyle = 'wdu-the-row';
     const styleMap = {
         base: baseStyle,
         start: `${baseStyle}-start`,

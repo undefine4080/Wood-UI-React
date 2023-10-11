@@ -74,7 +74,7 @@ const options = [
                 title: '不同尺寸',
                 info: '通过 size 来制定不同尺寸的 Select',
                 component: (
-                    <>
+                    <div className='wdu-row'>
                         <Select placeholder='请选择一项' size='large'>
                             {options.map(({ label, value }) => (
                                 <Option
@@ -104,7 +104,7 @@ const options = [
                                 />
                             ))}
                         </Select>
-                    </>
+                    </div>
                 ),
                 code: `
 <Select placeholder='请选择一项' size='large'>
