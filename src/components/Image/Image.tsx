@@ -81,7 +81,6 @@ function WDImage(props: propsImage) {
                 className='wdu-image__img'
                 src={imgSrc}
                 onClick={linkTo}
-                loading='lazy'
                 width={width}
                 height={height}
                 alt={alt}

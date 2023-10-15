@@ -1,9 +1,5 @@
 import { IntroComponent } from './IntroComponent';
-import {
-    Collapse,
-    CollapseItem,
-    CollapseNav,
-} from '../components/Collapse/Collapse';
+import { Collapse, CollapseItem } from '../components/Collapse/Collapse';
 import { WDImage } from '../components/Image/Image';
 
 const imgSrc =
@@ -18,12 +14,26 @@ export default function () {
                 title: '自由内容项',
                 component: (
                     <Collapse>
-                        <CollapseItem label='选项1'>
+                        <CollapseItem title='选项1'>
                             <p style={{ margin: '8px' }}>这是一段文字</p>
                         </CollapseItem>
 
-                        <CollapseItem label='选项1'>
-                            <WDImage src={imgSrc} />
+                        <CollapseItem title='选项2'>
+                            <WDImage src={imgSrc} height={400} />
+                        </CollapseItem>
+
+                        <CollapseItem title='选项3'>
+                            <Collapse>
+                                <CollapseItem title='选项1'>
+                                    <p style={{ margin: '8px' }}>
+                                        这是一段文字
+                                    </p>
+                                </CollapseItem>
+
+                                <CollapseItem title='选项1'>
+                                    <WDImage src={imgSrc} height={400} />
+                                </CollapseItem>
+                            </Collapse>
                         </CollapseItem>
                     </Collapse>
                 ),

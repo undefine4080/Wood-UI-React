@@ -1,25 +1,17 @@
-import commonProps from "@common/types";
+import commonProps from '@common/types';
+import { ReactNode } from 'react';
 
 interface propsCollapse extends commonProps {
-    sticky?: boolean; // 是否 fixed 布局
+    expandItems?: Array<string>;
 }
 
-interface propsCollapseItem extends commonProps {
-    label?: string;
+interface propsCollapseItem {
+    title?: ReactNode;
+    index?: number;
     expand?: boolean;
-    height?: string;
-    autoHeight?: boolean;
+    size?: commonProps['size'];
+    children?: ReactNode;
+    onClick?: (index: number) => void;
 }
 
-interface propsCollapseNav extends commonProps {
-    url?: string, // 导航目标 url
-    label?: string, // 标签文字
-    newTab?: boolean, // 是否在新标签页打开链接
-}
-
-
-export type {
-    propsCollapse,
-    propsCollapseItem,
-    propsCollapseNav
-};
+export type { propsCollapse, propsCollapseItem };
