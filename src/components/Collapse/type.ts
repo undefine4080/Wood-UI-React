@@ -10,7 +10,6 @@ interface propsCollapseItem {
     title?: ReactNode;
     index?: number;
     children?: ReactNode;
-    onClick?: (index: number) => void;
 }
 
 export type { propsCollapse, propsCollapseItem };

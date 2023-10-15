@@ -6,7 +6,7 @@ import IconArrow from '../../icon/Arrow/Arrow';
 const T = 'wdu-collapse-item';
 
 function CollapseItem(props: propsCollapseItem) {
-    const { title, children, index, onClick } = props;
+    const { title, children, index } = props;
     const expandItems = useContext(CollapseContext);
     const containerNode = useRef<any>();
     const [containerHeight, setContainerHeight] = useState('0');
@@ -31,7 +31,8 @@ function CollapseItem(props: propsCollapseItem) {
             <div
                 className={`${T}__header`}
                 onClick={() => setExpand(!isExpand)}>
-                <span>{title}</span>
+                {typeof title === 'string' ? <span>{title}</span> : title}
+
                 <IconArrow
                     style={isExpand === true ? 'bottom' : 'right'}></IconArrow>
             </div>
