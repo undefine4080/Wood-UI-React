@@ -13,7 +13,7 @@ export default function () {
             {
                 title: '自由内容项',
                 component: (
-                    <Collapse expandItems={[1, 3]}>
+                    <Collapse size='small'>
                         <CollapseItem title='选项1' index={1}>
                             <p style={{ margin: '8px' }}>这是一段文字</p>
                         </CollapseItem>

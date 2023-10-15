@@ -6,9 +6,9 @@ import './collapse.less';
 import React from 'react';
 
 const CollapseContext = createContext<Array<string | number> | undefined>([]);
-
+const T = 'wdu-collapse';
 function Collapse(props: propsCollapse) {
-    const { expandItems, children } = props;
+    const { expandItems, children, size = 'normal' } = props;
 
     useEffect(() => {
         const collapseItemsNode = React.Children.toArray(children);
@@ -16,7 +16,7 @@ function Collapse(props: propsCollapse) {
     }, []);
 
     return (
-        <div className='wdu-collapse'>
+        <div className={`${T} ${T}__${size}`}>
             <CollapseContext.Provider value={expandItems}>
                 {children}
             </CollapseContext.Provider>

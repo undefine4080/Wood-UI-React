@@ -1,17 +1,21 @@
 .wdu-collapse {
     .wdu-border-light();
+    border-top: none;
+
+    .wdu-collapse {
+        border: none;
+    }
 }
 
 .wdu-collapse-item {
     &__header {
-        height: 40px;
-        border-bottom: 1px solid rgb(239, 239, 239);
+        border-top: 1px solid rgb(239, 239, 239);
         display: flex;
         align-items: center;
         padding: 0 15px;
         position: relative;
 
-        .wdu-icon-arrow{
+        .wdu-icon-arrow {
             position: absolute;
             right: 0;
         }
@@ -26,5 +30,25 @@
         overflow: hidden;
         .wdu-transition-quick();
         .wdu-text-small();
+    }
+}
+
+.wdu-collapse {
+    &__normal {
+        .wdu-collapse-item__header {
+            height: 40px;
+        }
+    }
+
+    &__small {
+        .wdu-collapse-item__header {
+            height: 30px;
+        }
+    }
+
+    &__large {
+        .wdu-collapse-item__header {
+            height: 50px;
+        }
     }
 }

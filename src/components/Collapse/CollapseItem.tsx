@@ -6,7 +6,7 @@ import IconArrow from '../../icon/Arrow/Arrow';
 const T = 'wdu-collapse-item';
 
 function CollapseItem(props: propsCollapseItem) {
-    const { title, children, index, onClick, size } = props;
+    const { title, children, index, onClick } = props;
     const expandItems = useContext(CollapseContext);
     const containerNode = useRef<any>();
     const [containerHeight, setContainerHeight] = useState('0');
