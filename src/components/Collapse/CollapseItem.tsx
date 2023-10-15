@@ -1,14 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { propsCollapseItem } from './type';
+import { CollapseContext } from './Collapse';
 import IconArrow from '../../icon/Arrow/Arrow';
 
 const T = 'wdu-collapse-item';
 
 function CollapseItem(props: propsCollapseItem) {
-    const { expand = false, title, children, index, onClick, size } = props;
+    const { title, children, index, onClick, size } = props;
+    const expandItems = useContext(CollapseContext);
     const containerNode = useRef<any>();
-    const [isExpand, setExpand] = useState(expand);
     const [containerHeight, setContainerHeight] = useState('0');
+    const [isExpand, setExpand] = useState(() => {
+        if (expandItems?.length && index !== undefined && index !== null) {
+            return expandItems.includes(index);
+        }
+    });
 
     useEffect(() => {
         const height = containerNode.current.scrollHeight;

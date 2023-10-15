@@ -13,16 +13,16 @@ export default function () {
             {
                 title: '自由内容项',
                 component: (
-                    <Collapse>
-                        <CollapseItem title='选项1'>
+                    <Collapse expandItems={[1, 3]}>
+                        <CollapseItem title='选项1' index={1}>
                             <p style={{ margin: '8px' }}>这是一段文字</p>
                         </CollapseItem>
 
-                        <CollapseItem title='选项2'>
+                        <CollapseItem title='选项2' index={2}>
                             <WDImage src={imgSrc} height={400} />
                         </CollapseItem>
 
-                        <CollapseItem title='选项3'>
+                        <CollapseItem title='选项3' index={3}>
                             <Collapse>
                                 <CollapseItem title='选项1'>
                                     <p style={{ margin: '8px' }}>

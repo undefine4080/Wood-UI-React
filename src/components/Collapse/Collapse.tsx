@@ -1,14 +1,27 @@
-import { useRef, useEffect, MutableRefObject } from 'react';
+import { useRef, useEffect, MutableRefObject, createContext } from 'react';
 import { propsCollapse } from './type';
 import CollapseItem from './CollapseItem';
 
 import './collapse.less';
+import React from 'react';
+
+const CollapseContext = createContext<Array<string | number> | undefined>([]);
 
 function Collapse(props: propsCollapse) {
     const { expandItems, children } = props;
-    return <div className='wdu-collapse'>{children}</div>;
+
+    useEffect(() => {
+        const collapseItemsNode = React.Children.toArray(children);
+        console.log(collapseItemsNode);
+    }, []);
+
+    return (
+        <div className='wdu-collapse'>
+            <CollapseContext.Provider value={expandItems}>
+                {children}
+            </CollapseContext.Provider>
+        </div>
+    );
 }
 
-const T = 'wdu-collapse-item';
-
-export { Collapse, CollapseItem };
+export { Collapse, CollapseItem, CollapseContext };
