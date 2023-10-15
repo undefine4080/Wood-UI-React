@@ -10,8 +10,8 @@ const link =
 
 const lazyDemo = (
     <div style={{ flexGrow: 1, height: '200px', overflow: 'auto' }}>
-        {new Array(10).fill(w).map((src) => (
-            <WDImage width={300} height={200} src={src} lazy />
+        {new Array(10).fill(w).map((src, index) => (
+            <WDImage width={300} height={200} src={src} lazy key={index} />
         ))}
     </div>
 );

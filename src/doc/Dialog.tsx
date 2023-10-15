@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IntroComponent } from '@doc/IntroComponent';
 import Button from '@component/Button/Button';
 import Dialog from '@component/Dialog/Dialog';
-import Tag from '@component/Tag/Tag';
 
 export default function () {
     const [visible, setVisible] = useState({
@@ -145,9 +144,7 @@ export default function () {
                         <Dialog
                             header={
                                 <p>
-                                    <Tag value='tag-1' type='plain' />
-                                    <Tag value='tag-2' type='important' />
-                                    <Tag value='tag-3' type='success' />
+                                    <strong>对话框 3</strong>
                                     <Button size='small'>查看更多</Button>
                                 </p>
                             }
@@ -201,9 +198,7 @@ export default function () {
 <Dialog
     header={
         <p>
-            <Tag value='tag-1' type='plain' />
-            <Tag value='tag-2' type='important' />
-            <Tag value='tag-3' type='success' />
+            <strong>对话框 3</strong>
             <Button size='small'>查看更多</Button>
         </p>
     }

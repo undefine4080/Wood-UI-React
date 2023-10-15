@@ -2,32 +2,28 @@ import NavMenuItem from '@component/NavMenu/NavMenuItem';
 import { Link, createHashRouter } from 'react-router-dom';
 import App from './doc/App';
 
-import IntroButton from '@doc/Button';
-import IntroLayout from '@doc/Layout';
-import IntroCollapse from '@doc/Collapse';
-import IntroMark from '@doc/Mark';
-import IntroMessage from '@doc/Message';
-import IntroDivider from '@doc/Divider';
-import IntroCheckbox from '@doc/Checkbox';
-import IntroTab from '@doc/Tab';
-import IntroSelect from '@doc/Select';
-import IntroSwitch from '@doc/Switch';
-import IntroTree from '@doc/Tree';
-import IntroPagination from '@doc/Pagination';
-import IntroImage from '@doc/Image';
-import IntroTable from '@doc/Table';
-import IntroCarousel from '@doc/Carousel';
-import IntroForm from '@doc/Form';
-import IntroInput from '@doc/Input';
-import IntroRadio from '@doc/Radio';
-import IntroNav from '@doc/Nav';
-import IntroProgress from '@doc/Progress';
-import IntroTag from '@doc/Tag';
-import IntroTooltip from '@doc/Tooltip';
-import IntroList from '@doc/List';
-import IntroNavMenu from '@doc/NavMenu';
-import IntroPopover from '@doc/Popover';
-import IntroDialog from '@doc/Dialog';
+import DocButton from '@doc/Button';
+import DocCarousel from '@doc/Carousel';
+import DocCheckbox from '@doc/Checkbox';
+import DocCollapse from '@doc/Collapse';
+import DocDialog from '@doc/Dialog';
+import DocDivider from '@doc/Divider';
+import DocForm from '@doc/Form';
+import DocImage from '@doc/Image';
+import DocInput from '@doc/Input';
+import DocLayout from '@doc/Layout';
+import DocMessage from '@doc/Message';
+import DocNavMenu from '@doc/NavMenu';
+import DocPagination from '@doc/Pagination';
+import DocPopover from '@doc/Popover';
+import DocProgress from '@doc/Progress';
+import DocRadio from '@doc/Radio';
+import DocSelect from '@doc/Select';
+import DocSwitch from '@doc/Switch';
+import DocTab from '@doc/Tab';
+import DocTable from '@doc/Table';
+import DocTooltip from '@doc/Tooltip';
+import DocTree from '@doc/Tree';
 
 type navListItem = Array<{
     path?: string;
@@ -49,62 +45,59 @@ const navList: navList = {
     common: [
         {
             path: '/',
-            element: <IntroLayout />,
+            element: <DocLayout />,
         },
         {
             path: 'layout',
             label: 'Layout 布局',
-            element: <IntroLayout />,
+            element: <DocLayout />,
         },
-        { path: 'button', label: 'Button 按钮', element: <IntroButton /> },
-        { path: 'mark', label: 'Mark 标记', element: <IntroMark /> },
-        { path: 'switch', label: 'Switch 开关', element: <IntroSwitch /> },
-        { path: 'divider', label: 'Divider 分割线', element: <IntroDivider /> },
+        { path: 'button', label: 'Button 按钮', element: <DocButton /> },
+
+        { path: 'switch', label: 'Switch 开关', element: <DocSwitch /> },
+        { path: 'divider', label: 'Divider 分割线', element: <DocDivider /> },
         {
             path: 'pagination',
             label: 'Pagination 分页',
-            element: <IntroPagination />,
+            element: <DocPagination />,
         },
-        { path: 'image', label: 'Image 图片', element: <IntroImage /> },
+        { path: 'image', label: 'Image 图片', element: <DocImage /> },
         {
             path: 'progress',
             label: 'Progress 进度条',
-            element: <IntroProgress />,
+            element: <DocProgress />,
         },
-        { path: 'tag', label: 'Tag 标签', element: <IntroTag /> },
     ],
     content: [
         {
             path: 'collapse',
             label: 'Collapse 抽屉',
-            element: <IntroCollapse />,
+            element: <DocCollapse />,
         },
         {
             path: 'navMenu',
             label: 'NavMenu 导航菜单',
-            element: <IntroNavMenu />,
+            element: <DocNavMenu />,
         },
-        { path: 'tree', label: 'Tree 树', element: <IntroTree /> },
-        { path: 'table', label: 'Table 表格', element: <IntroTable /> },
-        { path: 'tab', label: 'Tab 动态面板', element: <IntroTab /> },
+        { path: 'tree', label: 'Tree 树', element: <DocTree /> },
+        { path: 'table', label: 'Table 表格', element: <DocTable /> },
+        { path: 'tab', label: 'Tab 动态面板', element: <DocTab /> },
         {
             path: 'carousel',
             label: 'Carousel 轮播',
-            element: <IntroCarousel />,
+            element: <DocCarousel />,
         },
-        { path: 'list', label: 'List 列表', element: <IntroList /> },
-        { path: 'card', label: 'Card 卡片', element: undefined },
     ],
     form: [
-        { path: 'input', label: 'Input 输入', element: <IntroInput /> },
-        { path: 'radio', label: 'Radio 单选', element: <IntroRadio /> },
+        { path: 'input', label: 'Input 输入', element: <DocInput /> },
+        { path: 'radio', label: 'Radio 单选', element: <DocRadio /> },
         {
             path: 'checkbox',
             label: 'Checkbox 多选',
-            element: <IntroCheckbox />,
+            element: <DocCheckbox />,
         },
-        { path: 'select', label: 'Select 选择', element: <IntroSelect /> },
-        { path: 'form', label: 'Form 表单', element: <IntroForm /> },
+        { path: 'select', label: 'Select 选择', element: <DocSelect /> },
+        { path: 'form', label: 'Form 表单', element: <DocForm /> },
         { path: 'textarea', label: 'Textarea 文本域', element: undefined },
         { path: 'cascade', label: 'Cascade 级联选择', element: undefined },
         {
@@ -114,19 +107,18 @@ const navList: navList = {
         },
     ],
     modal: [
-        { path: 'dialog', label: 'Dialog 对话框', element: <IntroDialog /> },
-        { path: 'message', label: 'Message 消息', element: <IntroMessage /> },
+        { path: 'dialog', label: 'Dialog 对话框', element: <DocDialog /> },
+        { path: 'message', label: 'Message 消息', element: <DocMessage /> },
         {
             path: 'popover',
             label: 'Popover 弹出框',
-            element: <IntroPopover />,
+            element: <DocPopover />,
         },
         {
             path: 'tooltip',
             label: 'Tooltips 文字提示',
-            element: <IntroTooltip />,
+            element: <DocTooltip />,
         },
-        // { path: 'nav', label: 'Nav 导航菜单', element: <IntroNav /> },
     ],
     tool: [
         { path: 'bullet', label: 'Bullet 弹幕', element: undefined },
