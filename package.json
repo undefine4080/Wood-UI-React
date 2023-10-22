@@ -1,6 +1,6 @@
 {
     "name": "wood-ui-react",
-    "version": "0.0.60",
+    "version": "0.0.65",
     "description": "a ui library build by react and typescript",
     "author": "ztf",
     "license": "MIT",
@@ -51,6 +51,7 @@
         "less": "^4.2.0",
         "typescript": "^4.9.5",
         "vite": "^3.2.7",
+        "vite-plugin-dts": "^3.6.0",
         "vite-plugin-progress": "^0.0.7",
         "vitest": "^0.26.3"
     }

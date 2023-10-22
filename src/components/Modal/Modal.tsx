@@ -70,19 +70,19 @@ function Modal(props: propsModal) {
         }
     };
 
-    const [onceFlag, setOnceFlag] = useState(false);
+    const [firstLoad, setFirstLoad] = useState(false);
     useEffect(() => {
-        setOnceFlag(true);
+        setFirstLoad(true);
     }, []);
 
     useEffect(() => {
-        if (onceFlag) {
+        if (firstLoad) {
             handleFullScreen(visible);
             handleVisibility(visible);
         }
     }, [visible]);
 
-    const { topIndex } = useTopLayer(visible, onceFlag);
+    const { topIndex } = useTopLayer(visible, firstLoad);
     useEffect(() => {
         if (visible) {
             const applyMask = topIndex - 1 > TOP_INDEX ? true : mask;
