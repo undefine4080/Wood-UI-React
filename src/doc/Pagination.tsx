@@ -1,5 +1,5 @@
 import { IntroComponent } from './IntroComponent';
-import Pagination from '../components/Pagination/Pagination';
+import { Pagination } from '../components/Pagination/Pagination';
 import { propsIntroComponent } from '@common/types';
 
 export default function () {

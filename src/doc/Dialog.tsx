@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IntroComponent } from '@doc/IntroComponent';
-import Button from '@component/Button/Button';
-import Dialog from '@component/Dialog/Dialog';
+import { Button } from '@component/Button/Button';
+import { Dialog } from '@component/Dialog/Dialog';
 
 export default function () {
     const [visible, setVisible] = useState({

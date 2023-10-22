@@ -10,7 +10,7 @@ function Switch(props: propsSwitch) {
         inactiveLabel,
         activeValue = true,
         inactiveValue = false,
-        defaultValue=false,
+        defaultValue = false,
         disabled = false,
         size = 'normal',
         onChange,
@@ -66,4 +66,4 @@ function Switch(props: propsSwitch) {
 }
 Switch.displayName = 'Switch';
 
-export default Switch;
+export { Switch };

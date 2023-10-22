@@ -1,4 +1,4 @@
-import Button from '@component/Button/Button';
+import { Button } from '@component/Button/Button';
 import { IntroComponent } from './IntroComponent';
 import { Select, Option } from '../components/Select/Select';
 

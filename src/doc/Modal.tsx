@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IntroComponent } from '@doc/IntroComponent';
-import Modal from '@component/Modal/Modal';
-import Button from '@component/Button/Button';
+import { Modal } from '@component/Modal/Modal';
+import { Button } from '@component/Button/Button';
 import { Row } from '@component/Layout/Layout';
 
 const src =
@@ -97,9 +97,12 @@ export default function () {
                         <Modal
                             visible={visible.m3}
                             fullscreen
-                            onClose={() => setVisible({ ...visible, m3: false })} close={function (): void {
+                            onClose={() =>
+                                setVisible({ ...visible, m3: false })
+                            }
+                            close={function (): void {
                                 throw new Error('Function not implemented.');
-                            } }>
+                            }}>
                             这是一段文字内容
                         </Modal>
                     </Button>

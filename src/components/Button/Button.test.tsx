@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 
-import Button from "./Button";
+import { Button } from './Button';
 import { propsButton } from './type';
 
 describe('Button', () => {
@@ -34,23 +34,23 @@ const defineTypes = [
     { type: 'success' },
     { type: 'border' },
     { type: 'warn' },
-    { type: 'line' }
+    { type: 'line' },
 ];
 describe.each(defineTypes)('test the type of button', ({ type }) => {
     test(`${type} type`, () => {
-        const { container } = render(<Button type={(type as propsButton['type'])}>{type} Button</Button>);
+        const { container } = render(
+            <Button type={type as propsButton['type']}>{type} Button</Button>,
+        );
         expect(container).toMatchSnapshot();
     });
 });
 
-const defineSize = [
-    { size: 'small' },
-    { size: 'normal' },
-    { size: 'large' },
-];
+const defineSize = [{ size: 'small' }, { size: 'normal' }, { size: 'large' }];
 describe.each(defineSize)('test the size of button', ({ size }) => {
     test(`${size} size`, () => {
-        const { container } = render(<Button size={(size as propsButton['size'])}>{size} Button</Button>);
+        const { container } = render(
+            <Button size={size as propsButton['size']}>{size} Button</Button>,
+        );
         expect(container).toMatchSnapshot();
     });
 });
