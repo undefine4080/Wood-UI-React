@@ -3,7 +3,7 @@ import './loading.less';
 import { propsLoading } from './type';
 import { LoadingState } from '@common/types';
 
-function WDLoading(props: propsLoading) {
+function Loading(props: propsLoading) {
     const { loading, pendingContent, errorContent } = props;
     const refLoading = useRef<HTMLDivElement>(null);
 
@@ -40,4 +40,4 @@ function WDLoading(props: propsLoading) {
     );
 }
 
-export { WDLoading };
+export { Loading };

@@ -1,37 +1,36 @@
-import { useRef } from "react";
-import { IntroComponent } from "@doc/IntroComponent";
-import Button from "@component/Button/Button";
+import { useRef } from 'react';
+import { IntroComponent } from '@doc/IntroComponent';
+import { Button } from '@component/Button/Button';
 import { Form, FormItem } from '@component/Form/Form';
-import Input from "@component/Input/Input";
-import { Row } from "@component/Layout/Layout";
-import { Select, Option } from "@component/Select/Select";
-import { rqData } from "@common/utils";
-import { validatorRules } from "@component/Form/type";
-import Switch from "@component/Switch/Switch";
+import { Input } from '@component/Input/Input';
+import { Row } from '@component/Layout/Layout';
+import { Select, Option } from '@component/Select/Select';
+import { rqData } from '@common/utils';
+import { validatorRules } from '@component/Form/type';
 
 export default function () {
     const formData = {
         name: '',
         address: '',
         number: '',
-        type: ''
+        type: '',
     };
 
     const myForm = useRef<any>();
 
-    const request = async ( data: any ) => {
-        const result = await rqData( data );
-        console.log( 'submit succeeded! result is: ', result );
+    const request = async (data: any) => {
+        const result = await rqData(data);
+        console.log('submit succeeded! result is: ', result);
     };
 
-    const submit = ( e: any ) => {
+    const submit = (e: any) => {
         e.stopPropagation();
-        myForm.current.submit( request );
+        myForm.current.submit(request);
     };
 
-    const reset = ( e: any ) => {
+    const reset = (e: any) => {
         e.stopPropagation();
-        myForm.current.reset( request );
+        myForm.current.reset(request);
     };
 
     const validateRules: validatorRules = {
@@ -39,34 +38,36 @@ export default function () {
             {
                 trigger: 'onBlur',
                 required: true,
-                info: '编号不能为空'
-            }, {
+                info: '编号不能为空',
+            },
+            {
                 trigger: 'onBlur',
                 type: 'number',
-                info: '编号只能为数字'
-            } ],
+                info: '编号只能为数字',
+            },
+        ],
         address: [
             {
                 trigger: 'onBlur',
                 required: true,
-                info: '地址不能为空'
+                info: '地址不能为空',
             },
             {
                 type: 'string',
                 trigger: 'onBlur',
-                info: '地址不能是数字'
+                info: '地址不能是数字',
             },
             {
                 trigger: 'onBlur',
                 info: '长度不可以超过 12',
-                maxLength: 12
+                maxLength: 12,
             },
             {
                 trigger: 'onBlur',
                 info: '长度最低为 6',
-                minLength: 6
+                minLength: 6,
             },
-        ]
+        ],
     };
 
     const props = {
@@ -77,45 +78,48 @@ export default function () {
                 title: '',
                 component: (
                     <Form
-                        ref={ myForm }
-                        data={ formData }
-                        labelAlign="right"
-                        itemLayout="horizon"
-                        validateRule={ validateRules }>
-
-                        <FormItem refer="name" label="订单名称">
+                        ref={myForm}
+                        data={formData}
+                        labelAlign='right'
+                        itemLayout='horizon'
+                        validateRule={validateRules}>
+                        <FormItem refer='name' label='订单名称'>
                             <Input />
                         </FormItem>
 
-                        <FormItem refer="date" label="创建日期">
-                            <Input type="date" />
+                        <FormItem refer='date' label='创建日期'>
+                            <Input type='date' />
                         </FormItem>
 
-                        <FormItem refer="address" label="收货地址">
-                            <Input type="text" />
+                        <FormItem refer='address' label='收货地址'>
+                            <Input type='text' />
                         </FormItem>
 
-                        <FormItem refer="number" label="订单编号">
+                        <FormItem refer='number' label='订单编号'>
                             <Input />
                         </FormItem>
 
-                        <FormItem refer="type" label="订单类型">
-                            <Select name={ "book" } value={ "" }>
-                                <Option label={ "area1" } value={ "area1" }></Option>
-                                <Option label={ "area2" } value={ "area2" }></Option>
-                                <Option label={ "area3" } value={ "area3" }></Option>
+                        <FormItem refer='type' label='订单类型'>
+                            <Select name={'book'} value={''}>
+                                <Option
+                                    label={'area1'}
+                                    value={'area1'}></Option>
+                                <Option
+                                    label={'area2'}
+                                    value={'area2'}></Option>
+                                <Option
+                                    label={'area3'}
+                                    value={'area3'}></Option>
                             </Select>
                         </FormItem>
 
-                        <FormItem >
-                            <Row justify="center">
-                                <Button type={ "important" }
-                                    onClick={ submit }>
+                        <FormItem>
+                            <Row justify='center'>
+                                <Button type={'important'} onClick={submit}>
                                     提交
                                 </Button>
 
-                                <Button type={ "danger" }
-                                    onClick={ reset }>
+                                <Button type={'danger'} onClick={reset}>
                                     重置
                                 </Button>
                             </Row>
@@ -123,10 +127,10 @@ export default function () {
                     </Form>
                 ),
                 info: '',
-                code: ``
+                code: ``,
             },
-        ]
+        ],
     };
 
-    return <IntroComponent { ...props } />;
-};
+    return <IntroComponent {...props} />;
+}

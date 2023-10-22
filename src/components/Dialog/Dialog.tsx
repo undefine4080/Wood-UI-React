@@ -1,4 +1,4 @@
-import Modal from '@component/Modal/Modal';
+import { Modal } from '@component/Modal/Modal';
 import propsDialog from './type';
 import { MouseEvent } from 'react';
 
@@ -55,4 +55,4 @@ function Dialog(props: propsDialog) {
     );
 }
 
-export default Dialog;
+export { Dialog };

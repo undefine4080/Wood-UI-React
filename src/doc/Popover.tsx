@@ -1,7 +1,7 @@
 import { IntroComponent } from './IntroComponent';
-import Popover from '@component/Popover/Popover';
+import { Popover } from '@component/Popover/Popover';
 import { propsIntroComponent } from '@common/types';
-import Button from '@component/Button/Button';
+import { Button } from '@component/Button/Button';
 import { Table, TableColumn } from '@component/Table/Table';
 
 const ex = 'this is a popover';

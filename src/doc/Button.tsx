@@ -1,5 +1,5 @@
 import { IntroComponent } from '@doc/IntroComponent';
-import Button from '@component/Button/Button';
+import { Button } from '@component/Button/Button';
 import ButtonGroup from '@component/Button/ButtonGroup';
 
 export default function () {

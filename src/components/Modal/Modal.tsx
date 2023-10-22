@@ -111,4 +111,4 @@ function Modal(props: propsModal) {
     return ReactDOM.createPortal(modal, document.body);
 }
 
-export default Modal;
+export { Modal };

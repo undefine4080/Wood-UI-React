@@ -2,10 +2,10 @@ import { useLazyLoad } from '@common/hooks';
 import { MouseEvent, useRef, useState } from 'react';
 import { propsImage } from './type';
 
-import Modal from '@component/Modal/Modal';
+import { Modal } from '@component/Modal/Modal';
 import ImageViewer from './ImageViewer';
 import './image.less';
-import { WDLoading } from '@component/Loading/Loading';
+import { Loading } from '@component/Loading/Loading';
 import { LoadingState } from '@common/types';
 
 function WDImage(props: propsImage) {
@@ -86,7 +86,7 @@ function WDImage(props: propsImage) {
                 alt={alt}
             />
 
-            <WDLoading loading={loading}></WDLoading>
+            <Loading loading={loading}></Loading>
 
             {title && <p className='wdu-image__info'>{title}</p>}
 
@@ -107,4 +107,4 @@ function WDImage(props: propsImage) {
     );
 }
 
-export { WDImage };
+export { WDImage as Image };

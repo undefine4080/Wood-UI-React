@@ -198,4 +198,4 @@ function Popover(props: propsPopover) {
     );
 }
 
-export default Popover;
+export { Popover };

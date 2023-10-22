@@ -1,6 +1,6 @@
-import React, { cloneElement, useEffect, useRef, useState } from 'react';
+import { cloneElement, useEffect, useRef, useState } from 'react';
 import { propsOption, propsSelect, selectedValue } from './type';
-import Popover from '@component/Popover/Popover';
+import { Popover } from '@component/Popover/Popover';
 import { getNamedChild } from '@common/utils';
 import Arrow from '@icon/Arrow/Arrow';
 
