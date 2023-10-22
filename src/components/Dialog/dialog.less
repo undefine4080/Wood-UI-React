@@ -1,0 +1,45 @@
+.wdu-dialog {
+    .out-shadow-normal();
+    .wdu-radius-normal();
+    .wdu-bg-plain();
+    padding: 10px;
+    position: relative;
+
+    &__header {
+        margin-right: 30px;
+
+        &-title {
+            .wdu-text-title();
+            padding: 15px;
+            margin: 0;
+        }
+    }
+
+    &__close {
+        .wdu-bg-danger();
+        .inside-shadow-normal();
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        right: 15px;
+        top: 15px;
+        transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        cursor: pointer;
+        transform-origin: center;
+    }
+
+    &__body {
+        width: 30vw;
+        padding: 15px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+
+        & > * {
+            margin: 0 5px;
+        }
+    }
+}

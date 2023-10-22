@@ -1,44 +1,110 @@
-import { useRef, useState } from "react";
-import { propsImage } from "./type";
-import { useLazyLoad } from "@common/hooks";
+import { useLazyLoad } from '@common/hooks';
+import { MouseEvent, useRef, useState } from 'react';
+import { propsImage } from './type';
 
+import Modal from '@component/Modal/Modal';
+import ImageViewer from './ImageViewer';
 import './image.less';
+import { WDLoading } from '@component/Loading/Loading';
+import { LoadingState } from '@common/types';
 
-function Image ( props: propsImage ) {
-    const { width = 500, src, info, shadow = false, border = false, link, lazy = false } = props;
+function WDImage(props: propsImage) {
+    const {
+        width,
+        height,
+        src,
+        title,
+        link,
+        lazy = false,
+        fit,
+        preview = false,
+        alt,
+        hoverContent,
+        errorContent,
+    } = props;
 
-    const refImg: any = useRef();
-    const [ imgSrc, setSrc ] = useState( '' );
-
+    const refImg = useRef<any>();
+    const [imgSrc, setSrc] = useState('');
+    const [previewVisible, setPreviewVisible] = useState(false);
+    const [loading, setLoading] = useState(LoadingState.PENDING);
     const imageStyle = {
-        width: `${ typeof width === 'number' ? `${ width }px` : width }`,
+        width: `${typeof width === 'number' ? `${width}px` : width}`,
+        height: `${typeof height === 'number' ? `${height}px` : height}`,
+        cursor: preview ? 'pointer' : 'initial',
+        objectFit: fit,
     };
 
-    shadow && Object.assign( imageStyle, { boxShadow: '#c0c0c0 0px 0px 16px 4px' } );
-
-    border && Object.assign( imageStyle, { border: '4px solid black' } );
-
-    link && Object.assign( imageStyle, { cursor: 'pointer' } );
+    link && Object.assign(imageStyle, { cursor: 'pointer' });
 
     const linkTo = () => {
-        if ( !link ) return;
+        if (!link) return;
 
-        window.open( link.toString() );
+        window.open(link.toString());
     };
 
-    useLazyLoad( refImg, () => setSrc( src ), lazy );
+    const close = () => setPreviewVisible(false);
+
+    const handleClick = (e: MouseEvent) => {
+        e.stopPropagation();
+
+        if (preview) {
+            setPreviewVisible(true);
+        }
+    };
+
+    useLazyLoad(
+        refImg,
+        () => {
+            const image = new Image();
+
+            image.onload = function () {
+                setLoading(LoadingState.SUCCESS);
+                setSrc(src);
+            };
+
+            image.onerror = function () {
+                setLoading(LoadingState.ERROR);
+            };
+
+            image.src = src;
+        },
+        lazy,
+    );
 
     return (
-        <div className={ `wdu-image ${ imgSrc && 'wdu-image__loaded' }` }
-            style={ imageStyle }
-            ref={ refImg }>
-            <div className="wdu-image__img"
-                style={ { backgroundImage: `url(${ imgSrc })` } }
-                onClick={ linkTo } />
+        <div
+            className='wdu-image'
+            style={imageStyle}
+            ref={refImg}
+            onClick={handleClick}>
+            <img
+                className='wdu-image__img'
+                src={imgSrc}
+                onClick={linkTo}
+                width={width}
+                height={height}
+                alt={alt}
+            />
 
-            { info && <p className="wdu-image__info">{ info }</p> }
-        </ div>
+            <WDLoading loading={loading}></WDLoading>
+
+            {title && <p className='wdu-image__info'>{title}</p>}
+
+            {preview && (
+                <Modal
+                    containerClass='wdu-image__previewContainer'
+                    visible={previewVisible}
+                    close={close}
+                    closeOnMaskClick={false}
+                    mask>
+                    <ImageViewer
+                        src={src}
+                        close={close}
+                        active={previewVisible}></ImageViewer>
+                </Modal>
+            )}
+        </div>
     );
 }
 
-export default Image;;
+export { WDImage };

@@ -3,10 +3,25 @@
     flex-direction: row;
 }
 
-.wdu-center {
+.wdu-row {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row wrap;
+    align-items: center;
+}
+
+.wdu-center() {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.wdu-full() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .wdu-hide-scroll {
@@ -32,4 +47,12 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.wdu-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

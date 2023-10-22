@@ -1,34 +1,50 @@
-
 .wdu-image {
-    min-width: 500px;
-    min-height: 300px;
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
-    background-color: aliceblue;
-
-    &__loaded {
-        background-color: transparent;
-
-        .wdu-image__img {
-            opacity: 1;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    }
-
-    &__img {
-        transition: all 1s ease-in-out;
-        border-radius: 5px;
-        overflow: hidden;
-        opacity: 0;
-        flex-grow: 1;
-    }
 
     &__info {
         .wdu-text-small();
         text-align: center;
         color: rgb(136, 136, 136);
+    }
+
+    &__previewContainer {
+        margin-top: 0 !important;
+        position: absolute !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__preview {
+        transform-origin: center;
+        transition: all 0.3s ease-out;
+
+        &-btn {
+            @icon-size: 30px;
+            width: @icon-size;
+            height: @icon-size;
+            cursor: pointer;
+            margin: 10px 30px;
+
+            &--close {
+                position: fixed;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        &-controller {
+            width: max-content;
+            background-color: rgba(0, 0, 0, 0.467);
+            border-radius: 10px;
+            position: fixed;
+            left: calc(50% - 210px);
+            bottom: 30px;
+        }
     }
 }

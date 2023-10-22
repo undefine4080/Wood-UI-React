@@ -3,6 +3,7 @@ import { Table } from '@component/Table/Table';
 import { TableColumn } from '@component/Table/TableColumn';
 import Button from '@component/Button/Button';
 import SourceCode from './SourceCode';
+import { propsIntroComponent } from '@common/types';
 
 function IntroComponentItem(props: any) {
     const { title, info = '', component, code = '', style } = props;
@@ -53,12 +54,16 @@ function IntroComponentItem(props: any) {
 }
 
 function IntroApiItem(props: any) {
+    const hasDefault = props.data.find((item: any) => item.default);
+
     return (
         <Table data={props.data} align='left'>
             <TableColumn prop={'attribute'} label={'属性'}></TableColumn>
             <TableColumn prop={'description'} label={'描述'}></TableColumn>
             <TableColumn prop={'value'} label={'取值'}></TableColumn>
-            <TableColumn prop={'default'} label={'默认值'}></TableColumn>
+            {hasDefault && (
+                <TableColumn prop={'default'} label={'默认值'}></TableColumn>
+            )}
         </Table>
     );
 }

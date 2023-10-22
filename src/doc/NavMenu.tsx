@@ -1,5 +1,5 @@
 import { IntroComponent } from '@doc/IntroComponent';
-import { docItem } from '@common/types';
+import { docItem, propsIntroComponent } from '@common/types';
 import { NavMenu, NavMenuItem, SubNavMenu } from '@component/NavMenu/NavMenu';
 import { Link } from 'react-router-dom';
 
@@ -145,7 +145,7 @@ const singleMode: docItem = {
 };
 
 export default function () {
-    const props = {
+    const props: propsIntroComponent = {
         title: 'NavMenu 导航菜单',
         position: 'navMenu',
         components: [basicUse, navigator, infiniteNesting, singleMode],
