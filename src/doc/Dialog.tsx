@@ -8,6 +8,9 @@ export default function () {
         d1: false,
         d2: false,
         d3: false,
+        d4: false,
+        d5: false,
+        d6: false,
     });
 
     const props = {
@@ -49,6 +52,13 @@ export default function () {
                 ),
                 info: '',
                 code: `
+const [visible, setVisible] = useState({
+    d1: false,
+    d2: false,
+    d3: false,
+});
+
+// jsx 模版
 <Button
     type='plain'
     onClick={() =>
@@ -239,6 +249,284 @@ export default function () {
     </i>
 </Dialog>
 `,
+            },
+            {
+                title: '嵌套的对话框',
+                info: '支持在现有的对话框内无限嵌套对话框',
+                component: (
+                    <>
+                        <Button
+                            type='plain'
+                            onClick={() =>
+                                setVisible((prev) => ({ ...prev, d4: true }))
+                            }>
+                            打开第 1 层对话框
+                        </Button>
+                        <Dialog
+                            title='这是第一层对话框'
+                            visible={visible.d4}
+                            close={() =>
+                                setVisible((prev) => ({ ...prev, d4: false }))
+                            }
+                            footer={
+                                <>
+                                    <Button
+                                        type='plain'
+                                        onClick={() =>
+                                            setVisible((prev) => ({
+                                                ...prev,
+                                                d4: false,
+                                            }))
+                                        }>
+                                        取消
+                                    </Button>
+                                    <Button
+                                        type='important'
+                                        onClick={() =>
+                                            setVisible((prev) => ({
+                                                ...prev,
+                                                d4: false,
+                                            }))
+                                        }>
+                                        确认
+                                    </Button>
+                                </>
+                            }>
+                            <i>我是第一层对话框</i>
+
+                            <Button
+                                type='plain'
+                                onClick={() =>
+                                    setVisible((prev) => ({
+                                        ...prev,
+                                        d5: true,
+                                    }))
+                                }>
+                                打开第 2 层对话框
+                            </Button>
+                            <Dialog
+                                title='这是第二层对话框'
+                                visible={visible.d5}
+                                close={() =>
+                                    setVisible((prev) => ({
+                                        ...prev,
+                                        d5: false,
+                                    }))
+                                }
+                                footer={
+                                    <>
+                                        <Button
+                                            type='plain'
+                                            onClick={() =>
+                                                setVisible((prev) => ({
+                                                    ...prev,
+                                                    d5: false,
+                                                }))
+                                            }>
+                                            取消
+                                        </Button>
+                                        <Button
+                                            type='important'
+                                            onClick={() =>
+                                                setVisible((prev) => ({
+                                                    ...prev,
+                                                    d5: false,
+                                                }))
+                                            }>
+                                            确认
+                                        </Button>
+                                    </>
+                                }>
+                                <i>我是第二层对话框</i>
+
+                                <Button
+                                    type='plain'
+                                    onClick={() =>
+                                        setVisible((prev) => ({
+                                            ...prev,
+                                            d6: true,
+                                        }))
+                                    }>
+                                    打开第 3 层对话框
+                                </Button>
+                                <Dialog
+                                    title='这是第三层对话框'
+                                    visible={visible.d6}
+                                    close={() =>
+                                        setVisible((prev) => ({
+                                            ...prev,
+                                            d6: false,
+                                        }))
+                                    }
+                                    footer={
+                                        <>
+                                            <Button
+                                                type='plain'
+                                                onClick={() =>
+                                                    setVisible((prev) => ({
+                                                        ...prev,
+                                                        d6: false,
+                                                    }))
+                                                }>
+                                                取消
+                                            </Button>
+                                            <Button
+                                                type='important'
+                                                onClick={() =>
+                                                    setVisible((prev) => ({
+                                                        ...prev,
+                                                        d6: false,
+                                                    }))
+                                                }>
+                                                确认
+                                            </Button>
+                                        </>
+                                    }>
+                                    <i>我是第三层对话框</i>
+                                </Dialog>
+                            </Dialog>
+                        </Dialog>
+                    </>
+                ),
+                code: `
+const [visible, setVisible] = useState({
+        d4: false,
+        d5: false,
+        d6: false,
+    });
+
+// jsx 模版
+<>
+    <Button
+        type='plain'
+        onClick={() =>
+            setVisible((prev) => ({ ...prev, d4: true }))
+        }>
+        打开第 1 层对话框
+    </Button>
+    <Dialog
+        title='这是第一层对话框'
+        visible={visible.d4}
+        close={() =>
+            setVisible((prev) => ({ ...prev, d4: false }))
+        }
+        footer={
+            <>
+                <Button
+                    type='plain'
+                    onClick={() =>
+                        setVisible((prev) => ({
+                            ...prev,
+                            d4: false,
+                        }))
+                    }>
+                    取消
+                </Button>
+                <Button
+                    type='important'
+                    onClick={() =>
+                        setVisible((prev) => ({
+                            ...prev,
+                            d4: false,
+                        }))
+                    }>
+                    确认
+                </Button>
+            </>
+        }>
+        <i>我是第一层对话框</i>
+        <Button
+            type='plain'
+            onClick={() =>
+                setVisible((prev) => ({
+                    ...prev,
+                    d5: true,
+                }))
+            }>
+            打开第 2 层对话框
+        </Button>
+        <Dialog
+            title='这是第二层对话框'
+            visible={visible.d5}
+            close={() =>
+                setVisible((prev) => ({
+                    ...prev,
+                    d5: false,
+                }))
+            }
+            footer={
+                <>
+                    <Button
+                        type='plain'
+                        onClick={() =>
+                            setVisible((prev) => ({
+                                ...prev,
+                                d5: false,
+                            }))
+                        }>
+                        取消
+                    </Button>
+                    <Button
+                        type='important'
+                        onClick={() =>
+                            setVisible((prev) => ({
+                                ...prev,
+                                d5: false,
+                            }))
+                        }>
+                        确认
+                    </Button>
+                </>
+            }>
+            <i>我是第二层对话框</i>
+            <Button
+                type='plain'
+                onClick={() =>
+                    setVisible((prev) => ({
+                        ...prev,
+                        d6: true,
+                    }))
+                }>
+                打开第 3 层对话框
+            </Button>
+            <Dialog
+                title='这是第三层对话框'
+                visible={visible.d6}
+                close={() =>
+                    setVisible((prev) => ({
+                        ...prev,
+                        d6: false,
+                    }))
+                }
+                footer={
+                    <>
+                        <Button
+                            type='plain'
+                            onClick={() =>
+                                setVisible((prev) => ({
+                                    ...prev,
+                                    d6: false,
+                                }))
+                            }>
+                            取消
+                        </Button>
+                        <Button
+                            type='important'
+                            onClick={() =>
+                                setVisible((prev) => ({
+                                    ...prev,
+                                    d6: false,
+                                }))
+                            }>
+                            确认
+                        </Button>
+                    </>
+                }>
+                <i>我是第三层对话框</i>
+            </Dialog>
+        </Dialog>
+    </Dialog>
+</>`,
             },
         ],
         api: [
