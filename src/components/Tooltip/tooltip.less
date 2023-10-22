@@ -1,4 +1,3 @@
-
 @size: 12px;
 @color: rgb(52, 52, 52);
 
@@ -37,7 +36,7 @@
         animation-delay: 0.2s;
         animation-fill-mode: both;
         animation-iteration-count: 1;
-        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     &__top {
@@ -85,17 +84,17 @@
     }
 
     &__visible {
-        animation-name: show;
+        animation-name: tooltipShow;
         animation-direction: normal;
     }
 
     &__hidden {
-        animation-name: show;
+        animation-name: tooltipShow;
         animation-direction: reverse;
     }
 }
 
-@keyframes show {
+@keyframes tooltipShow {
     from {
         opacity: 0;
     }

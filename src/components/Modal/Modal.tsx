@@ -2,9 +2,11 @@ import ReactDOM from 'react-dom';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { propsModal } from './type';
 import { useCssClassManager } from '@common/hooks';
+import { useTopLayer, TOP_INDEX } from './hooks';
 
 import './modal.less';
 
+const T = 'wdu-modal';
 function Modal(props: propsModal) {
     const {
         mask,
@@ -22,21 +24,14 @@ function Modal(props: propsModal) {
     const refModal = useRef<any>();
 
     const classMap = {
-        base: 'wdu-modal',
-        mask: 'wdu-modal__mask',
-        visible: 'wdu-modal__visible',
-        hidden: 'wdu-modal__hidden',
-        fullscreen: 'wdu-modal__fullScreen',
+        base: T,
+        mask: `${T}__mask`,
+        visible: `${T}__visible`,
+        hidden: `${T}__hidden`,
+        fullscreen: `${T}__fullScreen`,
     };
-
     const { addClassName, removeClassName, classList } =
         useCssClassManager(classMap);
-
-    const [firstLoad, setFirstLoad] = useState(false);
-    useEffect(() => {
-        setFirstLoad(true);
-        mask && addClassName('mask');
-    }, []);
 
     const resetClassList = () => {
         const modal = refModal.current;
@@ -75,17 +70,31 @@ function Modal(props: propsModal) {
         }
     };
 
+    const [onceFlag, setOnceFlag] = useState(false);
     useEffect(() => {
-        if (firstLoad) {
+        setOnceFlag(true);
+    }, []);
+
+    useEffect(() => {
+        if (onceFlag) {
             handleFullScreen(visible);
             handleVisibility(visible);
         }
     }, [visible]);
 
+    const { topIndex } = useTopLayer(visible, onceFlag);
+    useEffect(() => {
+        if (visible) {
+            const applyMask = topIndex - 1 > TOP_INDEX ? true : mask;
+            applyMask && addClassName('mask');
+        }
+    }, [topIndex]);
+
     const modal = (
         <div
             ref={refModal}
             className={classList}
+            style={{ zIndex: topIndex }}
             onClick={(e: MouseEvent) => {
                 e.stopPropagation();
                 if (closeOnMaskClick) close();
