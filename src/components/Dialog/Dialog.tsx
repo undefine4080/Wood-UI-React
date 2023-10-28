@@ -14,6 +14,7 @@ function Dialog(props: propsDialog) {
         showClose = true,
         children,
         closeOnMaskClick = true,
+        fullscreen,
         close,
         onOpen,
         onClose,
@@ -25,8 +26,10 @@ function Dialog(props: propsDialog) {
             close={close}
             mask={mask}
             closeOnMaskClick={closeOnMaskClick}
+            fullscreen={fullscreen}
             onClose={onClose}
-            onOpen={onOpen}>
+            onOpen={onOpen}
+            containerClass={fullscreen ? 'wdu-dialog__fullscreen' : ''}>
             <div className='wdu-dialog'>
                 {header ? (
                     <div className='wdu-dialog__header'>{header}</div>

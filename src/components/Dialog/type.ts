@@ -7,6 +7,7 @@ interface propsDialog {
     footer?: ReactElement;
     children?: any;
     mask?: boolean;
+    fullscreen?: boolean;
     showClose?: boolean;
     closeOnMaskClick?: boolean;
     close: () => void;

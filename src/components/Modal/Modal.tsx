@@ -53,7 +53,7 @@ function Modal(props: propsModal) {
                 document.body.style.overflow = 'hidden';
                 addClassName('fullscreen');
             } else {
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = '';
                 removeClassName('fullscreen');
             }
         }
