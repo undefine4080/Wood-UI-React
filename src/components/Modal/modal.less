@@ -11,28 +11,27 @@
         opacity: 0;
         margin: 0 auto;
         margin-top: 15vh;
-        overflow: auto;
         padding: 20px;
     }
 
     &__visible {
         display: block;
         opacity: 0;
-        animation: maskShow 0.1s ease 0s 1 normal forwards;
+        animation: modalMaskShow 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s 1 normal forwards;
 
         .wdu-modal__container {
-            animation: show 0.3s cubic-bezier(0.32, 0.32, 0.19, 1) 0s 1 normal
-                forwards;
+            animation: modalShow 0.2s cubic-bezier(0.32, 0.32, 0.19, 1) 0s 1
+                normal forwards;
         }
     }
 
     &__hidden {
         opacity: 1;
-        animation: maskHide 0.2s ease 0.2s 1 normal forwards;
+        animation: modalMaskHide 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.2s 1 normal forwards;
 
         .wdu-modal__container {
-            animation: hide 0.2s cubic-bezier(0.44, 0.11, 0, 0.99) 0s 1 normal
-                forwards;
+            animation: modalHide 0.2s cubic-bezier(0.44, 0.11, 0, 0.99) 0s 1
+                normal forwards;
         }
     }
 
@@ -42,14 +41,15 @@
 
     &__fullScreen {
         .wdu-modal__container {
+            padding: 0;
             width: 100%;
-            height: 100%;
-            margin: 0;
+            height: calc(100% - 20px) !important;
+            margin: 0 !important;
         }
     }
 }
 
-@keyframes maskShow {
+@keyframes modalMaskShow {
     from {
         opacity: 0;
     }
@@ -59,7 +59,7 @@
     }
 }
 
-@keyframes maskHide {
+@keyframes modalMaskHide {
     from {
         opacity: 1;
     }
@@ -69,26 +69,28 @@
     }
 }
 
-@keyframes show {
+@keyframes modalShow {
     from {
         opacity: 0;
         margin-top: 10vh;
+        height: 0;
     }
 
     to {
         opacity: 1;
         margin-top: 15vh;
+        height: auto;
     }
 }
 
-@keyframes hide {
+@keyframes modalHide {
     from {
         opacity: 1;
-        top: 0;
+        margin-top: 15vh;
     }
 
     to {
         opacity: 0;
-        top: -50px;
+        margin-top: 12vh;
     }
 }

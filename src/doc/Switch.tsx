@@ -1,5 +1,5 @@
 import { IntroComponent } from './IntroComponent';
-import Switch from '../components/Switch/Switch';
+import { Switch } from '../components/Switch/Switch';
 
 export default function () {
     const props = {
@@ -9,7 +9,7 @@ export default function () {
             {
                 title: '不同尺寸的 Switch ',
                 component: (
-                    <>
+                    <div className='wdu-row'>
                         <p>
                             小尺寸
                             <Switch size='small' defaultValue={true} />
@@ -24,7 +24,7 @@ export default function () {
                             大尺寸
                             <Switch size='large' defaultValue={false} />
                         </p>
-                    </>
+                    </div>
                 ),
                 code: `
 <p>
@@ -43,14 +43,16 @@ export default function () {
             {
                 title: '自定义标签文字和值',
                 component: (
-                    <Switch
-                        size='normal'
-                        defaultValue={'male'}
-                        activeValue={'male'}
-                        inactiveValue={'female'}
-                        activeLabel={'男'}
-                        inactiveLabel={'女'}
-                    />
+                    <div className='wdu-row'>
+                        <Switch
+                            size='normal'
+                            defaultValue={'male'}
+                            activeValue={'male'}
+                            inactiveValue={'female'}
+                            activeLabel={'男'}
+                            inactiveLabel={'女'}
+                        />
+                    </div>
                 ),
                 code: `
     <Switch
@@ -66,7 +68,7 @@ export default function () {
             {
                 title: '开关的切换事件',
                 component: (
-                    <p>
+                    <div className='wdu-row'>
                         <Switch
                             size='normal'
                             onChange={(value) => {
@@ -75,7 +77,7 @@ export default function () {
                         />
 
                         <span>打开控制台查看打印信息</span>
-                    </p>
+                    </div>
                 ),
                 code: `
 <p>

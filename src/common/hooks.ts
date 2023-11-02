@@ -1,4 +1,10 @@
-import { Ref, RefObject, useEffect, useRef, useState } from 'react';
+import {
+    MutableRefObject,
+    RefObject,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 
 interface cssClass {
     base: string;
@@ -130,11 +136,11 @@ function useDrag() {
     const dragEnd = () => {};
 
     useEffect(() => {
-        if(dragTarget.current){
+        if (dragTarget.current) {
             const el = dragTarget.current;
             // el.addEventListener()
         }
-    },[])
+    }, []);
 
     return {
         dragTarget,

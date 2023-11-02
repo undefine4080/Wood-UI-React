@@ -6,7 +6,7 @@ interface propsArrow {
 }
 
 function Arrow(props: propsArrow) {
-    const { style = 'top', className } = props;
+    const { style = 'top', className='' } = props;
 
     return (
         <i

@@ -1,57 +1,57 @@
-import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { propsCollapseItem } from "./type";
+import { useContext, useEffect, useRef, useState } from 'react';
+import { propsCollapseItem } from './type';
+import { CollapseContext } from './Collapse';
+import IconArrow from '../../icon/Arrow/Arrow';
 
-const PREFIX = "wdu-collapse-item";
+const T = 'wdu-collapse-item';
 
 function CollapseItem(props: propsCollapseItem) {
-  const {
-    expand = false,
-    label,
-    height,
-    children,
-    disabled = false,
-    autoHeight,
-  } = props;
+    const { title, children, index } = props;
+    const expandItems = useContext(CollapseContext);
+    const containerNode = useRef<any>();
+    const [containerHeight, setContainerHeight] = useState('0');
+    const [isExpand, setExpand] = useState(() => {
+        if (expandItems?.length && index !== undefined && index !== null) {
+            return expandItems.includes(index);
+        }
+    });
 
-  const itemNode = useRef<any>();
-  const [itemHeight, setItemHeight] = useState("");
-  const [isExpand, setExpand] = useState(expand);
+    useEffect(() => {
+        const height = containerNode.current.scrollHeight;
+        if (isExpand) {
+            setContainerHeight(`${height}px`);
+        } else {
+            containerNode.current.style.height = height + 'px';
+            setContainerHeight(`0px`);
+        }
+    }, [isExpand]);
 
-  useEffect(() => {
-    if (height && height !== "0px") {
-      setItemHeight(height);
-    } else {
-      setItemHeight(`${itemNode.current.scrollHeight}px`);
-    }
-  }, []);
+    return (
+        <div className={`${T} ${isExpand ? `${T}__expand` : ''}`}>
+            <div
+                className={`${T}__header`}
+                onClick={() => setExpand(!isExpand)}>
+                {typeof title === 'string' ? <span>{title}</span> : title}
 
-  const containerHeight = isExpand ? itemHeight : 0;
+                <IconArrow
+                    style={isExpand === true ? 'bottom' : 'right'}></IconArrow>
+            </div>
 
-  const itemIndicator = isExpand ? `${PREFIX}__expand` : "";
-
-  const classMap = {
-    base: PREFIX,
-    autoHeight: `${PREFIX} ${PREFIX}__autoHeight`,
-  };
-
-  const classList = autoHeight ? classMap.autoHeight : classMap.base;
-
-  return (
-    <div className={classList}>
-      <div className={`${PREFIX}__label`} onClick={() => setExpand(!isExpand)}>
-        <i className={`${PREFIX}__indicator ${itemIndicator}`}></i>
-        {label}
-      </div>
-
-      <div
-        ref={itemNode}
-        className={`${PREFIX}__body`}
-        style={{ height: containerHeight }}
-      >
-        {children}
-      </div>
-    </div>
-  );
+            <div
+                ref={containerNode}
+                className={`${T}__body`}
+                style={{ height: containerHeight }}
+                onTransitionEnd={() => {
+                    if (isExpand) {
+                        setContainerHeight('auto');
+                    } else {
+                        setContainerHeight('0');
+                    }
+                }}>
+                {children}
+            </div>
+        </div>
+    );
 }
 
 export default CollapseItem;

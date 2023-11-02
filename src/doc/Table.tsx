@@ -1,6 +1,5 @@
 import { IntroComponent } from './IntroComponent';
 import { Table, TableColumn } from '../components/Table/Table';
-import Tag from '@component/Tag/Tag';
 
 const testData = [
     {
@@ -74,7 +73,7 @@ const testDataLong = [
 const MyCell = (props: any) => {
     return (
         <span style={{ backgroundColor: '#89982e', color: 'black' }}>
-            <Tag value={`${props.data} /吨`}></Tag>
+            {`${props.data} /吨`}
         </span>
     );
 };
@@ -144,7 +143,7 @@ const defineCell = {
 const MyCell = (props: any) => {
     return (
         <span style={{ backgroundColor: '#89982e', color: 'black' }}>
-            <Tag value={props.data + '/吨'}></Tag>
+            {props.data + '/吨'}
         </span>
     )
 }

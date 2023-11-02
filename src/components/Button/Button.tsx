@@ -60,4 +60,4 @@ function Button(props: propsButton) {
 
 Button.displayName = 'Button';
 
-export default Button;
+export { Button };

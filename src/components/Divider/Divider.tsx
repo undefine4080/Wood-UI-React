@@ -18,4 +18,4 @@ function Divider(props: propsDivider) {
     );
 }
 
-export default Divider;
+export { Divider };

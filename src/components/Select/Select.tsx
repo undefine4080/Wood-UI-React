@@ -1,6 +1,6 @@
-import React, { cloneElement, useEffect, useRef, useState } from 'react';
+import { cloneElement, useEffect, useRef, useState } from 'react';
 import { propsOption, propsSelect, selectedValue } from './type';
-import Popover from '@component/Popover/Popover';
+import { Popover } from '@component/Popover/Popover';
 import { getNamedChild } from '@common/utils';
 import Arrow from '@icon/Arrow/Arrow';
 
@@ -50,7 +50,6 @@ function Select(props: propsSelect) {
             if (selectedValue) {
                 const { value, label } = selectedValue.props;
                 refSelect.current.value = label;
-                onSelect && onSelect({ value, label });
             } else {
                 console.warn(
                     'the value you set which is not exist, please checkout it again',

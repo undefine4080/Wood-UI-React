@@ -1,4 +1,4 @@
-import commonProps from "@common/types";
+import commonProps from '@common/types';
 import './radio.less';
 
 interface propsRadio extends commonProps {
@@ -8,24 +8,28 @@ interface propsRadio extends commonProps {
     onCheck?: () => any;
 }
 
-function Radio ( props: propsRadio ) {
+function Radio(props: propsRadio) {
     const { label, name, value, id, onCheck } = props;
 
     return (
-        <div className="wdu-radio-container" >
-            <label htmlFor={ id } className="wdu-radio-label">
-                { label?.toString() }
+        <div className='wdu-radio-container'>
+            <label htmlFor={id} className='wdu-radio-label'>
+                {label?.toString()}
 
-                <input type="radio" id={ id } name={ name } value={ value } className="wdu-radio"
-                    onChange={ () => onCheck && onCheck() }
+                <input
+                    type='radio'
+                    id={id}
+                    name={name}
+                    value={value}
+                    className='wdu-radio'
+                    onChange={() => onCheck && onCheck()}
                 />
 
-                <span className="wdu-radio-checkmark"></span>
+                <span className='wdu-radio-checkmark'></span>
             </label>
         </div>
     );
-};
+}
 Radio.displayName = 'Radio';
 
-
-export default Radio; 
+export { Radio };

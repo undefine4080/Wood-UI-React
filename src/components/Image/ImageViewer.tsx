@@ -37,7 +37,6 @@ function ImageViewer(props: { src: string; close: Function; active: boolean }) {
                 className='wdu-image__preview'
                 src={src}
                 style={imageStyle}
-                onDragStart={() => {}}
             />
 
             <i

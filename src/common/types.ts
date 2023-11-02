@@ -28,6 +28,15 @@ interface propsIntroComponent {
             value?: string | number;
         }>;
     }>;
+    api?: Array<{
+        title: string;
+        api: Array<{
+            attribute: string;
+            description: string;
+            value: string;
+            default: string;
+        }>;
+    }>;
 }
 
 interface docItem {
@@ -42,4 +51,12 @@ interface Size {
     height: number;
 }
 
+enum LoadingState {
+    PENDING,
+    SUCCESS,
+    ERROR,
+}
+
 export type { propsIntroComponent, docItem, Size };
+
+export { LoadingState };

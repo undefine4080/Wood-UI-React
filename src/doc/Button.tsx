@@ -1,5 +1,5 @@
 import { IntroComponent } from '@doc/IntroComponent';
-import Button from '@component/Button/Button';
+import { Button } from '@component/Button/Button';
 import ButtonGroup from '@component/Button/ButtonGroup';
 
 export default function () {
@@ -10,7 +10,7 @@ export default function () {
             {
                 title: '按钮类型',
                 component: (
-                    <>
+                    <div className='wdu-row'>
                         <Button type='plain'>默认</Button>
                         <Button type='success'>成功</Button>
                         <Button type='danger'>危险</Button>
@@ -18,7 +18,7 @@ export default function () {
                         <Button type='warn'>警示</Button>
                         <Button type='line'>边框</Button>
                         <Button disabled>禁用</Button>
-                    </>
+                    </div>
                 ),
                 info: '按钮类型通过 type 属性来定义',
                 code: `
@@ -33,11 +33,11 @@ export default function () {
             {
                 title: '按钮尺寸',
                 component: (
-                    <>
+                    <div className='wdu-row'>
                         <Button size='small'>小尺寸按钮</Button>
                         <Button size='normal'>中尺寸按钮</Button>
                         <Button size='large'>大尺寸按钮</Button>
-                    </>
+                    </div>
                 ),
                 info: '按钮类型通过 size 属性来定义',
                 code: `
@@ -48,7 +48,7 @@ export default function () {
             {
                 title: '加载状态',
                 component: (
-                    <>
+                    <div className='wdu-row'>
                         <Button size='small' type='important' loading>
                             请求中
                         </Button>
@@ -58,7 +58,7 @@ export default function () {
                         <Button size='large' type='success' loading>
                             请稍后
                         </Button>
-                    </>
+                    </div>
                 ),
                 info: '按钮加载状态通过 loading 属性定义',
                 code: `
@@ -69,15 +69,17 @@ export default function () {
             {
                 title: '按钮组',
                 component: (
-                    <ButtonGroup>
-                        <Button type='plain'>默认</Button>
-                        <Button type='success'>成功</Button>
-                        <Button type='danger'>危险</Button>
-                        <Button type='important'>重要</Button>
-                        <Button type='warn'>警示</Button>
-                        <Button type='line'>边框</Button>
-                        <Button disabled>禁用</Button>
-                    </ButtonGroup>
+                    <div className='wdu-row'>
+                        <ButtonGroup>
+                            <Button type='plain'>默认</Button>
+                            <Button type='success'>成功</Button>
+                            <Button type='danger'>危险</Button>
+                            <Button type='important'>重要</Button>
+                            <Button type='warn'>警示</Button>
+                            <Button type='line'>边框</Button>
+                            <Button disabled>禁用</Button>
+                        </ButtonGroup>
+                    </div>
                 ),
                 info: '按钮类型通过 type 属性来定义',
                 code: `

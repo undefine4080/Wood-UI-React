@@ -1,4 +1,3 @@
-
 @size: 26px;
 
 .make-circle {
@@ -32,13 +31,14 @@
     .wdu-flex();
     flex-grow: 1;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 5px;
 
     &__total {
-        .wdu-text-small();
         color: #3e3e3e;
+        font-size: 14px;
         flex-shrink: 0;
+        margin-right: 20px;
     }
 
     &__listContainer {
@@ -77,9 +77,10 @@
     }
 
     &__list {
-        overflow-x: hidden;
         display: flex;
         flex-flow: row nowrap;
+        padding: 0;
+        margin: 0;
 
         &-item {
             .wdu-bg-plain();
@@ -87,8 +88,9 @@
             .make-circle();
             .wdu-text-small();
             .cursor();
+            list-style: none;
             margin: 0 3px;
-            transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
+            transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 
             &:hover {
                 border-color: #6383c6;
@@ -153,7 +155,19 @@
 
         &-disabled {
             cursor: not-allowed;
-            opacity: 0.3;
+            opacity: 0.5;
+        }
+
+        .wdu-select {
+            margin: 0 10px;
+
+            .wdu-select__input {
+                width: 100px;
+            }
+        }
+
+        .wdu-input-container {
+            width: 65px;
         }
     }
 }
