@@ -6,9 +6,9 @@ import React, {
 } from 'react';
 import { propsInput } from './type';
 import { debounce } from '@common/utils';
-import Clear from '@icon/Clear/Clear';
 
 import './input.less';
+import { InputWidget } from './InputWidget';
 
 function Input(props: propsInput) {
     const {
@@ -23,17 +23,18 @@ function Input(props: propsInput) {
 
     const refInput = useRef<any>();
     const [value, setValue] = useState('');
+
+    // calculate the width of the insert node in order to set the padding of input
     const [inputPaddingLeft, setInputPaddingLeft] = useState('');
-
-    const clear = (e: any) => {
-        e.stopPropagation();
-        refInput.current.value = '';
-        setValue('');
-    };
-
+    const [inputPaddingRight, setInputPaddingRight] = useState('');
     const calcPrependWidth = (node: HTMLDivElement) => {
         if (node) {
             setInputPaddingLeft(node.clientWidth + 5 + 'px');
+        }
+    };
+    const calcWidgetWidth = (node: HTMLDivElement) => {
+        if (node) {
+            setInputPaddingRight(node.clientWidth + 5 + 'px');
         }
     };
 
@@ -52,14 +53,27 @@ function Input(props: propsInput) {
             <input
                 ref={refInput}
                 className={'wdu-input__input'}
-                style={{ paddingLeft: inputPaddingLeft }}
+                style={{
+                    paddingLeft: inputPaddingLeft,
+                    paddingRight: inputPaddingRight,
+                }}
+                onChange={(e) => setValue(e.target.value)}
                 {...defaultInputAttributes}
             />
-            {clearable && value && (
-                <span className='wdu-input__clear'>
-                    <Clear onClick={clear} />
-                </span>
-            )}
+
+            <div className='wdu-input__widget' ref={calcWidgetWidth}>
+                <InputWidget
+                    type={props.type}
+                    inputRef={refInput}
+                    setValue={setValue}></InputWidget>
+
+                {clearable && value && (
+                    <InputWidget
+                        type='clear'
+                        inputRef={refInput}
+                        setValue={setValue}></InputWidget>
+                )}
+            </div>
         </div>
     );
 }

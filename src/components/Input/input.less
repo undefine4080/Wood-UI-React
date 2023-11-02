@@ -3,6 +3,7 @@
     flex-flow: row nowrap;
     position: relative;
     margin: 20px;
+    width: 350px;
 
     &-container {
         .wdu-flex();
@@ -15,16 +16,17 @@
     }
 
     &__input {
+        width: 100%;
         padding: 0 15px;
         display: inline-block;
         outline: 0;
         border-radius: 5px;
         .wdu-border-light();
         .inside-shadow-light();
-        
+
         &:focus {
             transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-            border-color: rgb(159, 159, 159)
+            border-color: rgb(159, 159, 159);
         }
     }
 
@@ -43,14 +45,6 @@
         position: absolute;
         left: 1px;
         top: 1px;
-    }
-
-    &__clear {
-        position: absolute;
-        right: 5px;
-        width: max-content;
-        height: 100%;
-        .wdu-center();
     }
 
     &-small {
@@ -78,5 +72,39 @@
             height: 42px;
             line-height: 42px;
         }
+    }
+
+    &__widget {
+        position: absolute;
+        right: 5px;
+        top: 0;
+        width: max-content;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .icon() {
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+    }
+
+    &__password {
+        .icon();
+        background-image: url('../../icon/SVG/password-visible.svg');
+
+        &-hidden {
+            background-image: url('../../icon/SVG/password-hidden.svg');
+        }
+    }
+
+    &__clear {
+        .icon();
+        background-image: url('../../icon/SVG/input-clear.svg');
     }
 }
