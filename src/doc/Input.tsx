@@ -14,33 +14,33 @@ export default function () {
                         <Input
                             name={formName}
                             label='小'
-                            size='small'
-                            showClear
+                            inputSize='small'
+                            clearable
                         />
 
                         <Input
                             name={formName}
                             label='中'
                             type='password'
-                            size='normal'
-                            showClear
+                            inputSize='normal'
+                            clearable
                         />
 
                         <Input
                             name={formName}
                             label='大'
                             type='number'
-                            size='large'
+                            inputSize='large'
                         />
                     </>
                 ),
-                info: '通过 size 定义，小（small）、默认（normal）、大（large）',
+                info: '通过 inputSize 定义，小（small）、默认（normal）、大（large）',
                 code: `
-<Input name={ formName } label="小" size="small" />
+<Input name={ formName } label="小" inputSize="small" />
 
-<Input name={ formName } label="中" type="password" size="normal" />
+<Input name={ formName } label="中" type="password" inputSize="normal" />
 
-<Input name={ formName } label="大" type="number" size="large" />`,
+<Input name={ formName } label="大" type="number" inputSize="large" />`,
             },
             {
                 title: '多种类型的 Input',
@@ -85,7 +85,7 @@ export default function () {
                         value: 'type="[input type]"，不传即为 text',
                     },
                     {
-                        attribute: 'size',
+                        attribute: 'inputSize',
                         description: 'input 输入框的尺寸',
                         value: 'small 小、normal 中、large 大，不传即为 normal',
                     },

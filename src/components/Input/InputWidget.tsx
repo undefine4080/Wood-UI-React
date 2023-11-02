@@ -1,0 +1,8 @@
+
+interface propsInputWidget{
+    
+}
+
+function InputWidget(){
+
+}
