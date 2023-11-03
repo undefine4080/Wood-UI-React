@@ -4,6 +4,7 @@ import { NavMenu, SubNavMenu } from '@component/NavMenu/NavMenu';
 import { navList, renderLinks } from '../router';
 
 import '../styles/App.less';
+import './assets/style.less';
 
 function App() {
     return (

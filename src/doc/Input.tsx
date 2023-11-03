@@ -1,46 +1,43 @@
 import { IntroComponent } from '@doc/IntroComponent';
 import { Input } from '@component/Input/Input';
+import { Button } from '@component/Button/Button';
 
 export default function () {
-    const formName = 'personInfo';
     const props = {
         title: 'Input 输入框',
         position: 'input',
         components: [
             {
+                title: '基础 Input',
+                component: (
+                    <>
+                        <Input />
+
+                        <Input label='带标签的 Input' />
+
+                        <Input label='被禁用的 Input' disabled />
+
+                        <Input label='可清空的 Input' clearable />
+                    </>
+                ),
+                code: `<Input name={ formName } label="基础 Input" />`,
+            },
+            {
                 title: '不同尺寸的 Input',
                 component: (
                     <>
-                        <Input
-                            name={formName}
-                            label='小'
-                            inputSize='small'
-                            clearable
-                        />
+                        <Input label='小' inputSize='small' />
 
-                        <Input
-                            name={formName}
-                            label='中'
-                            type='password'
-                            inputSize='normal'
-                            clearable
-                        />
+                        <Input label='中' inputSize='normal' />
 
-                        <Input
-                            name={formName}
-                            label='大'
-                            type='number'
-                            inputSize='large'
-                        />
+                        <Input label='大' inputSize='large' />
                     </>
                 ),
                 info: '通过 inputSize 定义，小（small）、默认（normal）、大（large）',
                 code: `
-<Input name={ formName } label="小" inputSize="small" />
-
-<Input name={ formName } label="中" type="password" inputSize="normal" />
-
-<Input name={ formName } label="大" type="number" inputSize="large" />`,
+<Input label='小' inputSize='small' />
+<Input label='中' inputSize='normal' />
+<Input label='大' inputSize='large' />`,
             },
             {
                 title: '多种类型的 Input',
@@ -72,6 +69,32 @@ export default function () {
 <Input type="date" label="日期" />
 
 <Input type="color" label="颜色"`,
+            },
+            {
+                title: '插入自定义内容',
+                component: (
+                    <>
+                        <Input
+                            label='可乐'
+                            prepend={<i className='doc-icon-cola'></i>}
+                            type='number'
+                            append={<Button type='important'>购买</Button>}
+                        />
+                        <Input
+                            label='牛排'
+                            prepend={<i className='doc-icon-steak'></i>}
+                            type='number'
+                            append={<Button type='important'>购买</Button>}
+                        />
+                        <Input
+                            label='汉堡'
+                            type='number'
+                            prepend={<i className='doc-icon-hamburger'></i>}
+                            append={<Button type='important'>购买</Button>}
+                        />
+                    </>
+                ),
+                code: ``,
             },
         ],
         api: [

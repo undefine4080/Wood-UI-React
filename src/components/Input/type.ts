@@ -7,7 +7,6 @@ interface propsInput extends InputHTMLAttributes<HTMLInputElement> {
     prepend?: React.ReactNode;
     append?: React.ReactNode;
     clearable?: boolean;
-    disabled?: boolean;
 }
 
 export type { propsInput };

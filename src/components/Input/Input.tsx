@@ -15,11 +15,11 @@ function Input(props: propsInput) {
         inputSize = 'normal',
         label,
         clearable = false,
-        disabled = false,
         prepend,
         append,
         ...defaultInputAttributes
     } = props;
+    const { type, disabled } = props;
 
     const refInput = useRef<any>();
     const [value, setValue] = useState('');
@@ -29,17 +29,24 @@ function Input(props: propsInput) {
     const [inputPaddingRight, setInputPaddingRight] = useState('');
     const calcPrependWidth = (node: HTMLDivElement) => {
         if (node) {
-            setInputPaddingLeft(node.clientWidth + 5 + 'px');
+            setTimeout(() => {
+                setInputPaddingLeft(node.clientWidth + 5 + 'px');
+            }, 50);
         }
     };
     const calcWidgetWidth = (node: HTMLDivElement) => {
         if (node) {
-            setInputPaddingRight(node.clientWidth + 5 + 'px');
+            setTimeout(() => {
+                setInputPaddingRight(node.clientWidth + 5 + 'px');
+            }, 50);
         }
     };
 
     return (
-        <div className={`wdu-input wdu-input-${inputSize}`}>
+        <div
+            className={`wdu-input wdu-input-${inputSize} ${
+                disabled ? 'wdu-input__disabled' : ''
+            }`}>
             {(label || prepend) && (
                 <div className='wdu-input__prepend' ref={calcPrependWidth}>
                     {label && (
@@ -47,6 +54,8 @@ function Input(props: propsInput) {
                             {label}
                         </label>
                     )}
+
+                    {prepend}
                 </div>
             )}
 
@@ -61,19 +70,23 @@ function Input(props: propsInput) {
                 {...defaultInputAttributes}
             />
 
-            <div className='wdu-input__widget' ref={calcWidgetWidth}>
-                <InputWidget
-                    type={props.type}
-                    inputRef={refInput}
-                    setValue={setValue}></InputWidget>
-
-                {clearable && value && (
+            {(clearable || append || type === 'password') && (
+                <div className='wdu-input__widget' ref={calcWidgetWidth}>
                     <InputWidget
-                        type='clear'
+                        type={type}
                         inputRef={refInput}
                         setValue={setValue}></InputWidget>
-                )}
-            </div>
+
+                    {clearable && value && (
+                        <InputWidget
+                            type='clear'
+                            inputRef={refInput}
+                            setValue={setValue}></InputWidget>
+                    )}
+
+                    {append}
+                </div>
+            )}
         </div>
     );
 }
