@@ -1,17 +1,18 @@
-import React, {
+import {
     ChangeEvent,
+    forwardRef,
+    useEffect,
     useImperativeHandle,
-    useLayoutEffect,
     useRef,
     useState,
 } from 'react';
-import { propsInput } from './type';
+import { handleInput, propsInput } from './type';
 import { debounce } from '@common/utils';
-
-import './input.less';
 import { InputWidget } from './InputWidget';
 
-function Input(props: propsInput) {
+import './input.less';
+
+const TheInput = (props: propsInput, ref: any) => {
     const {
         inputSize = 'normal',
         label,
@@ -26,6 +27,12 @@ function Input(props: propsInput) {
 
     const refInput = useRef<any>();
     const [value, setValue] = useState('');
+
+    useEffect(() => {
+        if (refInput.current) {
+            refInput.current.value = value;
+        }
+    }, [value]);
 
     // calculate the width of the insert node in order to set the padding of input
     const [inputPaddingLeft, setInputPaddingLeft] = useState('');
@@ -45,6 +52,7 @@ function Input(props: propsInput) {
         }
     };
 
+    // handle debounce for the onChange event
     const composeOnChange = () => {
         let time;
         if (debounceTime === true) {
@@ -67,6 +75,17 @@ function Input(props: propsInput) {
             };
         }
     };
+
+    useImperativeHandle(ref, () => {
+        return {
+            setValue,
+            value,
+            refInput,
+            clear: () => {
+                setValue('');
+            },
+        };
+    });
 
     return (
         <div
@@ -117,7 +136,9 @@ function Input(props: propsInput) {
             )}
         </div>
     );
-}
+};
+
+const Input = forwardRef(TheInput);
 Input.displayName = 'Input';
 
 export { Input };

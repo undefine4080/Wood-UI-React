@@ -32,7 +32,6 @@ const Clear = (props: Omit<propsInputWidget, 'type'>) => {
             className='wdu-input__clear'
             onClick={() => {
                 setValue('');
-                inputRef.current!.value = '';
             }}></i>
     );
 };
