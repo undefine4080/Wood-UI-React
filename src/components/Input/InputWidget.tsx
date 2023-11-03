@@ -39,7 +39,6 @@ const Clear = (props: Omit<propsInputWidget, 'type'>) => {
 
 function InputWidget(props: propsInputWidget) {
     const { type, ...other } = props;
-    console.log(type);
 
     switch (type) {
         case 'password':

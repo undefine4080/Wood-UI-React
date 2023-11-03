@@ -1,4 +1,5 @@
 import React, {
+    ChangeEvent,
     useImperativeHandle,
     useLayoutEffect,
     useRef,
@@ -17,6 +18,8 @@ function Input(props: propsInput) {
         clearable = false,
         prepend,
         append,
+        debounce: debounceTime,
+        onChange,
         ...defaultInputAttributes
     } = props;
     const { type, disabled } = props;
@@ -39,6 +42,29 @@ function Input(props: propsInput) {
             setTimeout(() => {
                 setInputPaddingRight(node.clientWidth + 5 + 'px');
             }, 50);
+        }
+    };
+
+    const composeOnChange = () => {
+        let time;
+        if (debounceTime === true) {
+            time = 100;
+        } else if (typeof debounceTime === 'number') {
+            time = debounceTime;
+        } else {
+            time = 0;
+        }
+
+        if (time) {
+            return debounce((e: ChangeEvent<HTMLInputElement>) => {
+                props?.onChange && props.onChange(e);
+                setValue(e.target.value);
+            }, time);
+        } else {
+            return (e: ChangeEvent<HTMLInputElement>) => {
+                onChange && onChange(e);
+                setValue(e.target.value);
+            };
         }
     };
 
@@ -66,16 +92,18 @@ function Input(props: propsInput) {
                     paddingLeft: inputPaddingLeft,
                     paddingRight: inputPaddingRight,
                 }}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={composeOnChange()}
                 {...defaultInputAttributes}
             />
 
             {(clearable || append || type === 'password') && (
                 <div className='wdu-input__widget' ref={calcWidgetWidth}>
-                    <InputWidget
-                        type={type}
-                        inputRef={refInput}
-                        setValue={setValue}></InputWidget>
+                    {(append || type === 'password') && (
+                        <InputWidget
+                            type={type}
+                            inputRef={refInput}
+                            setValue={setValue}></InputWidget>
+                    )}
 
                     {clearable && value && (
                         <InputWidget

@@ -96,6 +96,28 @@ export default function () {
                 ),
                 code: ``,
             },
+            {
+                title: '内置输入防抖',
+                info: '传入 debounce 参数即可开启输入防抖，单位为毫秒，默认为 100ms',
+                component: (
+                    <>
+                        <p>打开控制台查看防抖效果</p>
+
+                        <Input
+                            label='未启用防抖'
+                            clearable
+                            onChange={(e) => console.log(e.target.value)}
+                        />
+
+                        <Input
+                            label='启用防抖'
+                            debounce
+                            clearable
+                            onChange={(e) => console.log(e.target.value)}
+                        />
+                    </>
+                ),
+            },
         ],
         api: [
             {

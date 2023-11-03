@@ -1,3 +1,4 @@
+import { debounce } from '@common/utils';
 import commonProps from '@common/types';
 import React, { InputHTMLAttributes } from 'react';
 
@@ -7,6 +8,7 @@ interface propsInput extends InputHTMLAttributes<HTMLInputElement> {
     prepend?: React.ReactNode;
     append?: React.ReactNode;
     clearable?: boolean;
+    debounce?: number | boolean;
 }
 
 export type { propsInput };
