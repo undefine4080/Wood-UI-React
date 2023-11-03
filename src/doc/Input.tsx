@@ -20,7 +20,11 @@ export default function () {
                         <Input label='可清空的 Input' clearable />
                     </>
                 ),
-                code: `<Input name={ formName } label="基础 Input" />`,
+                code: `
+<Input />
+<Input label='带标签的 Input' />
+<Input label='被禁用的 Input' disabled />
+<Input label='可清空的 Input' clearable />`,
             },
             {
                 title: '不同尺寸的 Input',
@@ -80,12 +84,14 @@ export default function () {
                             type='number'
                             append={<Button type='important'>购买</Button>}
                         />
+
                         <Input
                             label='牛排'
                             prepend={<i className='doc-icon-steak'></i>}
                             type='number'
                             append={<Button type='important'>购买</Button>}
                         />
+
                         <Input
                             label='汉堡'
                             type='number'
@@ -94,7 +100,27 @@ export default function () {
                         />
                     </>
                 ),
-                code: ``,
+                code: `
+<Input
+    label='可乐'
+    prepend={<i className='doc-icon-cola'></i>}
+    type='number'
+    append={<Button type='important'>购买</Button>}
+/>
+
+<Input
+    label='牛排'
+    prepend={<i className='doc-icon-steak'></i>}
+    type='number'
+    append={<Button type='important'>购买</Button>}
+/>
+                        
+<Input
+    label='汉堡'
+    type='number'
+    prepend={<i className='doc-icon-hamburger'></i>}
+    append={<Button type='important'>购买</Button>}
+/>`,
             },
             {
                 title: '内置输入防抖',
@@ -117,6 +143,21 @@ export default function () {
                         />
                     </>
                 ),
+                code: `
+<p>打开控制台查看防抖效果</p>
+
+<Input
+    label='未启用防抖'
+    clearable
+    onChange={(e) => console.log(e.target.value)}
+/>
+
+<Input
+    label='启用防抖'
+    debounce
+    clearable
+    onChange={(e) => console.log(e.target.value)}
+/>`,
             },
         ],
         api: [
@@ -124,15 +165,25 @@ export default function () {
                 title: 'Input 属性',
                 api: [
                     {
-                        attribute: 'type',
-                        description:
-                            'input 输入框的类型，用法与原生 input 元素的 type 相同',
-                        value: 'type="[input type]"，不传即为 text',
+                        attribute: 'label',
+                        description: '输入框的标签文字',
+                        value: 'String',
                     },
                     {
                         attribute: 'inputSize',
                         description: 'input 输入框的尺寸',
                         value: 'small 小、normal 中、large 大，不传即为 normal',
+                    },
+                    {
+                        attribute: 'clearable',
+                        description: '是否显示右侧清除按钮',
+                        value: 'Boolean',
+                    },
+                    {
+                        attribute: 'debounce',
+                        description: '是否开启输入防抖',
+                        value: 'Boolean || Number',
+                        default: 100,
                     },
                 ],
             },
@@ -141,11 +192,36 @@ export default function () {
                 api: [
                     {
                         attribute: 'onChange',
-                        description: '键入时触发，自带防抖',
+                        description: '键入时触发，与原生事件绑定相同',
                     },
                     {
                         attribute: 'onFocus / onBlur',
-                        description: '聚焦/失焦时触发',
+                        description: '聚焦/失焦时触发，与原生事件绑定相同',
+                    },
+                ],
+            },
+            {
+                title: 'Input 实例属性',
+                api: [
+                    {
+                        attribute: 'setValue',
+                        description:
+                            '方法，通过 ref.current.setValue() 调用，设置输入框的值',
+                    },
+                    {
+                        attribute: 'value',
+                        description:
+                            '属性，通过 ref.current.value 访问，获取输入框的值',
+                    },
+                    {
+                        attribute: 'clear',
+                        description:
+                            '方法，通过 ref.current.clear() 调用，清除输入框的值',
+                    },
+                    {
+                        attribute: 'refInput',
+                        description:
+                            '属性，通过 ref.current.refInput 访问，表示 input 元素的 DOM 节点对象',
                     },
                 ],
             },

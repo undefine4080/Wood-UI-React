@@ -54,12 +54,21 @@ function IntroComponentItem(props: any) {
 
 function IntroApiItem(props: any) {
     const hasDefault = props.data.find((item: any) => item.default);
+    const hasValue = props.data.find((item: any) => item.value);
 
     return (
         <Table data={props.data} align='left'>
-            <TableColumn prop={'attribute'} label={'属性'}></TableColumn>
+            <TableColumn
+                prop={'attribute'}
+                label={'属性'}
+                width={150}></TableColumn>
+
             <TableColumn prop={'description'} label={'描述'}></TableColumn>
-            <TableColumn prop={'value'} label={'取值'}></TableColumn>
+
+            {hasValue && (
+                <TableColumn prop={'value'} label={'取值'}></TableColumn>
+            )}
+
             {hasDefault && (
                 <TableColumn prop={'default'} label={'默认值'}></TableColumn>
             )}
