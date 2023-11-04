@@ -7,7 +7,7 @@ function Example() {
 
     return (
         <div>
-            <Input ref={refa}></Input>
+            {/* <Input ref={refa}></Input>
 
             <Button onClick={() => console.log(refa.current)}>获取实例</Button>
 
@@ -15,7 +15,7 @@ function Example() {
 
             <Button onClick={() => refa.current.setValue('asjdfaiusijfsak')}>
                 设置内容
-            </Button>
+            </Button> */}
         </div>
     );
 }

@@ -44,6 +44,8 @@ function InputWidget(props: propsInputWidget) {
             return <Password {...other} />;
         case 'clear':
             return <Clear {...other} />;
+        default:
+            return null;
     }
 }
 

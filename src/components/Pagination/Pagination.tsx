@@ -234,7 +234,7 @@ function Pagination(props: propsPagination) {
                             min={1}
                             max={pageCount}
                             onBlur={jumpToPage}
-                            size='small'
+                            inputSize='small'
                         />
                         页
                     </Row>
