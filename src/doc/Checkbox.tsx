@@ -13,39 +13,35 @@ export default function () {
                             label='选项一'
                             name='checkbox-option'
                             id='c1'
-                            value='1'
                         />
 
                         <Checkbox
                             label='选项二'
                             name='checkbox-option'
                             id='c2'
-                            value='2'
                         />
 
                         <Checkbox
                             label='选项三'
                             name='checkbox-option'
                             id='c3'
-                            value='3'
                         />
 
                         <Checkbox
                             label='选项四'
                             name='checkbox-option'
                             id='c4'
-                            value='4'
                         />
                     </div>
                 ),
                 code: `
-<Checkbox label="选项一" name="checkbox-option" id='c1' value="1" />
+<Checkbox label="选项一" name="checkbox-option" id='c1'/>
 
-<Checkbox label="选项二" name="checkbox-option" id='c2' value="2" />
+<Checkbox label="选项二" name="checkbox-option" id='c2'/>
 
-<Checkbox label="选项三" name="checkbox-option" id='c3' value="3" />
+<Checkbox label="选项三" name="checkbox-option" id='c3'/>
  
-<Checkbox label="选项四" name="checkbox-option" id='c4' value="4" />`,
+<Checkbox label="选项四" name="checkbox-option" id='c4'/>`,
             },
         ],
     };
