@@ -1,0 +1,72 @@
+
+@nodeHeight: 40px;
+
+.wdu-tree {
+    flex-grow: 1;
+}
+
+@iconSize: 5px;
+
+.wdu-tree__node {
+    height: @nodeHeight;
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow: hidden;
+
+    &-label {
+        .wdu-text-normal();
+        padding-left: 10px;
+        line-height: @nodeHeight;
+        height: @nodeHeight;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            color: white;
+            cursor: pointer;
+            background-color: #4969b4;
+
+            &::before {
+                border-top-color: white;
+                border-right-color: white;
+            }
+        }
+
+        &::before {
+            content: '';
+            display: inline-block;
+            transition: all .2s ease;
+            border-top: @iconSize solid grey;
+            border-left: @iconSize solid rgba(128, 128, 128, 0);
+            border-right: @iconSize solid grey;
+            border-bottom: @iconSize solid rgba(128, 128, 128, 0);
+            margin-right: 8px;
+            transform-origin: center center;
+            transform: rotate(45deg);
+        }
+
+        &--leaf {
+            &:hover {
+                cursor: default;
+            }
+
+            &::before {
+                visibility: hidden;
+            }
+        }
+
+        &--open {
+            &::before {
+                transform: rotate(135deg);
+            }
+        }
+    }
+
+    &-children {
+        margin-left: 25px;
+        transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        &--expand {
+            height: max-content;
+        }
+    }
+}
