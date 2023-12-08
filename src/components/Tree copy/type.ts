@@ -52,6 +52,20 @@ interface propsTree extends treeEvents {
     isHighlight?: boolean;
 }
 
+interface propsTreeNode {
+    id: string | number;
+    label: string;
+    children?: Array<treeNodeData>;
+    open?: boolean;
+    onExpand?: (nodeIndex: string | number, expand: boolean) => any;
+    onSelect?: (
+        nodeIndex: string | number,
+        selectedNodesKey: Array<string>,
+        selectedNodes: Array<treeNodeData>,
+    ) => any;
+    select?: boolean;
+}
+
 interface refTree {
     toggle: (nodeIndex: string | number, expand: boolean) => void;
     toggleAll: (expand: boolean) => void;
@@ -65,4 +79,4 @@ interface refTree {
     getNodePath: (nodeIndex: string | number) => Array<string>;
 }
 
-export type { propsTree };
+export type { propsTree, treeNodeData, treeEvents, refTree };
