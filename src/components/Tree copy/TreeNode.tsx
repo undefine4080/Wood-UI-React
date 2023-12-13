@@ -58,7 +58,17 @@ function TreeNode(props: propsTreeNode) {
     return (
         <div className={`${T}`}>
             <div className={`${T}-label`} onClick={() => setExpand(!expand)}>
-                <span style={{ marginLeft: `${depth * 20}px` }}>{label}</span>
+                <span style={{ marginLeft: `${depth * 20}px` }}>
+                    <i
+                        className={
+                            expand ? 'wdu-icon-expand' : 'wdu-icon-collapse'
+                        }
+                        style={{
+                            visibility: children ? 'visible' : 'hidden',
+                        }}></i>
+
+                    {label}
+                </span>
             </div>
 
             {children?.length && (

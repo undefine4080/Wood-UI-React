@@ -1,15 +1,11 @@
-
 .wdu-tree {
     background-color: white;
-    .wdu-border-light();
-    border-bottom: none;
 
     &__node {
         overflow: hidden;
 
         &-label {
             .wdu-text-normal();
-            border-bottom: 1px solid rgb(231, 231, 231);
             padding: 0 10px;
             height: 30px;
             display: flex;
@@ -18,9 +14,8 @@
                 cubic-bezier(0.075, 0.82, 0.165, 1);
 
             &:hover {
-                color: white;
                 cursor: pointer;
-                background-color: rgb(73, 105, 180);
+                background-color: rgb(239, 244, 255);
             }
 
             &--leaf {
@@ -37,6 +32,11 @@
                 &::before {
                     transform: rotate(135deg);
                 }
+            }
+
+            i {
+                height: 1.5ex;
+                width: 14px;
             }
         }
 
