@@ -46,7 +46,15 @@ const testData = [
 function Example() {
     return (
         <div>
+            <Tree data={testData} size='small' />
+
+            <div style={{ height: 20 + 'px' }}></div>
+
             <Tree data={testData} />
+
+            <div style={{ height: 20 + 'px' }}></div>
+
+            <Tree data={testData} size='large' />
         </div>
     );
 }

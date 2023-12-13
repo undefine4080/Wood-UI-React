@@ -13,11 +13,16 @@ const CONTAINER = {
     EXPAND: 'auto',
     COLLAPSE: '0',
 };
+const SIZE = {
+    small: 25,
+    normal: 30,
+    large: 40,
+};
 
 function TreeNode(props: propsTreeNode) {
     const { label, children, depth } = props;
 
-    const { selectable, setSelectNode } = useContext(TreeContext);
+    const { size } = useContext(TreeContext);
 
     const refNodeChild = useRef<HTMLDivElement>(null);
     const lastNodeContainerHeight = useRef('');
@@ -32,7 +37,7 @@ function TreeNode(props: propsTreeNode) {
             if (childNodeCounts) {
                 setNodeContainerHeight(
                     lastNodeContainerHeight.current ||
-                        `${childNodeCounts * 30}px`,
+                        `${childNodeCounts * SIZE[size!]}px`,
                 );
             }
         } else {
