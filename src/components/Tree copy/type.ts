@@ -30,8 +30,7 @@ interface propsTree extends treeEvents {
     defaultExpandNodes?: Array<string | number>;
 
     // lazy loading the data from server
-    lazy?: boolean;
-    loader?: (nodeIndex: string | number) => Promise<Array<treeNodeData>>;
+    lazyLoad?: (node: treeNodeData) => Promise<Array<treeNodeData>>;
 
     // if the nodes can be selected by the checkbox widget
     selectable?: boolean;

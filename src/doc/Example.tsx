@@ -43,18 +43,42 @@ const testData = [
     },
 ];
 
+const traverse = (target: number, data: any) => {
+    if (!data) return;
+
+    const loop = (node: any, depth: number) => {
+        if (depth === target) {
+            return node?.children || node;
+        }
+
+        node.children.map((child: any, index: number) => {
+            loop(child, depth + 1);
+        });
+    };
+
+    return loop(data, target);
+};
+
 function Example() {
     return (
         <div>
-            <Tree data={testData} size='small' />
+            {/* <Tree data={testData} size='small' />
 
             <div style={{ height: 20 + 'px' }}></div>
 
             <Tree data={testData} />
 
-            <div style={{ height: 20 + 'px' }}></div>
+            <div style={{ height: 20 + 'px' }}></div> */}
 
-            <Tree data={testData} size='large' />
+            <Tree
+                lazyLoad={(resolve: any) => {
+                    setTimeout(() => {
+                        const res = traverse(depth, testData);
+                        resolve(res);
+                    }, 3000);
+                }}
+                size='large'
+            />
         </div>
     );
 }

@@ -1,12 +1,5 @@
-import {
-    LegacyRef,
-    useCallback,
-    useContext,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
-import { TreeContext } from './Tree';
+import { ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { TreeContext, generateTreeNode } from './Tree';
 
 const T = 'wdu-tree__node';
 const CONTAINER = {
@@ -20,9 +13,9 @@ const SIZE = {
 };
 
 function TreeNode(props: propsTreeNode) {
-    const { label, children, depth } = props;
-
-    const { size } = useContext(TreeContext);
+    const { label, children, depth, index } = props;
+    const { size, lazyLoad } = useContext(TreeContext);
+    const [treeNodes, setTreeNodes] = useState<ReactNode>();
 
     const refNodeChild = useRef<HTMLDivElement>(null);
     const lastNodeContainerHeight = useRef('');
@@ -55,9 +48,30 @@ function TreeNode(props: propsTreeNode) {
         }
     }, [expand]);
 
+    // if (lazyLoad && typeof lazyLoad === 'function') {
+    //     lazyLoad(props).then((res) => {
+    //         const nodes = generateTreeNode(res, depth, index);
+    //         setTreeNodes(nodes);
+    //     });
+    // } else {
+    //     setTreeNodes(children);
+    // }
+
     return (
         <div className={`${T}`}>
-            <div className={`${T}-label`} onClick={() => setExpand(!expand)}>
+            <div
+                className={`${T}-label`}
+                onClick={() => {
+                    if (!expand) {
+                        lazyLoad(props).then((res) => {
+                            const nodes = generateTreeNode(res, depth, index);
+                            setTreeNodes(nodes);
+                            setExpand(true);
+                        });
+                    } else {
+                        setExpand(false);
+                    }
+                }}>
                 <span style={{ marginLeft: `${depth * 20}px` }}>
                     <i
                         className={
@@ -71,7 +85,7 @@ function TreeNode(props: propsTreeNode) {
                 </span>
             </div>
 
-            {children?.length && (
+            {treeNodes && (
                 <div
                     ref={refNodeChild}
                     className={`${T}-children`}
@@ -81,7 +95,7 @@ function TreeNode(props: propsTreeNode) {
                             expand ? CONTAINER.EXPAND : CONTAINER.COLLAPSE,
                         );
                     }}>
-                    {children}
+                    {treeNodes}
                 </div>
             )}
         </div>
