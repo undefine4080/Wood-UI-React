@@ -54,9 +54,10 @@ interface propsTree extends treeEvents {
 }
 
 interface propsTreeNode {
-    id: string | number;
-    label: string;
+    id?: string | number;
+    label?: string;
     children?: Array<treeNodeData>;
+    depth?: number;
     open?: boolean;
     onExpand?: (nodeIndex: string | number, expand: boolean) => any;
     onSelect?: (
@@ -80,4 +81,11 @@ interface refTree {
     getNodePath: (nodeIndex: string | number) => Array<string>;
 }
 
-export type { propsTree, treeNodeData, treeEvents, refTree, treeNodeDataList };
+export type {
+    propsTree,
+    treeNodeData,
+    treeEvents,
+    propsTreeNode,
+    refTree,
+    treeNodeDataList,
+};

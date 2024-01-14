@@ -1,6 +1,4 @@
 import {
-    LegacyRef,
-    useCallback,
     useContext,
     useEffect,
     useLayoutEffect,
@@ -8,6 +6,7 @@ import {
     useState,
 } from 'react';
 import { TreeContext } from './Tree';
+import { propsTreeNode, treeNodeData, treeNodeDataList } from './type';
 
 const T = 'wdu-tree__node';
 const CONTAINER = {
@@ -21,18 +20,18 @@ const SIZE = {
 };
 
 function TreeNode(props: propsTreeNode) {
-    const { label, children, depth, id } = props;
-
+    const { label, children, depth = 0, id } = props;
     const { size, lazyLoad } = useContext(TreeContext);
-
     const refNodeChild = useRef<HTMLDivElement>(null);
     const lastNodeContainerHeight = useRef('');
     const [expand, setExpand] = useState(false);
     const [nodeContainerHeight, setNodeContainerHeight] = useState(
         CONTAINER.COLLAPSE,
     );
-    const [applyChildNodes, setApplyChildNodes] = useState([]);
-    const [loading, setLoading] = useState();
+    const [applyChildNodes, setApplyChildNodes] = useState<treeNodeDataList>(
+        [],
+    );
+    const [loading, setLoading] = useState<boolean>();
 
     useEffect(() => {
         if (expand) {
@@ -100,9 +99,10 @@ function TreeNode(props: propsTreeNode) {
                             expand ? CONTAINER.EXPAND : CONTAINER.COLLAPSE,
                         );
                     }}>
-                    {applyChildNodes.map((node: any, index) => {
+                    {applyChildNodes.map((node: treeNodeData) => {
                         return (
                             <TreeNode
+                                id={node.id}
                                 key={node.id}
                                 label={node.label}
                                 depth={depth + 1}
