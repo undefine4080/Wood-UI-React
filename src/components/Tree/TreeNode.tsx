@@ -89,9 +89,9 @@ function TreeNode(props: propsTreeNode) {
     return (
         <div className={nodeStyle}>
             <div className={labelStyle} onClick={toggleNode}>
-                {selectable && (
+                {/* {selectable && (
                     <Checkbox onChange={handleSelect} checked={nodeSelect} />
-                )}
+                )} */}
 
                 {label}
             </div>

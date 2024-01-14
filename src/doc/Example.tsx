@@ -1,4 +1,5 @@
 import { Tree } from '@component/Tree copy/Tree';
+import { treeNodeData, treeNodeDataList } from '../components/Tree copy/type';
 
 const testData = [
     {
@@ -43,7 +44,7 @@ const testData = [
     },
 ];
 
-const lazyLoading = (node: any) => {
+const lazyLoading = (node: treeNodeData): Promise<treeNodeDataList> => {
     console.log(node);
 
     return new Promise((resolve) => {
