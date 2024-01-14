@@ -6,10 +6,12 @@
     "configurations": [
         {
             "type": "chrome",
+            "runtimeExecutable": "dev",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:5173/",
-            "webRoot": "${workspaceFolder}"
+            "url": "http://localhost:4080/",
+            "webRoot": "${workspaceFolder}",
+            "userDataDir": false
         }
     ]
 }

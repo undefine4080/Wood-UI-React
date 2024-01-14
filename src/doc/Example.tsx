@@ -43,6 +43,21 @@ const testData = [
     },
 ];
 
+const lazyLoading = (node: any) => {
+    console.log(node);
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                {
+                    id: 'xxxx-1',
+                    label: '节点-3',
+                },
+            ]);
+        }, 3000);
+    });
+};
+
 function Example() {
     return (
         <div>
@@ -54,7 +69,8 @@ function Example() {
 
             <div style={{ height: 20 + 'px' }}></div>
 
-            <Tree data={testData} size='large' />
+            <p>懒加载</p>
+            <Tree data={testData} size='large' lazyLoad={lazyLoading} />
         </div>
     );
 }

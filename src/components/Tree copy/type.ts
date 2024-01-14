@@ -5,6 +5,8 @@ type treeNodeData = {
     [key: string]: any;
 };
 
+type treeNodeDataList = Array<treeNodeData>;
+
 interface treeEvents {
     onNodeClick?: (nodeIndex: string | number, node: treeNodeData) => any;
     onNodeExpand?: (
@@ -30,8 +32,7 @@ interface propsTree extends treeEvents {
     defaultExpandNodes?: Array<string | number>;
 
     // lazy loading the data from server
-    lazy?: boolean;
-    loader?: (nodeIndex: string | number) => Promise<Array<treeNodeData>>;
+    lazyLoad?: (callback: any) => Promise<Array<treeNodeData>>;
 
     // if the nodes can be selected by the checkbox widget
     selectable?: boolean;
@@ -79,4 +80,4 @@ interface refTree {
     getNodePath: (nodeIndex: string | number) => Array<string>;
 }
 
-export type { propsTree, treeNodeData, treeEvents, refTree };
+export type { propsTree, treeNodeData, treeEvents, refTree, treeNodeDataList };

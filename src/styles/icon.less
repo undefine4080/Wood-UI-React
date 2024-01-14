@@ -15,7 +15,16 @@
     height: 24px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .wdu-icon-scaleDown {
@@ -69,4 +78,10 @@
     .icon();
     transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     background-image: url('@/icon/collapse.svg');
+}
+
+.wdu-icon-loading {
+    .icon();
+    background-image: url('@/icon/loading.svg');
+    animation: rotate 1s infinite ease-out;
 }
