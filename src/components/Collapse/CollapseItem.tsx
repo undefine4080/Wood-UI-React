@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { propsCollapseItem } from './type';
 import { CollapseContext } from './Collapse';
-import IconArrow from '../../icon/Arrow/Arrow';
 
 const T = 'wdu-collapse-item';
 
@@ -33,8 +32,12 @@ function CollapseItem(props: propsCollapseItem) {
                 onClick={() => setExpand(!isExpand)}>
                 {typeof title === 'string' ? <span>{title}</span> : title}
 
-                <IconArrow
-                    style={isExpand === true ? 'bottom' : 'right'}></IconArrow>
+                <i
+                    className={`${
+                        isExpand
+                            ? 'wdu-icon-caret-down'
+                            : 'wdu-icon-caret-right'
+                    }`}></i>
             </div>
 
             <div

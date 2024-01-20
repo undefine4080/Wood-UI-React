@@ -2,7 +2,6 @@ import { cloneElement, useEffect, useRef, useState } from 'react';
 import { propsOption, propsSelect, selectedValue } from './type';
 import { Popover } from '@component/Popover/Popover';
 import { getNamedChild } from '@common/utils';
-import Arrow from '@icon/Arrow/Arrow';
 
 import './select.less';
 
@@ -116,7 +115,12 @@ function Select(props: propsSelect) {
                         placeholder={placeholder}
                         onClick={() => setOptionsActive(!optionsActive)}
                         disabled={disabled}></input>
-                    <Arrow style={optionsActive ? 'top' : 'bottom'} />
+                    <i
+                        className={`${
+                            optionsActive
+                                ? 'wdu-icon-caret-down'
+                                : 'wdu-icon-caret-right'
+                        }`}></i>
                 </div>
 
                 {append && (

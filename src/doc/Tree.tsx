@@ -1,5 +1,6 @@
 import { IntroComponent } from './IntroComponent';
-import { Tree } from '@component/Tree/Tree';
+import { Tree } from '../components/Tree/Tree';
+import type { treeNodeData, treeNodeDataList } from '@component/Tree/type';
 
 const testData = [
     {
@@ -44,30 +45,33 @@ const testData = [
     },
 ];
 
+const lazyLoading = (node: treeNodeData): Promise<treeNodeDataList> => {
+    console.log(node);
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                {
+                    id: 'xxxx-1',
+                    label: '节点-3',
+                },
+            ]);
+        }, 3000);
+    });
+};
+
 export default function () {
     const props = {
         title: 'Tree 树',
         position: 'tree',
         components: [
             {
-                title: '事件绑定',
-                component: (
-                    <Tree
-                        data={testData}
-                        onExpand={(value) => console.log('expand', value)}
-                        onCollapse={(value) => console.log('collapse', value)}
-                    />
-                ),
+                title: '基础用法',
+                component: <Tree data={testData} />,
             },
             {
-                title: '可选的 Tree 节点',
-                component: (
-                    <Tree
-                        data={testData}
-                        selectable
-                        onSelect={(nodeList) => console.log('select', nodeList)}
-                    />
-                ),
+                title: '懒加载',
+                component: <Tree data={testData} lazyLoad={lazyLoading} />,
             },
         ],
     };

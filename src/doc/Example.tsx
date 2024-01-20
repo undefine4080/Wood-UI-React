@@ -1,5 +1,5 @@
-import { Tree } from '@component/Tree copy/Tree';
-import { treeNodeData, treeNodeDataList } from '../components/Tree copy/type';
+import { Tree } from '@component/Tree/Tree';
+import { treeNodeData, treeNodeDataList } from '../components/Tree/type';
 
 const testData = [
     {
