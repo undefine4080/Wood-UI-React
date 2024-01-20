@@ -1,107 +1,118 @@
-import React, { MouseEvent, useContext, useEffect, useState } from 'react';
-import { propsTreeNode, selectNodes, treeNodeData } from './type';
-import { Checkbox } from '@component/Checkbox/Checkbox';
+import {
+    useContext,
+    useEffect,
+    useLayoutEffect,
+    useRef,
+    useState,
+} from 'react';
 import { TreeContext } from './Tree';
+import { propsTreeNode, treeNodeData, treeNodeDataList } from './type';
 
-const nodeBase = 'wdu-tree__node';
-const labelBase = 'wdu-tree__node-label';
-const nodeStyleMap = {
-    base: nodeBase,
-    expand: `${nodeBase} ${nodeBase}-children--expand`,
+const T = 'wdu-tree__node';
+const CONTAINER = {
+    EXPAND: 'auto',
+    COLLAPSE: '0',
 };
-const labelStyleMap = {
-    base: labelBase,
-    leaf: `${labelBase} ${labelBase}--leaf`,
-    open: `${labelBase} ${labelBase}--open`,
+const SIZE = {
+    small: 25,
+    normal: 30,
+    large: 40,
 };
 
 function TreeNode(props: propsTreeNode) {
-    const {
-        id,
-        label,
-        children,
-        open = false,
-        onExpand,
-        onCollapse,
-        onSelect,
-        select = false,
-    } = props;
-
-    const { selectable, setSelectNode } = useContext(TreeContext);
-
-    const [nodeSelect, setNodeSelect] = useState(select);
-    const [nodeExpand, setNodeExpand] = useState(open);
-    const [nodeStyle, setNodeStyle] = useState(nodeStyleMap.base);
-    let [labelStyle, setLabelStyle] = useState(labelStyleMap.base);
-
-    const currentNode = { id, label };
+    const { label, children, depth = 0, id } = props;
+    const { size, lazyLoad } = useContext(TreeContext);
+    const refNodeChild = useRef<HTMLDivElement>(null);
+    const lastNodeContainerHeight = useRef('');
+    const [expand, setExpand] = useState(false);
+    const [nodeContainerHeight, setNodeContainerHeight] = useState(
+        CONTAINER.COLLAPSE,
+    );
+    const [applyChildNodes, setApplyChildNodes] = useState<treeNodeDataList>(
+        [],
+    );
+    const [loading, setLoading] = useState<boolean>();
 
     useEffect(() => {
-        if (nodeExpand) {
-            setLabelStyle(labelStyleMap.open);
-            setNodeStyle(nodeStyleMap.expand);
+        if (expand) {
+            if (children && children.length && !applyChildNodes.length) {
+                if (lazyLoad) {
+                    setLoading(true);
+                    lazyLoad({ id, label, depth, children }).then((data) => {
+                        setApplyChildNodes(children);
+                        setLoading(false);
+                    });
+                } else {
+                    setApplyChildNodes(children);
+                }
+            }
         } else {
-            setNodeStyle(nodeStyleMap.base);
-            setLabelStyle(labelStyleMap.base);
+            if (refNodeChild.current) {
+                const { clientHeight } = refNodeChild.current;
+                if (clientHeight) {
+                    lastNodeContainerHeight.current =
+                        refNodeChild.current.style.height = `${clientHeight}px`;
+
+                    window.requestAnimationFrame(() => {
+                        setNodeContainerHeight('0');
+                    });
+                }
+            }
         }
-    }, [nodeExpand]);
+    }, [expand]);
 
-    if (!children) {
-        labelStyle = labelStyleMap.leaf;
-    }
-
-    const toggleNode = (e: MouseEvent) => {
-        e.stopPropagation();
-        if (!children) return;
-        setNodeExpand(!nodeExpand);
-        !nodeExpand
-            ? onExpand && onExpand(currentNode)
-            : onCollapse && onCollapse(currentNode);
-    };
-
-    const handleSelect = (checked: boolean, triggerByClick = true) => {
-        setSelectNode((prev: selectNodes) => {
-            let newState;
-            if (checked) {
-                newState = { ...prev, [id]: currentNode };
-            } else {
-                delete prev[id];
-                newState = { ...prev };
-            }
-
-            // if it is not called by parent selection,then call the user callback
-            if (triggerByClick) {
-                const selectedNodes: Array<treeNodeData> =
-                    Object.values(newState);
-                onSelect && onSelect(selectedNodes);
-            }
-
-            return newState;
-        });
-        setNodeSelect(checked);
-    };
-
-    // handle child node selection when parent node is selected
-    useEffect(() => {
-        setNodeSelect(select);
-    }, [select]);
+    useLayoutEffect(() => {
+        if (applyChildNodes.length && expand) {
+            const childNodeCounts = applyChildNodes.length;
+            window.requestAnimationFrame(() => {
+                setNodeContainerHeight(
+                    lastNodeContainerHeight.current ||
+                        `${childNodeCounts * SIZE[size!]}px`,
+                );
+            });
+        }
+    }, [applyChildNodes, expand]);
 
     return (
-        <div className={nodeStyle}>
-            <div className={labelStyle} onClick={toggleNode}>
-                {selectable && (
-                    <Checkbox onChange={handleSelect} checked={nodeSelect} />
-                )}
+        <div className={`${T}`}>
+            <div className={`${T}-label`} onClick={() => setExpand(!expand)}>
+                <div
+                    className={`${T}-label--container`}
+                    style={{ marginLeft: `${depth * 20}px` }}>
+                    <i
+                        className={`${
+                            expand
+                                ? 'wdu-icon-caret-down'
+                                : 'wdu-icon-caret-right'
+                        } ${loading ? 'wdu-icon-loading' : ''}`}
+                        style={{
+                            visibility: children ? 'visible' : 'hidden',
+                        }}></i>
 
-                {label}
+                    <span className={`${T}-label--text`}>{label}</span>
+                </div>
             </div>
 
-            {children?.length && (
-                <div className='wdu-tree__node-children'>
-                    {children.map((child) => {
-                        return React.cloneElement(child, {
-                            select: nodeSelect,
-                        });
+            {applyChildNodes.length > 0 && (
+                <div
+                    ref={refNodeChild}
+                    className={`${T}-children`}
+                    style={{ height: `${nodeContainerHeight}` }}
+                    onTransitionEnd={() => {
+                        setNodeContainerHeight(
+                            expand ? CONTAINER.EXPAND : CONTAINER.COLLAPSE,
+                        );
+                    }}>
+                    {applyChildNodes.map((node: treeNodeData) => {
+                        return (
+                            <TreeNode
+                                id={node.id}
+                                key={node.id}
+                                label={node.label}
+                                depth={depth + 1}
+                                children={node.children}
+                            />
+                        );
                     })}
                 </div>
             )}

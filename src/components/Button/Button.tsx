@@ -1,6 +1,5 @@
 import { useEffect, MouseEvent } from 'react';
 import { propsButton } from './type';
-import Loading from '@icon/Loading/Loading';
 import { useCssClassManager } from '@common/hooks';
 
 import './button.less';
@@ -49,7 +48,7 @@ function Button(props: propsButton) {
 
     return (
         <button type='button' className={classList} onClick={handleClick}>
-            {loading && <Loading />}
+            {loading && <i className='wdu-icon-loading'></i>}
 
             {icon}
 

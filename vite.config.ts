@@ -7,9 +7,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [
-        react(),
-    ],
+    plugins: [react()],
     base: './',
     resolve: {
         alias: {
@@ -43,7 +41,7 @@ export default defineConfig({
         },
         minify: 'esbuild',
         emptyOutDir: true,
-        outDir: 'build'
+        outDir: 'build',
     },
     css: {
         preprocessorOptions: {
@@ -51,5 +49,9 @@ export default defineConfig({
                 additionalData: `@import "@/styles/main.less";`,
             },
         },
+    },
+    server: {
+        port: 4080,
+        open: true,
     },
 });

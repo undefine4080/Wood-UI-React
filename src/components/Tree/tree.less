@@ -1,72 +1,65 @@
-
-@nodeHeight: 40px;
-
 .wdu-tree {
-    flex-grow: 1;
-}
+    background-color: white;
 
-@iconSize: 5px;
+    &__node {
+        overflow: hidden;
 
-.wdu-tree__node {
-    height: @nodeHeight;
-    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-    overflow: hidden;
+        &-label {
+            .wdu-text-normal();
+            padding: 0 10px;
+            height: 30px;
+            transition: background-color 0.3s
+                cubic-bezier(0.075, 0.82, 0.165, 1);
 
-    &-label {
-        .wdu-text-normal();
-        padding-left: 10px;
-        line-height: @nodeHeight;
-        height: @nodeHeight;
-        display: flex;
-        align-items: center;
-
-        &:hover {
-            color: white;
-            cursor: pointer;
-            background-color: #4969b4;
-
-            &::before {
-                border-top-color: white;
-                border-right-color: white;
-            }
-        }
-
-        &::before {
-            content: '';
-            display: inline-block;
-            transition: all .2s ease;
-            border-top: @iconSize solid grey;
-            border-left: @iconSize solid rgba(128, 128, 128, 0);
-            border-right: @iconSize solid grey;
-            border-bottom: @iconSize solid rgba(128, 128, 128, 0);
-            margin-right: 8px;
-            transform-origin: center center;
-            transform: rotate(45deg);
-        }
-
-        &--leaf {
             &:hover {
-                cursor: default;
+                cursor: pointer;
+                background-color: rgb(239, 244, 255);
             }
 
-            &::before {
-                visibility: hidden;
+            &--leaf {
+                &:hover {
+                    cursor: default;
+                }
+
+                &::before {
+                    visibility: hidden;
+                }
+            }
+
+            &--container {
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+
+            i {
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
             }
         }
 
-        &--open {
-            &::before {
-                transform: rotate(135deg);
-            }
+        &-children {
+            height: 0;
+            transition: all 0.2s ease;
         }
     }
 
-    &-children {
-        margin-left: 25px;
-        transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &__small {
+        .wdu-tree__node-label {
+            height: 25px;
+        }
+    }
 
-        &--expand {
-            height: max-content;
+    &__normal {
+        .wdu-tree__node-label {
+            height: 30px;
+        }
+    }
+
+    &__large {
+        .wdu-tree__node-label {
+            height: 40px;
         }
     }
 }

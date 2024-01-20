@@ -1,4 +1,3 @@
-import Arrow from '@icon/Arrow/Arrow';
 import React, {
     MouseEvent,
     useContext,
@@ -19,7 +18,7 @@ function NavMenuItem(props: propsNavMenuItem) {
         disabled = false,
         children,
         className = '',
-        indent,
+        indent = 20,
         label,
     } = props as propsNavMenuItem & internalPropsNavMenuItem;
 
@@ -67,7 +66,7 @@ function NavMenuItem(props: propsNavMenuItem) {
 
         // ignore the menuId of first NavMenuItem in SubNavMenu
         if (!subMenuItem) submitSelectedItem(menuId);
-        
+
         if (typeof onClick === 'function') {
             onClick(event, {
                 to,
@@ -105,7 +104,12 @@ function NavMenuItem(props: propsNavMenuItem) {
 
             {renderNavItem()}
 
-            {subMenuItem && <Arrow style={expand ? 'bottom' : 'right'} />}
+            {subMenuItem && (
+                <i
+                    className={`${
+                        expand ? 'wdu-icon-caret-down' : 'wdu-icon-caret-right'
+                    }`}></i>
+            )}
         </li>
     );
 }

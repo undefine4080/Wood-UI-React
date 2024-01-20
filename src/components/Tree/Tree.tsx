@@ -1,40 +1,36 @@
-import React, { useState } from 'react';
-import { propsTree, treeEvents, treeNodeData } from './type';
+import React from 'react';
+import { propsTree, treeNodeData, treeNodeDataList } from './type';
 import TreeNode from './TreeNode';
+import commonProps from '@common/types';
 
 import './tree.less';
 
-// dfs
-const generateTreeNode = (node: any, events: treeEvents) => {
-    if (!node) return null;
-
-    return (
-        <TreeNode key={node.id} {...node} {...events}>
-            {node.children &&
-                node.children.map((child: any) =>
-                    generateTreeNode(child, events),
-                )}
-        </TreeNode>
-    );
-};
-
-const TreeContext = React.createContext<any>({});
+const TreeContext = React.createContext<{
+    data: Array<any>;
+    size: commonProps['size'];
+    lazyLoad?: (node: treeNodeData) => Promise<treeNodeDataList>;
+}>({
+    data: [],
+    size: 'normal',
+});
 const Provider = TreeContext.Provider;
 
 function Tree(props: propsTree) {
-    const { data, onExpand, onCollapse, onSelect, selectable = false } = props;
-
-    const [selectNode, setSelectNode] = useState({});
-
-    const events: treeEvents = {};
-    onExpand && (events.onExpand = onExpand);
-    onCollapse && (events.onCollapse = onCollapse);
-    onSelect && (events.onSelect = onSelect);
+    const { data, size = 'normal', lazyLoad } = props;
 
     return (
-        <div className='wdu-tree'>
-            <Provider value={{ data, selectable, selectNode, setSelectNode }}>
-                {data && data.map((item) => generateTreeNode(item, events))}
+        <div className={`wdu-tree wdu-tree__${size}`}>
+            <Provider value={{ data, size, lazyLoad }}>
+                {data.length &&
+                    data.map((nodeData: treeNodeData) => {
+                        return (
+                            <TreeNode
+                                key={nodeData.id}
+                                {...nodeData}
+                                depth={0}
+                            />
+                        );
+                    })}
             </Provider>
         </div>
     );

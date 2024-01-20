@@ -1,4 +1,3 @@
-
 @hoverColor: #e2e2e2;
 
 .wdu-navMenu {
@@ -14,10 +13,6 @@
     .wdu-subNavMenu {
         padding: 0;
         box-shadow: none;
-    }
-
-    &>.wdu-navMenuItem {
-        padding-left: 20px;
     }
 }
 
@@ -36,18 +31,20 @@
         border-top: none;
     }
 
-    &>a,
-    span {
+    & > a {
+        text-decoration: none;
+        display: inline-block;
         width: 100%;
         height: 100%;
-        display: block;
+        line-height: @itemHeight;
         color: currentColor;
     }
 
-    a {
-        text-decoration: none;
-        line-height: @itemHeight;
-        color: currentColor;
+    & > i {
+        position: absolute;
+        right: 10px;
+        top: calc(50% - 10px);
+        transition: all 0.2s ease-out;
     }
 
     &:hover {
@@ -109,8 +106,6 @@
         }
 
         &:first-child {
-            padding-left: 20px;
-
             &:hover {
                 background-color: @hoverColor;
             }

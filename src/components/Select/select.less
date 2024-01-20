@@ -22,6 +22,16 @@
         border-color: rgb(125, 125, 125);
     }
 
+    &__main {
+        position: relative;
+
+        & > i {
+            position: absolute;
+            right: 10px;
+            top: calc(50% - 10px);
+        }
+    }
+
     &__disabled {
         .wdu-select__input {
             &::placeholder {

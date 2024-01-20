@@ -1,4 +1,7 @@
 {
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "aiXcoder.showTrayIcon": true
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#10351B",
+        "titleBar.activeBackground": "#164A26",
+        "titleBar.activeForeground": "#F3FBF6"
+    }
 }

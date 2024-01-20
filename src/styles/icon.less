@@ -11,49 +11,101 @@
 
 .icon() {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    transition: all 0.2s ease-out;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .wdu-icon-scaleDown {
     .icon();
-    background-image: url('@/icon/SVG/scaleDown.svg');
+    background-image: url('@/icon/scaleDown.svg');
 }
 
 .wdu-icon-scaleUp {
     .icon();
-    background-image: url('@/icon/SVG/scaleUp.svg');
+    background-image: url('@/icon/scaleUp.svg');
 }
 
 .wdu-icon-full {
     .icon();
-    background-image: url('@/icon/SVG/full.svg');
+    background-image: url('@/icon/full.svg');
 }
 
 .wdu-icon-reset {
     .icon();
-    background-image: url('@/icon/SVG/reset.svg');
+    background-image: url('@/icon/reset.svg');
 }
 
 .wdu-icon-close {
     .icon();
-    background-image: url('@/icon/SVG/close.svg');
+    background-image: url('@/icon/close.svg');
 }
 
 .wdu-icon-rotate-right {
     .icon();
-    background-image: url('@/icon/SVG/rotate-right.svg');
+    background-image: url('@/icon/rotate-right.svg');
 }
 
 .wdu-icon-rotate-left {
     .icon();
-    background-image: url('@/icon/SVG/rotate-left.svg');
+    background-image: url('@/icon/rotate-left.svg');
 }
 
 .wdu-icon-search {
     .icon();
-    background-image: url('@/icon/SVG/search.svg');
+    background-image: url('@/icon/search.svg');
+}
+
+.wdu-icon-collapse {
+    .icon();
+    background-image: url('@/icon/collapse.svg');
+    transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: rotate(-90deg);
+}
+
+.wdu-icon-expand {
+    .icon();
+    transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-image: url('@/icon/collapse.svg');
+}
+
+.wdu-icon-caret-right {
+    .icon();
+    background-image: url('@/icon/caret-right.svg');
+}
+
+.wdu-icon-caret-left {
+    .icon();
+    background-image: url('@/icon/caret-right.svg');
+    transform: rotate(-180deg);
+}
+
+.wdu-icon-caret-down {
+    .icon();
+    background-image: url('@/icon/caret-right.svg');
+    transform: rotate(90deg);
+}
+
+.wdu-icon-caret-up {
+    .icon();
+    background-image: url('@/icon/caret-right.svg');
+    transform: rotate(-90deg);
+}
+
+.wdu-icon-loading {
+    .icon();
+    background-image: url('@/icon/loading.svg');
+    animation: rotate 1s infinite ease-out;
 }

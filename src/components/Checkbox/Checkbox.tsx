@@ -1,59 +1,73 @@
-import { ChangeEvent } from 'react';
-import commonProps from '../../common/types';
+import {
+    ChangeEvent,
+    InputHTMLAttributes,
+    forwardRef,
+    useEffect,
+    useImperativeHandle,
+    useRef,
+    useState,
+} from 'react';
 import './checkbox.less';
+import commonProps from '@common/types';
 
-interface propsCheckbox extends commonProps {
+type propsCheckbox = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
     label?: string;
-    name?: string;
-    checked?: boolean;
-    onChange?: (value: boolean) => any;
-}
+    onChange?: (value: ChangeEvent<HTMLInputElement>) => any;
+    checkboxSize?: commonProps['size'];
+};
 
-function Checkbox(props: propsCheckbox) {
-    const PREFIX = 'wdu-checkbox';
+const T = 'wdu-checkbox';
+function TheCheckbox(props: propsCheckbox, ref: any) {
     const {
         label,
-        name,
-        checked = false,
-        id,
         onChange,
-        disabled = false,
+        checked,
+        checkboxSize,
+        ...defaultCheckboxAttributes
     } = props;
+    const { disabled } = props;
 
-    const labelStyle = disabled
-        ? `${PREFIX}-label ${PREFIX}-disabled`
-        : `${PREFIX}-label`;
-    const checkboxStyle = disabled ? `${PREFIX} wdu-no-event` : PREFIX;
-    const checkmarkStyle = disabled
-        ? `${PREFIX}-checkmark ${PREFIX}-disabled`
-        : `${PREFIX}-checkmark`;
+    const refCheckbox = useRef<any>();
+    const [value, setValue] = useState(checked);
+
+    useEffect(() => {
+        if (refCheckbox.current) {
+            refCheckbox.current.checked = value;
+        }
+    }, [value]);
 
     const handleChange = (e: ChangeEvent<any>) => {
         e.stopPropagation();
         onChange && onChange(e.target.checked);
+        setValue(e.target.checked);
     };
 
+    useImperativeHandle(ref, () => {
+        return {
+            setValue,
+            value,
+            refInput: refCheckbox,
+        };
+    });
+
     return (
-        <div
-            className={`${PREFIX}-container`}
-            onClick={(e: any) => e.stopPropagation()}>
-            <label htmlFor='' className={labelStyle}>
-                {label?.toString()}
+        <label
+            className={`${T} ${T}__${checkboxSize} ${
+                value === true ? 'wdu-checkbox__checked' : ''
+            } ${disabled ? 'wdu-checkbox__disabled' : ''}`}>
+            <input
+                ref={refCheckbox}
+                className='wdu-checkbox__input'
+                type='checkbox'
+                onChange={handleChange}
+                {...defaultCheckboxAttributes}
+            />
 
-                <input
-                    type='checkbox'
-                    id={id}
-                    name={name}
-                    checked={checked}
-                    className={checkboxStyle}
-                    onChange={handleChange}
-                />
-
-                <span className={checkmarkStyle}></span>
-            </label>
-        </div>
+            <span>{label?.toString()}</span>
+        </label>
     );
 }
+const Checkbox = forwardRef(TheCheckbox);
 Checkbox.displayName = 'Checkbox';
 
 export { Checkbox };

@@ -6,7 +6,7 @@ import {
     useRef,
     useState,
 } from 'react';
-import { handleInput, propsInput } from './type';
+import { propsInput } from './type';
 import { debounce } from '@common/utils';
 import { InputWidget } from './InputWidget';
 
