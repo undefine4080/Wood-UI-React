@@ -6,7 +6,6 @@
 
         &-label {
             .wdu-text-normal();
-            padding: 0 10px;
             height: 30px;
             transition: background-color 0.3s
                 cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -35,13 +34,23 @@
             i {
                 width: 15px;
                 height: 15px;
-                margin-right: 5px;
+                margin: 0 8px;
+            }
+
+            &--text {
+                width: 100%;
+                display: inline-block;
             }
         }
 
         &-children {
             height: 0;
             transition: all 0.2s ease;
+        }
+
+        &-clicked {
+            .wdu-bg-important();
+            color: white;
         }
     }
 

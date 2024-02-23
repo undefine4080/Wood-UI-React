@@ -32,6 +32,5 @@ export default defineConfig({
     },
     server: {
         port: 4080,
-        open: true,
     },
 });

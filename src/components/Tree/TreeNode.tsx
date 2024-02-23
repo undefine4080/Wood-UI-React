@@ -21,7 +21,8 @@ const SIZE = {
 
 function TreeNode(props: propsTreeNode) {
     const { label, children, depth = 0, id } = props;
-    const { size, lazyLoad } = useContext(TreeContext);
+    const { size, lazyLoad, clickHighlight, clickedNode, setClickedNode } =
+        useContext(TreeContext);
     const refNodeChild = useRef<HTMLDivElement>(null);
     const lastNodeContainerHeight = useRef('');
     const [expand, setExpand] = useState(false);
@@ -75,7 +76,16 @@ function TreeNode(props: propsTreeNode) {
 
     return (
         <div className={`${T}`}>
-            <div className={`${T}-label`} onClick={() => setExpand(!expand)}>
+            <div
+                className={`${T}-label ${
+                    clickedNode && clickedNode.id === id
+                        ? 'wdu-tree__node-clicked'
+                        : ''
+                }`}
+                onClick={() => {
+                    if (clickHighlight) return;
+                    setExpand(!expand);
+                }}>
                 <div
                     className={`${T}-label--container`}
                     style={{ marginLeft: `${depth * 20}px` }}>
@@ -87,9 +97,22 @@ function TreeNode(props: propsTreeNode) {
                         } ${loading ? 'wdu-icon-loading' : ''}`}
                         style={{
                             visibility: children ? 'visible' : 'hidden',
+                        }}
+                        onClick={() => {
+                            if (clickHighlight) {
+                                setExpand(!expand);
+                            }
                         }}></i>
 
-                    <span className={`${T}-label--text`}>{label}</span>
+                    <span
+                        className={`${T}-label--text`}
+                        onClick={() => {
+                            if (clickHighlight) {
+                                setClickedNode({ id, label, depth, children });
+                            }
+                        }}>
+                        {label}
+                    </span>
                 </div>
             </div>
 

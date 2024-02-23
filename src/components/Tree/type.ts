@@ -44,13 +44,13 @@ interface propsTree extends treeEvents {
     nodeIndexKey?: string;
 
     // the key of node label which default is 'label'
-    nodeLabelKey?: string;
+    labelKey?: string;
 
     // user can custom the tree node component and the TreeNode data will pass through the component props
     customNode?: ReactNode;
 
     // if the node is highlight while it is clicked
-    isHighlight?: boolean;
+    clickHighlight?: boolean;
 }
 
 interface propsTreeNode {

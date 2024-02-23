@@ -40,14 +40,19 @@ function IntroComponentItem(props: any) {
                     : component}
             </section>
 
-            <section className='intro__code'>
-                <SourceCode code={code} show={codeShow}></SourceCode>
-                <p className='intro__code--title'>
-                    <Button type='plain' size='small' onClick={switchCodePanel}>
-                        查看代码
-                    </Button>
-                </p>
-            </section>
+            {code && (
+                <section className='intro__code'>
+                    <SourceCode code={code} show={codeShow}></SourceCode>
+                    <p className='intro__code--title'>
+                        <Button
+                            type='plain'
+                            size='small'
+                            onClick={switchCodePanel}>
+                            查看代码
+                        </Button>
+                    </p>
+                </section>
+            )}
         </article>
     );
 }

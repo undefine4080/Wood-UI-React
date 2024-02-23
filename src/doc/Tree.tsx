@@ -115,28 +115,9 @@ const testData = [
 <Tree data={testData} />`,
             },
             {
-                title: '不同尺寸',
-                component: (
-                    <div>
-                        <p>小</p>
-                        <Tree data={testData} size='small' />
-
-                        <p>中（默认）</p>
-                        <Tree data={testData} size='normal' />
-
-                        <p>大</p>
-                        <Tree data={testData} size='large' />
-                    </div>
-                ),
-                code: `
-<div>
-    <p>小</p>
-    <Tree data={testData} size='small' />
-    <p>中（默认）</p>
-    <Tree data={testData} size='normal' />
-    <p>大</p>
-    <Tree data={testData} size='large' />
-</div>`,
+                title: '单击选中节点',
+                info: '设置 clickHighlight 属性为 true 即可实现单击选中时节点的高亮效果；此时只能点击图标来展开节点',
+                component: <Tree data={testData} clickHighlight />,
             },
             {
                 title: '懒加载',
