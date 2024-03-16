@@ -12,6 +12,9 @@ const TreeContext = React.createContext<{
     clickedNode: undefined | treeNodeData;
     setClickedNode: (node: treeNodeData) => void;
     clickHighlight?: boolean;
+    treeNodeClassName?: string;
+    selectable?: boolean;
+    associateSelection?: boolean;
 }>({
     data: [],
     size: 'normal',
@@ -21,21 +24,34 @@ const TreeContext = React.createContext<{
 const Provider = TreeContext.Provider;
 
 function Tree(props: propsTree) {
-    const { data, size = 'normal', lazyLoad, clickHighlight } = props;
+    const {
+        data,
+        size = 'normal',
+        lazyLoad,
+        clickHighlight,
+        treeClassName = '',
+        treeNodeClassName = '',
+        selectable,
+        associateSelection,
+    } = props;
 
     const [clickedNode, setClickedNode] = useState<treeNodeData>();
 
+    const contextValue = {
+        data,
+        size,
+        lazyLoad,
+        clickedNode,
+        setClickedNode,
+        clickHighlight,
+        treeNodeClassName,
+        selectable,
+        associateSelection,
+    };
+
     return (
-        <div className={`wdu-tree wdu-tree__${size}`}>
-            <Provider
-                value={{
-                    data,
-                    size,
-                    lazyLoad,
-                    clickedNode,
-                    setClickedNode,
-                    clickHighlight,
-                }}>
+        <div className={`wdu-tree wdu-tree__${size} ${treeClassName}`}>
+            <Provider value={contextValue}>
                 {data.length &&
                     data.map((nodeData: treeNodeData) => {
                         return (

@@ -28,13 +28,16 @@ interface propsTree extends treeEvents {
     treeClassName?: string;
     treeNodeClassName?: string;
 
+    // whether to associate child nodes when selecting parent nodes
+    associateSelection?: boolean;
+
     // an array of node index which will be expanded
     defaultExpandNodes?: Array<string | number>;
 
     // lazy loading the data from server
     lazyLoad?: (node: treeNodeData) => Promise<Array<treeNodeData>>;
 
-    // if the nodes can be selected by the checkbox widget
+    // whether the nodes can be selected by the checkbox widget
     selectable?: boolean;
 
     // the key of children which default is 'children'
@@ -49,7 +52,7 @@ interface propsTree extends treeEvents {
     // user can custom the tree node component and the TreeNode data will pass through the component props
     customNode?: ReactNode;
 
-    // if the node is highlight while it is clicked
+    // whether the node is highlight while it is clicked
     clickHighlight?: boolean;
 }
 
@@ -58,14 +61,14 @@ interface propsTreeNode {
     label?: string;
     children?: Array<treeNodeData>;
     depth?: number;
-    open?: boolean;
+    expand?: boolean;
+    selected?: boolean;
     onExpand?: (nodeIndex: string | number, expand: boolean) => any;
     onSelect?: (
         nodeIndex: string | number,
         selectedNodesKey: Array<string>,
         selectedNodes: Array<treeNodeData>,
     ) => any;
-    select?: boolean;
 }
 
 interface refTree {
@@ -81,6 +84,8 @@ interface refTree {
     getNodePath: (nodeIndex: string | number) => Array<string>;
 }
 
+type MergeNodeAndChildren = Array<treeNodeData | propsTreeNode>;
+
 export type {
     propsTree,
     treeNodeData,
@@ -88,4 +93,5 @@ export type {
     propsTreeNode,
     refTree,
     treeNodeDataList,
+    MergeNodeAndChildren,
 };

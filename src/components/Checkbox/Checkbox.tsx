@@ -10,10 +10,14 @@ import {
 import './checkbox.less';
 import commonProps from '@common/types';
 
-type propsCheckbox = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
+type propsCheckbox = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'type' | 'onChange'
+> & {
     label?: string;
-    onChange?: (value: ChangeEvent<HTMLInputElement>) => any;
+    onChange?: (value: boolean) => void;
     checkboxSize?: commonProps['size'];
+    halfChecked?: boolean;
 };
 
 const T = 'wdu-checkbox';
@@ -23,6 +27,7 @@ function TheCheckbox(props: propsCheckbox, ref: any) {
         onChange,
         checked,
         checkboxSize,
+        halfChecked,
         ...defaultCheckboxAttributes
     } = props;
     const { disabled } = props;
@@ -35,6 +40,10 @@ function TheCheckbox(props: propsCheckbox, ref: any) {
             refCheckbox.current.checked = value;
         }
     }, [value]);
+
+    useEffect(() => {
+        setValue(checked);
+    }, [checked]);
 
     const handleChange = (e: ChangeEvent<any>) => {
         e.stopPropagation();
@@ -52,14 +61,18 @@ function TheCheckbox(props: propsCheckbox, ref: any) {
 
     return (
         <label
-            className={`${T} ${T}__${checkboxSize} ${
+            className={`${T} ${checkboxSize ? `${T}__${checkboxSize}` : ''} ${
                 value === true ? 'wdu-checkbox__checked' : ''
-            } ${disabled ? 'wdu-checkbox__disabled' : ''}`}>
+            } ${disabled ? 'wdu-checkbox__disabled' : ''} ${
+                halfChecked && !value ? 'wdu-checkbox__halfChecked' : ''
+            }`}
+            onClick={(e) => e.stopPropagation()}>
             <input
                 ref={refCheckbox}
                 className='wdu-checkbox__input'
                 type='checkbox'
                 onChange={handleChange}
+                defaultChecked={checked}
                 {...defaultCheckboxAttributes}
             />
 

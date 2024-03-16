@@ -66,6 +66,13 @@ export default function () {
         position: 'tree',
         components: [
             {
+                title: '节点多选',
+                info: '设置 selectable 属性可启用节点多选功能；默认点击父节点不会选中子节点，通过 associateSelection 属性可以启用关联选择模式',
+                component: (
+                    <Tree data={testData} selectable associateSelection />
+                ),
+            },
+            {
                 title: '基础用法',
                 component: <Tree data={testData} />,
                 code: `
@@ -119,6 +126,7 @@ const testData = [
                 info: '设置 clickHighlight 属性为 true 即可实现单击选中时节点的高亮效果；此时只能点击图标来展开节点',
                 component: <Tree data={testData} clickHighlight />,
             },
+
             {
                 title: '懒加载',
                 component: <Tree data={testData} lazyLoad={lazyLoading} />,
