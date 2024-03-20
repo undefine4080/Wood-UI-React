@@ -3,6 +3,7 @@ import {
     useContext,
     useEffect,
     useLayoutEffect,
+    useMemo,
     useRef,
     useState,
 } from 'react';
@@ -35,7 +36,7 @@ const TreeNodeContext = createContext<{
 const Provider = TreeNodeContext.Provider;
 
 function TreeNode(props: propsTreeNode) {
-    const { label, children, depth = 0, id, selected = false } = props;
+    const { label, children, depth = 0, id, defaultCheck } = props;
 
     const {
         size,
@@ -45,11 +46,13 @@ function TreeNode(props: propsTreeNode) {
         setClickedNode,
         treeNodeClassName,
         selectable,
+        nodeKey,
+        labelKey,
         associateSelection,
+        onNodeExpand,
+        onNodeSelect,
+        onNodeClick,
     } = useContext(TreeContext);
-
-    const { setSelectedNodes: setParentSelectedNodes, parentHalfChecked } =
-        useContext(TreeNodeContext);
 
     const refNodeChild = useRef<HTMLDivElement>(null);
     const prevNodeContainerHeight = useRef('');
@@ -58,16 +61,27 @@ function TreeNode(props: propsTreeNode) {
     const [nodeContainerHeight, setNodeContainerHeight] = useState(
         CONTAINER.COLLAPSE,
     );
-    const [selectedNodes, setSelectedNodes] = useState<Array<any>>([]);
-    const [applyChildNodes, setApplyChildNodes] = useState<treeNodeDataList>(
-        [],
-    );
+
     const [loading, setLoading] = useState<boolean>();
     const [checked, setChecked] = useState<boolean>();
     const [halfChecked, setHalfChecked] = useState<boolean>();
 
+    const { setSelectedNodes: setParentSelectedNodes, parentHalfChecked } =
+        useContext(TreeNodeContext);
+    const [selectedChild, setSelectedChild] = useState<Array<any>>([]);
+    const [applyChildNodes, setApplyChildNodes] = useState<treeNodeDataList>(
+        [],
+    );
+
+    const isAllChecked = useMemo(() => {
+        if (checked && !halfChecked) return true;
+        if ((!checked && halfChecked) || (!checked && !halfChecked))
+            return false;
+    }, [checked, halfChecked]);
+
     // render child nodes with lazy load function or with the child nodes from props
-    useEffect(() => {
+    const handleExpand = (expand: boolean) => {
+        setExpand(expand);
         if (expand) {
             if (children && children.length && !applyChildNodes.length) {
                 if (lazyLoad) {
@@ -78,6 +92,7 @@ function TreeNode(props: propsTreeNode) {
                     });
                 } else {
                     setApplyChildNodes(children);
+                    onNodeExpand && onNodeExpand(props);
                 }
             }
         } else {
@@ -93,7 +108,7 @@ function TreeNode(props: propsTreeNode) {
                 }
             }
         }
-    }, [expand]);
+    };
 
     // recover the height of the current Tree container element from previous height
     useLayoutEffect(() => {
@@ -108,40 +123,13 @@ function TreeNode(props: propsTreeNode) {
         }
     }, [applyChildNodes, expand]);
 
-    // set the parent node checkbox to checked after all child nodes checked, and set it to unchecked after all child nodes unchecked
-    useEffect(() => {
-        if (!associateSelection) return;
-
-        const numChildNodes = children?.length;
-        if (!numChildNodes) return;
-
-        const numSelectedNodes = selectedNodes.length;
-        if (numSelectedNodes === numChildNodes) {
-            setChecked(true);
-            setHalfChecked(false);
-        } else if (numSelectedNodes < numChildNodes && numSelectedNodes > 0) {
-            setChecked(false);
-            setHalfChecked(true);
-        } else if (numSelectedNodes === 0) {
-            setChecked(false);
-            setHalfChecked(false);
-        }
-    }, [selectedNodes]);
-
-    // Set the checked status of the current node based on the checked status of the parent node
-    useEffect(() => {
-        if (associateSelection && !parentHalfChecked) {
-            setChecked(selected);
-        }
-    }, [selected]);
-
     // Set the parent node checked status based on the current node selected nodes counts
     useEffect(() => {
         // do nothing if it is top level node
         if (!setParentSelectedNodes) return;
 
         let submitSelectNodeFn =
-            depth === 0 ? setSelectedNodes : setParentSelectedNodes;
+            depth === 0 ? setSelectedChild : setParentSelectedNodes;
         let newStateOfSelectedNodes;
         if (checked) {
             newStateOfSelectedNodes = (prev: propsTreeNode[]) => [
@@ -155,10 +143,37 @@ function TreeNode(props: propsTreeNode) {
         submitSelectNodeFn(newStateOfSelectedNodes);
     }, [checked]);
 
+    // set the parent node checkbox to checked after all child nodes checked, and set it to unchecked after all child nodes unchecked
+    useEffect(() => {
+        if (!associateSelection) return;
+
+        const numChild = children?.length;
+        if (!numChild) return;
+
+        const numSelectedChild = selectedChild.length;
+        if (numSelectedChild === numChild) {
+            setChecked(true);
+            setHalfChecked(false);
+        } else if (numSelectedChild < numChild && numSelectedChild > 0) {
+            setChecked(false);
+            setHalfChecked(true);
+        } else if (numSelectedChild === 0) {
+            setChecked(false);
+            setHalfChecked(false);
+        }
+    }, [selectedChild]);
+
+    // Set the checked status of the current node based on the checked status of the parent node
+    useEffect(() => {
+        if (associateSelection && !parentHalfChecked) {
+            setChecked(defaultCheck);
+        }
+    }, [defaultCheck]);
+
     return (
         <Provider
             value={{
-                setSelectedNodes,
+                setSelectedNodes: setSelectedChild,
                 parentHalfChecked: halfChecked,
             }}>
             <div className={`${T} ${treeNodeClassName}`}>
@@ -170,7 +185,7 @@ function TreeNode(props: propsTreeNode) {
                     }`}
                     onClick={() => {
                         if (clickHighlight) return;
-                        setExpand(!expand);
+                        handleExpand(!expand);
                     }}>
                     <div
                         className={`${T}-label--container`}
@@ -185,18 +200,17 @@ function TreeNode(props: propsTreeNode) {
                                 visibility: children ? 'visible' : 'hidden',
                             }}
                             onClick={() => {
-                                if (clickHighlight) {
-                                    setExpand(!expand);
-                                }
+                                if (clickHighlight) handleExpand(!expand);
                             }}></i>
 
                         {selectable && (
                             <Checkbox
                                 checked={checked}
                                 halfChecked={halfChecked}
-                                onChange={(checked: boolean) =>
-                                    setChecked(checked)
-                                }
+                                onChange={(checked: boolean) => {
+                                    setChecked(checked);
+                                    if (checked) setHalfChecked(false);
+                                }}
                             />
                         )}
 
@@ -235,7 +249,7 @@ function TreeNode(props: propsTreeNode) {
                                     label={node.label}
                                     depth={depth + 1}
                                     children={node.children}
-                                    selected={checked}
+                                    defaultCheck={isAllChecked}
                                 />
                             );
                         })}

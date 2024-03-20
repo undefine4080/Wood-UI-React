@@ -1,97 +1,80 @@
 import commonProps from '@common/types';
 import { ReactNode } from 'react';
 
-type treeNodeData = {
+type TreeNodeData = {
     [key: string]: any;
 };
 
-type treeNodeDataList = Array<treeNodeData>;
+type treeNodeDataList = Array<TreeNodeData>;
 
-interface treeEvents {
-    onNodeClick?: (nodeIndex: string | number, node: treeNodeData) => any;
-    onNodeExpand?: (
-        nodeIndex: string | number,
-        node: treeNodeData,
-        expand: boolean,
-    ) => any;
+interface TreeEvents {
+    onNodeExpand?: (nodeData: TreeNodeData) => any;
     onNodeSelect?: (
-        nodeIndex: string | number,
-        node: treeNodeData,
-        selectedNodesKey: Array<string>,
-        selectedNodes: Array<treeNodeData>,
+        nodeData: TreeNodeData,
+        selectedNodesData: Array<TreeNodeData>,
     ) => any;
+    onNodeClick?: (nodeData: TreeNodeData) => any;
 }
 
-interface propsTree extends treeEvents {
-    data: Array<treeNodeData>;
+interface PropsTree extends TreeEvents {
+    data: Array<TreeNodeData>;
     size?: commonProps['size'];
     treeClassName?: string;
     treeNodeClassName?: string;
 
-    // whether to associate child nodes when selecting parent nodes
-    associateSelection?: boolean;
-
-    // an array of node index which will be expanded
-    defaultExpandNodes?: Array<string | number>;
-
-    // lazy loading the data from server
-    lazyLoad?: (node: treeNodeData) => Promise<Array<treeNodeData>>;
-
     // whether the nodes can be selected by the checkbox widget
     selectable?: boolean;
 
-    // the key of children which default is 'children'
+    // the key of children which default is 'id'
     nodeKey?: string;
-
-    // the key of node index which default is 'id'
-    nodeIndexKey?: string;
 
     // the key of node label which default is 'label'
     labelKey?: string;
 
-    // user can custom the tree node component and the TreeNode data will pass through the component props
-    customNode?: ReactNode;
+    // whether to associate child nodes when selecting parent nodes
+    associateSelection?: boolean;
+
+    // an array of node key which will be expanded
+    defaultExpandNodes?: Array<string | number>;
+
+    // an array of node key which will be selected
+    defaultSelectedNodes?: Array<string | number>;
 
     // whether the node is highlight while it is clicked
     clickHighlight?: boolean;
+
+    // lazy loading the data from server
+    lazyLoad?: (node: TreeNodeData) => Promise<Array<TreeNodeData>>;
+
+    // user can custom the tree node component and the TreeNode data will pass through the component props
+    customNode?: ReactNode;
 }
 
-interface propsTreeNode {
+interface PropsTreeNode {
     id?: string | number;
     label?: string;
-    children?: Array<treeNodeData>;
+    children?: Array<TreeNodeData>;
     depth?: number;
     expand?: boolean;
-    selected?: boolean;
-    onExpand?: (nodeIndex: string | number, expand: boolean) => any;
-    onSelect?: (
-        nodeIndex: string | number,
-        selectedNodesKey: Array<string>,
-        selectedNodes: Array<treeNodeData>,
-    ) => any;
+    defaultCheck?: boolean;
+    [key: string]: any;
 }
 
-interface refTree {
-    toggle: (nodeIndex: string | number, expand: boolean) => void;
-    toggleAll: (expand: boolean) => void;
-    toggleSelect: (nodeIndex: string | number, select: boolean) => void;
-    toggleSelectAll: (select: boolean) => void;
-    isLeaf: (nodeIndex: string | number) => boolean;
-    getDepth: (nodeIndex: string | number) => number;
-    getChildren: (nodeIndex: string | number) => Array<treeNodeData>;
-    getParent: (nodeIndex: string | number) => Array<treeNodeData>;
-    getSelectedNodes: () => Array<treeNodeData>;
-    getNodePath: (nodeIndex: string | number) => Array<string>;
+interface RefTree {
+    isLeaf: (nodeKey: string | number) => boolean;
+    getChildren: (nodeKey: string | number) => Array<TreeNodeData>;
+    getParent: (nodeKey: string | number) => TreeNodeData;
+    getSelectedNodes: () => Array<TreeNodeData>;
 }
 
-type MergeNodeAndChildren = Array<treeNodeData | propsTreeNode>;
+type MergeNodeAndChildren = Array<TreeNodeData | PropsTreeNode>;
 
 export type {
-    propsTree,
-    treeNodeData,
-    treeEvents,
-    propsTreeNode,
-    refTree,
+    PropsTree,
+    TreeNodeData as treeNodeData,
+    TreeEvents,
+    PropsTreeNode as propsTreeNode,
+    RefTree as refTree,
     treeNodeDataList,
     MergeNodeAndChildren,
 };

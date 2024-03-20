@@ -6,13 +6,16 @@ const testData = [
     {
         id: '1',
         label: '节点-1',
+        name: 'hahhahahah',
         children: [
             {
                 id: '1-1',
+                name: 'hahhahahah',
                 label: '节点-1-1',
                 children: [
                     {
                         id: '1-1-1',
+                        name: 'hahhahahah',
                         label: '节点-1-1-1',
                     },
                 ],
@@ -20,26 +23,31 @@ const testData = [
             {
                 id: '1-2',
                 label: '节点-1-2',
+                name: 'hahhahahah',
             },
         ],
     },
     {
         id: '2',
         label: '节点-2',
+        name: 'hahhahahah',
         children: [
             {
                 id: '2-1',
                 label: '节点-2-1',
+                name: 'hahhahahah',
                 children: [
                     {
                         id: '2-1-1',
                         label: '节点-2-1-1',
+                        name: 'hahhahahah',
                     },
                 ],
             },
             {
                 id: '2-2',
                 label: '节点-2-2',
+                name: 'hahhahahah',
             },
         ],
     },
@@ -54,6 +62,7 @@ const lazyLoading = (node: treeNodeData): Promise<treeNodeDataList> => {
                 {
                     id: 'xxxx-1',
                     label: '节点-3',
+                    name: 'hahhahahah',
                 },
             ]);
         }, 3000);
@@ -69,12 +78,17 @@ export default function () {
                 title: '节点多选',
                 info: '设置 selectable 属性可启用节点多选功能；默认点击父节点不会选中子节点，通过 associateSelection 属性可以启用关联选择模式',
                 component: (
-                    <Tree data={testData} selectable associateSelection />
+                    <Tree
+                        data={testData}
+                        selectable
+                        associateSelection
+                        nodeKey='id'
+                    />
                 ),
             },
             {
                 title: '基础用法',
-                component: <Tree data={testData} />,
+                component: <Tree data={testData} labelKey='name' />,
                 code: `
 const testData = [
     {
@@ -124,7 +138,7 @@ const testData = [
             {
                 title: '单击选中节点',
                 info: '设置 clickHighlight 属性为 true 即可实现单击选中时节点的高亮效果；此时只能点击图标来展开节点',
-                component: <Tree data={testData} clickHighlight />,
+                component: <Tree data={testData} clickHighlight nodeKey='id' />,
             },
 
             {

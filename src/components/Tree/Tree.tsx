@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
-import { propsTree, treeNodeData, treeNodeDataList } from './type';
+import { PropsTree, treeNodeData } from './type';
 import TreeNode from './TreeNode';
-import commonProps from '@common/types';
 
 import './tree.less';
 
-const TreeContext = React.createContext<{
-    data: Array<any>;
-    size: commonProps['size'];
-    lazyLoad?: (node: treeNodeData) => Promise<treeNodeDataList>;
-    clickedNode: undefined | treeNodeData;
-    setClickedNode: (node: treeNodeData) => void;
-    clickHighlight?: boolean;
-    treeNodeClassName?: string;
-    selectable?: boolean;
-    associateSelection?: boolean;
-}>({
+const TreeContext = React.createContext<PropsTree & treeNodeData>({
     data: [],
     size: 'normal',
     setClickedNode: () => {},
     clickedNode: undefined,
+    nodeKey: 'id',
 });
 const Provider = TreeContext.Provider;
 
-function Tree(props: propsTree) {
+function Tree(props: PropsTree) {
     const {
         data,
         size = 'normal',
-        lazyLoad,
         clickHighlight,
         treeClassName = '',
         treeNodeClassName = '',
         selectable,
         associateSelection,
+        nodeKey = 'id',
+        labelKey = 'label',
+        lazyLoad,
+        onNodeExpand,
+        onNodeSelect,
+        onNodeClick,
     } = props;
 
     const [clickedNode, setClickedNode] = useState<treeNodeData>();
@@ -40,13 +35,18 @@ function Tree(props: propsTree) {
     const contextValue = {
         data,
         size,
-        lazyLoad,
-        clickedNode,
-        setClickedNode,
         clickHighlight,
         treeNodeClassName,
         selectable,
         associateSelection,
+        nodeKey,
+        labelKey,
+        clickedNode,
+        lazyLoad,
+        setClickedNode,
+        onNodeExpand,
+        onNodeSelect,
+        onNodeClick,
     };
 
     return (
