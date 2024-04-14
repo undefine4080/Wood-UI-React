@@ -21,6 +21,7 @@ interface PropsTree extends TreeEvents {
     size?: commonProps['size'];
     treeClassName?: string;
     treeNodeClassName?: string;
+    expandAll?: boolean;
 
     // whether the nodes can be selected by the checkbox widget
     selectable?: boolean;

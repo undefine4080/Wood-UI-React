@@ -78,12 +78,7 @@ export default function () {
                 title: '节点多选',
                 info: '设置 selectable 属性可启用节点多选功能；默认点击父节点不会选中子节点，通过 associateSelection 属性可以启用关联选择模式',
                 component: (
-                    <Tree
-                        data={testData}
-                        selectable
-                        associateSelection
-                        nodeKey='id'
-                    />
+                    <Tree data={testData} selectable associateSelection />
                 ),
             },
             {
