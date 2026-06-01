@@ -36,22 +36,22 @@
         "coverage": "vitest run --coverage"
     },
     "dependencies": {
-        "@testing-library/react": "^14.0.0",
+        "@testing-library/react": "^14.3.1",
         "jsdom": "^22.1.0",
         "monaco-editor": "^0.43.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-router-dom": "^6.16.0"
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^6.26.1"
     },
     "devDependencies": {
-        "@types/node": "^20.6.3",
-        "@types/react": "^18.2.22",
-        "@types/react-dom": "^18.2.7",
-        "@vitejs/plugin-react": "^4.0.4",
+        "@types/node": "^20.16.5",
+        "@types/react": "^18.3.5",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.1",
         "less": "^4.2.0",
-        "typescript": "^5.2.2",
-        "vite": "^4.4.9",
+        "typescript": "^5.5.4",
+        "vite": "^4.5.3",
         "vite-plugin-progress": "^0.0.7",
-        "vitest": "^0.34.4"
+        "vitest": "^0.34.6"
     }
 }

@@ -8,6 +8,7 @@ import commonProps from '@common/types';
 const T = 'wdu-button';
 function Button(props: propsButton) {
     const {
+        id = '',
         type = 'plain',
         size = 'normal',
         children,
@@ -16,7 +17,7 @@ function Button(props: propsButton) {
         loading = false,
         icon,
         className,
-    } = props as propsButton & commonProps;
+    } = props as propsButton;
 
     const classMap = {
         base: `${T} ${className}`,
@@ -47,7 +48,11 @@ function Button(props: propsButton) {
     };
 
     return (
-        <button type='button' className={classList} onClick={handleClick}>
+        <button
+            id={id}
+            type='button'
+            className={classList}
+            onClick={handleClick}>
             {loading && <i className='wdu-icon-loading'></i>}
 
             {icon}

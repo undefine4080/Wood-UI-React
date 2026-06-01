@@ -9,3 +9,4 @@ yarn-error.log*
 build/
 docs
 /test/unit/coverage/
+dist/

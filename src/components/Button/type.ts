@@ -1,6 +1,7 @@
+import commonProps from '@common/types';
 import { MouseEventHandler, ReactNode } from 'react';
 
-interface propsButton {
+interface propsButton extends commonProps {
     type?:
         | 'plain'
         | 'important'

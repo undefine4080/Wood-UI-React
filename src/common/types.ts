@@ -8,7 +8,7 @@ export default interface commonProps {
     height?: string | number;
     children?: any;
     disabled?: boolean;
-    type?: 'plain' | 'important' | 'danger' | 'success' | 'warn';
+    type?: string;
     size?: 'small' | 'normal' | 'large';
     name?: string;
     value?: string | number;
